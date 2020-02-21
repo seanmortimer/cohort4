@@ -1,0 +1,2 @@
+echo --- starting web app local ---
+python web.py
