@@ -17,12 +17,8 @@ const functions = {
     },
 
     isEven: (int) => {
-        if (int % 2 === 0) {
-            return true;
-        }
-        else {
-        return false;
-        }
+        if (int % 2 === 0) return true;
+            return false;
     }
 };
 
