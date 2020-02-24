@@ -13,9 +13,19 @@ const functions = {
 
     subtract: (num1, num2) => {
         return num1 - num2;
-    }
+    },
 
-    
+    isEven: (int) => {
+        if (int % 2 === 0) {
+            return true;
+        }
+        else if (int === 0) {
+            return true;
+        }
+        else {
+        return false;
+        }
+    }
 };
 
 export default functions;
