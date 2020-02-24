@@ -20,9 +20,6 @@ const functions = {
         if (int % 2 === 0) {
             return true;
         }
-        else if (int === 0) {
-            return true;
-        }
         else {
         return false;
         }
