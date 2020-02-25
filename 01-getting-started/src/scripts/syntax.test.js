@@ -27,3 +27,16 @@ test('Does the boolean function work?', () => {
     expect(syntaxFunctions.isBoolean({'user': 'name', 'pass': 'word'})).toBe(false);
     expect(syntaxFunctions.isBoolean(undefined)).toBe(false);
 });
+
+test('Does the array function work?', () => {
+    expect(syntaxFunctions.array([1,2])).toEqual([1,2,3]);
+    expect(syntaxFunctions.array([88,99,77])).toEqual([88,99,77,4]);
+    expect(syntaxFunctions.array(["a","b","c","d"])).toEqual(["a","b","c","d",5]);
+});
+
+test('Does the object function work?', () => {
+    expect(syntaxFunctions.object({name: "name", user: "user"}))
+    .toEqual({name: "name", user: "user", animal: "dog"});
+    expect(syntaxFunctions.object({name: "name", user: "user"}))
+    .toEqual({name: "name", user: "user", animal: "dog"});
+});
