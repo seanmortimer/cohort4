@@ -36,7 +36,14 @@ test('Does the array function work?', () => {
 
 test('Does the object function work?', () => {
     expect(syntaxFunctions.object({name: "name", user: "user"}))
-    .toEqual({name: "name", user: "user", animal: "dog"});
-    expect(syntaxFunctions.object({name: "name", user: "user"}))
-    .toEqual({name: "name", user: "user", animal: "dog"});
+        .toEqual({name: "name", user: "user", animal: "dog"});
+    expect(syntaxFunctions.object({pizza: "pepperoni", sauce: "tomato"}))
+        .toEqual({pizza: "pepperoni", sauce: "tomato", animal: "dog"});
+    expect(syntaxFunctions.object({num1: 1, num2: 2, num3: 3}))
+    .toEqual({num1: 1, num2: 2, num3: 3, animal: "dog"});
+});
+
+test('Does the undefined function work?', () => {
+    expect(syntaxFunctions.isVarDefined(var13)).toBe(false);
+
 });

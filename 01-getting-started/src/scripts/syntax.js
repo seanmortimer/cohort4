@@ -40,19 +40,25 @@ const syntaxFunctions = {
         return false;
     },
     
-    // array (adds a number equal to its index + 1 to the end of an)
+    // array (adds a number equal to its index + 1 to the end of an array)
     array: (array) => {
         array.push(array.length + 1);
         // console.log("array is: " + array);
         return array;
     },
 
-    // dictionary / objects
+    // dictionary / objects --Adds "animal: dog" to the object, because everything
+    // is better with dogs 
     object: (obj) => {
-        return {name: "name", user: "user", animal: "dog"};
-    }
+        obj.animal = "dog"
+        // console.log(obj);
+        return obj;
+    },
 
     // undefined
+    isVarDefined: (variable) => {
+        return true;
+    }
 }
 
 export default syntaxFunctions;
