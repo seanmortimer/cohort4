@@ -44,6 +44,17 @@ test('Does the object function work?', () => {
 });
 
 test('Does the undefined function work?', () => {
-    expect(syntaxFunctions.isVarDefined(var13)).toBe(false);
+    expect(syntaxFunctions.undefinedCheck(undefined)).toBe(true);
+    expect(syntaxFunctions.undefinedCheck("a")).toBe(false);
+    expect(syntaxFunctions.undefinedCheck(5)).toBe(false);
+    expect(syntaxFunctions.undefinedCheck(null)).toBe(false);
+
+
+});
+
+test('Does the if / else sample function work?', () => {
+    expect(syntaxFunctions.isItZero(0)).toBe(true);
+    expect(syntaxFunctions.isItZero(1)).toBe(false);
+    expect(syntaxFunctions.isItZero(-1)).toBe(false);
 
 });

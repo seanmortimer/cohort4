@@ -1,8 +1,3 @@
-
-// sample if / else
-// functions
-    // parameters
-    // returns
 // arrays
     // add to the front
     // add to the end
@@ -56,9 +51,24 @@ const syntaxFunctions = {
     },
 
     // undefined
-    isVarDefined: (variable) => {
-        return true;
-    }
+    undefinedCheck: (variable) => {
+        // console.log(variable);
+        if (variable === undefined) return true;
+        return false;
+    },
+
+// sample if / else
+    isItZero: (num) => {
+        if (num === 0) {return true;}
+        else {return false;}
+    },
+
+// functions
+    // parameters
+    
+    
+    // returns
+
 }
 
 export default syntaxFunctions;
