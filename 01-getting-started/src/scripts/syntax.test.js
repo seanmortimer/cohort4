@@ -129,3 +129,21 @@ test('Does the array function work?', () => {
         .toEqual(["🦕  🌋", "🐊  🌋", "🐉  🌋", "🦎  🌋", "🦖  🌋"]);
     
 });
+
+test('Does the Declare Object function work?', () => {
+    expect(syntaxFunctions.createObject("Bill", "Bailey", "Bird"))
+        .toEqual({First_Name: "Bill", Last_Name: "Bailey", Pet: "Bird"});
+    expect(syntaxFunctions.createObject("Joe", "Lycett", "Cat"))
+        .toEqual({First_Name: "Joe", Last_Name: "Lycett", Pet: "Cat"});
+    expect(syntaxFunctions.createObject("Noel", "Fielding", "🦖"))
+        .toEqual({First_Name: "Noel", Last_Name: "Fielding", Pet: "🦖"});
+});
+
+test('Does the Lookup Key function work?', () => {
+    expect(syntaxFunctions.lookupKey("Last_Name", {First_Name: "Bill", Last_Name: "Bailey", Pet: "Bird"}))
+        .toBe("Bailey");
+    expect(syntaxFunctions.lookupKey("Last_Name", {First_Name: "Joe", Last_Name: "Lycett", Pet: "Cat"}))
+        .toBe("Lycett");
+    expect(syntaxFunctions.lookupKey("Pet", {First_Name: "Noel", Last_Name: "Fielding", Pet: "🦖"}))
+        .toBe("🦖");
+    });

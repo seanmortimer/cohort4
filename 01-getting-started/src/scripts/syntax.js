@@ -157,15 +157,23 @@ const syntaxFunctions = {
         
         // console.log("newArray is now: " + newArray);
         return newArray;
-    }
+    },
 
 // Objects / Dictionaries
-    // declare object
-
-
+    // declare 
+    createObject: (firstName, lastName, pet) => {
+        let object = {First_Name: firstName, Last_Name: lastName, Pet: pet};
+        // console.log("Object created is: " + object);
+        return object;
+    },
 
     // lookup key to retrieve value
-
+    lookupKey: (key, object) => {
+        // console.log("Received key is: " + key);
+        let result = object[key];
+        // console.log("The returned key value is: " + result);
+        return result;
+    }
 }
 
 export default syntaxFunctions;

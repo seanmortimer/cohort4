@@ -22,4 +22,12 @@ const functions = {
     }
 };
 
+const calculator = {
+    add: ()
+
+
+};
+
+
+
 export default functions;
