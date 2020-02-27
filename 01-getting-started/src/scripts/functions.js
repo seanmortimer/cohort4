@@ -7,6 +7,11 @@ const functions = {
         if (num > 100) return "extra large";
             return "large";
     },
+    
+    isEven: (int) => {
+        if (int % 2 === 0) return true;
+            return false;
+    },
 
     add: (num1, num2) => {
         return num1 + num2;
@@ -16,18 +21,14 @@ const functions = {
         return num1 - num2;
     },
 
-    isEven: (int) => {
-        if (int % 2 === 0) return true;
-            return false;
+    multiply: (num1, num2) => {
+        return num1 * num2;
+    },
+
+    divide: (num1, num2) => {
+        return 0.5;
     }
-};
-
-const calculator = {
-    add: ()
-
 
 };
-
-
 
 export default functions;
