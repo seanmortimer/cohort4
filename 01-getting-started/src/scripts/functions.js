@@ -13,8 +13,9 @@ const functions = {
             return false;
     },
 
-    add: (num1, num2) => {
-        return num1 + num2;
+    add: (numbers) => {
+        // console.log("Am I on the right track here? " + numbers[numbers.length - 1]);
+        return numbers[numbers.length - 2] + numbers[numbers.length - 1];
     },
 
     subtract: (num1, num2) => {
@@ -26,7 +27,8 @@ const functions = {
     },
 
     divide: (num1, num2) => {
-        return 0.5;
+        if (num2 === 0) return "Divide by zero. Here's a puppy: 🐶";
+        return num1 / num2;
     }
 
 };
