@@ -66,6 +66,12 @@ html {
 }
 
 
+#idCalcResult, #idOperator {
+    font-weight: bold;
+}
+
+
+
 /* Turn off parallax scrolling for tablets and phones */
 
 @media only screen and (min-device-width: 1600px) {
