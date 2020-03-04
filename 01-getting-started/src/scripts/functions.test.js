@@ -17,11 +17,11 @@ test('Does that isEven function work?', () => {
 });
 
 test('Does the add function work?', () => {
-    expect(functions.add([1,2])).toBe(3);
-    expect(functions.add([101,202])).toBe(303);
-    expect(functions.add([55,-45])).toBe(10);
-    expect(functions.add([10,-8])).toBe(2);
-    expect(functions.add([-10,-8])).toBe(-18);
+    expect(functions.add(1,2)).toBe(3);
+    expect(functions.add(101,202)).toBe(303);
+    expect(functions.add(55,-45)).toBe(10);
+    expect(functions.add(10,-8)).toBe(2);
+    expect(functions.add(-10,-8)).toBe(-18);
 });
 
 test('Does the subtract function work?', () => {
@@ -49,4 +49,16 @@ test('Does the divide function work?', () => {
     expect(functions.divide(10,-8)).toBe(-1.25);
     expect(functions.divide(-10,-8)).toBe(1.25);
     expect(functions.divide(0, 20)).toBe(0);
+});
+
+test('Does the doMath function work?', () => {
+    expect(functions.doMath(1,1,"+")).toBe(2);
+    expect(functions.doMath(2,2,"+")).toBe(4);
+    expect(functions.doMath(2,2,"-")).toBe(0);
+    expect(functions.doMath(2,10,"×")).toBe(20);
+    expect(functions.doMath(-2,10,"×")).toBe(-20);
+    expect(functions.doMath(2,10,"÷")).toBe(0.2);
+    expect(functions.doMath(2,0,"÷")).toBe("Divide by zero. Here's a puppy: 🐶");
+
+
 });

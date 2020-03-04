@@ -54,7 +54,7 @@ html {
 
 .w3-wide {
     letter-spacing: 10px;
-}
+}com
 
 .w3-hover-opacity {
     cursor: pointer;
@@ -66,10 +66,33 @@ html {
 }
 
 
-#idCalcResult, #idOperator {
+#idCalcResult, #idOperator, #idCalcResultx, #idCalcResultxx {
     font-weight: bold;
 }
 
+#idCalcInput1, #idCalcInput2 {
+    
+    text-align: right;
+}
+
+#idOperator {
+    margin: 20px;
+    font-size: 1.5rem;
+}
+
+.operatorButton {
+    font-weight: bold;
+    font-size: 20px;
+    /* padding: 0px 0px 10px 0px; */
+    margin: 4px;
+    width: 40px;
+    height: 40px;
+    /* background-color: #000000; */
+}
+
+.operatorClicked {
+    background-color: brown;
+}
 
 
 /* Turn off parallax scrolling for tablets and phones */

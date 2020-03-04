@@ -105,10 +105,23 @@
     </div>
 
     <div class="w3-content w3-container w3-padding-64 w3-center" id="idCalc">
-        Enter two numbers =>
-        <input id="idCalcInput" type="number"> <p id="idCalcResultx"><span id="idOperator">HI</span>
-        <span id="idCalcResult"></span><br> Isn't that neat?
-        </p>
+        Enter two numbers:
+        <div>   
+            <input id="idCalcInput1" type="number" placeholder="Number 1" ><span id="idOperator">...</span>
+            <input id="idCalcInput2" type="number" placeholder="Number 2"> 
+        </div>
+        <p><span>Choose an operation:</span></p>
+        <div  id="idCalcResult">
+            <button class="operatorButton">+</button>
+            <button class="operatorButton">-</button>
+            <button class="operatorButton">×</button>   
+            <button class="operatorButton">÷</button>
+        </div>
+        <br>    
+        <p id="idCalcResultx"></p>
+        <p id="idCalcResultxx"></p>
+        
+        <br> Isn't that neat?
     </div>
 
     <!-- Footer -->
