@@ -7,7 +7,7 @@ const functions = {
             const resultRounded = Math.round(result * 100) / 100;
             
             // console.log("Calculating tax in bracket 1, full    :", result);
-            // console.log("Calculating tax in bracket 1, Rounded :  ", resultRounded);
+            // console.log("Calculating tax in bracket 1, Rounded :  %f", resultRounded);
             return resultRounded;
         }
                 
@@ -45,13 +45,21 @@ const functions = {
             const result = (grossIncome - 214368) * .33 + 49644.31;
             const resultRounded = Math.round(result * 100) / 100;
 
-            console.log("Calculating tax for %f, bracket 5, full   : %f",grossIncome, result);
-            console.log("Calculating tax for %f, bracket 5, Rounded: %f",grossIncome, resultRounded);
+            // console.log("Calculating tax for %f, bracket 5, full   : %f",grossIncome, result);
+            // console.log("Calculating tax for %f, bracket 5, Rounded: %f",grossIncome, resultRounded);
 
             return resultRounded;
         }
         return ;
+    },
+
+    taxRate: (grossIncome, taxOwed) => {
+        console.log("Tax rate: " + (taxOwed / grossIncome * 100) + "%");
+        
+        return (taxOwed / grossIncome * 100).toFixed(1) + "%";
+        
     }
+
 
 
 }

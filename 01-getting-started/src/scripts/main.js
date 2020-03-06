@@ -1,25 +1,50 @@
+import functions from './functions.js';
+import taxFunctions from './tax_calculator.js';
+
 idNumber.addEventListener('change', (() => {
     idNumberSize.textContent = functions.size(idNumber.value);
 }));
 
 
-import functions from './functions.js';
 
 // **********
 //
 // Add the event listeners
 // 
-let input1 = document.querySelector("#idCalcInput1")
-let input2 = document.querySelector("#idCalcInput2")
+let input1 = document.querySelector("#idCalcInput1");
+let input2 = document.querySelector("#idCalcInput2");
+let incomeInput = document.querySelector("#idGrossIncome");
 let operator;
 let result;
 let num1;
 let num2;
 
-var operatorButtons = document.querySelectorAll(".operatorButton");
-console.log(operatorButtons);
+const operatorButtons = document.querySelectorAll(".operatorButton");
+// console.log(operatorButtons);
 
 
+
+
+operatorButtons.forEach(button => {
+    button.addEventListener('click', (() => {
+        operator = button.innerText;
+        calculate(operator);
+        
+    }));  
+    
+});
+
+idCalcInput1.addEventListener('change', (() => {
+    if (operator != undefined) calculate(operator);
+}));
+
+idCalcInput2.addEventListener('change', (() => {
+    if (operator != undefined) calculate(operator);
+}));
+
+idGrossIncome.addEventListener('change', (() => {
+    onTaxInput();
+}));
 
 const calculate = (operator) => {
     num1 = Number(input1.value);
@@ -30,25 +55,19 @@ const calculate = (operator) => {
     idCalcResultx.innerText = "The answer is:";
     idCalcResultxx.innerText = result;
 
-    console.log("operator is: " + operator);
-    console.log("num1 is: " + input1.value);
-    console.log("num2 is: " + input2.value);
-    console.log("result is: " + result);
+    // console.log("operator is: " + operator);
+    // console.log("num1 is: " + input1.value);
+    // console.log("num2 is: " + input2.value);
+    // console.log("result is: " + result);
 };
 
-operatorButtons.forEach(button => {
-    button.addEventListener('click', (() => {
-        operator = button.innerText;
-        calculate(operator);
-        
-    }));  
+const onTaxInput = () => {
+    const grossIncome = Number(incomeInput.value)
+    const taxOwed = taxFunctions.taxOwed(grossIncome);
+    const taxRate = taxFunctions.taxRate(grossIncome, taxOwed);
 
-});
-
-idCalcInput1.addEventListener('change', (() => {
-     if (operator != undefined) calculate(operator);
-}));
-
-idCalcInput2.addEventListener('change', (() => {
-    if (operator != undefined) calculate(operator);
-}));
+    console.log("Gross Income received: %f", grossIncome);
+    
+    idTaxOwed.textContent = "$" + taxOwed.toFixed(2);
+    idTaxRate.textContent = taxRate;
+};

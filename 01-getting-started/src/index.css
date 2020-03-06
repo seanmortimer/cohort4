@@ -70,7 +70,7 @@ html {
     font-weight: bold;
 }
 
-#idCalcInput1, #idCalcInput2 {
+#idCalcInput1, #idCalcInput2, #idGrossIncome {
     
     text-align: right;
 }
@@ -79,6 +79,8 @@ html {
     margin: 20px;
     font-size: 1.5rem;
 }
+
+
 
 .operatorButton {
     font-weight: bold;
@@ -90,10 +92,21 @@ html {
     /* background-color: #000000; */
 }
 
-.operatorClicked {
-    background-color: brown;
+#idTaxTable {
+    margin: 40px;
+    display: flex;
+    justify-content: center; 
 }
 
+table { 
+    font-weight: bold;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #777;
+    min-width: 150px;
+  }
 
 /* Turn off parallax scrolling for tablets and phones */
 
