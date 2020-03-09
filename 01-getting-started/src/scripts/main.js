@@ -1,30 +1,44 @@
 import functions from './functions.js';
 import taxFunctions from './tax_calculator.js';
 
-idNumber.addEventListener('change', (() => {
-    idNumberSize.textContent = functions.size(idNumber.value);
-}));
 
 
 
-// **********
-//
-// Add the event listeners
-// 
+
 let input1 = document.querySelector("#idCalcInput1");
 let input2 = document.querySelector("#idCalcInput2");
 let incomeInput = document.querySelector("#idGrossIncome");
 let arrayInput = document.querySelector("#idArrayInput");
+let dictInput = document.querySelector("#idDictInput");
+
+const operatorButtons = document.querySelectorAll(".operatorButton");
+const arrayButtons = document.querySelectorAll(".arrayButton");
+const dictButton = document.querySelector(".dictButton");
+
 let operator;
 let result;
 let num1;
 let num2;
 let array = [];
+const provinces = {
+    AB: "Alberta",
+    BC: "British Columbia",
+    MB: "Manitoba",
+    NB: "New Brunswick",
+    NL: "Newfoundland and Labrador",
+    NT: "Northwest Territories",
+    NS: "Nova Scotia",
+    NU: "Nunavut",
+    ON: "Ontario",
+    PE: "Prince Edward Island",
+    QC: "Quebec",
+    SK: "Saskatchewan",
+    YT: "Yukon"
+};
 
-const operatorButtons = document.querySelectorAll(".operatorButton");
-const arrayButtons = document.querySelectorAll(".arrayButton");
-
-
+idNumber.addEventListener('change', (() => {
+    idNumberSize.textContent = functions.size(idNumber.value);
+}));
 
 
 operatorButtons.forEach(button => {
@@ -45,7 +59,7 @@ arrayButtons.forEach(button => {
                 }
                 else {
                     array.push(input);
-                    idArrayOutput.textContent = `${input} has been added to the array. `; 
+                    idArrayOutput.textContent = `${input} has been added to the array.`; 
                 }
                 arrayInput.value = "";
                 break;
@@ -90,6 +104,13 @@ idCalcInput2.addEventListener('change', (() => {
 idGrossIncome.addEventListener('change', (() => {
     onTaxInput();
 }));
+
+
+dictButton.addEventListener('click', (() => {
+    let provinceCode = dictInput.value;
+    idDictOutput.textContent = functions.lookupProvince(provinceCode, provinces);
+}));  
+
 
 const calculate = (operator) => {
     num1 = Number(input1.value);

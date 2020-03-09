@@ -54,8 +54,16 @@ const functions = {
         let i;
         for (i=0; i < array.length; i++) {
             sum += array[i];
-        }
+        }   
         return sum;
+    },
+
+    lookupProvince: (inputCode, provinces) => {
+        console.log("Input code is: " + inputCode);
+
+        const province = provinces[inputCode.toUpperCase()];
+        if (!province) return "Please enter a valid 2 digit province code."
+        return province;
     }
 
 };

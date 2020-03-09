@@ -60,6 +60,11 @@ html {
     cursor: pointer;
 }
 
+.centerMe {
+    display: flex;
+    text-align: center;
+}
+
 #idNumber {
     border: 0;
     width: 50px;
@@ -70,8 +75,7 @@ html {
     font-weight: bold;
 }
 
-#idCalcInput1, #idCalcInput2, #idGrossIncome, #idArrayInput {
-    
+#idCalcInput1, #idCalcInput2, #idGrossIncome, #idArrayInput, #idDictInput {
     text-align: right;
 }
 
