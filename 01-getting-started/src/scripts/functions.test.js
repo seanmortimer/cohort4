@@ -62,3 +62,10 @@ test('Does the doMath function work?', () => {
 
 
 });
+
+test('Does the array summing function work?', () => {
+    expect(functions.sumArray([1,2])).toBe(3);
+    expect(functions.sumArray([1,2,3])).toBe(6);
+    expect(functions.sumArray([-10,20,-3])).toBe(7);
+    expect(functions.sumArray([10,205,35])).toBe(250);
+});

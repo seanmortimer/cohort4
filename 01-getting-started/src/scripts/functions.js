@@ -47,7 +47,17 @@ const functions = {
                 break;
             }
         return result;
+    },
+
+    sumArray: (array) => {
+        let sum = 0;
+        let i;
+        for (i=0; i < array.length; i++) {
+            sum += array[i];
+        }
+        return sum;
     }
+
 };
 
 export default functions;

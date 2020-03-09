@@ -54,7 +54,7 @@ const functions = {
     },
 
     taxRate: (grossIncome, taxOwed) => {
-        console.log("Tax rate: " + (taxOwed / grossIncome * 100) + "%");
+        // console.log("Tax rate: " + (taxOwed / grossIncome * 100) + "%");
         
         return (taxOwed / grossIncome * 100).toFixed(1) + "%";
         
