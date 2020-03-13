@@ -18,6 +18,7 @@ test('Is tax owed calculated properly?', () => {
     expect(taxFunctions.taxOwed(214368)).toBe(49644.31);
     expect(taxFunctions.taxOwed(214369)).toBe(49644.64);
     expect(taxFunctions.taxOwed(1000000)).toBe(308902.87);
+    expect(taxFunctions.taxOwed("abc")).toBe(NaN);
 });
 
 test('Is tax rate calculated properly?', () => {
@@ -29,5 +30,6 @@ test('Is tax rate calculated properly?', () => {
     expect(taxFunctions.taxRate(100000, 17991.78)).toBe("18.0%");
     expect(taxFunctions.taxRate(150000, 30991.78)).toBe("20.7%");
     expect(taxFunctions.taxRate(214368.50, 49644.31)).toBe("23.2%");
+    expect(taxFunctions.taxRate(1000000, 308902.87)).toBe("30.9%");
     expect(taxFunctions.taxRate(1000000, 308902.87)).toBe("30.9%");
 });

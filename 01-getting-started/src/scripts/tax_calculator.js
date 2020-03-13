@@ -50,7 +50,6 @@ const functions = {
 
             return resultRounded;
         }
-        return ;
     },
 
     taxRate: (grossIncome, taxOwed) => {

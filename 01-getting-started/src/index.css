@@ -71,7 +71,7 @@ html {
 }
 
 
-#idCalcResult, #idOperator, #idCalcResultx, #idCalcResultxx {
+#idCalcResult, #idOperator, #idCalcResultx, #idCalcResultxx, #idArrayOutput, #idDictOutput {
     font-weight: bold;
 }
 

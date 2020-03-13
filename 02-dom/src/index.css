@@ -1,0 +1,36 @@
+div {
+    font-family: sans-serif;
+    border: solid cadetblue; 
+}
+
+.cards {
+    width: auto;
+    height: auto;
+    padding: 0.5em;
+    margin: auto;
+}
+
+.cardTitles {
+    text-align: center;
+    font-weight: bold;
+}
+
+#idMainContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+
+#idLeftPanel  {
+    min-width: 200px;
+}
+
+#idRightPanel {
+   width: 70%;
+}
+
+#idRightPanel > p, H3 {
+    padding: 0px 20px;
+ 
+}
