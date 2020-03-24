@@ -28,8 +28,9 @@ const functions = {
         return div;
     },
 
-    addBeforeCard: (node, text) {
-        // const card = functions.createCard(text);
+    addBeforeCard: (node, text) => {
+        const card = functions.createCard(text);
+        node.parentElement.insertBefore(card, node);
     }
 
 };
