@@ -31,6 +31,15 @@ const functions = {
     addBeforeCard: (node, text) => {
         const card = functions.createCard(text);
         node.parentElement.insertBefore(card, node);
+    },
+    
+    addAfterCard: (node, text) => {
+        const card = functions.createCard(text);
+        node.parentElement.insertBefore(card, node.nextElementSibling);
+    },
+
+    deleteCard(node) {
+        node.remove();
     }
 
 };
