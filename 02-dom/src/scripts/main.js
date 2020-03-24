@@ -9,12 +9,12 @@ const divHandler = (event) => {
 
 const buttonHandler = (event) => {
     switch (event.target.textContent) {
-        case "Show":
-        console.log('Show was clicked: ' + event.target.parentElement.textContent);
+        case "Insert after":
+        console.log('"Insert after" was clicked: ' + event.target.parentElement.textContent);
         break;
 
-        case "Add":
-            console.log('Add was clicked: '   );
+        case "Insert before":
+            console.log('"Insert before" was clicked: '   );
             ol.appendChild
             break;
     }

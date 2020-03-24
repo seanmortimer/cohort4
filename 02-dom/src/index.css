@@ -1,18 +1,35 @@
 div {
     font-family: sans-serif;
+    padding: 10px;
     border: solid cadetblue; 
 }
 
 .cards {
-    width: auto;
-    height: auto;
-    padding: 0.5em;
-    margin: auto;
+    /* width: auto;
+    height: auto; */
+    padding: 10px;
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    /* height: 100px;
+    width: 150px;
+    padding: 10px;  */
 }
+
+/* .cards:hover {
+    border-color: brown;
+    /* transition: 0.5s; 
+    /* outline: solid red; 
+} */
+
+/* .cardsHighlight {
+    border-color: red;
+} */
 
 .cardTitles {
     text-align: center;
     font-weight: bold;
+    border: none;
 }
 
 #idMainContainer {
@@ -23,14 +40,27 @@ div {
 
 
 #idLeftPanel  {
-    min-width: 200px;
+    width: 30%;
+    min-width: 220px;
+    padding: 0px;
+    border: none;
 }
 
 #idRightPanel {
-   width: 70%;
+   width: 50%;
+   /* min-width: 220px; */
 }
 
 #idRightPanel > p, H3 {
     padding: 0px 20px;
  
 }
+
+
+/* .clCard {
+    /* Add shadows to create the "card" effect */
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    height: 100px;
+    width: 150px;
+    padding: 10px; */ 
