@@ -1,5 +1,5 @@
 {
-    "name": "jest-p2",
+    "name": "02-working-with-the-dom",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -8,7 +8,8 @@
         "testcov": "jest --coverage",
         "test1": "jest src/01-getting-started",
         "test1cov": "jest src/01-getting-started --coverage",
-        "testfile": "jest src/01-getting-started/scripts/lfsplay.test.js"
+        "testfile": "jest src/01-getting-started/scripts/lfsplay.test.js",
+        "watch": "jest --watch"
     },
     "keywords": [],
     "author": "",

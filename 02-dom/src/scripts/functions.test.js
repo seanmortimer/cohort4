@@ -8,8 +8,7 @@ test('Test card creation', () => {
     expect(card.textContent).toContain('Test');
     // console.log('innerText', card.innerText);
     
-    expect(card.innerHTML).toBe(
-        'Test<button>After</button><button>Before</button><button>Delete</button>');
+    expect(card.textContent).toBe('TestInsert afterInsert beforeDelete card');
 })
 
 test('Test Adding Before Card', () => {

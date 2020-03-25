@@ -5,22 +5,24 @@ const functions = {
         const div = document.createElement('div');
         div.setAttribute('class', 'clCard'); //applying premade css to new divs
                    
-        // console.log('The input text is:', text);
+        const cardTitle = document.createElement('p');
+        cardTitle.setAttribute('class', 'cardTitles'); //applying premade css to new divs
         
          //Add the input text at top of card
-        div.appendChild(document.createTextNode(text));
+        cardTitle.appendChild(document.createTextNode(text));
+        div.appendChild(cardTitle);
 
             //Add the buttons to the card
         const addBtn = document.createElement('button');
-        addBtn.appendChild(document.createTextNode("After"));
+        addBtn.appendChild(document.createTextNode("Insert after"));
         div.appendChild(addBtn);
 
         const beforeBtn = document.createElement('button');
-        beforeBtn.appendChild(document.createTextNode("Before"));
+        beforeBtn.appendChild(document.createTextNode("Insert before"));
         div.appendChild(beforeBtn);
 
         const delBtn = document.createElement('button');
-        delBtn.appendChild(document.createTextNode("Delete"));
+        delBtn.appendChild(document.createTextNode("Delete card"));
         div.appendChild(delBtn);
 
         // console.log('div innerHTML is:', div.innerHTML);
