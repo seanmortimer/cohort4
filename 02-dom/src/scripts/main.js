@@ -1,40 +1,88 @@
 import functions from './functions.js'
 
 const divs = document.querySelector("div");
-const btns = document.querySelectorAll("button");
+let btns = document.querySelectorAll("button");
+const input = document.getElementById("userinput");
+const ul = document.querySelector("ul");
+
 const log = document.getElementById('idOutputLog');
 let cardNumber = 4
-
-const divHandler = (event) => {
-    console.log('Mouse was clicked on: ' + event.target.textContent );
-};
 
 
 const buttonHandler = (event) => {
     const card = event.target.parentNode;
-    const cardTitle = card.getElementsByClassName('cardTitles')[0].textContent;
+    let cardTitle = '';
+
+    if ( card.getElementsByClassName('cardTitles')[0]) {
+        cardTitle = card.getElementsByClassName('cardTitles')[0].textContent;
+   
 
     switch (event.target.textContent) {
         case "Insert after":
-            // console.log('"Insert after" was clicked: ');
             functions.addAfterCard(event.target.parentNode, "Card " + cardNumber);
             log.textContent = `Card ${cardNumber} was added after ${cardTitle}`;
             cardNumber++;
             break;
 
         case "Insert before":
-            // console.log('"Insert before" was clicked: ');
             functions.addBeforeCard(card, "Card " + cardNumber);
             log.textContent = `Card ${cardNumber} was added before ${cardTitle}`;
             cardNumber++;
             break;
 
         case "Delete card":
-            // console.log('"Delete" was clicked: ');
-            functions.deleteCard(event.target.parentNode, "Card " + cardNumber);
+            functions.deleteCard(card);
             log.textContent = `${cardTitle} was deleted`;
             break;
+    }}
+
+    else if (event.target.tagName === 'LI') {event.target.classList.toggle("clListDone")}
+
+    else   {
+        switch (event.target.textContent) {
+            case "Add to top":
+                if (input.value.length > 0){
+                    const li = document.createElement("li");
+                    console.log('ul', ul.firstElementChild);
+                    console.log('input text:', input.innerHTML);
+                    
+                    li.appendChild(document.createTextNode(input.value));
+                    ul.insertBefore(li, ul.firstElementChild)
+                    console.log(ul);
+                    
+                    // ul.firstChild.append(li);
+                    ul.appendChild.innerHTML = "<button>Delete</button>";
+                log.textContent = 
+                `${input.value} was added at the top of the list`;
+
+                    input.value = "";
+                    }
+                break;
+        
+            case "Add to bottom":
+                if (input.value.length > 0){
+                const li = document.createElement("li");
+
+                li.appendChild(document.createTextNode(input.value));
+
+                ul.appendChild(li);
+                ul.appendChild.innerHTML =  "<button>Delete</button>";
+                log.textContent = 
+                    `${input.value} was added at the bottom of the list`;
+
+                input.value = "";
+                }
+                break;
+
+            case "Delete":
+                log.textContent = `${card.textContent.slice(0, -6)} was deleted`;
+                functions.deleteCard(card);
+                break;
+        }
+        
+
     }
+   
 };
 
 // divs.addEventListener('click', divHandler);

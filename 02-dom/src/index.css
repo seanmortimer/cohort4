@@ -4,6 +4,7 @@ div {
     border: solid cadetblue; 
 }
 
+
 .clCard {
     display: block;
     flex-wrap: wrap;
@@ -23,6 +24,33 @@ div {
     justify-content: space-between;
 }
 
+#idListContainer {
+    text-align: center;
+    /* padding-left: 50px; */
+    line-height: 1.5em;
+
+
+}
+
+ul {
+    position: relative;
+        left: 0px;
+    /* border: solid salmon; */
+    /* margin-left: 25%; */
+    text-align: left;
+    /* padding: 20px; */
+    line-height: 1.4em;
+}
+
+.clListDone {
+    text-decoration: wavy line-through red;
+    text-decoration-thickness: 5px;
+}
+
+.delete {
+    position: absolute;
+        left: 150px;
+}
 
 #idLeftPanel  {
     width: 30%;
