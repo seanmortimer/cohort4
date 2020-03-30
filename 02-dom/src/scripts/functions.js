@@ -8,11 +8,11 @@ const functions = {
         const cardTitle = document.createElement('p');
         cardTitle.setAttribute('class', 'cardTitles'); //applying premade css to new divs
         
-         //Add the input text at top of card
+        //Add the input text at top of card
         cardTitle.appendChild(document.createTextNode(text));
         div.appendChild(cardTitle);
 
-            //Add the buttons to the card
+        //Add the buttons to the card
         const addBtn = document.createElement('button');
         addBtn.appendChild(document.createTextNode("Insert after"));
         div.appendChild(addBtn);
@@ -25,7 +25,6 @@ const functions = {
         delBtn.appendChild(document.createTextNode("Delete card"));
         div.appendChild(delBtn);
 
-        // console.log('div innerHTML is:', div.innerHTML);
         
         return div;
     },

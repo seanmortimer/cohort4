@@ -9,7 +9,7 @@
         "test1": "jest src/01-getting-started",
         "test1cov": "jest src/01-getting-started --coverage",
         "testfile": "jest src/01-getting-started/scripts/lfsplay.test.js",
-        "watch": "jest --watch"
+        "watch": "jest --runInBand --watch"
     },
     "keywords": [],
     "author": "",
