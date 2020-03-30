@@ -8,9 +8,13 @@ let cardNumber = 4
 
 
 const buttonHandler = (event) => {
+    
+    if (event.target.tagName === 'BUTTON') {
+
     const targetParent = event.target.parentNode;
     const className = targetParent.getElementsByClassName('cardTitles')[0];
     
+
     switch (event.target.textContent) {
         // Card function buttons
         case "Insert after":
@@ -54,9 +58,9 @@ const buttonHandler = (event) => {
                 `${targetParent.textContent.slice(0, -6)} was deleted from the list`;
             functions.deleteCard(targetParent);
             break;
-    }
+    }}
     
-    if (event.target.tagName === 'LI') { event.target.classList.toggle("clListDone") }
+    else if (event.target.tagName === 'LI') { event.target.classList.toggle("clListDone") }
 
 };
 
