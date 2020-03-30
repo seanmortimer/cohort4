@@ -59,7 +59,7 @@ const functions = {
     },
 
     lookupProvince: (inputCode, provinces) => {
-        console.log("Input code is: " + inputCode);
+        // console.log("Input code is: " + inputCode);
 
         const province = provinces[inputCode.toUpperCase()];
         if (!province) return "Please enter a valid 2 digit province code."
