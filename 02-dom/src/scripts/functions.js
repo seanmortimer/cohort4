@@ -1,12 +1,25 @@
 
 const functions = {
 
+    // create a new list item with delete button
+    createListItem: (text) => {
+        const li = document.createElement("li");
+        const delBtn = document.createElement("button");
+        delBtn.setAttribute('class', 'delete');
+        delBtn.appendChild(document.createTextNode("Delete"));
+        
+        li.appendChild(document.createTextNode(text));
+        li.appendChild(delBtn);
+
+        return li;
+    },
+
     createCard: (text) => {
         const div = document.createElement('div');
         div.setAttribute('class', 'clCard'); //applying premade css to new divs
                    
         const cardTitle = document.createElement('p');
-        cardTitle.setAttribute('class', 'cardTitles'); //applying premade css to new divs
+        cardTitle.setAttribute('class', 'cardTitles'); 
         
         //Add the input text at top of card
         cardTitle.appendChild(document.createTextNode(text));

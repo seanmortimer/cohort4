@@ -1,13 +1,22 @@
 import functions from './functions.js'
 
+test('Test list item creation', () => {
+    const item = functions.createListItem('Test');
+    expect(item.nodeName).toBe('LI');
+    expect(item.textContent).toContain('Test');
+    expect(item.childNodes[0].textContent).toBe('Test');
+    expect(item.childNodes[1].textContent).toBe('Delete');
+    expect(item.childNodes[1].nodeName).toBe('BUTTON');
+    expect(item.firstChild.textContent).toBe('Test');
+    
+});
+
 test('Test card creation', () => {
     const card = functions.createCard('Test')
     expect(card).toBeTruthy();
     expect(card.nodeName).toBe('DIV');
     expect(card.className).toBe('clCard');
     expect(card.textContent).toContain('Test');
-    // console.log('innerText', card.innerText);
-    
     expect(card.textContent).toBe('TestInsert afterInsert beforeDelete card');
 })
 

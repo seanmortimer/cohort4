@@ -9,84 +9,55 @@ let cardNumber = 4
 
 const buttonHandler = (event) => {
     const targetParent = event.target.parentNode;
-    let cardTitle = '';
-
+    const className = targetParent.getElementsByClassName('cardTitles')[0];
     
-
-    // if (card.getElementsByClassName('cardTitles')[0]) {
-    if (targetParent.classList.value === "clCard") {
-        cardTitle = targetParent.getElementsByClassName('cardTitles')[0].textContent;
-        
     switch (event.target.textContent) {
+        // Card function buttons
         case "Insert after":
-            functions.addAfterCard(event.target.parentNode, "Card " + cardNumber);
-            log.textContent = `Card ${cardNumber} was added after ${cardTitle}`;
+            functions.addAfterCard(targetParent, "Card " + cardNumber);
+            log.textContent =
+                `Card ${cardNumber} was added after ${className.textContent}`;
             cardNumber++;
             break;
 
         case "Insert before":
             functions.addBeforeCard(targetParent, "Card " + cardNumber);
-            log.textContent = `Card ${cardNumber} was added before ${cardTitle}`;
+            log.textContent = 
+                `Card ${cardNumber} was added before ${className.textContent}`;
             cardNumber++;
             break;
 
         case "Delete card":
             functions.deleteCard(targetParent);
-            log.textContent = `${cardTitle} was deleted`;
+            log.textContent = `${className.textContent} was deleted`;
             break;
-    }}
 
-    else if (event.target.tagName === 'LI') {event.target.classList.toggle("clListDone")}
-
-    else   {
-        switch (event.target.textContent) {
-            case "Add to top":
-                if (input.value.length > 0){
-                    const li = document.createElement("li");
-                    console.log('ul', ul.firstElementChild);
-                    console.log('input text:', input.innerHTML);
-                    
-                    li.appendChild(document.createTextNode(input.value));
-                    ul.insertBefore(li, ul.firstElementChild)
-                    console.log(ul);
-                    
-                log.textContent = 
-                `${input.value} was added at the top of the list`;
-
-                    input.value = "";
-                    }
-                break;
-        
-            case "Add to bottom":
-                if (input.value.length > 0){
-                const li = document.createElement("li");
-
-                li.appendChild(document.createTextNode(input.value));
-
-                ul.appendChild(li);
-                log.textContent = 
-                    `${input.value} was added at the bottom of the list`;
-
+        // List button functions
+        case "Add to top":
+            if (input.value.length > 0) {
+                ul.insertBefore(functions.createListItem(input.value), ul.firstElementChild)
+                log.textContent = `${input.value} was added at the top of the list`;
                 input.value = "";
-                }
-                break;
+            }
+            break;
 
-            case "Delete":
-<<<<<<< HEAD
-                log.textContent = `${card.textContent.slice(0, -6)} was deleted`;
-                log.textContent = `${seaniscool} was deleted`;
-                batman = "hi";
-                functions.deleteCard(card);
-=======
-                log.textContent = `${targetParent.textContent.slice(0, -6)} was deleted`;
-                functions.deleteCard(targetParent);
->>>>>>> 8e968faba1f079c40641156f1cce7694eaf32fc7
-                break;
-        }
-        
+        case "Add to bottom":
+            if (input.value.length > 0) {
+                ul.appendChild(functions.createListItem(input.value));
+                log.textContent = `${input.value} was added at the bottom of the list`;
+                input.value = "";
+            }
+            break;
 
+        case "Delete":
+            log.textContent = 
+                `${targetParent.textContent.slice(0, -6)} was deleted from the list`;
+            functions.deleteCard(targetParent);
+            break;
     }
-   
+    
+    if (event.target.tagName === 'LI') { event.target.classList.toggle("clListDone") }
+
 };
 
 document.body.addEventListener('click', buttonHandler);
