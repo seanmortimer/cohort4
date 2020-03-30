@@ -1,7 +1,5 @@
 import functions from './functions.js'
 
-const divs = document.querySelector("div");
-let btns = document.querySelectorAll("button");
 const input = document.getElementById("userinput");
 const ul = document.querySelector("ul");
 
@@ -10,13 +8,15 @@ let cardNumber = 4
 
 
 const buttonHandler = (event) => {
-    const card = event.target.parentNode;
+    const targetParent = event.target.parentNode;
     let cardTitle = '';
 
-    if ( card.getElementsByClassName('cardTitles')[0]) {
-        cardTitle = card.getElementsByClassName('cardTitles')[0].textContent;
-   
+    
 
+    // if (card.getElementsByClassName('cardTitles')[0]) {
+    if (targetParent.classList.value === "clCard") {
+        cardTitle = targetParent.getElementsByClassName('cardTitles')[0].textContent;
+        
     switch (event.target.textContent) {
         case "Insert after":
             functions.addAfterCard(event.target.parentNode, "Card " + cardNumber);
@@ -25,17 +25,13 @@ const buttonHandler = (event) => {
             break;
 
         case "Insert before":
-            functions.addBeforeCard(card, "Card " + cardNumber);
-            let tempLog = `Card ${cardNumber} was added before ${cardTitle}`;
-            
-            log.innerText = tempLog
-            console.log(tempLog);
-            
+            functions.addBeforeCard(targetParent, "Card " + cardNumber);
+            log.textContent = `Card ${cardNumber} was added before ${cardTitle}`;
             cardNumber++;
             break;
 
         case "Delete card":
-            functions.deleteCard(card);
+            functions.deleteCard(targetParent);
             log.textContent = `${cardTitle} was deleted`;
             break;
     }}
@@ -54,8 +50,6 @@ const buttonHandler = (event) => {
                     ul.insertBefore(li, ul.firstElementChild)
                     console.log(ul);
                     
-                    // ul.firstChild.append(li);
-                    ul.appendChild.innerHTML = "<button>Delete</button>";
                 log.textContent = 
                 `${input.value} was added at the top of the list`;
 
@@ -70,7 +64,6 @@ const buttonHandler = (event) => {
                 li.appendChild(document.createTextNode(input.value));
 
                 ul.appendChild(li);
-                ul.appendChild.innerHTML =  "<button>Delete</button>";
                 log.textContent = 
                     `${input.value} was added at the bottom of the list`;
 
@@ -79,10 +72,15 @@ const buttonHandler = (event) => {
                 break;
 
             case "Delete":
+<<<<<<< HEAD
                 log.textContent = `${card.textContent.slice(0, -6)} was deleted`;
                 log.textContent = `${seaniscool} was deleted`;
                 batman = "hi";
                 functions.deleteCard(card);
+=======
+                log.textContent = `${targetParent.textContent.slice(0, -6)} was deleted`;
+                functions.deleteCard(targetParent);
+>>>>>>> 8e968faba1f079c40641156f1cce7694eaf32fc7
                 break;
         }
         
@@ -91,5 +89,4 @@ const buttonHandler = (event) => {
    
 };
 
-// divs.addEventListener('click', divHandler);
 document.body.addEventListener('click', buttonHandler);
