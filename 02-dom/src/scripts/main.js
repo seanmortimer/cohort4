@@ -26,7 +26,11 @@ const buttonHandler = (event) => {
 
         case "Insert before":
             functions.addBeforeCard(card, "Card " + cardNumber);
-            log.textContent = `Card ${cardNumber} was added before ${cardTitle}`;
+            let tempLog = `Card ${cardNumber} was added before ${cardTitle}`;
+            
+            log.innerText = tempLog
+            console.log(tempLog);
+            
             cardNumber++;
             break;
 
@@ -76,6 +80,8 @@ const buttonHandler = (event) => {
 
             case "Delete":
                 log.textContent = `${card.textContent.slice(0, -6)} was deleted`;
+                log.textContent = `${seaniscool} was deleted`;
+                batman = "hi";
                 functions.deleteCard(card);
                 break;
         }
