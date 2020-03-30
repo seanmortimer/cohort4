@@ -5,6 +5,45 @@ div {
 }
 
 
+
+#idListContainer {
+    text-align: left;
+    line-height: 1.5em;
+}
+
+
+#idListContainer > H3 {
+    text-align: center;
+}
+#idListIinputArea {
+    text-align: center;
+}
+
+ul {
+    display: inline-block;
+    /* border: solid salmon; */
+    line-height: 1.4em;
+}
+
+
+.clListDone {
+    text-decoration: wavy line-through red;
+    text-decoration-thickness: 5px;
+}
+
+.delete {
+    float: right;
+    margin-left: 20px;
+}
+
+
+/* Card area */
+#idMainContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
 .clCard {
     display: block;
     flex-wrap: wrap;
@@ -16,40 +55,6 @@ div {
     text-align: center;
     font-weight: bold;
     border: none;
-}
-
-#idMainContainer {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-}
-
-#idListContainer {
-    text-align: center;
-    /* padding-left: 50px; */
-    line-height: 1.5em;
-
-
-}
-
-ul {
-    position: relative;
-        left: 0px;
-    /* border: solid salmon; */
-    /* margin-left: 25%; */
-    text-align: left;
-    /* padding: 20px; */
-    line-height: 1.4em;
-}
-
-.clListDone {
-    text-decoration: wavy line-through red;
-    text-decoration-thickness: 5px;
-}
-
-.delete {
-    position: absolute;
-        left: 150px;
 }
 
 #idLeftPanel  {
