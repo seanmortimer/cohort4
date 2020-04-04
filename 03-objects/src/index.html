@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./index.css">
+
+    <title>Sean's Bank</title>
+</head>
+
+<body>
+    <h1>Hello, welcome to Working with the DOM!</h1>
+
+    <div id="idListContainer">
+        <h3>Shopping List</h3>
+        <div id="idListIinputArea">
+            <input id="userinput" type="text" placeholder="enter items" /><br>
+            <button id="idListTop">Add to top</button>
+            <button id="idListBtm">Add to bottom</button>
+        </div>
+        <div id="idListArea">
+            <ul>
+                <li>Notebook<button class="delete">Delete</button></li>
+                <li>Jello<button class="delete">Delete</button></li>
+                <li>Spinach<button class="delete">Delete</button></li>
+                <li>Rice<button class="delete">Delete</button></li>
+                <li>Birthday Cake<button class="delete">Delete</button></li>
+                <li>Candles<button class="delete">Delete</button></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+    <h2>Working with cards</h2>
+    <div id="idMainContainer">
+        <div id="idLeftPanel">
+            <div class="clCard">
+                <p class="cardTitles">Card 1</p>
+                <button>Insert after</button>
+                <button>Insert before</button>
+                <button>Delete card</button>
+            </div>
+            <div class="clCard">
+                <p class="cardTitles ">Card 2</p>
+                <button>Insert after</button>
+                <button>Insert before</button>
+                <button>Delete card</button>
+
+            </div>
+            <div class="clCard">
+                <p class="cardTitles">Card 3</p>
+                <button>Insert after</button>
+                <button>Insert before</button>
+                <button>Delete card</button>
+
+            </div>
+        </div>
+
+        <div id="idRightPanel">
+            <H3>Right panel</H3>
+            <p>Here is what happened:</p>
+            <p id="idOutputLog"></p>
+        </div>
+    </div>
+
+    <script type="module" src="./scripts/main.js"></script>
+
+</body>
+
+</html>
