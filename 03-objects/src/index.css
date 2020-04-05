@@ -6,55 +6,22 @@ div {
 
 
 
-#idListContainer {
+#idAccountControl {
     text-align: left;
     line-height: 1.5em;
 }
 
-
-#idListContainer > H3 {
-    text-align: center;
-}
-#idListIinputArea {
+#idAccountInput {
     text-align: center;
 }
 
-ul {
-    display: inline-block;
-    /* border: solid salmon; */
-    line-height: 1.4em;
-}
 
 
-.clListDone {
-    text-decoration: wavy line-through red;
-    text-decoration-thickness: 5px;
-}
-
-.delete {
-    float: right;
-    margin-left: 20px;
-}
-
-
-/* Card area */
-#idMainContainer {
+/* Accounts Card area */
+#idAccountsArea {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-}
-
-.clCard {
-    display: block;
-    flex-wrap: wrap;
-    padding: 10px;
-    text-align: center;
-    }
-
-.cardTitles {
-    text-align: center;
-    font-weight: bold;
-    border: none;
 }
 
 #idLeftPanel  {
@@ -64,15 +31,35 @@ ul {
     border: none;
 }
 
+.clCard {
+    display: block;
+    padding: 10px;
+    }
+
+.clCard>h3 {
+    padding: 0;
+}
+
+#idAcct1Balance {
+    margin-left: 40%; 
+} 
+
+
 #idRightPanel {
    width: 50%;
    /* min-width: 220px; */
 }
 
-#idRightPanel > p, H3 {
+#idRightPanel > p {
     padding: 0px 20px;
- 
 }
+
+
+#idRightPanel > h4 {
+    padding-top: 20px;
+    /* padding: 0px 20px; */
+}
+
 
 
 /* .clCard {

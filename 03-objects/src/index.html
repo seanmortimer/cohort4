@@ -6,63 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./index.css">
 
-    <title>Sean's Bank</title>
+    <title>Sean's Bank and BBQ</title>
 </head>
 
 <body>
-    <h1>Hello, welcome to Working with the DOM!</h1>
+    <h1>Sean's Bank and BBQ Shack</h1>
+        <h3>Calgary's only financial instition serving high interest and delicious BBQ</h3>
 
-    <div id="idListContainer">
-        <h3>Shopping List</h3>
-        <div id="idListIinputArea">
-            <input id="userinput" type="text" placeholder="enter items" /><br>
-            <button id="idListTop">Add to top</button>
-            <button id="idListBtm">Add to bottom</button>
+    <div id="idAccountControl">
+        <h3>Deposit or Withdraw</h3>
+        <div id="idAccountInput">
+            <input id="idDWInput" type="number" placeholder="enter amount" /><br>
+            <button id="idListTop">Deposit</button>
+            <button id="idListBtm">Withdraw</button>
         </div>
-        <div id="idListArea">
-            <ul>
+        <div id="idProbablydon'tneed">
+            <!-- <ul>
                 <li>Notebook<button class="delete">Delete</button></li>
                 <li>Jello<button class="delete">Delete</button></li>
                 <li>Spinach<button class="delete">Delete</button></li>
                 <li>Rice<button class="delete">Delete</button></li>
                 <li>Birthday Cake<button class="delete">Delete</button></li>
                 <li>Candles<button class="delete">Delete</button></li>
-            </ul>
+            </ul> -->
         </div>
     </div>
 
 
 
 
-    <h2>Working with cards</h2>
-    <div id="idMainContainer">
+    <h2>Your Accounts</h2>
+    <div id="idAccountsArea">
         <div id="idLeftPanel">
             <div class="clCard">
-                <p class="cardTitles">Card 1</p>
-                <button>Insert after</button>
-                <button>Insert before</button>
-                <button>Delete card</button>
+                <h3>Chequing</h3>
+                <p>Balance: <span id="idAcct1Balance">$0.00</span></p>
             </div>
-            <div class="clCard">
-                <p class="cardTitles ">Card 2</p>
-                <button>Insert after</button>
-                <button>Insert before</button>
-                <button>Delete card</button>
-
-            </div>
-            <div class="clCard">
-                <p class="cardTitles">Card 3</p>
-                <button>Insert after</button>
-                <button>Insert before</button>
-                <button>Delete card</button>
-
-            </div>
+           
         </div>
 
         <div id="idRightPanel">
-            <H3>Right panel</H3>
-            <p>Here is what happened:</p>
-            <p id="idOutputLog"></p>
+            <h3>Detailed information</h3>
+                <p>Total account balance:</p>
+
+            <h4>Today's conversion rates:</h4>
+                <p>Beef Brisket:</p>
+                <p>Pork Ribs:</p>
         </div>
     </div>
 
