@@ -13,9 +13,12 @@ div {
 
 #idAccountInput {
     text-align: center;
+    padding: 20px 0;
 }
 
-
+#idDWInput {
+    text-align: right;
+}
 
 /* Accounts Card area */
 #idAccountsArea {
@@ -32,7 +35,6 @@ div {
 }
 
 .clCard {
-    display: block;
     padding: 10px;
     }
 
@@ -40,9 +42,15 @@ div {
     padding: 0;
 }
 
+.clCard>p, #idRightPanel>p {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 
 #idAcct1Balance {
     margin-left: 40%; 
-} 
+}  */
 
 
 #idRightPanel {

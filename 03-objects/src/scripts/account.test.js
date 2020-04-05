@@ -1,4 +1,4 @@
-import Account from './Account.js';
+import Account from './account.js';
 let acct1;
 let acct2;
 
@@ -62,13 +62,13 @@ test('test withdraw function', () => {
 
 
 test('test show balance function', () => {
-    expect(acct1.showBalance()).toBe(100);
-    expect(acct2.showBalance()).toBe(295.48);
+    expect(acct1.showBalance()).toBe('100.00');
+    expect(acct2.showBalance()).toBe('295.48');
     
     acct1.deposit(100.57);
     acct2.deposit(100.57);
-    expect(acct1.showBalance()).toBe(200.57);
-    expect(acct2.showBalance()).toBe(396.05);
+    expect(acct1.showBalance()).toBe('200.57');
+    expect(acct2.showBalance()).toBe('396.05');
 });
 
 

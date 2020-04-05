@@ -16,7 +16,7 @@ class Account {
   }
 
   showBalance () {
-      return this.balance;
+      return this.balance.toFixed(2);
   }
 
 }

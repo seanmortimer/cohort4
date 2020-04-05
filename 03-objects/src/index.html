@@ -17,18 +17,11 @@
         <h3>Deposit or Withdraw</h3>
         <div id="idAccountInput">
             <input id="idDWInput" type="number" placeholder="enter amount" /><br>
-            <button id="idListTop">Deposit</button>
-            <button id="idListBtm">Withdraw</button>
+            <button id="idDeposit">Deposit</button>
+            <button id="idWithdraw">Withdraw</button>
         </div>
         <div id="idProbablydon'tneed">
-            <!-- <ul>
-                <li>Notebook<button class="delete">Delete</button></li>
-                <li>Jello<button class="delete">Delete</button></li>
-                <li>Spinach<button class="delete">Delete</button></li>
-                <li>Rice<button class="delete">Delete</button></li>
-                <li>Birthday Cake<button class="delete">Delete</button></li>
-                <li>Candles<button class="delete">Delete</button></li>
-            </ul> -->
+            <p>This is probably not needed</p>
         </div>
     </div>
 
@@ -47,7 +40,7 @@
 
         <div id="idRightPanel">
             <h3>Detailed information</h3>
-                <p>Total account balance:</p>
+                <p>Total account balance:<span id="idTotalBalance">$0.00</span></p>
 
             <h4>Today's conversion rates:</h4>
                 <p>Beef Brisket:</p>
@@ -55,7 +48,7 @@
         </div>
     </div>
 
-    <script type="module" src="./scripts/main.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
 
 </body>
 
