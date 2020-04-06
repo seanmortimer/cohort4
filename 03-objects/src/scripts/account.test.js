@@ -2,18 +2,21 @@ import {Account, AccountController} from './account.js';
 
 let acct1;
 let acct2;
-let accounts;
+let user1;
+let user2;
 
 beforeEach(() => {
     acct1 = new Account('Sean', 100);
     acct2 = new Account('Chequing', 295.48);
-    accounts = new AccountController([acct1, acct2]);
-    
+    user1 = new AccountController([acct1, acct2]);
+    user2 = new AccountController([]);
 });
 
+
+
 test('test plumbing / class creation', () => {
-    expect(acct1).toEqual({actName: 'Sean', balance: 100 });
-    expect(acct2).toEqual({actName: 'Chequing', balance: 295.48 });
+    expect(acct1).toEqual({actName: 'Sean', balance: 100});
+    expect(acct2).toEqual({actName: 'Chequing', balance: 295.48});
 });
 
 
@@ -65,39 +68,41 @@ test('test withdraw function', () => {
 
 
 test('test show balance function', () => {
-    expect(acct1.showBalance()).toBe('100.00');
-    expect(acct2.showBalance()).toBe('295.48');
+    expect(acct1.showBalance()).toBe(100);
+    expect(acct2.showBalance()).toBe(295.48);
     
     acct1.deposit(100.57);
     acct2.deposit(100.57);
-    expect(acct1.showBalance()).toBe('200.57');
-    expect(acct2.showBalance()).toBe('396.05');
+    expect(acct1.showBalance()).toBe(200.57);
+    expect(acct2.showBalance()).toBe(396.05);
 });
 
 
 test('test AccountController Import', () => {
-    expect(accounts.accounts)
+    expect(user1.accounts)
         .toEqual([
             {"actName": "Sean", "balance": 100}, 
             {"actName": "Chequing", "balance": 295.48}
         ]);
+    expect(user2.accounts).toEqual([]);
 });
 
+
 test('test account creation', () => {
-    expect(accounts.newAccount('Savings', 1000))
+    expect(user1.newAccount('Savings', 1000))
         .toEqual([
-            { "actName": "Sean", "balance": 100 },
-            { "actName": "Chequing", "balance": 295.48 },
-            { "actName": "Savings", "balance": 1000.00 },
+            { "actName": "Sean", "balance": 100},
+            { "actName": "Chequing", "balance": 295.48},
+            { "actName": "Savings", "balance": 1000.00},
         ]);
-    expect(accounts.newAccount('Vacation', 2995.44))
+    expect(user1.newAccount('Vacation', 2995.44))
         .toEqual([
-            { "actName": "Sean", "balance": 100 },
-            { "actName": "Chequing", "balance": 295.48 },
-            { "actName": "Savings", "balance": 1000.00 },
-            { "actName": "Vacation", "balance": 2995.44 },
+            { "actName": "Sean", "balance": 100},
+            { "actName": "Chequing", "balance": 295.48},
+            { "actName": "Savings", "balance": 1000.00},
+            { "actName": "Vacation", "balance": 2995.44},
         ]);
-    expect(accounts.newAccount('Greek Yoghurt', 0))
+    expect(user1.newAccount('Greek Yoghurt', 0))
         .toEqual([
             { "actName": "Sean", "balance": 100},
             { "actName": "Chequing", "balance": 295.48},
@@ -105,50 +110,106 @@ test('test account creation', () => {
             { "actName": "Vacation", "balance": 2995.44},
             { "actName": "Greek Yoghurt", "balance": 0}
         ]);
+    expect(user2.newAccount('Savings', 1000))
+        .toEqual([
+            { "actName": "Savings", "balance": 1000.00},
+        ]);
+    expect(user2.newAccount('Vacation', 2995.44))
+        .toEqual([
+            { "actName": "Savings", "balance": 1000.00},
+            { "actName": "Vacation", "balance": 2995.44},
+        ]);
+    expect(user2.newAccount('Greek Yoghurt', 0))
+        .toEqual([
+            { "actName": "Savings", "balance": 1000.00},
+            { "actName": "Vacation", "balance": 2995.44},
+            { "actName": "Greek Yoghurt", "balance": 0}
+        ]);
 });
+
 
 test('test account deletion', () => {
-    accounts.newAccount('Savings', 1000);
-    accounts.newAccount('Vacation', 2995.44);
-    expect(accounts.accounts)
+    user1.newAccount('Savings', 1000);
+    user1.newAccount('Vacation', 2995.44);
+    expect(user1.accounts)
     .toEqual([
-        { "actName": "Sean", "balance": 100 },
-        { "actName": "Chequing", "balance": 295.48 },
-        { "actName": "Savings", "balance": 1000.00 },
-        { "actName": "Vacation", "balance": 2995.44 },
+        { "actName": "Sean", "balance": 100},
+        { "actName": "Chequing", "balance": 295.48},
+        { "actName": "Savings", "balance": 1000.00},
+        { "actName": "Vacation", "balance": 2995.44},
     ]);
+    expect(user1.deleteAccount('Sean')) 
+        .toEqual([
+            { "actName": "Chequing", "balance": 295.48},
+            { "actName": "Savings", "balance": 1000.00},
+            { "actName": "Vacation", "balance": 2995.44},
+        ]);
+    expect(user1.deleteAccount('Savings')) 
+        .toEqual([
+            { "actName": "Chequing", "balance": 295.48},
+            { "actName": "Vacation", "balance": 2995.44},
+        ]);
 
-    expect(accounts.deleteAccount('Sean')) 
-        .toEqual([
-            { "actName": "Chequing", "balance": 295.48 },
-            { "actName": "Savings", "balance": 1000.00 },
-            { "actName": "Vacation", "balance": 2995.44 },
-        ]);
-    expect(accounts.deleteAccount('Savings')) 
-        .toEqual([
-            { "actName": "Chequing", "balance": 295.48 },
-            { "actName": "Vacation", "balance": 2995.44 },
-        ]);
+    user2.newAccount('Vacation', 2995.44)
+    expect(user2.deleteAccount('Vacation')).toEqual([]);
 });
+
 
 test('test account total function', () => {
-    expect(accounts.accountTotal()).toBe('395.48');
+    expect(user1.accountTotal()).toBe('395.48');
     expect(acct1.deposit(10)).toBe(110);
-    expect(accounts.accountTotal()).toBe('405.48');
+    expect(user1.accountTotal()).toBe('405.48');
+    user1.newAccount('Savings', 1000);
+    expect(user1.accountTotal()).toBe('1405.48');
+    
+    expect(user2.accountTotal()).toBe('0.00');
 
-    accounts.newAccount('Savings', 1000);
-    expect(accounts.accountTotal()).toBe('1405.48');
 });
 
 
 test('test account controller deposits', () => {
-    expect(accounts.deposit('Chequing', 50)).toBe('345.48');
-    expect(accounts.deposit('Chequing', 50)).toBe('395.48');
-    expect(accounts.deposit('Chequing', 0.52)).toBe('396.00');
+    expect(user1.deposit('Chequing', 50)).toBe('345.48');
+    expect(user1.deposit('Chequing', 50)).toBe('395.48');
+    expect(user1.deposit('Chequing', 0.52)).toBe('396.00');
+    expect(user1.deposit('Sean', 100)).toBe('200.00');
 });
 
-test('test account controller deposits', () => {
-    expect(accounts.withdraw('Chequing', 50)).toBe('245.48');
-    expect(accounts.withdraw('Chequing', 50.48)).toBe('195.00');
-    expect(accounts.withdraw('Chequing', 0.52)).toBe('194.48');
+
+test('test account controller withdraw', () => {
+    expect(user1.withdraw('Chequing', 50)).toBe('245.48');
+    expect(user1.withdraw('Chequing', 50.48)).toBe('195.00');
+    expect(user1.withdraw('Chequing', 0.52)).toBe('194.48');
+    expect(user1.withdraw('Sean', 100)).toBe('0.00');
 });
+
+
+test('test account controller balance check', () => {
+    expect(user1.getBalance('Chequing')).toBe('295.48');
+    expect(user1.getBalance('Sean')).toBe('100.00');
+    user1.deposit('Sean', 50);
+    expect(user1.getBalance('Sean')).toBe('150.00');
+
+});
+
+test('test highest account', () => {
+    expect(user1.getHighest()).toEqual({actName: 'Chequing', balance: 295.48});
+    user1.deposit('Sean', 500);
+    expect(user1.getHighest()).toEqual({actName: 'Sean', balance: 600.00});
+    user1.newAccount('Savings', 1000);
+    expect(user1.getHighest()).toEqual({actName: 'Savings', balance: 1000.00});
+    user1.withdraw('Savings', 999);
+    user1.withdraw('Sean', 599);
+    expect(user1.getHighest()).toEqual({actName: 'Chequing', balance: 295.48});
+});
+
+
+test('test lowest account', () => {
+    expect(user1.getLowest()).toEqual({actName: 'Sean', balance: 100});
+    user1.deposit('Sean', 500);
+    expect(user1.getLowest()).toEqual({actName: 'Chequing', balance: 295.48});
+    user1.newAccount('Savings', 1000);
+    expect(user1.getLowest()).toEqual({actName: 'Chequing', balance: 295.48});
+    user1.withdraw('Savings', 999);
+    expect(user1.getLowest()).toEqual({actName: 'Savings', balance: 1});
+});
+

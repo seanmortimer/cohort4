@@ -15,7 +15,7 @@ class Account {
   }
 
   showBalance () {
-      return this.balance.toFixed(2);
+      return this.balance;
   }
 
 }
@@ -43,16 +43,39 @@ class AccountController {
   }
 
   deposit (name, amount) {
-   const acct = this.accounts.find(item => item.actName === name);
+   const acct = this.accounts.find(acct => acct.actName === name);
     acct.deposit(amount);
     return acct.balance.toFixed(2);
   }
 
   withdraw (name, amount) {
-    const acct = this.accounts.find(item => item.actName === name);
+    const acct = this.accounts.find(acct => acct.actName === name);
      acct.withdraw(amount);
      return acct.balance.toFixed(2);
    }
+
+  getBalance (name) {
+    const acct = this.accounts.find(acct => acct.actName === name);
+    return acct.showBalance().toFixed(2);
+  }
+
+  getHighest () {
+    const acct = this.accounts.reduce((accum, account) => {
+        if (accum.balance < account.balance) return account;
+        return accum;
+      }, this.accounts[0]);
+
+    return acct;
+  }
+
+  getLowest () {
+    const acct = this.accounts.reduce((accum, account) => {
+        if (accum.balance > account.balance) return account;
+        return accum;
+      }, this.accounts[0]);
+
+    return acct;
+  }
 
 }
 
