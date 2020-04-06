@@ -1,4 +1,5 @@
-import Account from './account.js';
+import {Account, AccountController} from './account.js';
+
 
 // Initial account
 

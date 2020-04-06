@@ -97,8 +97,15 @@ test('test account creation', () => {
             { "actName": "Savings", "balance": 1000.00 },
             { "actName": "Vacation", "balance": 2995.44 },
         ]);
+    expect(accounts.newAccount('Greek Yoghurt', 0))
+        .toEqual([
+            { "actName": "Sean", "balance": 100},
+            { "actName": "Chequing", "balance": 295.48},
+            { "actName": "Savings", "balance": 1000.00},
+            { "actName": "Vacation", "balance": 2995.44},
+            { "actName": "Greek Yoghurt", "balance": 0}
+        ]);
 });
-
 
 test('test account deletion', () => {
     accounts.newAccount('Savings', 1000);
@@ -122,4 +129,26 @@ test('test account deletion', () => {
             { "actName": "Chequing", "balance": 295.48 },
             { "actName": "Vacation", "balance": 2995.44 },
         ]);
+});
+
+test('test account total function', () => {
+    expect(accounts.accountTotal()).toBe('395.48');
+    expect(acct1.deposit(10)).toBe(110);
+    expect(accounts.accountTotal()).toBe('405.48');
+
+    accounts.newAccount('Savings', 1000);
+    expect(accounts.accountTotal()).toBe('1405.48');
+});
+
+
+test('test account controller deposits', () => {
+    expect(accounts.deposit('Chequing', 50)).toBe('345.48');
+    expect(accounts.deposit('Chequing', 50)).toBe('395.48');
+    expect(accounts.deposit('Chequing', 0.52)).toBe('396.00');
+});
+
+test('test account controller deposits', () => {
+    expect(accounts.withdraw('Chequing', 50)).toBe('245.48');
+    expect(accounts.withdraw('Chequing', 50.48)).toBe('195.00');
+    expect(accounts.withdraw('Chequing', 0.52)).toBe('194.48');
 });

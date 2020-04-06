@@ -32,10 +32,28 @@ class AccountController {
   }
 
   deleteAccount (delAct) {
-    // const tempArray = this.accounts.filter(acct => acct.actName != 'Sean');
     this.accounts = this.accounts.filter(acct => acct.actName != delAct);
     return this.accounts;
   }
+  
+  accountTotal () {
+    const total = this.accounts.reduce((
+      accum, account) => accum + account.balance, 0);
+    return total.toFixed(2);
+  }
+
+  deposit (name, amount) {
+   const acct = this.accounts.find(item => item.actName === name);
+    acct.deposit(amount);
+    return acct.balance.toFixed(2);
+  }
+
+  withdraw (name, amount) {
+    const acct = this.accounts.find(item => item.actName === name);
+     acct.withdraw(amount);
+     return acct.balance.toFixed(2);
+   }
+
 }
 
 export  {Account, AccountController};
