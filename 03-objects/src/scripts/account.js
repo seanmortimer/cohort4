@@ -2,7 +2,6 @@ class Account {
   constructor(actName, balance) {
       this.actName = actName;
       this.balance = balance;
-      
   }
 
   deposit (amount) {
@@ -21,6 +20,22 @@ class Account {
 
 }
 
+class AccountController {
+  constructor(accounts) {
+    this.accounts = accounts;
+  }
 
+  newAccount (actName, startBalance) {
+    const act =  new Account(actName, startBalance);
+    this.accounts.push(act);
+    return this.accounts;
+  }
 
-export default Account;
+  deleteAccount (delAct) {
+    // const tempArray = this.accounts.filter(acct => acct.actName != 'Sean');
+    this.accounts = this.accounts.filter(acct => acct.actName != delAct);
+    return this.accounts;
+  }
+}
+
+export  {Account, AccountController};

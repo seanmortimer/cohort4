@@ -1,16 +1,19 @@
-import Account from './account.js';
+import {Account, AccountController} from './account.js';
+
 let acct1;
 let acct2;
+let accounts;
 
 beforeEach(() => {
     acct1 = new Account('Sean', 100);
     acct2 = new Account('Chequing', 295.48);
+    accounts = new AccountController([acct1, acct2]);
     
 });
 
 test('test plumbing / class creation', () => {
-    expect(acct1).toEqual({ actName: 'Sean', balance: 100 });
-    expect(acct2).toEqual({ actName: 'Chequing', balance: 295.48 });
+    expect(acct1).toEqual({actName: 'Sean', balance: 100 });
+    expect(acct2).toEqual({actName: 'Chequing', balance: 295.48 });
 });
 
 
@@ -72,3 +75,51 @@ test('test show balance function', () => {
 });
 
 
+test('test AccountController Import', () => {
+    expect(accounts.accounts)
+        .toEqual([
+            {"actName": "Sean", "balance": 100}, 
+            {"actName": "Chequing", "balance": 295.48}
+        ]);
+});
+
+test('test account creation', () => {
+    expect(accounts.newAccount('Savings', 1000))
+        .toEqual([
+            { "actName": "Sean", "balance": 100 },
+            { "actName": "Chequing", "balance": 295.48 },
+            { "actName": "Savings", "balance": 1000.00 },
+        ]);
+    expect(accounts.newAccount('Vacation', 2995.44))
+        .toEqual([
+            { "actName": "Sean", "balance": 100 },
+            { "actName": "Chequing", "balance": 295.48 },
+            { "actName": "Savings", "balance": 1000.00 },
+            { "actName": "Vacation", "balance": 2995.44 },
+        ]);
+});
+
+
+test('test account deletion', () => {
+    accounts.newAccount('Savings', 1000);
+    accounts.newAccount('Vacation', 2995.44);
+    expect(accounts.accounts)
+    .toEqual([
+        { "actName": "Sean", "balance": 100 },
+        { "actName": "Chequing", "balance": 295.48 },
+        { "actName": "Savings", "balance": 1000.00 },
+        { "actName": "Vacation", "balance": 2995.44 },
+    ]);
+
+    expect(accounts.deleteAccount('Sean')) 
+        .toEqual([
+            { "actName": "Chequing", "balance": 295.48 },
+            { "actName": "Savings", "balance": 1000.00 },
+            { "actName": "Vacation", "balance": 2995.44 },
+        ]);
+    expect(accounts.deleteAccount('Savings')) 
+        .toEqual([
+            { "actName": "Chequing", "balance": 295.48 },
+            { "actName": "Vacation", "balance": 2995.44 },
+        ]);
+});
