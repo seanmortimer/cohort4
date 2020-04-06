@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,16 +10,25 @@
 
 <body>
     <h1>Sean's Bank and BBQ Shack</h1>
-        <h3>Calgary's only financial instition serving high interest and delicious BBQ</h3>
+        <h3>Calgary's only financial instition serving high interest and tasty BBQ</h3>
 
     <div id="idAccountControl">
-        <h3>Deposit or Withdraw</h3>
         <div id="idAccountInput">
+            <h4>Deposit or withdraw:</h4>
+            <label for="idAcctSelect">Choose an account: </label>
+            <select name="Account" id="idAcctSelect" placeholder="Choose an account">
+                <option value="Chequing">Chequing</option>
+            </select>
             <input id="idDWInput" type="number" placeholder="enter amount" /><br>
             <button id="idDeposit">Deposit</button>
             <button id="idWithdraw">Withdraw</button>
         </div>
-        <div id="idProbablydontneed">
+        <div id="idAccountCreate">
+            <h4>Create new account:</h4>
+            <input id="idActName" type="text" placeholder="enter account name" />
+            <button id="idNewAct">Create Account</button>
+        </div>
+        <div id="idDialog">
             <p>This will be confirmation dialog</p>
         </div>
     </div>
@@ -33,14 +41,15 @@
         <div id="idLeftPanel">
             <div class="clCard">
                 <h3>Chequing</h3>
-                <p>Balance: <span id="idAcct1Balance">$0.00</span></p>
+                <p>Balance:<span id="idAcct1Balance">$0.00</span></p>
+                <p><button id="idDelAct">Delete Account</button></p>
             </div>
            
         </div>
 
         <div id="idRightPanel">
             <h3>Detailed information</h3>
-                <p>Total account balance:<span id="idTotalBalance">$0.00</span></p>
+            <p>Total account balance:<span id="idTotalBalance">$0.00</span></p>
 
             <h4>Today's conversion rates:</h4>
                 <p>Beef Brisket:</p>

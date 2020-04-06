@@ -1,30 +1,27 @@
 import {Account, AccountController} from './account.js';
 
 
-// Initial account
+// Initial account controller
 
-const acct1 = new Account ('Chequing', 100);
+const user1 = new AccountController;
+user1.newAccount('Chequing', 500);
 
 // Event listeners
 idDeposit.addEventListener('click', () => {
     if (idDWInput.value > 0) {
-        acct1.deposit(Number(idDWInput.value));
-        console.log('Deposit amount:', idDWInput.value);
-        console.log('New balance:', acct1.showBalance());
+        user1.deposit(idAcctSelect.value, idDWInput.value);
     }
     clearInput();
-    updateDisplay();
+    updateDisplay(idAcctSelect.value);
 })
 
 
 idWithdraw.addEventListener('click', () => {
     if (idDWInput.value > 0) {
-        acct1.withdraw(Number(idDWInput.value));
-        console.log('Deposit amount:', idDWInput.value);
-        console.log('New balance:', acct1.showBalance());
+        user1.withdraw(idAcctSelect.value, idDWInput.value);
     }
     clearInput();
-    updateDisplay();
+    updateDisplay(idAcctSelect.value);
 })
 
 
@@ -32,9 +29,16 @@ const clearInput = () => {
     idDWInput.value = "";
 }
 
-const updateDisplay = () => {
-    idAcct1Balance.textContent =  `$ ${acct1.showBalance()} `;
-    // idAcct1Balance.textContent = acct1.showBalance();
+const updateDisplay = (actName) => {
+    idAcct1Balance.textContent =  `$ ${user1.getBalance(actName)} `;
 }
 
-updateDisplay();
+const createAccount = (actName) => {
+    user1.newAccount(actName);
+    
+}
+
+
+
+
+updateDisplay('Chequing');

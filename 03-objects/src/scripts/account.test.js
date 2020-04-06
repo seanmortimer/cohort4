@@ -1,4 +1,4 @@
-import {Account, AccountController} from './account.js';
+import {Account, AccountController, htmlFunctions} from './account.js';
 
 let acct1;
 let acct2;
@@ -9,6 +9,8 @@ beforeEach(() => {
     acct1 = new Account('Sean', 100);
     acct2 = new Account('Chequing', 295.48);
     user1 = new AccountController([acct1, acct2]);
+    user1.newAccount('Sean', 100);
+    user1.newAccount('Chequing', 295.48);
     user2 = new AccountController([]);
 });
 
@@ -157,7 +159,7 @@ test('test account deletion', () => {
 
 test('test account total function', () => {
     expect(user1.accountTotal()).toBe('395.48');
-    expect(acct1.deposit(10)).toBe(110);
+    expect(user1.deposit('Sean', 10)).toBe('110.00');
     expect(user1.accountTotal()).toBe('405.48');
     user1.newAccount('Savings', 1000);
     expect(user1.accountTotal()).toBe('1405.48');
@@ -213,3 +215,14 @@ test('test lowest account', () => {
     expect(user1.getLowest()).toEqual({actName: 'Savings', balance: 1});
 });
 
+test('test account card creation', () => {
+    const testCard = htmlFunctions.newAccount('Savings')
+    expect(testCard.nodeName).toBe('DIV');
+    expect(testCard.className).toBe('clCard');
+    expect(testCard.firstElementChild.nodeName).toBe('H3');
+    expect(testCard.firstElementChild.textContent).toBe('Savings');
+
+    console.log('testCard log:',testCard)
+    console.dir('testCard log:',testCard)
+    
+});

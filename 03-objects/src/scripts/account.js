@@ -5,12 +5,12 @@ class Account {
   }
 
   deposit (amount) {
-    this.balance = Math.round((this.balance + amount) * 100) / 100;
+    this.balance = Math.round((this.balance * 100 + amount * 100) ) / 100;
      return this.balance;
   }
 
   withdraw (amount) {
-      this.balance = Math.round((this.balance - amount) * 100) / 100;
+      this.balance = Math.round((this.balance * 100 - amount * 100)) / 100;
       return this.balance;
   }
 
@@ -21,8 +21,8 @@ class Account {
 }
 
 class AccountController {
-  constructor(accounts) {
-    this.accounts = accounts;
+  constructor() {
+    this.accounts = [];
   }
 
   newAccount (actName, startBalance) {
@@ -79,4 +79,34 @@ class AccountController {
 
 }
 
-export  {Account, AccountController};
+const htmlFunctions = {
+  
+  newAccount: (actName) => {
+    const card = document.createElement('DIV');
+    card.className = 'clCard';
+
+    const h3 = document.createElement('H3');
+    h3.textContent = actName;
+    card.appendChild(h3);
+
+    const h32 = document.createElement('H3');
+
+    h3.appendChild(document.createTextNode(actName));
+    card.appendChild(h3);
+    card.appendChild(h32);
+
+
+    // const p1 = document.createElement('P');
+    // p1.textContent = 'Balance:'
+    // const balance = document.createElement('SPAN');
+    // balance.id = 'id' + actName;
+    // p1.appendChild(balance)
+
+    // const p2 = document.createElement('P');
+    // const delBtn = 
+    // p2.textContent = 
+    return card;
+  },
+};
+
+export  {Account, AccountController, htmlFunctions};
