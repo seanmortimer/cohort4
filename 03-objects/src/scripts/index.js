@@ -1,4 +1,4 @@
-import {Account, AccountController} from './account.js';
+import {Account, AccountController, htmlFunctions} from './account.js';
 
 
 // Initial account controller
@@ -24,7 +24,14 @@ idWithdraw.addEventListener('click', () => {
     updateDisplay(idAcctSelect.value);
 })
 
+idDelAct.addEventListener('click', (e) => { // Also need to delete the acutal account!
+    htmlFunctions.delCard(e);
+    console.log('del chequiing?');
+    
+})
 
+
+// Display functions
 const clearInput = () => {
     idDWInput.value = "";
 }
@@ -40,5 +47,7 @@ const createAccount = (actName) => {
 
 
 
+const savings = htmlFunctions.newAccount('Savings');
+idLeftPanel.append(savings);
 
 updateDisplay('Chequing');

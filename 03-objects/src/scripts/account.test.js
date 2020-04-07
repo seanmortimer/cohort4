@@ -217,12 +217,21 @@ test('test lowest account', () => {
 
 test('test account card creation', () => {
     const testCard = htmlFunctions.newAccount('Savings')
+    const pTags = testCard.querySelectorAll('P');
+
     expect(testCard.nodeName).toBe('DIV');
     expect(testCard.className).toBe('clCard');
     expect(testCard.firstElementChild.nodeName).toBe('H3');
     expect(testCard.firstElementChild.textContent).toBe('Savings');
+    expect(testCard.firstElementChild.textContent).toBe('Savings');
+   
+    expect(pTags[0].nodeName).toBe('P');
+    expect(pTags[0].textContent).toBe('Balance:');
+    expect(pTags[0].firstElementChild.nodeName).toBe('SPAN');
+    expect(pTags[0].firstElementChild.id).toBe('idSavings');
 
-    console.log('testCard log:',testCard)
-    console.dir('testCard log:',testCard)
+    expect(pTags[1].nodeName).toBe('P');
+    expect(pTags[1].textContent).toBe('Delete Account');
+    expect(pTags[1].firstElementChild.nodeName).toBe('BUTTON');
     
 });

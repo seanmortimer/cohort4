@@ -86,27 +86,34 @@ const htmlFunctions = {
     card.className = 'clCard';
 
     const h3 = document.createElement('H3');
-    h3.textContent = actName;
+    h3.appendChild(document.createTextNode(actName)); 
     card.appendChild(h3);
 
-    const h32 = document.createElement('H3');
 
-    h3.appendChild(document.createTextNode(actName));
-    card.appendChild(h3);
-    card.appendChild(h32);
+    const p1 = document.createElement('P');
+    p1.appendChild(document.createTextNode('Balance:'))
+    card.appendChild(p1);
+    const balance = document.createElement('SPAN');
+    balance.id = 'id' + actName;
+    p1.appendChild(balance);
+
+    const p2 = document.createElement('P');
+    const delBtn = document.createElement('button');
+    delBtn.appendChild(document.createTextNode('Delete Account'));
+    delBtn.addEventListener('click', htmlFunctions.delCard);
+    p2.appendChild(delBtn);
+    card.appendChild(p2);
 
 
-    // const p1 = document.createElement('P');
-    // p1.textContent = 'Balance:'
-    // const balance = document.createElement('SPAN');
-    // balance.id = 'id' + actName;
-    // p1.appendChild(balance)
-
-    // const p2 = document.createElement('P');
-    // const delBtn = 
-    // p2.textContent = 
     return card;
   },
+
+  delCard: (e) => {
+    console.log('You want to delete a card');
+    
+    e.target.parentNode.parentNode.remove();
+  }
+
 };
 
 export  {Account, AccountController, htmlFunctions};
