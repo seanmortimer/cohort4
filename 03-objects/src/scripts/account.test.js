@@ -246,7 +246,7 @@ test('test account card deletion', () => {
     expect(actNames[0].id).toBe('idSavings');
     expect(actNames[1].id).toBe('idChequing');
 
-    htmlFunctions.delAct(div.firstChild);
+    expect(htmlFunctions.delAct(div.firstChild, 'Savings')).toBe('Savings');
     actNames = div.querySelectorAll('SPAN');
 
     expect(actNames[0].id).toBe('idChequing');

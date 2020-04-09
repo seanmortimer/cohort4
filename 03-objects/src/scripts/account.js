@@ -87,6 +87,7 @@ const htmlFunctions = {
 
     const h3 = document.createElement('H3');
     h3.appendChild(document.createTextNode(actName)); 
+    h3.className = 'clActName';
     card.appendChild(h3);
 
 
@@ -102,18 +103,23 @@ const htmlFunctions = {
     delBtn.appendChild(document.createTextNode('Delete Account'));
     
     delBtn.addEventListener('click', (e) => { 
-      htmlFunctions.delAct(e.target.parentNode.parentNode);
+      // Actions to take when delete button clicked.
+      const card = e.target.parentNode.parentNode
+      const actName = card.querySelector('.clActName').textContent;
+      user1.deleteAccount(actName);
+      htmlFunctions.delAct(card, actName);
     });
 
     p2.appendChild(delBtn);
     card.appendChild(p2);
 
-
     return card;
   },
 
-  delAct: (card) => {
+  delAct: (card, actName) => {
+    console.log('actNmae:', actName);
     card.remove();
+    return actName;
   },
 
   newActListItem: (actName) => {
