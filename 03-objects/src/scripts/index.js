@@ -1,66 +1,71 @@
 import {Account, AccountController, htmlFunctions} from './account.js';
 
+// Display functions
+const clearInput = () => {
+    idDWInput.value = "";
+    idActName.value = "";
+}
+
+// Update all the names and values on the page
+const updateDisplay = (actName) => {
+    const actID =  document.getElementById('id' + actName);
+    actID.textContent =  `$ ${user1.getBalance(actName)}`;
+    
+    idTotalBalance.textContent = `$ ${user1.accountTotal()}`;
+    idHighestName.textContent = `${user1.getHighest().actName}:`;
+    idHighest.textContent = `$ ${user1.getHighest().balance.toFixed(2)}`;
+    idLowestName.textContent = `${user1.getLowest().actName}:`;
+    idLowest.textContent = `$ ${user1.getLowest().balance.toFixed(2)}`;
+}
+
+const createAccount = (actName, startBal) => {
+    user1.newAccount(actName, startBal);
+    idAcctSelect.appendChild(htmlFunctions.newActListItem(actName));
+    idLeftPanel.appendChild(htmlFunctions.newAccount(actName));
+    updateDisplay(actName);
+    clearInput();
+}
+
 
 // Initial account controller
 
 const user1 = new AccountController;
-user1.newAccount('Chequing', 500);
 
 // Event listeners
 idDeposit.addEventListener('click', () => {
     if (idDWInput.value > 0) {
-        user1.deposit(idAcctSelect.value, idDWInput.value);
+        const actName = idAcctSelect.value;
+        const amount = idDWInput.value;
+        user1.deposit(actName, amount);
+        clearInput();
+        updateDisplay(actName);
     }
-    clearInput();
-    updateDisplay(idAcctSelect.value);
 })
 
 
 idWithdraw.addEventListener('click', () => {
     if (idDWInput.value > 0) {
-        user1.withdraw(idAcctSelect.value, idDWInput.value);
+        const actName = idAcctSelect.value;
+        const amount = idDWInput.value;
+        user1.withdraw(actName, amount);
+        clearInput();
+        updateDisplay(actName);
     }
-    clearInput();
-    updateDisplay(idAcctSelect.value);
 })
 
 idNewAct.addEventListener('click', () => {
-    const actName = idActName.value;
-    
-    if (actName.length > 0) {
-        console.log(actName);
         
-        user1.newAccount(actName);
-        idAcctSelect.appendChild(htmlFunctions.newActListItem(actName));
-
+    if (idActName.value.length > 0) {
+        createAccount(idActName.value, 0);
+        
     }
 })
 
-idDelAct.addEventListener('click', (e) => { // Also need to delete the acutal account!
-    htmlFunctions.delAct(e.target.parentNode.parentNode);
-    console.log('del chequing');
-    
-})
 
-
-// Display functions
-const clearInput = () => {
-    idDWInput.value = "";
-}
-
-const updateDisplay = (actName) => {
-    idAcct1Balance.textContent =  `$ ${user1.getBalance(actName)} `;
-}
-
-const createAccount = (actName) => {
-    user1.newAccount(actName);
-    // htmlFunctions.newAccount(actName);
-    
-}
+createAccount('Chequing', 500);
+createAccount('Savings', 1000);
 
 
 
-// const savings = createAccount('Savings');
-// idLeftPanel.append(savings);
 
-updateDisplay('Chequing');
+

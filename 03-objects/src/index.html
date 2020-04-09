@@ -17,7 +17,7 @@
             <h4>Deposit or withdraw:</h4>
             <label for="idAcctSelect">Choose an account: </label>
             <select name="Account" id="idAcctSelect" placeholder="Choose an account">
-                <option value="Chequing">Chequing</option>
+                <option value="" disabled selected>Please select an account</option>
             </select>
             <input id="idDWInput" type="number" placeholder="enter amount" /><br>
             <button id="idDeposit">Deposit</button>
@@ -29,7 +29,7 @@
             <button id="idNewAct">Create Account</button>
         </div>
         <div id="idDialog">
-            <p>This will be confirmation dialog</p>
+            <p>Welcome! Please create an account.</p>
         </div>
     </div>
 
@@ -39,17 +39,16 @@
     <h2>Your Accounts</h2>
     <div id="idAccountsArea">
         <div id="idLeftPanel">
-            <div class="clCard">
-                <h3>Chequing</h3>
-                <p>Balance:<span id="idAcct1Balance">$0.00</span></p>
-                <p><button id="idDelAct">Delete Account</button></p>
-            </div>
            
         </div>
 
         <div id="idRightPanel">
             <h3>Detailed information</h3>
             <p>Total account balance:<span id="idTotalBalance">$0.00</span></p>
+            <h5>Highest balance account:</h5>
+            <p><span id="idHighestName">Temp high name</span><span id="idHighest">$0.00</span></p>
+            <h5>Lowest balance account:</h5>
+            <p><span id="idLowestName">Temp low name</span><span id="idLowest">$0.00</span></p>
 
             <h4>Today's conversion rates:</h4>
                 <p>Beef Brisket:</p>
