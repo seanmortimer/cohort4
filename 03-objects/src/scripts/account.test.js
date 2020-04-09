@@ -223,7 +223,6 @@ test('test account card creation', () => {
     expect(testCard.className).toBe('clCard');
     expect(testCard.firstElementChild.nodeName).toBe('H3');
     expect(testCard.firstElementChild.textContent).toBe('Savings');
-    expect(testCard.firstElementChild.textContent).toBe('Savings');
    
     expect(pTags[0].nodeName).toBe('P');
     expect(pTags[0].textContent).toBe('Balance:');
@@ -235,3 +234,41 @@ test('test account card creation', () => {
     expect(pTags[1].firstElementChild.nodeName).toBe('BUTTON');
     
 });
+
+test('test account card deletion', () => {
+    const div = document.createElement('DIV');
+    const testCard1 = htmlFunctions.newAccount('Savings')
+    const testCard2 = htmlFunctions.newAccount('Chequing')
+    div.appendChild(testCard1);
+    div.appendChild(testCard2);
+    let actNames = div.querySelectorAll('SPAN');
+
+    expect(actNames[0].id).toBe('idSavings');
+    expect(actNames[1].id).toBe('idChequing');
+
+    htmlFunctions.delAct(div.firstChild);
+    actNames = div.querySelectorAll('SPAN');
+
+    expect(actNames[0].id).toBe('idChequing');
+
+});
+
+
+test('test account list update function', () => {
+    const list = document.createElement('SELECT');
+    const listItem1 = htmlFunctions.newActListItem('Vacation');
+    const listItem2 = htmlFunctions.newActListItem('Party');
+    expect(list.children.length).toBe(0);
+    
+    list.appendChild(listItem1);
+    expect(list.children.length).toBe(1);
+    expect(list.children[0].nodeName).toBe('OPTION');
+    expect(list.children[0].value).toBe('Vacation');
+
+    list.appendChild(listItem2);
+    expect(list.children.length).toBe(2);
+    expect(list.children[0].value).toBe('Vacation');
+    expect(list.children[1].value).toBe('Party');
+});
+
+

@@ -24,9 +24,21 @@ idWithdraw.addEventListener('click', () => {
     updateDisplay(idAcctSelect.value);
 })
 
+idNewAct.addEventListener('click', () => {
+    const actName = idActName.value;
+    
+    if (actName.length > 0) {
+        console.log(actName);
+        
+        user1.newAccount(actName);
+        idAcctSelect.appendChild(htmlFunctions.newActListItem(actName));
+
+    }
+})
+
 idDelAct.addEventListener('click', (e) => { // Also need to delete the acutal account!
-    htmlFunctions.delCard(e);
-    console.log('del chequiing?');
+    htmlFunctions.delAct(e.target.parentNode.parentNode);
+    console.log('del chequing');
     
 })
 
@@ -42,12 +54,13 @@ const updateDisplay = (actName) => {
 
 const createAccount = (actName) => {
     user1.newAccount(actName);
+    // htmlFunctions.newAccount(actName);
     
 }
 
 
 
-const savings = htmlFunctions.newAccount('Savings');
-idLeftPanel.append(savings);
+// const savings = createAccount('Savings');
+// idLeftPanel.append(savings);
 
 updateDisplay('Chequing');
