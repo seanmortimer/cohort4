@@ -100,15 +100,9 @@ const htmlFunctions = {
 
     const p2 = document.createElement('P');
     const delBtn = document.createElement('button');
+    delBtn.id = 'idDelBtn';
     delBtn.appendChild(document.createTextNode('Delete Account'));
     
-    delBtn.addEventListener('click', (e) => { 
-      // Actions to take when delete button clicked.
-      const card = e.target.parentNode.parentNode
-      const actName = card.querySelector('.clActName').textContent;
-      user1.deleteAccount(actName);
-      htmlFunctions.delAct(card, actName);
-    });
 
     p2.appendChild(delBtn);
     card.appendChild(p2);
@@ -116,18 +110,24 @@ const htmlFunctions = {
     return card;
   },
 
-  delAct: (card, actName) => {
-    console.log('actNmae:', actName);
+  delAct: (card) => {
     card.remove();
-    return actName;
+    
   },
 
   newActListItem: (actName) => {
     // Take in account name, return option item
     const actItem = document.createElement('OPTION')
+    
     actItem.value = actName;
+    actItem.id = 'idList' + actName;
     actItem.textContent = actName;
     return actItem;
+  },
+
+  delListItem: (item) => {
+    item.remove();
+    
   }
 
 };

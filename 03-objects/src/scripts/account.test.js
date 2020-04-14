@@ -246,7 +246,7 @@ test('test account card deletion', () => {
     expect(actNames[0].id).toBe('idSavings');
     expect(actNames[1].id).toBe('idChequing');
 
-    expect(htmlFunctions.delAct(div.firstChild, 'Savings')).toBe('Savings');
+    htmlFunctions.delAct(div.firstChild);
     actNames = div.querySelectorAll('SPAN');
 
     expect(actNames[0].id).toBe('idChequing');
@@ -263,12 +263,24 @@ test('test account list update function', () => {
     list.appendChild(listItem1);
     expect(list.children.length).toBe(1);
     expect(list.children[0].nodeName).toBe('OPTION');
-    expect(list.children[0].value).toBe('Vacation');
 
     list.appendChild(listItem2);
     expect(list.children.length).toBe(2);
     expect(list.children[0].value).toBe('Vacation');
-    expect(list.children[1].value).toBe('Party');
 });
 
 
+test('test account list deletion', () => {
+    const list = document.createElement('SELECT');
+    const listItem1 = htmlFunctions.newActListItem('Vacation');
+    const listItem2 = htmlFunctions.newActListItem('Party');
+
+    list.appendChild(listItem1);
+    list.appendChild(listItem2);
+    expect(list.children[0].value).toBe('Vacation');
+    expect(list.children[1].value).toBe('Party');
+
+    htmlFunctions.delListItem(listItem1);
+    expect(list.children[0].value).toBe('Party');
+
+});
