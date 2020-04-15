@@ -26,7 +26,7 @@ class AccountController {
   }
 
   newAccount(actName, startBalance) {
-    if (this.accounts.find(act => act.actName === actName)) { 
+    if (this.accounts.find(act => act.actName === actName)) {
       return -1;
     }
     const act = new Account(actName, startBalance);
@@ -92,7 +92,6 @@ const htmlFunctions = {
     h3.appendChild(document.createTextNode(actName));
     h3.className = 'clActName';
     card.appendChild(h3);
-
 
     const p1 = document.createElement('P');
     p1.appendChild(document.createTextNode('Balance:'))

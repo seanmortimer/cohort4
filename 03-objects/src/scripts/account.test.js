@@ -1,4 +1,4 @@
-import {Account, AccountController, htmlFunctions} from './account.js';
+import { Account, AccountController, htmlFunctions } from './account.js';
 
 let acct1;
 let acct2;
@@ -17,8 +17,8 @@ beforeEach(() => {
 
 
 test('test plumbing / class creation', () => {
-    expect(acct1).toEqual({actName: 'Sean', balance: 100});
-    expect(acct2).toEqual({actName: 'Chequing', balance: 295.48});
+    expect(acct1).toEqual({ actName: 'Sean', balance: 100 });
+    expect(acct2).toEqual({ actName: 'Chequing', balance: 295.48 });
 });
 
 
@@ -72,7 +72,7 @@ test('test withdraw function', () => {
 test('test show balance function', () => {
     expect(acct1.showBalance()).toBe(100);
     expect(acct2.showBalance()).toBe(295.48);
-    
+
     acct1.deposit(100.57);
     acct2.deposit(100.57);
     expect(acct1.showBalance()).toBe(200.57);
@@ -83,8 +83,8 @@ test('test show balance function', () => {
 test('test AccountController Import', () => {
     expect(user1.accounts)
         .toEqual([
-            {"actName": "Sean", "balance": 100}, 
-            {"actName": "Chequing", "balance": 295.48}
+            { "actName": "Sean", "balance": 100 },
+            { "actName": "Chequing", "balance": 295.48 }
         ]);
     expect(user2.accounts).toEqual([]);
 });
@@ -93,46 +93,46 @@ test('test AccountController Import', () => {
 test('test account creation', () => {
     expect(user1.newAccount('Savings', 1000))
         .toEqual([
-            { "actName": "Sean", "balance": 100},
-            { "actName": "Chequing", "balance": 295.48},
-            { "actName": "Savings", "balance": 1000.00},
+            { "actName": "Sean", "balance": 100 },
+            { "actName": "Chequing", "balance": 295.48 },
+            { "actName": "Savings", "balance": 1000.00 },
         ]);
     expect(user1.newAccount('Vacation', 2995.44))
         .toEqual([
-            { "actName": "Sean", "balance": 100},
-            { "actName": "Chequing", "balance": 295.48},
-            { "actName": "Savings", "balance": 1000.00},
-            { "actName": "Vacation", "balance": 2995.44},
+            { "actName": "Sean", "balance": 100 },
+            { "actName": "Chequing", "balance": 295.48 },
+            { "actName": "Savings", "balance": 1000.00 },
+            { "actName": "Vacation", "balance": 2995.44 },
         ]);
     expect(user1.newAccount('Greek Yoghurt', 0))
         .toEqual([
-            { "actName": "Sean", "balance": 100},
-            { "actName": "Chequing", "balance": 295.48},
-            { "actName": "Savings", "balance": 1000.00},
-            { "actName": "Vacation", "balance": 2995.44},
-            { "actName": "Greek Yoghurt", "balance": 0}
+            { "actName": "Sean", "balance": 100 },
+            { "actName": "Chequing", "balance": 295.48 },
+            { "actName": "Savings", "balance": 1000.00 },
+            { "actName": "Vacation", "balance": 2995.44 },
+            { "actName": "Greek Yoghurt", "balance": 0 }
         ]);
     // Test for error on duplicate account name
-        expect(user1.newAccount('Vacation', 100)).toBe(-1);
-    
-        expect(user2.newAccount('Savings', 1000))
+    expect(user1.newAccount('Vacation', 100)).toBe(-1);
+
+    expect(user2.newAccount('Savings', 1000))
 
         .toEqual([
-            { "actName": "Savings", "balance": 1000.00},
+            { "actName": "Savings", "balance": 1000.00 },
         ]);
     expect(user2.newAccount('Vacation', 2995.44))
         .toEqual([
-            { "actName": "Savings", "balance": 1000.00},
-            { "actName": "Vacation", "balance": 2995.44},
+            { "actName": "Savings", "balance": 1000.00 },
+            { "actName": "Vacation", "balance": 2995.44 },
         ]);
     expect(user2.newAccount('Greek Yoghurt', 0))
         .toEqual([
-            { "actName": "Savings", "balance": 1000.00},
-            { "actName": "Vacation", "balance": 2995.44},
-            { "actName": "Greek Yoghurt", "balance": 0}
+            { "actName": "Savings", "balance": 1000.00 },
+            { "actName": "Vacation", "balance": 2995.44 },
+            { "actName": "Greek Yoghurt", "balance": 0 }
         ]);
     expect(user2.newAccount('Savings', 1000)).toBe(-1);
-    
+
 });
 
 
@@ -140,22 +140,22 @@ test('test account deletion', () => {
     user1.newAccount('Savings', 1000);
     user1.newAccount('Vacation', 2995.44);
     expect(user1.accounts)
-    .toEqual([
-        { "actName": "Sean", "balance": 100},
-        { "actName": "Chequing", "balance": 295.48},
-        { "actName": "Savings", "balance": 1000.00},
-        { "actName": "Vacation", "balance": 2995.44},
-    ]);
-    expect(user1.deleteAccount('Sean')) 
         .toEqual([
-            { "actName": "Chequing", "balance": 295.48},
-            { "actName": "Savings", "balance": 1000.00},
-            { "actName": "Vacation", "balance": 2995.44},
+            { "actName": "Sean", "balance": 100 },
+            { "actName": "Chequing", "balance": 295.48 },
+            { "actName": "Savings", "balance": 1000.00 },
+            { "actName": "Vacation", "balance": 2995.44 },
         ]);
-    expect(user1.deleteAccount('Savings')) 
+    expect(user1.deleteAccount('Sean'))
         .toEqual([
-            { "actName": "Chequing", "balance": 295.48},
-            { "actName": "Vacation", "balance": 2995.44},
+            { "actName": "Chequing", "balance": 295.48 },
+            { "actName": "Savings", "balance": 1000.00 },
+            { "actName": "Vacation", "balance": 2995.44 },
+        ]);
+    expect(user1.deleteAccount('Savings'))
+        .toEqual([
+            { "actName": "Chequing", "balance": 295.48 },
+            { "actName": "Vacation", "balance": 2995.44 },
         ]);
 
     user2.newAccount('Vacation', 2995.44)
@@ -169,7 +169,7 @@ test('test account total function', () => {
     expect(user1.accountTotal()).toBe('405.48');
     user1.newAccount('Savings', 1000);
     expect(user1.accountTotal()).toBe('1405.48');
-    
+
     expect(user2.accountTotal()).toBe('0.00');
 
 });
@@ -200,25 +200,25 @@ test('test account controller balance check', () => {
 });
 
 test('test highest account', () => {
-    expect(user1.getHighest()).toEqual({actName: 'Chequing', balance: 295.48});
+    expect(user1.getHighest()).toEqual({ actName: 'Chequing', balance: 295.48 });
     user1.deposit('Sean', 500);
-    expect(user1.getHighest()).toEqual({actName: 'Sean', balance: 600.00});
+    expect(user1.getHighest()).toEqual({ actName: 'Sean', balance: 600.00 });
     user1.newAccount('Savings', 1000);
-    expect(user1.getHighest()).toEqual({actName: 'Savings', balance: 1000.00});
+    expect(user1.getHighest()).toEqual({ actName: 'Savings', balance: 1000.00 });
     user1.withdraw('Savings', 999);
     user1.withdraw('Sean', 599);
-    expect(user1.getHighest()).toEqual({actName: 'Chequing', balance: 295.48});
+    expect(user1.getHighest()).toEqual({ actName: 'Chequing', balance: 295.48 });
 });
 
 
 test('test lowest account', () => {
-    expect(user1.getLowest()).toEqual({actName: 'Sean', balance: 100});
+    expect(user1.getLowest()).toEqual({ actName: 'Sean', balance: 100 });
     user1.deposit('Sean', 500);
-    expect(user1.getLowest()).toEqual({actName: 'Chequing', balance: 295.48});
+    expect(user1.getLowest()).toEqual({ actName: 'Chequing', balance: 295.48 });
     user1.newAccount('Savings', 1000);
-    expect(user1.getLowest()).toEqual({actName: 'Chequing', balance: 295.48});
+    expect(user1.getLowest()).toEqual({ actName: 'Chequing', balance: 295.48 });
     user1.withdraw('Savings', 999);
-    expect(user1.getLowest()).toEqual({actName: 'Savings', balance: 1});
+    expect(user1.getLowest()).toEqual({ actName: 'Savings', balance: 1 });
 });
 
 test('test account card creation', () => {
@@ -227,10 +227,9 @@ test('test account card creation', () => {
 
     expect(testCard.nodeName).toBe('DIV');
     expect(testCard.className).toBe('clCard');
-    expect(testCard.id).toBe('idSavings');
     expect(testCard.firstElementChild.nodeName).toBe('H3');
     expect(testCard.firstElementChild.textContent).toBe('Savings');
-   
+
     expect(pTags[0].nodeName).toBe('P');
     expect(pTags[0].textContent).toBe('Balance:');
     expect(pTags[0].firstElementChild.nodeName).toBe('SPAN');
@@ -239,7 +238,8 @@ test('test account card creation', () => {
     expect(pTags[1].nodeName).toBe('P');
     expect(pTags[1].textContent).toBe('Delete Account');
     expect(pTags[1].firstElementChild.nodeName).toBe('BUTTON');
-    
+    expect(pTags[1].firstElementChild.id).toBe('idDelBtn');
+
 });
 
 test('test account card deletion', () => {
@@ -266,7 +266,7 @@ test('test account list update function', () => {
     const listItem1 = htmlFunctions.newActListItem('Vacation');
     const listItem2 = htmlFunctions.newActListItem('Party');
     expect(list.children.length).toBe(0);
-    
+
     list.appendChild(listItem1);
     expect(list.children.length).toBe(1);
     expect(list.children[0].nodeName).toBe('OPTION');

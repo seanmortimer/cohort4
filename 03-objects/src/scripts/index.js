@@ -8,7 +8,7 @@ const clearInput = () => {
     idActName.value = "";
 }
 
-// Update all the names and values on the page
+    // Update all the names and balances on the page
 const updateDisplay = () => {
     for (let act of user1.accounts) {
         const actName = act.actName
