@@ -112,7 +112,11 @@ test('test account creation', () => {
             { "actName": "Vacation", "balance": 2995.44},
             { "actName": "Greek Yoghurt", "balance": 0}
         ]);
-    expect(user2.newAccount('Savings', 1000))
+    // Test for error on duplicate account name
+        expect(user1.newAccount('Vacation', 100)).toBe(-1);
+    
+        expect(user2.newAccount('Savings', 1000))
+
         .toEqual([
             { "actName": "Savings", "balance": 1000.00},
         ]);
@@ -127,6 +131,8 @@ test('test account creation', () => {
             { "actName": "Vacation", "balance": 2995.44},
             { "actName": "Greek Yoghurt", "balance": 0}
         ]);
+    expect(user2.newAccount('Savings', 1000)).toBe(-1);
+    
 });
 
 
@@ -221,6 +227,7 @@ test('test account card creation', () => {
 
     expect(testCard.nodeName).toBe('DIV');
     expect(testCard.className).toBe('clCard');
+    expect(testCard.id).toBe('idSavings');
     expect(testCard.firstElementChild.nodeName).toBe('H3');
     expect(testCard.firstElementChild.textContent).toBe('Savings');
    

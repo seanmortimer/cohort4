@@ -1,21 +1,21 @@
 class Account {
   constructor(actName, balance) {
-      this.actName = actName;
-      this.balance = balance;
+    this.actName = actName;
+    this.balance = balance;
   }
 
-  deposit (amount) {
-    this.balance = Math.round((this.balance * 100 + amount * 100) ) / 100;
-     return this.balance;
+  deposit(amount) {
+    this.balance = Math.round((this.balance * 100 + amount * 100)) / 100;
+    return this.balance;
   }
 
-  withdraw (amount) {
-      this.balance = Math.round((this.balance * 100 - amount * 100)) / 100;
-      return this.balance;
+  withdraw(amount) {
+    this.balance = Math.round((this.balance * 100 - amount * 100)) / 100;
+    return this.balance;
   }
 
-  showBalance () {
-      return this.balance;
+  showBalance() {
+    return this.balance;
   }
 
 }
@@ -25,54 +25,57 @@ class AccountController {
     this.accounts = [];
   }
 
-  newAccount (actName, startBalance) {
-    const act =  new Account(actName, startBalance);
+  newAccount(actName, startBalance) {
+    if (this.accounts.find(act => act.actName === actName)) { 
+      return -1;
+    }
+    const act = new Account(actName, startBalance);
     this.accounts.push(act);
     return this.accounts;
   }
 
-  deleteAccount (delAct) {
-    this.accounts = this.accounts.filter(acct => acct.actName != delAct);
+  deleteAccount(delAct) {
+    this.accounts = this.accounts.filter(act => act.actName != delAct);
     return this.accounts;
   }
-  
-  accountTotal () {
+
+  accountTotal() {
     const total = this.accounts.reduce((
       accum, account) => accum + account.balance, 0);
     return total.toFixed(2);
   }
 
-  deposit (name, amount) {
-   const acct = this.accounts.find(acct => acct.actName === name);
+  deposit(name, amount) {
+    const acct = this.accounts.find(acct => acct.actName === name);
     acct.deposit(amount);
     return acct.balance.toFixed(2);
   }
 
-  withdraw (name, amount) {
+  withdraw(name, amount) {
     const acct = this.accounts.find(acct => acct.actName === name);
-     acct.withdraw(amount);
-     return acct.balance.toFixed(2);
-   }
+    acct.withdraw(amount);
+    return acct.balance.toFixed(2);
+  }
 
-  getBalance (name) {
+  getBalance(name) {
     const acct = this.accounts.find(acct => acct.actName === name);
     return acct.showBalance().toFixed(2);
   }
 
-  getHighest () {
+  getHighest() {
     const acct = this.accounts.reduce((accum, account) => {
-        if (accum.balance < account.balance) return account;
-        return accum;
-      }, this.accounts[0]);
+      if (accum.balance < account.balance) return account;
+      return accum;
+    }, this.accounts[0]);
 
     return acct;
   }
 
-  getLowest () {
+  getLowest() {
     const acct = this.accounts.reduce((accum, account) => {
-        if (accum.balance > account.balance) return account;
-        return accum;
-      }, this.accounts[0]);
+      if (accum.balance > account.balance) return account;
+      return accum;
+    }, this.accounts[0]);
 
     return acct;
   }
@@ -80,13 +83,13 @@ class AccountController {
 }
 
 const htmlFunctions = {
-  
+
   newAccount: (actName) => {
     const card = document.createElement('DIV');
     card.className = 'clCard';
 
     const h3 = document.createElement('H3');
-    h3.appendChild(document.createTextNode(actName)); 
+    h3.appendChild(document.createTextNode(actName));
     h3.className = 'clActName';
     card.appendChild(h3);
 
@@ -102,7 +105,7 @@ const htmlFunctions = {
     const delBtn = document.createElement('button');
     delBtn.id = 'idDelBtn';
     delBtn.appendChild(document.createTextNode('Delete Account'));
-    
+
 
     p2.appendChild(delBtn);
     card.appendChild(p2);
@@ -112,13 +115,13 @@ const htmlFunctions = {
 
   delAct: (card) => {
     card.remove();
-    
+
   },
 
   newActListItem: (actName) => {
     // Take in account name, return option item
     const actItem = document.createElement('OPTION')
-    
+
     actItem.value = actName;
     actItem.id = 'idList' + actName;
     actItem.textContent = actName;
@@ -127,9 +130,9 @@ const htmlFunctions = {
 
   delListItem: (item) => {
     item.remove();
-    
+
   }
 
 };
 
-export  {Account, AccountController, htmlFunctions};
+export { Account, AccountController, htmlFunctions };
