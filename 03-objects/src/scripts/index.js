@@ -10,11 +10,11 @@ const clearInput = () => {
 
 // Update all the names and values on the page
 const updateDisplay = () => {
-    user1.accounts.forEach(acct => {
-        const actName = acct.actName
+    for (let act of user1.accounts) {
+        const actName = act.actName
         const actID = document.getElementById('id' + actName);
         actID.textContent = `$ ${user1.getBalance(actName)}`;
-    });
+    }
 
     idTotalBalance.textContent = `$ ${user1.accountTotal()}`;
     idHighestName.textContent = `${user1.getHighest().actName}:`;
@@ -29,7 +29,7 @@ const createAccount = (actName, startBal) => {
         clearInput();
 
         return;
-    };
+    }
 
     idAcctSelect.appendChild(htmlFunctions.newActListItem(actName));
     idLeftPanel.appendChild(htmlFunctions.newAccount(actName));
