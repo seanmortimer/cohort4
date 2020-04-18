@@ -74,7 +74,7 @@ class AccountController {
   getLowest() {
     const acct = this.accounts.reduce((accum, account) => {
       if (accum.balance > account.balance) return account;
-      return accum;
+      return accum
     }, this.accounts[0]);
 
     return acct;
