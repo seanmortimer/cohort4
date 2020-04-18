@@ -1,7 +1,10 @@
-import UserData from './fetch.js';
+// import { UserData } from './fetch.js';
+import { UserData, functions } from './fetch.js';
 
 let data;
-let userList;
+let users;
+const url = 'https://jsonplaceholder.typicode.com/users';
+
 
 beforeEach(() => {
     data = [
@@ -237,15 +240,71 @@ beforeEach(() => {
         }
     ];
 
-    userList = new UserData(data);
+    users = new UserData(data);
+    // url = 'https://jsonplaceholder.typicode.com/users';
 });
+
 
 test('test data array', () => {
     expect(data[0].name).toBe('Leanne Graham');
     expect(data[6].name).toBe('Kurtis Weissnat');
 });
 
-test('test import plumbing', () => {
-    expect(userList.userArray[0].name).toBe('Leanne Graham');
-    expect(userList.userArray[6].name).toBe('Kurtis Weissnat');
+test('test first name method ', () => {
+    expect(users.getFirstName(data)).toBe('Leanne Graham');
 });
+
+test('test get all names method', () => {
+    expect(users.getAllFirstNames(data)).toEqual([
+        'Leanne Graham',
+        'Ervin Howell',
+        'Clementine Bauch',
+        'Patricia Lebsack',
+        'Chelsey Dietrich',
+        'Mrs. Dennis Schulist',
+        'Kurtis Weissnat',
+        'Nicholas Runolfsdottir V',
+        'Glenna Reichert',
+        'Clementina DuBuque'
+      ]);
+});
+
+// Function tests
+
+test('test function import', () => {
+    expect(functions.url).toBe('https://jsonplaceholder.typicode.com/users');
+});
+
+test('test firstname function', () => {
+    expect(functions.getFirstName(data)).toBe('Leanne Graham');
+});
+
+test('test all first names function', () => {
+    expect(functions.getAllFirstNames(data)).toEqual([
+        'Leanne Graham',
+        'Ervin Howell',
+        'Clementine Bauch',
+        'Patricia Lebsack',
+        'Chelsey Dietrich',
+        'Mrs. Dennis Schulist',
+        'Kurtis Weissnat',
+        'Nicholas Runolfsdottir V',
+        'Glenna Reichert',
+        'Clementina DuBuque'
+      ]);
+});
+
+test('delay demonstration', () => {
+    expect(functions.showDelayProblem()).toBe(undefined);
+});
+
+
+test('test getusers fetch function', async () => {
+   expect(await functions.getUsers(url)).toEqual(data);
+});
+
+
+test('test workwith data function', async () => {
+    expect(await functions.workWithData(url)).toEqual(data);
+ });
+ 

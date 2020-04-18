@@ -10,16 +10,19 @@
         "test1cov": "jest src/01-getting-started --coverage",
         "testfile": "jest src/01-getting-started/scripts/lfsplay.test.js",
         "watch": "jest --runInBand --watch",
-        "gitp": "git push -u origin master"
+        "testdom": "jest dom",
+        "testfetch": "jest fetch"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "@babel/cli": "^7.0.0",
-        "@babel/preset-env": "^7.0.0",
+        "@babel/cli": "^7.8.4",
+        "@babel/preset-env": "^7.9.5",
         "eslint": "^6.8.0",
-        "jest": "^24.9.0",
+        "jest": "^24.9.0"
+    },
+    "dependencies": {
         "node-fetch": "^2.6.0",
         "whatwg-fetch": "^3.0.0"
     }
