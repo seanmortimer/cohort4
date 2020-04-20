@@ -1,9 +1,21 @@
 // import { UserData } from './fetch.js';
 import { UserData, functions } from './fetch.js';
 
+// Need this line for fetch to workin with tests
+global.fetch = require('node-fetch');
+
+
 let data;
 let users;
 const url = 'https://jsonplaceholder.typicode.com/users';
+const me = { 
+    "name": "Sean", 
+    "surname": "Mortimer", 
+    "gender": "male", 
+    "region": "Alberta" 
+};
+
+const sMe = JSON.stringify(me);;
 
 
 beforeEach(() => {
@@ -271,10 +283,6 @@ test('test get all names method', () => {
 
 // Function tests
 
-test('test function import', () => {
-    expect(functions.url).toBe('https://jsonplaceholder.typicode.com/users');
-});
-
 test('test firstname function', () => {
     expect(functions.getFirstName(data)).toBe('Leanne Graham');
 });
@@ -308,3 +316,8 @@ test('test workwith data function', async () => {
     expect(await functions.workWithData(url)).toEqual(data);
  });
  
+test('test postData function', async () => {
+    const output = await functions.postData(url, me) 
+    expect(output.name).toEqual(me.name);
+    expect(output.surname).toEqual(me.surname);
+ });
