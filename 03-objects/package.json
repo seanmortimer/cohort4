@@ -6,9 +6,8 @@
     "scripts": {
         "test": "jest",
         "testcov": "jest --coverage",
-        "watch": "jest --runInBand --watch",
-        "testdom": "jest dom",
-        "testfetch": "jest fetch"
+        "showcov": "start ./coverage/lcov-report/index.html",
+        "watch": "jest --runInBand --watch"
     },
     "keywords": [],
     "author": "",

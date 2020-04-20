@@ -45,15 +45,28 @@ class Community {
     }
 
     getMostNorthern() {
-        return this.cities[0];
+        let northMost = {};
+        northMost.lat = -181;
+        this.cities.forEach(city => {
+            if (city.lat > northMost.lat) northMost = city; 
+        });
+        return northMost;
     }
 
     getMostSouthern() {
-        return this.cities[0];
+        let southMost = {};
+        southMost.lat = 181;
+        this.cities.forEach(city => {
+            if (city.lat < southMost.lat) southMost = city; 
+        });
+        return southMost;
     }
 
     getPopulation() {
-        return 0;
+        console.log('cities', this.cities);
+
+        const totalPop = this.cities.reduce((acc, city) => acc += city.pop,0);
+        return totalPop;
     }
 
     createCity(city) {
@@ -62,12 +75,8 @@ class Community {
     }
 
     deleteCity(city) {
-        
-            this.cities.findIndex(() => {
-                return 
-            }
-
-            )
+        const target = this.cities.findIndex((delCity => delCity === city));
+        this.cities.splice(target, 1);
         return this.cities;
     }
 }

@@ -15,7 +15,14 @@ beforeEach(() => {
     quintero = new City('Quintero', -32.78, -71.53, 25300);
     eqTown = new City('Equator Town', 0.00, 50.00, 5000);
     notAPlace = new City('Not A Place', 'ostritch', 'falcon', 'ocelot');
+
     comm = new Community;
+    comm.createCity(calgary);
+    comm.createCity(edmonton);
+    comm.createCity(redDeer);
+    comm.createCity(quintero);
+    comm.createCity(eqTown);
+
 });
 
 
@@ -71,6 +78,7 @@ test('test city size method', () => {
 
 // Community contorller class tests
 test('Test which hemisphere method', () => {
+    comm.createCity(notAPlace);
     expect(comm.whichSphere(calgary)).toBe('Calgary is in the Northern Hemisphere');
     expect(comm.whichSphere(edmonton)).toBe('Edmonton is in the Northern Hemisphere');
     expect(comm.whichSphere(quintero)).toBe('Quintero is in the Southern Hemisphere');
@@ -79,28 +87,53 @@ test('Test which hemisphere method', () => {
 }); 
 
 test('test city creation method', () => {
-    comm.createCity(calgary);
-    comm.createCity(edmonton);
-    comm.createCity(quintero);
-    expect(comm.cities.length).toBe(3);
+   
+    expect(comm.cities.length).toBe(5);
     expect(comm.cities[0].name).toBe('Calgary');
     expect(comm.cities[1].name).toBe('Edmonton');
-    expect(comm.cities[2].name).toBe('Quintero');
+    expect(comm.cities[3].name).toBe('Quintero');
 });
 
 test('test city deletion method', () => {
-    comm.createCity(calgary);
-    comm.createCity(edmonton);
-    comm.createCity(quintero);
-    expect(comm.cities.length).toBe(3);
+    expect(comm.cities.length).toBe(5);
     expect(comm.cities[0].name).toBe('Calgary');
     comm.deleteCity(calgary);
-    expect(comm.cities.length).toBe(2);
+    expect(comm.cities.length).toBe(4);
     expect(comm.cities[0].name).toBe('Edmonton');
+    comm.deleteCity(edmonton);
+    expect(comm.cities.length).toBe(3);
+    expect(comm.cities[0].name).toBe('Red Deer');
 });
 
-// test('Test most northern method', () => {
-//     expect(comm.getMostNorthern())
-//         .toBe('Edmonton is the northernmost city at latitude 53.55');
-    
-// }); 
+test('Test most northern method', () => {
+    comm.deleteCity(edmonton);
+    expect(comm.getMostNorthern()).toBe(redDeer);
+    comm.createCity(edmonton);
+    expect(comm.getMostNorthern()).toBe(edmonton);
+    comm.deleteCity(edmonton);
+    comm.deleteCity(redDeer);
+    comm.deleteCity(calgary);
+    expect(comm.getMostNorthern()).toBe(eqTown);
+    comm.deleteCity(eqTown);
+    expect(comm.getMostNorthern()).toBe(quintero);
+}); 
+
+test('Test most southern method', () => {
+    expect(comm.getMostSouthern()).toBe(quintero);
+    comm.deleteCity(quintero);
+    expect(comm.getMostSouthern()).toBe(eqTown);
+    comm.deleteCity(eqTown);
+    expect(comm.getMostSouthern()).toBe(calgary);
+    comm.deleteCity(calgary);
+    expect(comm.getMostSouthern()).toBe(redDeer);
+}); 
+
+test('Test total population method', () => {
+    expect(comm.getPopulation()).toBe(2457300);
+    comm.deleteCity(calgary);
+    expect(comm.getPopulation()).toBe(1117300);
+    const capeTown = new City ('Cape Town', -33.93, 18.42, 3.78e6);
+    comm.createCity(capeTown);
+    expect(comm.getPopulation()).toBe(4897300);
+});
+
