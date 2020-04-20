@@ -9,12 +9,12 @@ let notAPlace;
 let comm;
 
 beforeEach(() => {
-    calgary = new City('Calgary', 51.05, -114.05, 1.34e6);
-    edmonton = new City('Edmonton', 53.55, -113.49, 9.81e5);
-    redDeer = new City('Red Deer', 52.28, -113.81, 1.06e5);
-    quintero = new City('Quintero', -32.78, -71.53, 25300);
-    eqTown = new City('Equator Town', 0.00, 50.00, 5000);
-    notAPlace = new City('Not A Place', 'ostritch', 'falcon', 'ocelot');
+    calgary = new City(1, 'Calgary', 51.05, -114.05, 1.34e6);
+    edmonton = new City(2, 'Edmonton', 53.55, -113.49, 9.81e5);
+    redDeer = new City(3, 'Red Deer', 52.28, -113.81, 1.06e5);
+    quintero = new City(4, 'Quintero', -32.78, -71.53, 25300);
+    eqTown = new City(5, 'Equator Town', 0.00, 50.00, 5000);
+    notAPlace = new City(6, 'Not A Place', 'ostritch', 'falcon', 'ocelot');
 
     comm = new Community;
     comm.createCity(calgary);
@@ -29,10 +29,12 @@ beforeEach(() => {
 // City class tests
 test('test city creation and import plumbing', () => {
     expect(calgary.name).toBe('Calgary');
+    expect(calgary.key).toBe(1);
     expect(calgary.lat).toBe(51.05);
     expect(edmonton.name).toBe('Edmonton');
     expect(edmonton.long).toBe(-113.49);
     expect(redDeer.pop).toBe(1.06e5);
+    expect(eqTown.key).toBe(5);
 });
 
 test('test city show method', () => {
@@ -132,7 +134,7 @@ test('Test total population method', () => {
     expect(comm.getPopulation()).toBe(2457300);
     comm.deleteCity(calgary);
     expect(comm.getPopulation()).toBe(1117300);
-    const capeTown = new City ('Cape Town', -33.93, 18.42, 3.78e6);
+    const capeTown = new City (6, 'Cape Town', -33.93, 18.42, 3.78e6);
     comm.createCity(capeTown);
     expect(comm.getPopulation()).toBe(4897300);
 });

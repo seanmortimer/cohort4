@@ -1,5 +1,6 @@
 class City {
-    constructor(name, lat, long, pop) {
+    constructor(key, name, lat, long, pop) {
+        this.key = key;
         this.name = name;
         this.lat = lat;
         this.long = long;
@@ -63,8 +64,6 @@ class Community {
     }
 
     getPopulation() {
-        console.log('cities', this.cities);
-
         const totalPop = this.cities.reduce((acc, city) => acc += city.pop,0);
         return totalPop;
     }

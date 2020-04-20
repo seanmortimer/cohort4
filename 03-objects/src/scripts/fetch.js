@@ -86,8 +86,8 @@ const functions = {
             body: JSON.stringify(data)  // body data type must match "Content-Type" header
         });
             const output = await response.json()
-            console.log('response is:', response.status);
-            
+            output.status = response.status;
+            output.statusText = response.statusText;
         return output;   // parses JSON response into native JavaScript objects
     }
     
