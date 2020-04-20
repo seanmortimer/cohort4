@@ -15,6 +15,7 @@ class UserData {
     }
 }
 
+// Need this line for fetch to workin with tests
 global.fetch = require('node-fetch');
 
 const functions = {
@@ -72,6 +73,20 @@ const functions = {
     },
 
 }
+
+
+const me = { 
+    "name": "Sean", 
+    "surname": "Mortimer", 
+    "gender": "male", 
+    "region": "Alberta" 
+};
+
+const sMe = JSON.stringify(me);;
+
+console.log('Me is::', me);
+console.log('Stringified me is::', sMe);
+
 
 
 export { UserData, functions };
