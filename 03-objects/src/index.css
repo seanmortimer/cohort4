@@ -2,6 +2,7 @@ div {
     font-family: sans-serif;
     padding: 10px;
     border: solid cadetblue; 
+    border-radius: 1em;
 }
 
 
