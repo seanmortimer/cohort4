@@ -60,7 +60,7 @@ document.body.addEventListener('click', e => {
         const amount = Number(idDWInput.value).toFixed(2);
         const newAct = idActName.value;
 
-        if (actName && amount) {
+        if (actName && amount > 0) {
             switch (target.id) {
                 case 'idDeposit':
                     user1.deposit(actName, amount);
