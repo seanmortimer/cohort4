@@ -3,8 +3,15 @@ div {
     padding: 10px;
     border: solid cadetblue; 
     border-radius: 1em;
+     
 }
 
+#idTitle {
+    font-family: serif;
+    color: rgb(15, 29, 92);
+    border: none;
+    text-align: center;
+}
 
 
 #idAccountControl {
@@ -56,7 +63,6 @@ div {
 
 #idRightPanel {
    width: 50%;
-   /* min-width: 220px; */
 }
 
 #idRightPanel > p {
