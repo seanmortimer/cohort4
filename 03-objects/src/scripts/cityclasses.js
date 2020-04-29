@@ -69,7 +69,9 @@ class Community {
         return totalPop;
     }
 
-    createCity(city) {
+    createCity(name, lat, long, pop) {
+        const key = this.newKey();
+        const city = new City(key, name, lat, long, pop);
         this.cities.push(city);
         return this.cities;
     }
