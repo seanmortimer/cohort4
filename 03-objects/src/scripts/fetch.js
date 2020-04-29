@@ -18,8 +18,6 @@ class UserData {
 
 const functions = {
 
-    url: 'https://jsonplaceholder.typicode.com/users',
-
     getFirstName(data) {
         return (data[0].name);
     },
@@ -66,7 +64,7 @@ const functions = {
     async workWithData(url) {
         const data = await functions.getUsers(url);
         // console.log(functions.getFirstName(data));
-        // console.log(functions.getAllFirstNames(data));
+        // console.log(functions.getAllFirstNames(data));ww
         return data;
     },
 

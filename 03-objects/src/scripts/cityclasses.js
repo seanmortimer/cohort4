@@ -35,6 +35,7 @@ class City {
 class Community {
     constructor() {
         this.cities = [];
+        this.key = 0;
     }
 
     whichSphere(city) {
@@ -77,6 +78,10 @@ class Community {
         const target = this.cities.findIndex((delCity => delCity === city));
         this.cities.splice(target, 1);
         return this.cities;
+    }
+
+    newKey() {
+        return ++this.key;
     }
 }
 

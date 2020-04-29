@@ -139,3 +139,11 @@ test('Test total population method', () => {
     expect(comm.getPopulation()).toBe(4897300);
 });
 
+
+test('Test key generation method', () => {
+    expect(comm.key).toBe(0);
+    expect(comm.newKey()).toBe(1);
+    expect(comm.newKey()).toBe(2);
+    expect(comm.newKey()).toBe(3);
+    expect(comm.key).toBe(3);
+});
