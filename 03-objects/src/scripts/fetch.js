@@ -54,7 +54,9 @@ const functions = {
         try {
             const response = await fetch(url);
             const data = await response.json();
+            data.status = response.status;
             return data;
+            
         } catch (error) {
             console.error('Error:', error);
             throw (error);

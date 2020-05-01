@@ -86,7 +86,6 @@ class Community {
 
     deleteCity(key) {
         const index = this.cities.findIndex(city => city.key === key);
-        // console.log(this.cities.splice(index, 1));
         return this.cities.splice(index, 1);
     }   
 }
