@@ -1,5 +1,58 @@
 {
-    "1": { "key": 1, "city": "Calgary", "lat": 51.05, "long": -114.05 },
-    "2": { "key": 2, "city": "Edmonton", "lat": 53.55, "long": -113.49 },
-    "3": { "key": 3, "city": "Red Deer", "lat": 52.28, "long": -113.81 }
+    "1": {
+        "key": 1,
+        "name": "Calgary",
+        "lat": 51.05,
+        "long": -114.05,
+        "pop": 1340000
+    },
+    "2": {
+        "key": 2,
+        "name": "Edmonton",
+        "lat": 53.55,
+        "long": -113.49,
+        "pop": 981000
+    },
+    "3": {
+        "key": 3,
+        "name": "Red Deer",
+        "lat": 52.28,
+        "long": -113.81,
+        "pop": 106000
+    },
+    "4": {
+        "key": 4,
+        "name": "Quintero",
+        "lat": -32.78,
+        "long": -71.53,
+        "pop": 25300
+    },
+    "5": {
+        "key": 5,
+        "name": "Equator Town",
+        "lat": 0,
+        "long": 50,
+        "pop": 5000
+    },
+    "6": {
+        "key": 6,
+        "name": "Cape Town",
+        "lat": -33.93,
+        "long": 18.42,
+        "pop": 3780000
+    },
+    "7": {
+        "key": 7,
+        "name": "Bogota",
+        "lat": 4.71,
+        "long": -74.07,
+        "pop": 7400000
+    },
+    "8": {
+        "key": 8,
+        "name": "Whitehorse",
+        "lat": 60.72,
+        "long": -135.05,
+        "pop": 2500
+    }
 }

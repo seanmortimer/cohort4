@@ -42,8 +42,8 @@ class Community {
         return ++this.key;
     }
 
-    indexByKey(key) {
-        return this.cities.findIndex(city => city.key === key);
+    findByKey(key) {
+        return this.cities.find(city => city.key === key);
     }
 
     whichSphere(city) {
@@ -81,12 +81,13 @@ class Community {
         const key = this.newKey();
         const city = new City(key, name, lat, long, pop);
         this.cities.push(city);
-        return this.cities;
+        return key;
     }
 
     deleteCity(key) {
-        this.cities.splice(this.indexByKey(key), 1);
-        return this.cities;
+        const index = this.cities.findIndex(city => city.key === key);
+        // console.log(this.cities.splice(index, 1));
+        return this.cities.splice(index, 1);
     }   
 }
 

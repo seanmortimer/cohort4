@@ -78,11 +78,11 @@ describe('Community controller class tests', () => {
     beforeEach(() => {
 
         comm = new Community;
-        comm.createCity('Calgary', 51.05, -114.05, 1.34e6);
-        comm.createCity('Edmonton', 53.55, -113.49, 9.81e5);
-        comm.createCity('Red Deer', 52.28, -113.81, 1.06e5);
-        comm.createCity('Quintero', -32.78, -71.53, 25300);
-        comm.createCity('Equator Town', 0.00, 50.00, 5000);
+        comm.createCity('Calgary', 51.05, -114.05, 1.34e6);  // key 1
+        comm.createCity('Edmonton', 53.55, -113.49, 9.81e5); // key 2
+        comm.createCity('Red Deer', 52.28, -113.81, 1.06e5); // key 3
+        comm.createCity('Quintero', -32.78, -71.53, 25300); // key 4
+        comm.createCity('Equator Town', 0.00, 50.00, 5000); // key 5
 
     });
 
@@ -96,31 +96,38 @@ describe('Community controller class tests', () => {
 
     test('test city creation method', () => {
 
-        expect(comm.cities.length).toBe(5);
-        expect(comm.cities[0].name).toBe('Calgary');
-        expect(comm.cities[0].key).toBe(1);
-        expect(comm.cities[1].name).toBe('Edmonton');
-        expect(comm.cities[1].key).toBe(2);
-        expect(comm.cities[3].name).toBe('Quintero');
-        expect(comm.cities[3].key).toBe(4);
+        const comm2 = new Community;
+        
+        expect(comm2.createCity('Calgary', 51.05, -114.05, 1.34e6)).toBe(1); 
+        expect(comm2.createCity('Edmonton', 53.55, -113.49, 9.81e5)).toBe(2);
+        expect(comm2.createCity('Red Deer', 52.28, -113.81, 1.06e5)).toBe(3);
+        expect(comm2.createCity('Quintero', -32.78, -71.53, 25300)).toBe(4);
+        expect(comm2.createCity('Equator Town', 0.00, 50.00, 5000)).toBe(5);
+
+        expect(comm2.cities.length).toBe(5);
+        expect(comm2.cities[0].name).toBe('Calgary');
+        expect(comm2.cities[0].key).toBe(1);
+        expect(comm2.cities[1].name).toBe('Edmonton');
+        expect(comm2.cities[1].key).toBe(2);
+        expect(comm2.cities[3].name).toBe('Quintero');
+        expect(comm2.cities[3].key).toBe(4);
     });
 
     test('Test find by key method', () => {
-        expect(comm.indexByKey(1)).toBe(0);
-        expect(comm.cities[comm.indexByKey(1)].name).toBe('Calgary');
-        expect(comm.cities[comm.indexByKey(2)].name).toBe('Edmonton');
-        expect(comm.cities[comm.indexByKey(3)].name).toBe('Red Deer');
-        expect(comm.cities[comm.indexByKey(4)].name).toBe('Quintero');
-        expect(comm.cities[comm.indexByKey(5)].name).toBe('Equator Town');
+        expect(comm.findByKey(1).name).toBe('Calgary');
+        expect(comm.findByKey(2).name).toBe('Edmonton');
+        expect(comm.findByKey(3).name).toBe('Red Deer');
+        expect(comm.findByKey(4).name).toBe('Quintero');
+        expect(comm.findByKey(5).name).toBe('Equator Town');
     });
 
     test('Test which hemisphere method', () => {
         comm.createCity('Not A Place', 'ostritch', 'falcon', 'ocelot');
-        expect(comm.whichSphere(comm.cities[0])).toBe('Calgary is in the Northern Hemisphere');
-        expect(comm.whichSphere(comm.cities[1])).toBe('Edmonton is in the Northern Hemisphere');
-        expect(comm.whichSphere(comm.cities[3])).toBe('Quintero is in the Southern Hemisphere');
-        expect(comm.whichSphere(comm.cities[4])).toBe('Equator Town is exactly on the Equator!');
-        expect(comm.whichSphere(comm.cities[5])).toBe('Something went wrong');
+        expect(comm.whichSphere(comm.findByKey(1))).toBe('Calgary is in the Northern Hemisphere');
+        expect(comm.whichSphere(comm.findByKey(2))).toBe('Edmonton is in the Northern Hemisphere');
+        expect(comm.whichSphere(comm.findByKey(4))).toBe('Quintero is in the Southern Hemisphere');
+        expect(comm.whichSphere(comm.findByKey(5))).toBe('Equator Town is exactly on the Equator!');
+        expect(comm.whichSphere(comm.findByKey(6))).toBe('Something went wrong');
     });
 
     test('test city deletion method', () => {
@@ -128,10 +135,12 @@ describe('Community controller class tests', () => {
         expect(comm.cities[0].name).toBe('Calgary');
         comm.deleteCity(1);
         expect(comm.cities.length).toBe(4);
+        expect(comm.findByKey(1)).toBeUndefined();
         expect(comm.cities[0].name).toBe('Edmonton');
         expect(comm.cities[2].name).toBe('Quintero');
         comm.deleteCity(4);
         expect(comm.cities.length).toBe(3);
+        expect(comm.findByKey(4)).toBeUndefined();
         expect(comm.cities[0].name).toBe('Edmonton');
         expect(comm.cities[2].name).toBe('Equator Town');
     });
