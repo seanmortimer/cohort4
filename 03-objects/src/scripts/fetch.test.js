@@ -305,23 +305,25 @@ test('delay demonstration', () => {
 
 
 test('test getusers fetch function', async () => {
-    // const output = await functions.getUsers(url);
-    // expect(output.status).toBe(200);
-    // expect(output).toContainEqual(data);
-    console.log(awa);
-    (await functions.getUsers(url));
-    expect(await functions.getUsers(url)).toEqual(data);
+    const output = await functions.getUsers(url);
+    expect(output.status).toBe(200);
+    expect(output).toEqual(expect.objectContaining(data));
 });
 
 
-// test('test workwith data function', async () => {
-//     expect(await functions.workWithData(url)).toEqual(data);
-// });
+test('test workwith data function', async () => {
+    const output = await functions.workWithData(url);
+    expect(output.status).toBe(200);
+    expect(output).toEqual(expect.objectContaining(data));
+});
 
-// test('test postData function', async () => {
-//     const output = await functions.postData(url, me)
-//     expect(output.name).toEqual(me.name);
-//     expect(output.surname).toEqual(me.surname);
-// }, 10000);
+test('test postData function', async () => {
+    const output = await functions.postData(url, me)
+    expect(output.status).toBe(201);
+    expect(output.name).toEqual(me.name);
+    expect(output.surname).toEqual(me.surname);
+    expect(output).toEqual(expect.objectContaining(me));
+
+}, 10000);
 
 
