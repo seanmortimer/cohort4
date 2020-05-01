@@ -1,12 +1,5 @@
 const functions = {
 
-    async workWithData(url) {
-        const data = await functions.getUsers(url);
-        // console.log(functions.getFirstName(data));
-        // console.log(functions.getAllFirstNames(data));
-        return data;
-    },
-
     async postData(url = '', data = {}) {
         // Default options are marked with *
         const response = await fetch(url, {

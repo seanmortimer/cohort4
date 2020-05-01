@@ -38,6 +38,14 @@ class Community {
         this.key = 0;
     }
 
+    newKey() {
+        return ++this.key;
+    }
+
+    indexByKey(key) {
+        return this.cities.findIndex(city => city.key === key);
+    }
+
     whichSphere(city) {
         if (city.lat > 0) return `${city.name} is in the Northern Hemisphere`;
         else if (city.lat < 0) return `${city.name} is in the Southern Hemisphere`;
@@ -48,9 +56,9 @@ class Community {
 
     getMostNorthern() {
         let northMost = {};
-        northMost.lat = -181;
-        this.cities.forEach(city => {
-            if (city.lat > northMost.lat) northMost = city; 
+        northMost = this.cities[0];
+            this.cities.forEach(city => {
+                if (city.lat > northMost.lat) northMost = city; 
         });
         return northMost;
     }
@@ -76,15 +84,10 @@ class Community {
         return this.cities;
     }
 
-    deleteCity(city) {
-        const target = this.cities.findIndex((delCity => delCity === city));
-        this.cities.splice(target, 1);
+    deleteCity(key) {
+        this.cities.splice(this.indexByKey(key), 1);
         return this.cities;
-    }
-
-    newKey() {
-        return ++this.key;
-    }
+    }   
 }
 
 
