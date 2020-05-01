@@ -5,7 +5,7 @@ class UserData {
     }
 
     // the api we're using doesn't separate first and last names
-    getAllFirstNames(data) {    
+    getAllFirstNames(data) {
         const nameArray = [];
         for (let user of data) {
             nameArray.push(user.name);
@@ -28,45 +28,53 @@ const functions = {
 
     showDelayProblem() {
         // console.log('One');
+        let output = 'One';
         setTimeout(() => {          // Simulates a fetch
             // console.log("Two");
+            output += ', Two';
         }, 1 * 1000);
         // console.log('Three');       // We have a problem Huston
+        output += ', Three'
+        return output;
     },
 
     async showDelaySolution() {
-        try {
-            // console.log('One');
+        let output = 'One';
             const value = await                 // Simulate fetch
                 new Promise(
                     (resolve, reject) =>
-                        setTimeout(() => resolve("Two"),
+                        setTimeout(() => resolve(", Two"),
                             1 * 2000));
             // Now that we have the value we can use it.
             // console.log(value);
             // console.log('Three');
-        } catch (error) {
-            console.log(error);
-        }
+            output += value;
+            output += ', Three';
+
+        return output;
     },
 
     async getUsers(url) {
-        try {
+        let data = null;
+        try { async () => {
             const response = await fetch(url);
-            const data = await response.json();
+            let data = await response.json();
             data.status = response.status;
-            return data;
-
-        } catch (error) {
+            console.log('Status:', data.status);
+            
+        }} 
+        catch (error) {
             console.error('Error:', error);
             throw (error);
         }
+        console.log('Are we here????', data);
+        
+        return data;
+
     },
 
     async workWithData(url) {
         const data = await functions.getUsers(url);
-        // console.log(functions.getFirstName(data));
-        // console.log(functions.getAllFirstNames(data));ww
         return data;
     },
 
@@ -85,12 +93,12 @@ const functions = {
             referrer: 'no-referrer',    // no-referrer, *client
             body: JSON.stringify(data)  // body data type must match "Content-Type" header
         });
-            const output = await response.json()
-            output.status = response.status;
-            output.statusText = response.statusText;
+        const output = await response.json()
+        output.status = response.status;
+        output.statusText = response.statusText;
         return output;   // parses JSON response into native JavaScript objects
     }
-    
+
 
 }
 

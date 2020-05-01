@@ -299,31 +299,47 @@ test('test all first names function', () => {
     ]);
 });
 
-test('delay demonstration', () => {
-    expect(functions.showDelayProblem()).toBe(undefined);
+test('delay demonstration', async () => {
+    const answer = functions.showDelayProblem();
+    expect(answer).toBe('One, Three');
+});
+
+test('test delay solution', async () => {
+    let answer = await functions.showDelaySolution();
+    expect(answer).toBe('One, Two, Three');
+
 });
 
 
 test('test getusers fetch function', async () => {
-    const output = await functions.getUsers(url);
-    expect(output.status).toBe(200);
-    expect(output).toEqual(expect.objectContaining(data));
+    let output = await functions.getUsers(url);
+    console.log(output);
+
+    // expect(output.status).toBe(200);
+    // expect(output).toEqual(expect.objectContaining(data));
+
+//    expect( async () => {
+
+//         // output = await functions.getUsers('badUrl');
+//         console.log(output);
+//     }).toThrow();
+
 });
 
 
-test('test workwith data function', async () => {
-    const output = await functions.workWithData(url);
-    expect(output.status).toBe(200);
-    expect(output).toEqual(expect.objectContaining(data));
-});
+// test('test workwith data function', async () => {
+//     const output = await functions.workWithData(url);
+//     expect(output.status).toBe(200);
+//     expect(output).toEqual(expect.objectContaining(data));
+// });
 
-test('test postData function', async () => {
-    const output = await functions.postData(url, me)
-    expect(output.status).toBe(201);
-    expect(output.name).toEqual(me.name);
-    expect(output.surname).toEqual(me.surname);
-    expect(output).toEqual(expect.objectContaining(me));
+// test('test postData function', async () => {
+//     const output = await functions.postData(url, me)
+//     expect(output.status).toBe(201);
+//     expect(output.name).toEqual(me.name);
+//     expect(output.surname).toEqual(me.surname);
+//     expect(output).toEqual(expect.objectContaining(me));
 
-}, 10000);
+// }, 10000);
 
 
