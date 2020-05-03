@@ -57,7 +57,7 @@
                                     <div>Northernmost city:</div>
                                     <h6 id="idNorth"></h6>
                                     <p>Latitude:
-                                        <h6>55 or so</h6>
+                                        <h6 id="idNorthLat"></h6>
                                     </p>
                                     <hr>
                                 </div>
@@ -70,10 +70,10 @@
                                 <i class="nc-icon nc-compass-05"></i>
                                 <div class="col">
                                     <div>Southernmost city:
-                                        <h6>Calgary</h6>
+                                        <h6 id="idSouth"></h6>
                                     </div>
                                     <div>Latitude:
-                                        <h6>50 ish</h6>
+                                        <h6 id="idSouthLat"></h6>
                                     </div>
                                     <hr>
                                 </div>
@@ -86,7 +86,7 @@
                                 <i class="nc-icon nc-single-02"></i>
                                 <div class="col">
                                     <div>Total population:</div>
-                                    <h6>2,000,000</h6>
+                                    <h6 id="idTotalPop"></h6>
 
                                     <hr>
                                 </div>
@@ -126,7 +126,7 @@
             <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
-                    <div class="card-deck">
+                    <div class="card-deck" id="idCardDeck">
                         <div class="card ">
                             <div class="card-header ">
                                 <h4 class="card-title">Calgary</h4>
@@ -134,13 +134,17 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-sm-6 pr-0 font-weight-bold">
+                                    <div class="col-7 pr-0 font-weight-bold text-nowrap">
                                         <div>Population:</div>
+                                        <div>Classification:</div>
+                                        <div>Hemisphere:</div>
                                         <div>Latitude:</div>
                                         <div>Longitude:</div>
                                     </div>
-                                    <div class="col-sm-6 pl-0 text-right">
+                                    <div class="col-5 pl-0 text-right text-nowrap">
                                         <div >1,000,000</div>
+                                        <div>City</div>
+                                        <div>Northern</div>
                                         <div>55.28</div>
                                         <div>120.22</div>
                                     </div>
@@ -152,8 +156,8 @@
                                 </div> -->
                                 <hr>
                                 <div class="card-stats text-right">
-                                    <button class="btn btn-sm">Edit</button>
-                                    <button class="btn btn-danger btn-fill btn-sm">Delete</button>
+                                    <button class="btn btn-sm" data-toggle="modal" data-target="#idEditCity">Edit</button>
+                                    <button class="btn btn-danger btn-fill btn-sm" action="delete">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -264,6 +268,8 @@
         </div>
 
     </div>
+
+
     <!-- Add city modal -->
     <div class="modal fade" id="idAddCity">
         <div class="modal-dialog">
@@ -282,11 +288,11 @@
                         <p><label>City name</label>
                             <input type="text" class="form-control" placeholder="City name"></p>
                         <p><label>Population</label>
-                            <input type="text" class="form-control" placeholder="Population"></p>
+                            <input type="number" class="form-control" placeholder="Population"></p>
                         <p><label>Latitude</label>
-                            <input type="text" class="form-control" placeholder="Latitude"></p>
+                            <input type="number" class="form-control" placeholder="Latitude"></p>
                         <p><label>Longitude</label>
-                            <input type="text" class="form-control" placeholder="Longitude"></p>
+                            <input type="number" class="form-control" placeholder="Longitude"></p>
                     </div>
                 </div>
 
@@ -299,6 +305,40 @@
             </div>
         </div>
     </div>
+ <!-- Edit city modal -->
+ <div class="modal fade" id="idEditCity">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+
+                <h4 class="modal-title"><i class="nc-icon nc-square-pin"></i>&nbsp;Move in or out</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <p class="font-weight-bold">City name</p>
+                    <p><label>Population moved in</label>
+                        <input type="text" class="form-control" placeholder="Moved in"></p>
+                    <p><label>Population moved out</label>
+                        <input type="text" class="form-control" placeholder="Moved out"></p>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success btn-fill" data-dismiss="modal" action="submit">Submit</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
     <!--   -->
     <!-- <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
@@ -378,7 +418,7 @@
     </div>
 </div>
  -->
- <script src="./cityindex.js" type="text/javascript"></script>
+ <script type="module" src="./scripts/cityindex.js"></script>
 </body>
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>

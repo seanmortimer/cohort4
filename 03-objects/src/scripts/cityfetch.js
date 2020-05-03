@@ -18,6 +18,7 @@ const functions = {
             
         const json = await response.json();
         json.status = response.status;
+        json.result = response.result;
         json.statusText = response.statusText;
 
         return json;   

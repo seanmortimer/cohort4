@@ -1,77 +1,86 @@
-import { City, Community } from './cityclasses.js';
-import fetchFunctions from './fetch.js'
+import { Community } from './cityclasses.js';
+// import htmlFunction from './city-dom-functions.js';
+// import fetchFunctions from './cityfetch.js';
 
 // Create our community
 const community = new Community;
 
 // Display functions
 const clearInput = () => {
-    idDWInput.value = "";
-    idActName.value = "";
+    // lets clear some input fields!
 }
 
-    // Update all the names and balances on the page
+// Update all the stats on the page
 const updateDisplay = () => {
-    // for (let act of user1.accounts) {
-    //     const actName = act.actName
-    //     const actID = document.getElementById('id' + actName);
-    //     actID.textContent = `$ ${user1.getBalance(actName)}`;
+    const northern = community.getMostNorthern();
+    const southern = community.getMostSouthern();
+    const totalPop = community.getPopulation();
+
+    idNorth.textContent = northern.name;
+    idNorthLat.textContent = northern.lat;
+    idSouth.textContent = southern.name;
+    idSouthLat.textContent = southern.lat;
+    idTotalPop.textContent = totalPop.toLocaleString('en-US');
+
+}
+
+const createCity = (actName, startBal) => {
+    const newCity = community.createCity(name, lat, long, pop);
+
+    // if (user1.newAccount(actName, startBal) === -1) {
+    //     idDialog.textContent = `Account ${actName} already exists.`
+    //     clearInput();
+
+    //     return;
     // }
 
-    idNorth.textContent = `$ ${user1.accountTotal()}`;
-
-    idHighestName.textContent = `${user1.getHighest().actName}:`;
-    idHighest.textContent = `$ ${user1.getHighest().balance.toFixed(2)}`;
-    idLowestName.textContent = `${user1.getLowest().actName}:`;
-    idLowest.textContent = `$ ${user1.getLowest().balance.toFixed(2)}`;
+    idCardDeck.appendChild(htmlFunctions.newCityCard(newCity));
+    updateDisplay();
 }
 
-const createAccount = (actName, startBal) => {
-    if (user1.newAccount(actName, startBal) === -1) {
-        idDialog.textContent = `Account ${actName} already exists.`
-        clearInput();
+const deleteCity = (card) => {
+    const cityKey = card.id.slice(0, 5);
+    const cityName = community.findByKey(cityKey).name;
 
-        return;
+    community.deleteCity(cityKey)
+    htmlFunctions.delCity(card);
+
+    // ***This will need to go to the HTML functions > also make it more flexible
+    function showNotification() {
+        const color = 4; // 4 = Red
+
+        $.notify({
+            icon: "nc-icon nc-spaceship",
+            message: `${cityName} was deleted`
+        }, {
+            type: type[color],
+            timer: 4000,
+            placement: {
+                from: 'top',
+                align: 'center'
+            }
+        });
     }
 
-    idAcctSelect.appendChild(htmlFunctions.newActListItem(actName));
-    idLeftPanel.appendChild(htmlFunctions.newAccount(actName));
-    idDialog.textContent = `Account ${actName} was created.`
+    showNotification();
     updateDisplay();
-    clearInput();
-}
-
-const deleteAccount = (card) => {
-    const actName = card.querySelector('.clActName').textContent;
-    const item = document.getElementById('idList' + actName);
-
-    user1.deleteAccount(actName);
-    htmlFunctions.delAct(card);
-    htmlFunctions.delListItem(item);
-    idDialog.textContent = `Account ${actName} was deleted.`
-    updateDisplay();
-
 }
 
 
-
+// Event listener
 document.body.addEventListener('click', e => {
     const target = e.target;
-
+    console.log(target);
     if (target.nodeName === 'BUTTON') {
-        const actName = idAcctSelect.value;
-        const amount = Number(idDWInput.value).toFixed(2);
-        const newAct = idActName.value;
-
-        if (actName && amount > 0) {
-            switch (target.id) {
-                case 'idDeposit':
-                    user1.deposit(actName, amount);
-                    idDialog.textContent = `$ ${amount} was deposited to ${actName}.`
+       const action = target.getAttribute('action');
+      
+            switch (action) {
+                case 'edit':
+                    console.log('Action:', action);
 
                     break;
 
-                case 'idWithdraw':
+                case 'delete':
                     user1.withdraw(actName, amount);
                     idDialog.textContent = `$ ${amount} was withdrawn from ${actName}.`
                     break;
@@ -81,17 +90,38 @@ document.body.addEventListener('click', e => {
             }
             clearInput();
             updateDisplay();
-        }
-        if (newAct && target.id === 'idNewAct') createAccount(newAct, 0);
+        
+        
         if (target.id === 'idDelBtn') deleteAccount(target.parentNode.parentNode);
     }
 })
 
 
-createAccount('Chequing', 500);
-createAccount('Savings', 1000);
+// Let's make some test cities!!
+community.createCity('Calgary', 51.05, -114.05, 1.34e6);
+community.createCity('Edmonton', 53.55, -113.49, 9.81e5);
+community.createCity('Red Deer', 52.28, -113.81, 1.06e5);
+community.createCity('Quintero', -32.78, -71.53, 25300);
+community.createCity('Equator Town', 0.00, 50.00, 5000);
 
+function showNotification(from, align) {
+    // const color = Math.floor((Math.random() * 4) + 1);
+    const color = 4; // 4 = Red
 
+    $.notify({
+        icon: "nc-icon nc-spaceship",
+        message: "Welcome to <b>Sean's City Page!</b>"
 
+    }, {
+        type: type[color],
+        timer: 4000,
+        placement: {
+            from: from,
+            align: align
+        }
+    });
+}
 
+// showNotification('top', 'right');
 
+updateDisplay();

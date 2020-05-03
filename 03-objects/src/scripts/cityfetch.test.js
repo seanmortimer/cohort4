@@ -76,6 +76,7 @@ test('test deleting cities from api', async () => {
 });
 
 test('test postdata with no url (to achive 100% test coverage)', async () => {
-    await expect(functions.postData()).rejects.toThrow('Only absolute URLs are supported');
+    await expect(functions.postData()).rejects
+        .toThrow('Only absolute URLs are supported');
 });
 
