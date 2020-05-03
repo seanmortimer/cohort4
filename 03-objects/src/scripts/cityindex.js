@@ -1,5 +1,5 @@
 import { Community } from './cityclasses.js';
-// import htmlFunction from './city-dom-functions.js';
+import domFunction from './city-dom-functions.js';
 // import fetchFunctions from './cityfetch.js';
 
 // Create our community
@@ -24,9 +24,10 @@ const updateDisplay = () => {
 
 }
 
-const createCity = (actName, startBal) => {
+const createCity = (name, lat, long, pop) => {
     const newCity = community.createCity(name, lat, long, pop);
 
+    domFunction.newCityCard(community.findByKey(newCity))
     // if (user1.newAccount(actName, startBal) === -1) {
     //     idDialog.textContent = `Account ${actName} already exists.`
     //     clearInput();
@@ -70,23 +71,31 @@ const deleteCity = (card) => {
 // Event listener
 document.body.addEventListener('click', e => {
     const target = e.target;
-    console.log(target);
+    const card = target.parentNode.parentNode.parentNode;
+    
     if (target.nodeName === 'BUTTON') {
        const action = target.getAttribute('action');
+    //    console.log(action);
       
             switch (action) {
                 case 'edit':
-                    console.log('Action:', action);
-
+                    console.log('Edit:', action );
+                    idEditName.textContent = 'Calgary??';
+                    idEditPop.value = (1.5e6).toLocaleString('en-US');
                     break;
 
                 case 'delete':
-                    user1.withdraw(actName, amount);
-                    idDialog.textContent = `$ ${amount} was withdrawn from ${actName}.`
+                    console.log('Delete!');
+                    // console.log(target.getRootNode().getElementsbyClassName('card'));
+                    domFunction.delAct(card);
                     break;
-
-
-                default:
+                case 'add':
+                    console.log('Add city!');
+                    break;
+                case 'submit':
+                    console.log('Edit a city!');
+                    break;
+                default: updateDisplay();
             }
             clearInput();
             updateDisplay();

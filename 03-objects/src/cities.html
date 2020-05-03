@@ -142,7 +142,7 @@
                                         <div>Longitude:</div>
                                     </div>
                                     <div class="col-5 pl-0 text-right text-nowrap">
-                                        <div >1,000,000</div>
+                                        <div>1,000,000</div>
                                         <div>City</div>
                                         <div>Northern</div>
                                         <div>55.28</div>
@@ -156,7 +156,8 @@
                                 </div> -->
                                 <hr>
                                 <div class="card-stats text-right">
-                                    <button class="btn btn-sm" data-toggle="modal" data-target="#idEditCity">Edit</button>
+                                    <button class="btn btn-sm" data-toggle="modal" data-target="#idEditCity"
+                                        action="edit">Edit</button>
                                     <button class="btn btn-danger btn-fill btn-sm" action="delete">Delete</button>
                                 </div>
                             </div>
@@ -299,44 +300,51 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-success btn-fill" data-dismiss="modal">Add</button>
+                    <button type="button" class="btn btn-success btn-fill" data-dismiss="modal"
+                        action="add">Add</button>
                 </div>
 
             </div>
         </div>
     </div>
- <!-- Edit city modal -->
- <div class="modal fade" id="idEditCity">
-    <div class="modal-dialog">
-        <div class="modal-content">
+    <!-- Edit city modal -->
+    <div class="modal fade" id="idEditCity">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-            <!-- Modal Header -->
-            <div class="modal-header">
+                <!-- Modal Header -->
+                <div class="modal-header">
 
-                <h4 class="modal-title"><i class="nc-icon nc-square-pin"></i>&nbsp;Move in or out</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <div class="form-group">
-                    <p class="font-weight-bold">City name</p>
-                    <p><label>Population moved in</label>
-                        <input type="text" class="form-control" placeholder="Moved in"></p>
-                    <p><label>Population moved out</label>
-                        <input type="text" class="form-control" placeholder="Moved out"></p>
+                    <h4 class="modal-title"><i class="nc-icon nc-square-pin"></i>&nbsp;Move in or out</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-            </div>
 
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success btn-fill" data-dismiss="modal" action="submit">Submit</button>
-            </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p class="font-weight-bold" id="idEditName">City name</p>
+                        <p><label>Current population</label>
+                            <input type="text" class="form-control" placeholder="Current Population" value="1,000,000"
+                                disabled id="idEditPop"></p>
+                        <p><label>Population moved in</label>
+                            <input type="number" class="form-control" placeholder="Moved in"></p>
+                        <p><label>Population moved out</label>
+                            <input type="number" class="form-control" placeholder="Moved out"></p>
+                        <p><label>Net population change</label>
+                            <input type="number" class="form-control" placeholder="Net change"></p>
+                    </div>
+                </div>
 
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success btn-fill" data-dismiss="modal"
+                        action="submit">Submit</button>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
 
 
     <!--   -->
@@ -418,7 +426,7 @@
     </div>
 </div>
  -->
- <script type="module" src="./scripts/cityindex.js"></script>
+    <script type="module" src="./scripts/cityindex.js"></script>
 </body>
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
