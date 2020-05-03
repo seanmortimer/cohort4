@@ -30,7 +30,7 @@ test('test adding and clearing api data', async () => {
     expect(data.length).toBe(0);
 
     comm.cities.forEach(async city => await functions.postData(url + 'add', city));
-      
+
     data = await functions.postData(url + 'all');
     expect(data.status).toBe(200);
     expect(data.length).toBe(7);
@@ -65,7 +65,7 @@ test('test deleting cities from api', async () => {
     let data = await functions.postData(url + 'all');
     expect(data.status).toBe(200);
     expect(data.length).toBe(7);
-       
+
     let del = await functions.postData(url + 'delete', comm.findByKey(1));
     expect(del.status).toBe(200);
     data = await functions.postData(url + 'all');
@@ -74,3 +74,8 @@ test('test deleting cities from api', async () => {
     expect(data).toContainEqual(comm.findByKey(4));
     expect(data).toContainEqual(comm.findByKey(7));
 });
+
+test('test postdata with no url (to achive 100% test coverage)', async () => {
+    await expect(functions.postData()).rejects.toThrow('Only absolute URLs are supported');
+});
+

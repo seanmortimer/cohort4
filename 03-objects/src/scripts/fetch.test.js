@@ -278,8 +278,8 @@ test('test get all names method', () => {
     ]);
 });
 
-// Function tests
 
+// Function tests
 test('test firstname function', () => {
     expect(functions.getFirstName(data)).toBe('Leanne Graham');
 });
@@ -310,36 +310,36 @@ test('test delay solution', async () => {
 
 });
 
-
 test('test getusers fetch function', async () => {
+    const badurl = 'http://notarurl';
+
     let output = await functions.getUsers(url);
-    console.log(output);
+    // console.log(output.status);
+    expect(output.status).toBe(200);
+    expect(output).toEqual(expect.objectContaining(data));
 
-    // expect(output.status).toBe(200);
-    // expect(output).toEqual(expect.objectContaining(data));
-
-//    expect( async () => {
-
-//         // output = await functions.getUsers('badUrl');
-//         console.log(output);
-//     }).toThrow();
+    // Learning how to test try catch blocks!
+    await expect(functions.getUsers(url)).resolves.toEqual(expect.objectContaining(data));
+    await expect(functions.getUsers(badurl)).rejects
+        .toThrow('request to http://notarurl/ failed');
 
 });
 
+test('test workwith data function', async () => {
+    const output = await functions.workWithData(url);
+    expect(output.status).toBe(200);
+    expect(output).toEqual(expect.objectContaining(data));
+});
 
-// test('test workwith data function', async () => {
-//     const output = await functions.workWithData(url);
-//     expect(output.status).toBe(200);
-//     expect(output).toEqual(expect.objectContaining(data));
-// });
+test('test postData function', async () => {
+    const output = await functions.postData(url, me)
+    expect(output.status).toBe(201);
+    expect(output.name).toEqual(me.name);
+    expect(output.surname).toEqual(me.surname);
+    expect(output).toEqual(expect.objectContaining(me));
 
-// test('test postData function', async () => {
-//     const output = await functions.postData(url, me)
-//     expect(output.status).toBe(201);
-//     expect(output.name).toEqual(me.name);
-//     expect(output.surname).toEqual(me.surname);
-//     expect(output).toEqual(expect.objectContaining(me));
+}, 10000);
 
-// }, 10000);
-
-
+test('test postdata with no url (to achive 100% test coverage)', async () => {
+    await expect(functions.postData()).rejects.toThrow();
+});

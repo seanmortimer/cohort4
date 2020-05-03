@@ -40,37 +40,31 @@ const functions = {
 
     async showDelaySolution() {
         let output = 'One';
-            const value = await                 // Simulate fetch
-                new Promise(
-                    (resolve, reject) =>
-                        setTimeout(() => resolve(", Two"),
-                            1 * 2000));
-            // Now that we have the value we can use it.
-            // console.log(value);
-            // console.log('Three');
-            output += value;
-            output += ', Three';
+        const value = await                 // Simulate fetch
+            new Promise(
+                (resolve, reject) =>
+                    setTimeout(() => resolve(", Two"),
+                        1 * 2000));
+        // Now that we have the value we can use it.
+        // console.log(value);
+        // console.log('Three');
+        output += value;
+        output += ', Three';
 
         return output;
     },
 
     async getUsers(url) {
-        let data = null;
-        try { async () => {
-            const response = await fetch(url);
+        // let data = null;
+        try {
+            let response = await fetch(url);
             let data = await response.json();
             data.status = response.status;
-            console.log('Status:', data.status);
-            
-        }} 
-        catch (error) {
+            return data;
+        } catch (error) {
             console.error('Error:', error);
-            throw (error);
+            throw error;
         }
-        console.log('Are we here????', data);
-        
-        return data;
-
     },
 
     async workWithData(url) {
@@ -98,8 +92,6 @@ const functions = {
         output.statusText = response.statusText;
         return output;   // parses JSON response into native JavaScript objects
     }
-
-
 }
 
 
