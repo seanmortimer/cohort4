@@ -91,6 +91,7 @@ document.body.addEventListener('click', e => {
                     break;
                 case 'add':
                     console.log('Add city!');
+                    idCardDeck.appendChild(domFunction.newCityCard(''));
                     break;
                 case 'submit':
                     console.log('Edit a city!');
