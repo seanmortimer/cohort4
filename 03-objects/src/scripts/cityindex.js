@@ -5,11 +5,6 @@ import domFunction from './city-dom-functions.js';
 // Create our community
 const community = new Community;
 
-// Display functions
-const clearInput = () => {
-    // lets clear some input fields!
-}
-
 // Update all the stats on the page
 const updateDisplay = () => {
     const northern = community.getMostNorthern();
@@ -69,40 +64,75 @@ const deleteCity = (card) => {
 
 
 // Event listener
-document.body.addEventListener('click', e => {
-    const target = e.target;
-    const card = target.parentNode.parentNode.parentNode;
-    
-    if (target.nodeName === 'BUTTON') {
-       const action = target.getAttribute('action');
-    //    console.log(action);
-      
-            switch (action) {
-                case 'edit':
-                    console.log('Edit:', action );
-                    idEditName.textContent = 'Calgary??';
-                    idEditPop.value = (1.5e6).toLocaleString('en-US');
-                    break;
 
-                case 'delete':
-                    console.log('Delete!');
-                    // console.log(target.getRootNode().getElementsbyClassName('card'));
-                    domFunction.delAct(card);
-                    break;
-                case 'add':
-                    console.log('Add city!');
-                    idCardDeck.appendChild(domFunction.newCityCard(''));
-                    break;
-                case 'submit':
-                    console.log('Edit a city!');
-                    break;
-                default: updateDisplay();
-            }
-            clearInput();
-            updateDisplay();
-        
-        
-        if (target.id === 'idDelBtn') deleteAccount(target.parentNode.parentNode);
+// const popChange = (change) =>{
+//     change = 0;
+//     return () => {
+//         return change
+//     }
+//     return popChange(change);
+// }
+
+// console.log('change1:', popChange());
+// console.log('change2:', popChange(0));
+// console.log('change3:', popChange(10));
+
+document.body.addEventListener('click', e => {
+    let key;
+    let card;
+    let city;
+
+
+    if (e.target.nodeName === 'BUTTON') {
+        let action = e.target.getAttribute('action');
+        if (action === 'edit' || action === 'delete') {
+            key = Number(e.target.id.slice(3));
+            card = document.getElementById('idCard' + key);
+            city = community.findByKey(key);
+            console.log('city:', city);
+        }
+
+        switch (action) {
+            case 'edit':
+                idEditName.textContent = city.name;
+                idEditPop.value = (city.pop).toLocaleString('en-US');
+
+                idEditCity.addEventListener('keyup', e => {
+                    idEditNet.value = idEditIn.value - idEditOut.value;
+                })
+                break;
+
+            case 'delete':
+                console.log('Delete!');
+                domFunction.delCard(card);
+                break;
+            case 'add':
+                console.log('Add city!');
+                idAddCity.addEventListener('keyup', e => {
+
+                    const name = idAddName.value;
+                    const lat = Number(idAddLat.value);
+                    const long = Number(idAddLong.value);
+                    const pop = Number(idAddPop.value);
+
+                    if (lat < -180 || lat > 180) idAddWarning.textContent = 'Latitude must be between -180 and +180';
+                    if (long < -180 || lat > 180) idAddWarning.textContent = 'Latitude must be between -180 and +180';
+
+                    key = community.createCity(name, lat, long, pop);
+                    idCardDeck.appendChild(domFunction.newCityCard(community.findByKey(2)));
+
+
+                })
+
+                break;
+            case 'submit':
+                console.log('This submit down here?', idEditNet.value);
+                idEditIn.value = '';
+                idEditOut.value = '';
+                idEditNet.value = '';
+            default: updateDisplay();
+        }
+        updateDisplay();
     }
 })
 
@@ -113,6 +143,11 @@ community.createCity('Edmonton', 53.55, -113.49, 9.81e5);
 community.createCity('Red Deer', 52.28, -113.81, 1.06e5);
 community.createCity('Quintero', -32.78, -71.53, 25300);
 community.createCity('Equator Town', 0.00, 50.00, 5000);
+community.cities.forEach(city => {
+    // console.log('cit:', city.name, city.key);
+    idCardDeck.appendChild(domFunction.newCityCard(city, community.whichSphere(city.key)));
+});
+
 
 function showNotification(from, align) {
     // const color = Math.floor((Math.random() * 4) + 1);
@@ -132,6 +167,8 @@ function showNotification(from, align) {
     });
 }
 
-// showNotification('top', 'right');
+
+
+
 
 updateDisplay();

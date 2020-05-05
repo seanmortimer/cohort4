@@ -123,11 +123,11 @@ describe('Community controller class tests', () => {
 
     test('Test which hemisphere method', () => {
         comm.createCity('Not A Place', 'ostritch', 'falcon', 'ocelot');
-        expect(comm.whichSphere(comm.findByKey(1))).toBe('Calgary is in the Northern Hemisphere');
-        expect(comm.whichSphere(comm.findByKey(2))).toBe('Edmonton is in the Northern Hemisphere');
-        expect(comm.whichSphere(comm.findByKey(4))).toBe('Quintero is in the Southern Hemisphere');
-        expect(comm.whichSphere(comm.findByKey(5))).toBe('Equator Town is exactly on the Equator!');
-        expect(comm.whichSphere(comm.findByKey(6))).toBe('Something went wrong');
+        expect(comm.whichSphere(1)).toBe('Northern');
+        expect(comm.whichSphere(2)).toBe('Northern');
+        expect(comm.whichSphere(4)).toBe('Southern');
+        expect(comm.whichSphere(5)).toBe('Equator!');
+        expect(comm.whichSphere(6)).toBe('Something went wrong');
     });
 
     test('test city deletion method', () => {

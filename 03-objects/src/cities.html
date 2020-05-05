@@ -127,10 +127,10 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="card-deck" id="idCardDeck">
-                        <div class="card ">
+                        <!-- Reference card -->
+                        <!-- <div class="card ">
                             <div class="card-header ">
                                 <h4 class="card-title">Calgary</h4>
-                                <!-- <p class="card-category">Last Campaign Performance</p> -->
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -149,11 +149,6 @@
                                         <div>120.22</div>
                                     </div>
                                 </div>
-                                <!-- <div class="legend">
-                                    <i class="fa fa-circle text-info"></i> Open
-                                    <i class="fa fa-circle text-danger"></i> Bounce
-                                    <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                </div> -->
                                 <hr>
                                 <div class="text-right">
                                     <button class="btn btn-sm" data-toggle="modal" data-target="#idEditCity"
@@ -161,86 +156,7 @@
                                     <button class="btn btn-danger btn-fill btn-sm" action="delete">Delete</button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card ">
-                            <div class="card-header ">
-                                <h4 class="card-title">Edmonton</h4>
-                                <!-- <p class="card-category">Last Campaign Performance</p> -->
-                            </div>
-                            <div class="card-body ">
-                                <div class="font-weight-bold">Population: <span
-                                        class="font-weight-normal">1,000,000</span>
-                                </div>
-                                <div class="font-weight-bold">Latitude: <span
-                                        class="font-weight-normal">1,000,000</span></div>
-                                <div class="font-weight-bold">Longitude: <span
-                                        class="font-weight-normal">1,000,000</span></div>
-
-                                <!-- <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                    </div> -->
-                                <hr>
-                                <div class="stats text-right">
-                                    <button class="btn btn-sm">Edit</button>
-                                    <button class="btn btn-danger btn-fill btn-sm">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card ">
-                            <div class="card-header ">
-                                <h4 class="card-title">Red Deer</h4>
-                                <!-- <p class="card-category">Last Campaign Performance</p> -->
-                            </div>
-                            <div class="card-body ">
-                                <div class="font-weight-bold">Population: <span
-                                        class="font-weight-normal">1,000,000</span>
-                                </div>
-                                <div class="font-weight-bold">Latitude: <span
-                                        class="font-weight-normal">1,000,000</span></div>
-                                <div class="font-weight-bold">Longitude: <span
-                                        class="font-weight-normal">1,000,000</span></div>
-
-                                <!-- <div class="legend">
-                                    <i class="fa fa-circle text-info"></i> Open
-                                    <i class="fa fa-circle text-danger"></i> Bounce
-                                    <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                </div> -->
-                                <hr>
-                                <div class="stats text-right">
-                                    <button class="btn btn-sm">Edit</button>
-                                    <button class="btn btn-danger btn-sm btn-fill">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card ">
-                            <div class="card-header ">
-                                <h4 class="card-title">Bogota</h4>
-                                <!-- <p class="card-category">Last Campaign Performance</p> -->
-                            </div>
-                            <div class="card-body ">
-                                <div class="font-weight-bold">Population: <span
-                                        class="font-weight-normal">1,000,000</span>
-                                </div>
-                                <div class="font-weight-bold">Latitude: <span
-                                        class="font-weight-normal">1,000,000</span></div>
-                                <div class="font-weight-bold">Longitude: <span
-                                        class="font-weight-normal">1,000,000</span></div>
-
-                                <!-- <div class="legend">
-                                    <i class="fa fa-circle text-info"></i> Open
-                                    <i class="fa fa-circle text-danger"></i> Bounce
-                                    <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                </div> -->
-                                <hr>
-                                <div class="stats text-right">
-                                    <button class="btn btn-sm">Edit</button>
-                                    <button class="btn btn-danger btn-sm btn-fill">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-
+                        </div> -->
                     </div>
                 </div>
 
@@ -285,15 +201,17 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
+                    
                     <div class="form-group">
+                        <p id="idAddWarning"></p>
                         <p><label>City name</label>
-                            <input type="text" class="form-control" placeholder="City name"></p>
+                            <input type="text" class="form-control" id="idAddName" placeholder="City name"></p>
                         <p><label>Population</label>
-                            <input type="number" class="form-control" placeholder="Population"></p>
+                            <input type="number" class="form-control" id="idAddPop" placeholder="Population"></p>
                         <p><label>Latitude</label>
-                            <input type="number" class="form-control" placeholder="Latitude"></p>
+                            <input type="number" class="form-control" id="idAddLat" placeholder="Latitude"></p>
                         <p><label>Longitude</label>
-                            <input type="number" class="form-control" placeholder="Longitude"></p>
+                            <input type="number" class="form-control" id="idAddLong" placeholder="Longitude"></p>
                     </div>
                 </div>
 
@@ -324,14 +242,14 @@
                     <div class="form-group">
                         <p class="font-weight-bold" id="idEditName">City name</p>
                         <p><label>Current population</label>
-                            <input type="text" class="form-control" placeholder="Current Population" value="1,000,000"
-                                disabled id="idEditPop"></p>
+                            <input type="text" class="form-control" id="idEditPop" placeholder="Current Population" value="1,000,000"
+                                disabled></p>
                         <p><label>Population moved in</label>
-                            <input type="number" class="form-control" placeholder="Moved in"></p>
+                            <input type="number" class="form-control" id="idEditIn" placeholder="Moved in"></p>
                         <p><label>Population moved out</label>
-                            <input type="number" class="form-control" placeholder="Moved out"></p>
+                            <input type="number" class="form-control" id="idEditOut" placeholder="Moved out"></p>
                         <p><label>Net population change</label>
-                            <input type="number" class="form-control" placeholder="Net change"></p>
+                            <input type="number" class="form-control" id="idEditNet" placeholder="Net change" disabled></p>
                     </div>
                 </div>
 

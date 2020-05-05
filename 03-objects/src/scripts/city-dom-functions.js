@@ -1,17 +1,10 @@
 const functions = {
 
-    newCityCard: (city) => {
+    newCityCard: (city, hemis) => {
         // create card
-        city = {
-            key: 1,
-            name: 'Quintero',
-            lat: -32.78,
-            long: -71.53,
-            pop: 25300
-        }
-
         const card = document.createElement('DIV');
         card.className = 'card';
+        card.id = 'idCard' + city.key;
 
         // card header
         const cardHeader = document.createElement('DIV');
@@ -19,8 +12,16 @@ const functions = {
         const title = document.createElement('H4');
         title.className = 'card-title'
         title.appendChild(document.createTextNode(city.name));
+        const key = document.createElement('P');
+        key.className = 'card-category';
+        key.id = 'idCardKey' + city.key;
+        key.appendChild(document.createTextNode('Key: ' + city.key));
+
         cardHeader.appendChild(title);
+        cardHeader.appendChild(key);
         card.appendChild(cardHeader);
+
+        // <p class="card-category">Last Campaign Performance</p>
 
         // card body
         const cardBody = document.createElement('DIV');
@@ -44,14 +45,19 @@ const functions = {
         const col2 = document.createElement('DIV');
         col2.classList.add('col-5', 'pl-0', 'text-right', 'text-nowrap')
         const div6 = document.createElement('DIV');
-        div6.appendChild(document.createTextNode(city.pop));
+        div6.id = 'idPop' + city.key;
+        div6.appendChild(document.createTextNode(city.pop.toLocaleString('en-US')));
         const div7 = document.createElement('DIV');
-        div7.appendChild(document.createTextNode('Hard to say'));
+        div7.id = 'idSize' + city.key;
+        div7.appendChild(document.createTextNode(city.howBig()));
         const div8 = document.createElement('DIV');
-        div8.appendChild(document.createTextNode('North?'));
+        div8.id = 'idHemi' + city.key;
+        div8.appendChild(document.createTextNode(hemis));
         const div9 = document.createElement('DIV');
+        div9.id = 'idLat' + city.key;
         div9.appendChild(document.createTextNode(city.lat));
         const div10 = document.createElement('DIV');
+        div10.id = 'idLong' + city.key;
         div10.appendChild(document.createTextNode(city.long));
         col2.append(div6, div7, div8, div9, div10);
 
@@ -65,6 +71,7 @@ const functions = {
 
         const editBtn = document.createElement('BUTTON');
         editBtn.classList.add('btn', 'btn-sm');
+        editBtn.id = 'idE' + city.key;
         editBtn.setAttribute('data-toggle', 'modal');
         editBtn.setAttribute('data-target', '#idEditCity');
         editBtn.setAttribute('action', 'edit');
@@ -72,36 +79,37 @@ const functions = {
 
         const delBtn = document.createElement('BUTTON');
         delBtn.classList.add('btn', 'btn-danger', 'btn-fill', 'btn-sm', 'ml-1');
+        delBtn.id = 'idD' + city.key;
         delBtn.setAttribute('action', 'delete');
         delBtn.append(document.createTextNode('Delete'));
 
         footer.append(editBtn, delBtn);
         cardBody.append(footer);
-        
+
         card.appendChild(cardBody);
 
         return card;
     },
 
-    delAct: (card) => {
+    delCard: (card) => {
         card.remove();
-
     },
 
-    newActListItem: (actName) => {
-        // Take in account name, return option item
-        const actItem = document.createElement('OPTION')
-
-        actItem.value = actName;
-        actItem.id = 'idList' + actName;
-        actItem.textContent = actName;
-        return actItem;
+    keyFromCard: (card) => {
+        return card.querySelector('.card-category').id.slice(9);
     },
+          
+    upateCardPop: (card, newPop, newSize) => {
+        const key = functions.keyFromCard(card);
+        const pop = card.querySelector('#idPop' + key);
+        const size = card.querySelector('#idSize' + key);
+        pop.textContent = newPop.toLocaleString('en-US');
+        size.textContent = newSize;
 
-    delListItem: (item) => {
-        item.remove();
+        return card;
+    }
 
-    },
+
 };
 
 export default functions;

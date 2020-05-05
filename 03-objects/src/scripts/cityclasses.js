@@ -46,10 +46,11 @@ class Community {
         return this.cities.find(city => city.key === key);
     }
 
-    whichSphere(city) {
-        if (city.lat > 0) return `${city.name} is in the Northern Hemisphere`;
-        else if (city.lat < 0) return `${city.name} is in the Southern Hemisphere`;
-        else if (city.lat === 0) return `${city.name} is exactly on the Equator!`;
+    whichSphere(key) {
+        const city = this.findByKey(key);
+        if (city.lat > 0) return 'Northern';
+        else if (city.lat < 0) return 'Southern';
+        else if (city.lat === 0) return 'Equator!';
 
         else return 'Something went wrong';
     }
