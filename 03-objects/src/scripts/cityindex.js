@@ -78,62 +78,87 @@ const deleteCity = (card) => {
 // console.log('change3:', popChange(10));
 
 document.body.addEventListener('click', e => {
+    const action = e.target.getAttribute('action');
+
     let key;
     let card;
     let city;
 
-
-    if (e.target.nodeName === 'BUTTON') {
-        let action = e.target.getAttribute('action');
+    console.log('target:', e.target.nodeName);
+    if (action) {
+        console.log('action:', action);
         if (action === 'edit' || action === 'delete') {
             key = Number(e.target.id.slice(3));
             card = document.getElementById('idCard' + key);
             city = community.findByKey(key);
-            console.log('city:', city);
         }
 
         switch (action) {
             case 'edit':
+                console.log('edit!:');
                 idEditName.textContent = city.name;
                 idEditPop.value = (city.pop).toLocaleString('en-US');
+                break;
 
-                idEditCity.addEventListener('keyup', e => {
-                    idEditNet.value = idEditIn.value - idEditOut.value;
-                })
+            case 'submit':
+                console.log('This submit down here?', idEditNet.value);
+                idEditIn.value = '';
+                idEditOut.value = '';
+                idEditNet.value = '';
+                break;
+
+            case 'add':
+                console.log('Add city!');
+               
+                break;
+
+            case 'addCity':
+                // console.log('adding:', idAddName.value);
+                console.log('adddddddddd');
                 break;
 
             case 'delete':
                 console.log('Delete!');
                 domFunction.delCard(card);
                 break;
-            case 'add':
-                console.log('Add city!');
-                idAddCity.addEventListener('keyup', e => {
 
-                    const name = idAddName.value;
-                    const lat = Number(idAddLat.value);
-                    const long = Number(idAddLong.value);
-                    const pop = Number(idAddPop.value);
-
-                    if (lat < -180 || lat > 180) idAddWarning.textContent = 'Latitude must be between -180 and +180';
-                    if (long < -180 || lat > 180) idAddWarning.textContent = 'Latitude must be between -180 and +180';
-
-                    key = community.createCity(name, lat, long, pop);
-                    idCardDeck.appendChild(domFunction.newCityCard(community.findByKey(2)));
-
-
-                })
-
-                break;
-            case 'submit':
-                console.log('This submit down here?', idEditNet.value);
-                idEditIn.value = '';
-                idEditOut.value = '';
-                idEditNet.value = '';
             default: updateDisplay();
         }
         updateDisplay();
     }
+})
+
+idEditCity.addEventListener('keyup', e => {
+    idEditNet.value = idEditIn.value - idEditOut.value;
+})
+
+idAddCity.addEventListener('keyup', e => {
+    // console.log('target:', e.target);
+    idAddWarning.textContent = '\xa0';
+    const name = idAddName.value;
+    const lat = Number(idAddLat.value);
+    const long = Number(idAddLong.value);
+    const pop = Number(idAddPop.value);
+
+    console.log('lat:', lat);
+    console.log('long:', long);
+
+    if (long < -180 || long > 180) {
+        // console.log('in the long');
+        idAddWarning.textContent = 'Longitddude must be between -180 and +180!';
+    } 
+    if (lat < -90 || lat > 90) {
+        // console.log('in the lat', );
+        idAddWarning.textContent = 'Latitude must be between -90 and +90!';
+    } 
+    if ( !(name && lat && long && pop) ) {
+        console.log('problem');
+    } else console.log('nopeers:');
+
+
+
+    // const key = community.createCity(name, lat, long, pop);
+    // idCardDeck.appendChild(domFunction.newCityCard(community.findByKey(key)));
 })
 
 
