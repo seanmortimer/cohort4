@@ -1,9 +1,11 @@
 import { Community } from './cityclasses.js';
-import domFunction from './city-dom-functions.js';
-// import fetchFunctions from './cityfetch.js';
+import domFunctions from './city-dom-functions.js';
+import fetchFunctions from './cityfetch.js';
 
 // Create our community
 const community = new Community;
+
+const url = 'http://localhost:5000/';
 
 // Update all the stats on the page
 const updateDisplay = () => {
@@ -11,55 +13,67 @@ const updateDisplay = () => {
     const southern = community.getMostSouthern();
     const totalPop = community.getPopulation();
 
-    idNorth.textContent = northern.name;
-    idNorthLat.textContent = northern.lat;
-    idSouth.textContent = southern.name;
-    idSouthLat.textContent = southern.lat;
-    idTotalPop.textContent = totalPop.toLocaleString('en-US');
-
-}
-
-const createCity = (name, lat, long, pop) => {
-    const newCity = community.createCity(name, lat, long, pop);
-
-    domFunction.newCityCard(community.findByKey(newCity))
-    // if (user1.newAccount(actName, startBal) === -1) {
-    //     idDialog.textContent = `Account ${actName} already exists.`
-    //     clearInput();
-
-    //     return;
-    // }
-
-    idCardDeck.appendChild(htmlFunctions.newCityCard(newCity));
-    updateDisplay();
-}
-
-const deleteCity = (card) => {
-    const cityKey = card.id.slice(0, 5);
-    const cityName = community.findByKey(cityKey).name;
-
-    community.deleteCity(cityKey)
-    htmlFunctions.delCity(card);
-
-    // ***This will need to go to the HTML functions > also make it more flexible
-    function showNotification() {
-        const color = 4; // 4 = Red
-
-        $.notify({
-            icon: "nc-icon nc-spaceship",
-            message: `${cityName} was deleted`
-        }, {
-            type: type[color],
-            timer: 4000,
-            placement: {
-                from: 'top',
-                align: 'center'
-            }
-        });
+    if (northern != undefined) {
+        idNorth.textContent = northern.name;
+        idNorthLat.textContent = northern.lat;
+    } 
+    if (southern != undefined) {
+        idSouth.textContent = southern.name;
+        idSouthLat.textContent = southern.lat;
+    }
+    if (totalPop != undefined) {
+        idTotalPop.textContent = totalPop.toLocaleString('en-US');
     }
 
-    showNotification();
-    updateDisplay();
+    idEditIn.value = '';
+    idEditOut.value = '';
+    idEditNet.value = '';
+    idAddName.value = '';
+    idAddPop.value = '';
+    idAddLat.value = '';
+    idAddLong.value = '';
+}
+
+
+const createCity = async (name, lat, long, pop) => {
+    const newKey = community.createCity(name, lat, long, pop);
+    console.log('newKey:', newKey);
+    const newCity = community.findByKey(newKey);
+    console.log('new city:', newCity);
+    const hemi = community.whichSphere(newKey);
+    console.log('hemi:', hemi);
+
+    // console.log('newcity:', newCity);
+    idCardDeck.appendChild(domFunctions.newCityCard(newCity, hemi));
+
+    try {
+        let reply = await fetchFunctions.postData(url + 'add', newCity);
+        console.log('reply:', reply);
+    } catch (error) {
+        console.error('Oh nooooo, adding failed:', error);
+    }
+}
+
+
+const deleteCity = async (card) => {
+    const cityKey = Number(card.id.slice(6));
+    console.log('key:', cityKey);
+    const cityName = community.findByKey(cityKey);
+    console.log('city Name:', cityName);
+
+
+    console.log('Delete!');
+    domFunctions.delCard(card);
+
+    community.deleteCity(cityKey)
+
+    try {
+        let reply = await fetchFunctions.postData(url + 'delete', cityKey);
+        console.log('reply:', reply);
+        showNotification(4, `${cityName} was deleted`);
+    } catch (error) {
+        console.error('Oh nooooo, delete failed:', error);
+    }
 }
 
 
@@ -84,9 +98,10 @@ document.body.addEventListener('click', e => {
     let card;
     let city;
 
-    console.log('target:', e.target.nodeName);
+    // console.log('target:', e.target.nodeName);
+    // console.log('action:', action);
     if (action) {
-        console.log('action:', action);
+        // console.log('action:', action);
         if (action === 'edit' || action === 'delete') {
             key = Number(e.target.id.slice(3));
             card = document.getElementById('idCard' + key);
@@ -102,25 +117,42 @@ document.body.addEventListener('click', e => {
 
             case 'submit':
                 console.log('This submit down here?', idEditNet.value);
-                idEditIn.value = '';
-                idEditOut.value = '';
-                idEditNet.value = '';
+
                 break;
 
             case 'add':
-                console.log('Add city!');
-               
+                // console.log('Add city!');
+                updateDisplay();
                 break;
 
             case 'addCity':
-                // console.log('adding:', idAddName.value);
-                console.log('adddddddddd');
+                const name = idAddName.value;
+                const lat = Number(idAddLat.value);
+                const long = Number(idAddLong.value);
+                const pop = Number(idAddPop.value);
+
+                if (!(name && lat && long && pop) && checkCoordinates()) {
+                    console.log('problem, won\'t add');
+                } else {
+                    console.log('Seems good to me:');
+                    console.log('adding:', name);
+                    createCity(name, lat, long, pop);
+                }
+
                 break;
 
             case 'delete':
-                console.log('Delete!');
-                domFunction.delCard(card);
+                deleteCity(card);
+                updateDisplay();
                 break;
+
+            case 'load':
+                testCities();
+                updateDisplay();
+                break;
+
+            case 'clear':
+                clearServer();
 
             default: updateDisplay();
         }
@@ -134,28 +166,7 @@ idEditCity.addEventListener('keyup', e => {
 
 idAddCity.addEventListener('keyup', e => {
     // console.log('target:', e.target);
-    idAddWarning.textContent = '\xa0';
-    const name = idAddName.value;
-    const lat = Number(idAddLat.value);
-    const long = Number(idAddLong.value);
-    const pop = Number(idAddPop.value);
-
-    console.log('lat:', lat);
-    console.log('long:', long);
-
-    if (long < -180 || long > 180) {
-        // console.log('in the long');
-        idAddWarning.textContent = 'Longitddude must be between -180 and +180!';
-    } 
-    if (lat < -90 || lat > 90) {
-        // console.log('in the lat', );
-        idAddWarning.textContent = 'Latitude must be between -90 and +90!';
-    } 
-    if ( !(name && lat && long && pop) ) {
-        console.log('problem');
-    } else console.log('nopeers:');
-
-
+    checkCoordinates(idAddLat.value, idAddLong.value);
 
     // const key = community.createCity(name, lat, long, pop);
     // idCardDeck.appendChild(domFunction.newCityCard(community.findByKey(key)));
@@ -163,37 +174,61 @@ idAddCity.addEventListener('keyup', e => {
 
 
 // Let's make some test cities!!
-community.createCity('Calgary', 51.05, -114.05, 1.34e6);
-community.createCity('Edmonton', 53.55, -113.49, 9.81e5);
-community.createCity('Red Deer', 52.28, -113.81, 1.06e5);
-community.createCity('Quintero', -32.78, -71.53, 25300);
-community.createCity('Equator Town', 0.00, 50.00, 5000);
-community.cities.forEach(city => {
-    // console.log('cit:', city.name, city.key);
-    idCardDeck.appendChild(domFunction.newCityCard(city, community.whichSphere(city.key)));
-});
 
+const testCities = async () => {
+    await fetchFunctions.postData(url + 'clear');
+    console.log('cleared!');
 
-function showNotification(from, align) {
-    // const color = Math.floor((Math.random() * 4) + 1);
-    const color = 4; // 4 = Red
+    createCity('Calgary', 51.05, -114.05, 1340000);
+    createCity('Edmonton', 53.55, -113.49, 981000);
+    createCity('Red Deer', 52.28, -113.81, 1.06e5);
+    createCity('Quintero', -32.78, -71.53, 25300);
+    await createCity('Equator Town', 0.00, 50.00, 5000);
+    // cities.forEach(city => {
+    //     // console.log('cit:', city.name, city.key);
+    //     idCardDeck.appendChild(domFunctions.newCityCard(city, community.whichSphere(city.key)));
+};
+
+const clearServer = async () => {
+    try {
+        await fetchFunctions.postData(url + 'clear');
+    } catch (error) {
+        console.error('Uh oh! Server not cleared', error);
+    }
+    console.log('Server cleared!');
+}
+
+function checkCoordinates() {
+    idAddWarning.textContent = '\xa0';
+    const lat = Number(idAddLat.value);
+    const long = Number(idAddLong.value);
+
+    if (long < -180 || long > 180) {
+        idAddWarning.textContent = 'Longitude must be between -180 and +180!';
+        return false;
+    } else if (lat < -90 || lat > 90) {
+        idAddWarning.textContent = 'Latitude must be between -90 and +90!';
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function showNotification(color, text) {
+    // Colours:
+    // 4 = Red
 
     $.notify({
         icon: "nc-icon nc-spaceship",
-        message: "Welcome to <b>Sean's City Page!</b>"
-
+        message: text
     }, {
         type: type[color],
         timer: 4000,
         placement: {
-            from: from,
-            align: align
+            from: 'top',
+            align: 'center'
         }
     });
 }
-
-
-
-
 
 updateDisplay();

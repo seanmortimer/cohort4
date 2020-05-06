@@ -87,11 +87,19 @@
                                 <div class="col">
                                     <div>Total population:</div>
                                     <h6 id="idTotalPop"></h6>
-
                                     <hr>
                                 </div>
                             </div>
                         </div>
+                    </li>
+                    <li class="nav-item active-pro">
+                        <div class="container-float nav-link">
+                        <button type="button" class="btn btn-danger btn-fill text-right" action="clear">
+                            <i class="nc-icon nc-alien-33"></i>&nbsp;Clear server
+                        </button>
+                        <button type="button" class="btn btn-success btn-fill mt-1" action="load">
+                            <i class="nc-icon nc-alien-33"></i>&nbsp;Clear then load
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -113,8 +121,8 @@
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="#idAddCity" data-toggle="modal" data-target="#idAddCity" action="add"><i
-                                        class="nc-icon nc-simple-add"></i>
+                                <a class="nav-link" href="#idAddCity" data-toggle="modal" data-target="#idAddCity"
+                                    action="add"><i class="nc-icon nc-simple-add"></i>
                                     <!-- <span class="">Add a city</span> -->
                                     <span class="d-lg-block">&nbsp;Add a city</span>
                                 </a>
@@ -201,7 +209,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    
+
                     <div class="form-group">
                         <p id="idAddWarning">&nbsp;</p>
                         <p><label>City name</label>
@@ -242,14 +250,15 @@
                     <div class="form-group">
                         <p class="font-weight-bold" id="idEditName">City name</p>
                         <p><label>Current population</label>
-                            <input type="text" class="form-control" id="idEditPop" placeholder="Current Population" value="1,000,000"
-                                disabled></p>
+                            <input type="text" class="form-control" id="idEditPop" placeholder="Current Population"
+                                value="1,000,000" disabled></p>
                         <p><label>Population moved in</label>
                             <input type="number" class="form-control" id="idEditIn" placeholder="Moved in"></p>
                         <p><label>Population moved out</label>
                             <input type="number" class="form-control" id="idEditOut" placeholder="Moved out"></p>
                         <p><label>Net population change</label>
-                            <input type="number" class="form-control" id="idEditNet" placeholder="Net change" disabled></p>
+                            <input type="number" class="form-control" id="idEditNet" placeholder="Net change" disabled>
+                        </p>
                     </div>
                 </div>
 
