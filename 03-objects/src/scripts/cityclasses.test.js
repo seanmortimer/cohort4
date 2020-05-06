@@ -101,8 +101,8 @@ describe('Community controller class tests', () => {
         expect(comm2.createCity('Calgary', 51.05, -114.05, 1.34e6)).toBe(1); 
         expect(comm2.createCity('Edmonton', 53.55, -113.49, 9.81e5)).toBe(2);
         expect(comm2.createCity('Red Deer', 52.28, -113.81, 1.06e5)).toBe(3);
-        expect(comm2.createCity('Quintero', -32.78, -71.53, 25300)).toBe(4);
-        expect(comm2.createCity('Equator Town', 0.00, 50.00, 5000)).toBe(5);
+        expect(comm2.createCity('Quintero', -32.78, -71.53, 25300, 10)).toBe(10);
+        expect(comm2.createCity('Equator Town', 0.00, 50.00, 5000)).toBe(11);
 
         expect(comm2.cities.length).toBe(5);
         expect(comm2.cities[0].name).toBe('Calgary');
@@ -110,7 +110,7 @@ describe('Community controller class tests', () => {
         expect(comm2.cities[1].name).toBe('Edmonton');
         expect(comm2.cities[1].key).toBe(2);
         expect(comm2.cities[3].name).toBe('Quintero');
-        expect(comm2.cities[3].key).toBe(4);
+        expect(comm2.cities[3].key).toBe(10);
     });
 
     test('Test find by key method', () => {
@@ -178,4 +178,19 @@ describe('Community controller class tests', () => {
         expect(comm.getPopulation()).toBe(4897300);
     });
 
+});
+
+
+test('130E Object reference test', () => {
+        const myCity = new City (1, 'Calgary', 10, 20, 100);
+        const myFav = myCity;
+
+        expect(myCity.pop).toBe(100);
+        expect(myFav.pop).toBe(100);
+        myCity.movedIn(100);
+        expect(myCity.pop).toBe(200);
+        expect(myFav.pop).toBe(200);
+        myFav.movedOut(150);
+        expect(myCity.pop).toBe(50);
+        expect(myFav.pop).toBe(50);
 });

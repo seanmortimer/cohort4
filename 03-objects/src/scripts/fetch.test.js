@@ -252,10 +252,6 @@ beforeEach(() => {
     users = new UserData(data);
 });
 
-describe.skip('SKIP THESE UNTIL CLOSER TO COMPLETION! (They too slow!', () => {
-    
-
-
 
 test('test data array', () => {
     expect(data[0].name).toBe('Leanne Graham');
@@ -346,7 +342,4 @@ test('test postData function', async () => {
 
 test('test postdata with no url (to achive 100% test coverage)', async () => {
     await expect(functions.postData()).rejects.toThrow();
-});
-
-
 });
