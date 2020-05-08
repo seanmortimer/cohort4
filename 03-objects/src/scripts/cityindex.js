@@ -13,6 +13,9 @@ const updateDisplay = () => {
     const southern = community.getMostSouthern();
     const totalPop = community.getPopulation();
 
+    // console.log('UPDATING!');
+    // console.log('city1:', community.cities[0]);
+    // console.log('north:', northern);
     if (northern != undefined) {
         idNorth.textContent = northern.name;
         idNorthLat.textContent = northern.lat;
@@ -38,6 +41,8 @@ const updateDisplay = () => {
 const createCity = async (name, lat, long, pop, key) => {
     const newKey = community.createCity(name, lat, long, pop, key);
     // console.log('newKey:', newKey);
+    // console.log('city1:', community.cities[0]);
+
     const newCity = community.findByKey(newKey);
     // console.log('new city:', newCity);
     const hemi = community.whichSphere(newKey);
@@ -54,6 +59,7 @@ const createCity = async (name, lat, long, pop, key) => {
     } catch (error) {
         console.error('Oh nooooo, adding failed:', error);
     }}
+    updateDisplay();
 }
 
 
@@ -75,7 +81,7 @@ const deleteCity = async (card) => {
 
 const updatePop = async (city, popChange) => {
     popChange = Number(popChange);
-    console.log('popchange:', popChange);
+    // console.log('popchange:', popChange);
     let newPop = city.pop;
 
     // console.log('city:', city);
@@ -87,7 +93,7 @@ const updatePop = async (city, popChange) => {
     }
     try {
         let reply = await fetchFunctions.postData(url + 'update', city);
-        console.log('update pop reply:', reply.status);
+        // console.log('update pop reply:', reply.status);
         newPop = newPop.toLocaleString('en-US');
         showNotification(1, `Population of ${city.name} was updated to ${newPop}`);
         // return newPop;
@@ -206,9 +212,7 @@ const testCities = async () => {
     await createCity('Red Deer', 52.28, -113.81, 1.06e5);
     await createCity('Quintero', -32.78, -71.53, 25300);
     await createCity('Equator Town', 0.00, 50.00, 5000);
-    // cities.forEach(city => {
-    //     // console.log('cit:', city.name, city.key);
-    //     idCardDeck.appendChild(domFunctions.newCityCard(city, community.whichSphere(city.key)));
+   
     updateDisplay();
 };
 
@@ -222,7 +226,7 @@ const pullFromServer = async () => {
     }
     // console.log('Server data is:', data);
     data.forEach(city => createCity(city.name, city.lat, city.long, city.pop, city.key));
-    community.cities.forEach(city => console.log(city.name));
+    community.cities.forEach(city => console.log(city.name, 'loaded from server'));
 
 }
 

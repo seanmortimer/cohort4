@@ -21,7 +21,6 @@ const functions = {
         cardHeader.appendChild(key);
         card.appendChild(cardHeader);
 
-        // <p class="card-category">Last Campaign Performance</p>
 
         // card body
         const cardBody = document.createElement('DIV');
