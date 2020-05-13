@@ -1,3 +1,19 @@
+.clHeader {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.clIcon > svg{
+  margin: 10px;
+  height: 150px;
+  width:  150px;
+  fill: #61dafb;
+}
+
+.clIcon>svg:hover {
+  fill: #1900a8;
+}
+
 .App {
   text-align: center;
 }
@@ -10,6 +26,12 @@
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+  }
+  svg {
+    animation: App-logo-spin infinite 20s linear;
+  }
+  svg:hover {
+    animation: App-logo-spin infinite 2s linear;
   }
 }
 
