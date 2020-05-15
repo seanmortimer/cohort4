@@ -4,13 +4,6 @@ import { ReactComponent as Wheel } from '../images/bike-wheel.svg'
 import { ReactComponent as SickWhip } from '../images/sick-whip.svg'
 import { ReactComponent as Rotor } from '../images/brake-rotor.svg'
 
-const Icon = (props) => {
-    return (
-        <div className="clIcon">
-            <props.pic />
-        </div>
-    )
-}
 
 class Header extends Component {
     constructor(props) {
