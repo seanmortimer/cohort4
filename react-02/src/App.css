@@ -1,16 +1,26 @@
 .clHeader {
   display: flex;
   justify-content: space-evenly;
+  align-items: flex-end;
 }
 
-.clIcon > svg{
+.clHeader>div {
+  font-size: large;
+  font-weight: bold;
+}
+
+.clIcon {
   margin: 10px;
   height: 150px;
   width:  150px;
   fill: #61dafb;
 }
 
-.clIcon>svg:hover {
+.clActive  {
+  fill: #1900a8;
+}
+
+.clIcon:hover {
   fill: #1900a8;
 }
 

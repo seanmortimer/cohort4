@@ -79,7 +79,7 @@ class Game extends React.Component {
       xIsNext: (step % 2) === 0,
     });
   }
-  
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
@@ -89,13 +89,13 @@ class Game extends React.Component {
       const desc = move ?
         'Go to move ' + move :
         'Reset game';
-        return (
-        <li key={move}> 
+      return (
+        <li key={move}>
           <button onClick={() => this.jumpTo(move)}>
             {desc}
           </button>
         </li>
-        );
+      );
     });
 
     let status;
@@ -106,15 +106,17 @@ class Game extends React.Component {
     }
     return (
       <div className="game">
-        <div className="game-board">
-          <Board
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
-        </div>
-        <div className="game-info">
-          <div className="clStatus">{status}</div>
-          <ol>{moves}</ol>
+        <div className="clStatus">{status}</div>
+        <div className="clMainGame">
+          <div className="game-board">
+            <Board
+              squares={current.squares}
+              onClick={(i) => this.handleClick(i)}
+            />
+          </div>
+          <div className="game-info">
+            <ol>{moves}</ol>
+          </div>
         </div>
       </div>
     );

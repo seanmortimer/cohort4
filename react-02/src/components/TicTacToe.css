@@ -4,6 +4,7 @@ body {
   }
   
  ol, ul {
+     margin-top: 0;
     padding-left: 30px;
     list-style-type: none;
     width: content;
@@ -12,7 +13,7 @@ body {
  li > button {
      width: 120px;
      margin-top: 2px;
-    padding: 1% 5%;
+    padding: 5px;
 }
 
   .board-row {
@@ -33,6 +34,8 @@ body {
   
   .square {
     background: #fff;
+    background: #ff0;
+
     border: 1px solid #999;
     float: left;
     font-size: 34px;
@@ -55,14 +58,18 @@ body {
   }
   
   .game {
+    padding-top: 5vmin;
+    height: 75vh;
+  }
+  
+  .clMainGame {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-top: 5vmin;
+    align-content: flex-end;
   }
   
   .game-info {
-    min-width: 250px;
     margin: 0 20px;
   }
 
@@ -70,6 +77,6 @@ body {
       font-size: 1.5em;
       font-weight: 700;
       padding: 0 5px;
-      margin: 0 5px;
+      margin: 20px 5px 50px;
   }
   
