@@ -2,12 +2,14 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Header from "./components/Header";
+import Game from "./components/TicTacToe";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <div className="App-header">
+      <Game />
+      {/* <div className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and have some fun!.
@@ -20,7 +22,7 @@ function App() {
         >
           Learn React
         </a>
-      </div>
+      </div> */}
     </div>
   );
 }
