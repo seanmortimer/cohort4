@@ -3,10 +3,18 @@ body {
     margin: 20px;
   }
   
-  ol, ul {
+ ol, ul {
     padding-left: 30px;
+    list-style-type: none;
+    width: content;
   }
   
+ li > button {
+     width: 120px;
+     margin-top: 2px;
+    padding: 1% 5%;
+}
+
   .board-row {
       display: flex;
       justify-content: center;
@@ -54,6 +62,14 @@ body {
   }
   
   .game-info {
-    margin-left: 20px;
+    min-width: 250px;
+    margin: 0 20px;
+  }
+
+  .clStatus {
+      font-size: 1.5em;
+      font-weight: 700;
+      padding: 0 5px;
+      margin: 0 5px;
   }
   
