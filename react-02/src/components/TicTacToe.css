@@ -7,6 +7,11 @@ body {
     padding-left: 30px;
   }
   
+  .board-row {
+      display: flex;
+      justify-content: center;
+  }
+
   .board-row:after {
     clear: both;
     content: "";
@@ -46,8 +51,6 @@ body {
     flex-direction: row;
     justify-content: center;
     padding-top: 5vmin;
-    /* align-items: center; */
-    /* align-self: center; */
   }
   
   .game-info {
