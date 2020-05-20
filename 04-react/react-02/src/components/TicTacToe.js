@@ -109,7 +109,8 @@ class Game extends React.Component {
     }
     return (
       <div className="game">
-        <div className="clStatus">{status}</div>
+        <div role="status" className="clStatus">{status}</div>
+        {/* <div className="clStatus">{status}</div> */}
         <div className="clMainGame">
           <Board
             squares={current.squares}

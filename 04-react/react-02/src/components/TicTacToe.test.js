@@ -29,8 +29,9 @@ test('that the game even renders', () => {
 // TODO: test moving through history
 
 test('game 1 -> X wins', () => {
-    const { getAllByRole, getByText } = render(<TicTacToe />);
+    const { getAllByRole, getByRole } = render(<TicTacToe />);
     const board = getAllByRole('button').splice(0, 9)
+    const status = getByRole('status');
 
     fireEvent.click(board[0]);
     fireEvent.click(board[1]);
@@ -46,12 +47,13 @@ test('game 1 -> X wins', () => {
         'O', 'X', 'O',
         'X', '', ''
     ]);
-    expect(getByText(/The winner/)).toHaveTextContent('The winner is: Player X!')
+    expect(status).toHaveTextContent('The winner is: Player X!');
 });
 
 test('game 2 -> O wins', () => {
-    const { getAllByRole, getByText } = render(<TicTacToe />);
+    const { getAllByRole, getByRole } = render(<TicTacToe />);
     const board = getAllByRole('button').splice(0, 9)
+    const status = getByRole('status');
 
     fireEvent.click(board[2]);
     fireEvent.click(board[6]);
@@ -66,12 +68,14 @@ test('game 2 -> O wins', () => {
         '', 'X', '',
         'O', 'O', 'O'
     ]);
-    expect(getByText(/The winner/)).toHaveTextContent('The winner is: Player O!')
+    expect(status).toHaveTextContent('The winner is: Player O!');
+
 });
 
 test('game 3 -> A draw', () => {
-    const { getAllByRole, getByText } = render(<TicTacToe />);
+    const { getAllByRole, getByRole } = render(<TicTacToe />);
     const board = getAllByRole('button').splice(0, 9)
+    const status = getByRole('status');
 
     fireEvent.click(board[0]);
     fireEvent.click(board[1]);
@@ -89,7 +93,7 @@ test('game 3 -> A draw', () => {
         'O', 'X', 'X',
         'O', 'X', 'O'
     ]);
-    expect(getByText(/draw/)).toHaveTextContent('It\'s a draw!');
+    expect(status).toHaveTextContent('It\'s a draw!');
 });
 
 // Board layout for reference
