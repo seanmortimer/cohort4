@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, screen, act, render, prettyDOM } from '@testing-library/react';
+import { fireEvent, screen, render, act } from '@testing-library/react';
 import TicTacToe from './TicTacToe';
 
 
@@ -47,7 +47,7 @@ test('game 1 -> X wins', () => {
 });
 
 test('game 2 -> O wins', () => {
-    const { getAllByRole, getByText, asFragment } = render(<TicTacToe />);
+    const { getAllByRole, getByText } = render(<TicTacToe />);
     const board = getAllByRole('button').splice(0, 9)
 
     fireEvent.click(board[2]);
@@ -64,6 +64,29 @@ test('game 2 -> O wins', () => {
         'O', 'O', 'O'
     ]);
     expect(getByText(/The winner/)).toHaveTextContent('The winner is: Player O!')
+});
+
+test('game 3 -> A draw', () => {
+    const { getAllByRole, getByText } = render(<TicTacToe />);
+    const board = getAllByRole('button').splice(0, 9)
+
+    fireEvent.click(board[0]);
+    fireEvent.click(board[1]);
+    fireEvent.click(board[2]);
+    fireEvent.click(board[3]);
+    fireEvent.click(board[4]);
+    fireEvent.click(board[8]);
+    fireEvent.click(board[5]);
+    fireEvent.click(board[6]);
+    fireEvent.click(board[7]);
+
+    const currentBoard = board.map(square => square.textContent)
+    expect(currentBoard).toEqual([
+        'X', 'O', 'X',
+        'O', 'X', 'X',
+        'O', 'X', 'O'
+    ]);
+    expect(getByText(/draw/)).toHaveTextContent('It\'s a draw!');
 });
 
 // Board layout for reference

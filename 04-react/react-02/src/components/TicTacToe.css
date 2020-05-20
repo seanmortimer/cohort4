@@ -33,8 +33,8 @@ body {
   }
   
   .square {
-    background: #fff;
-    background: #ff0;
+    background: rgb(255, 174, 174);
+    
 
     border: 1px solid #999;
     float: left;
