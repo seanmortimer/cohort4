@@ -108,12 +108,10 @@ class Game extends React.Component {
       <div className="game">
         <div className="clStatus">{status}</div>
         <div className="clMainGame">
-          <div className="game-board">
             <Board
               squares={current.squares}
               onClick={(i) => this.handleClick(i)}
             />
-          </div>
           <div className="game-info">
             <ol>{moves}</ol>
           </div>
