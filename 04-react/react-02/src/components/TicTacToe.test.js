@@ -25,6 +25,9 @@ test('that the game even renders', () => {
 
 });
 
+// TODO: test repeat click rejections
+// TODO: test moving through history
+
 test('game 1 -> X wins', () => {
     const { getAllByRole, getByText } = render(<TicTacToe />);
     const board = getAllByRole('button').splice(0, 9)
