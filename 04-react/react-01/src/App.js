@@ -25,11 +25,11 @@ class App extends Component {
       <div className="App" >
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1>I am in charge of this application and my name is Sean {this.state.myState}</h1>
+          <h1>I am in charge of this application and my name is Sean</h1>
           <button onClick={this.onPushMe}>
             Push Me
           </button>
-          <MyComp whatToSay="What Ever!" counter={this.counter}  />
+          <MyComp whatToSay="Whoa dude!" counter={this.counter}  />
           <EvenComp counter={this.counter} />
           <OddComp counter={this.counter} />
           <p>

@@ -14,7 +14,7 @@ class EvenComp extends React.Component {
                 <h2>The counter is even: {this.props.counter}</h2>
             </div>
         )}
-        else return <p />
+        else return null;
     }
 }
 

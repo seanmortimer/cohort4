@@ -14,7 +14,7 @@ class OddComp extends React.Component {
                 <h2>The counter is odd: {this.props.counter}</h2>
             </div>
         )}
-        else return <p />
+        else return null;
     }
 }
 
