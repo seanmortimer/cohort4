@@ -96,14 +96,33 @@ test('Minimax score function', () => {
   expect(ai.getScore(boards.tie)).toBe(0);
 });
 
-test('test minimax function', () => {
-
-  // expect(ai.minimax(boards.open1, false)).toBe(6);
-  // expect(ai.minimax(boards.open1, true, 1)).toBe(6);
-  // expect(ai.minimax(boards.open2, false, 1)).toBe(4);
-  // expect(ai.minimax(boards.open2, true, 1)).toBe(4);
-  // expect(ai.minimax(boards.open2b, false, 1)).toBe(7);
-  // expect(ai.minimax(boards.open2b, true, 1)).toBe(6);
-  // console.log('NEW TEST 110 open3');
+test.skip('test minimax function', () => {
+  expect(ai.minimax(boards.open1, false, 1)).toBe(6);
+  expect(ai.minimax(boards.open1, true, 1)).toBe(6);
+  expect(ai.minimax(boards.open2, false, 1)).toBe(4);
+  expect(ai.minimax(boards.open2, true, 1)).toBe(4);
+  expect(ai.minimax(boards.open2b, false, 1)).toBe(7);
+  expect(ai.minimax(boards.open2b, true, 1)).toBe(6);
   expect(ai.minimax(boards.open3, false, 1)).toBe(8);
+});
+
+test('random player function', () => {
+
+
+  expect([0, 1, 2, 3, 4, 5, 6, 7, 8])
+    .toContain(ai.rando(boards.empty));
+    expect([3, 5, 8])
+    .toContain(ai.rando(boards.open3));
+    
+    expect([2, 5, 7, 8])
+    .toContain(ai.rando(boards.xWins1));
+
+    expect([5, 8])
+    .toContain(ai.rando(boards.oWins2));
+    expect(ai.rando(boards.tie)).toBeUndefined;
+    // expect(ai.isOpen(boards.empty)).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+    // expect(ai.isOpen(boards.open3)).toEqual([3, 5, 8]);
+    // expect(ai.isOpen(boards.xWins1)).toEqual([2, 5, 7, 8]);
+    // expect(ai.isOpen(boards.xWins2)).toEqual([]);
+    // expect(ai.isOpen(boards.oWins1)).toEqual([8]);
 });

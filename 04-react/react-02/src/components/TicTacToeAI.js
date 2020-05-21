@@ -57,7 +57,7 @@ const ai = {
       // console.log('nb:', nextBoard);
       if (result) {
         let score = this.getScore(nextBoard);
-      console.log('RESULT:', result, score);
+        console.log('RESULT:', result, score);
 
         // console.log('score:', score, move);
         if (isXNext) {
@@ -82,7 +82,7 @@ const ai = {
         bestMove = this.minimax(nextBoard, !isXNext, loopNumber + 1);
       }
       // console.log('BEST MOVE:', loopNumber, bestMove);
-      
+
     })
 
     // const bestScore = isXNext ? bestScoreX : bestScoreO
@@ -105,7 +105,12 @@ const ai = {
   },
 
   rando(board) {
-    return 0;
+    const open = this.isOpen(board);
+    const min = 0;
+    const max = open.length - 1;
+    const rand = Math.floor(Math.random() * (max - min + 1)) + min;
+    // console.log('rand:', open[rand]);
+    return open[rand];
   },
 
   calculateWinner(board) {
