@@ -36,10 +36,10 @@ afterEach(() => {
 
 
 test('finding open spots', () => {
-    expect(ai.open(blank)).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8]);
-    expect(ai.open(open3)).toEqual([3, 5, 6]);
-    expect(ai.open(xWins)).toEqual([]);
-    expect(ai.open(oWins)).toEqual([5, 8]);
+    expect(ai.isOpen(blank)).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+    expect(ai.isOpen(open3)).toEqual([3, 5, 6]);
+    expect(ai.isOpen(xWins)).toEqual([]);
+    expect(ai.isOpen(oWins)).toEqual([5, 8]);
 });
 
 test('calculating winner', () => {
@@ -58,6 +58,19 @@ test('test minimax function', () => {
         'X', 'O', 'O',
         '', 'X', 'X'
     ]
-
-    expect(ai.minimax(board1)).toBe(6);
+    const board2 = [
+        'X', 'O', 'O',
+        'X', 'O', '',
+        '', 'X', 'X'
+    ]
+    const board3 = [
+        'X', 'O', 'O',
+        'X', 'O', 'O',
+        '', 'X', 'X'
+    ]
+    // console.log('board1 - Test:', board1);
+    expect(ai.minimax(board1, false, 'O')).toBe(6);
+    // expect(ai.minimax(board1, true)).toBe(6);
+    expect(ai.minimax(board2, false)).toBe(6);
+    // expect(ai.minimax(board3)).toBe(null);
 });
