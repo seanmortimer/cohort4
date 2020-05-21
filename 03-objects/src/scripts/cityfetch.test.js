@@ -34,6 +34,7 @@ test('test adding and clearing api data', async () => {
     data = await functions.postData(url + 'all');
     expect(data.status).toBe(200);
     expect(data.length).toBe(7);
+    console.log('data:', data);
     expect(data).toContainEqual({ key: 1, lat: 51.05, long: -114.05, name: 'Calgary', pop: 1340000 });
     expect(data).toContainEqual({ key: 4, lat: -32.78, long: -71.53, name: 'Quintero', pop: 25300 });
     expect(data).toContainEqual(comm.findByKey(7));

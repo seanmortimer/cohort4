@@ -15,7 +15,6 @@ const ai = {
   // Take array representing current board, return index for next move.
   nextMove(board) {
 
-    // This is the recursive function that will loop through all possible moves
     const open = this.isOpen(board);
     let bestScore = -Infinity;
     let bestMove = null;
@@ -33,45 +32,77 @@ const ai = {
 
   // This function returns the min/max value for a given move
   // Or should it return the next move to make? that makes sense to me
-  minimax(board, isCompX, isXNext) {
+  // Yeah, now it returns the next move to make
+  minimax(board, isXNext, loopNumber) {
     let open = this.isOpen(board);
+    let bestScoreX = -Infinity;
+    let bestScoreO = +Infinity;
     let bestScore = 0;
+    let bestMoveX = null;
+    let bestMoveO = null;
+
     let bestMove = null;
-    const comp = isCompX ? 'X' : 'O';
+    const marker = isXNext ? 'X' : 'O';
+    console.log('minimax!:', loopNumber, marker, open);
+
+    // const comp = isCompX ? 'X' : 'O';
     // const player = isCompX ? 'O' : 'X';
-    let nextBoard = board.slice();
-    let scores = {
+
+    open.forEach((move) => {
+      let nextBoard = board.slice();
+      console.log('loop move:', marker, move);
+      nextBoard[move] = marker;
+      let result = this.calculateWinner(nextBoard)
+      // console.log('marker:', marker);
+      // console.log('nb:', nextBoard);
+      if (result) {
+        let score = this.getScore(nextBoard);
+      console.log('RESULT:', result, score);
+
+        // console.log('score:', score, move);
+        if (isXNext) {
+          if (score > bestScoreX) {
+            // console.log('current score X:', bestScoreX);
+            bestScore = score;
+            bestMove = move;
+            // console.log('best score X:', bestScoreX);
+            console.log('best move X:', bestMove, score);
+          }
+        } else if (!isXNext) {
+          if (score < bestScoreO) {
+            // console.log('current score O:', bestScoreO);
+            bestScore = score;
+            bestMove = move;
+            // console.log('best score O:', bestScoreO);
+            console.log('best move O:', bestMove, score);
+          }
+        }
+      } else {
+        // console.log('in the else')
+        bestMove = this.minimax(nextBoard, !isXNext, loopNumber + 1);
+      }
+      // console.log('BEST MOVE:', loopNumber, bestMove);
+      
+    })
+
+    // const bestScore = isXNext ? bestScoreX : bestScoreO
+
+    // const bestMove = isXNext ? bestMoveX : bestMoveO
+    console.log('FINALLY:', loopNumber, marker, bestMove,
+      bestScore);
+    return bestMove;
+  },
+
+  getScore(board) {
+    const scores = {
       X: 1,
       O: -1,
       T: 0
     };
-
-
-    open.forEach((move) => {
-      nextBoard[move] = comp;
-      let result = this.calculateWinner(nextBoard)
-      // console.log('marker:', marker);
-      // console.log('result:', result);
-      // console.log('nb:', nextBoard);
-      if (result) {
-        let score = (1 + this.isOpen(nextBoard).length) * scores[result];
-        console.log('score:', score, move);
-        if (score < bestScore) {
-          bestScore = score;
-          bestMove = move;
-
-        console.log('best score:', bestScore, move);
-        console.log('best move:', bestMove, move);
-        // return bestMove;
-      }
-      this.minimax(nextBoard, isCompX, !isXNext);
-    }})
-    // if (isCompX) {
-
-    // }
-    return bestMove;
+    const result = this.calculateWinner(board);
+    const score = (1 + this.isOpen(board).length) * scores[result];
+    return score;
   },
-
 
   rando(board) {
     return 0;

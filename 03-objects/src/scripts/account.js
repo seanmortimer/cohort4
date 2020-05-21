@@ -17,7 +17,6 @@ class Account {
   showBalance() {
     return this.balance;
   }
-
 }
 
 class AccountController {
