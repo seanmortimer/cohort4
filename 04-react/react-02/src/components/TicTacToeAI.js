@@ -62,7 +62,7 @@ const ai = {
   },
 
   // just a little counter for entertainment purposes
-  loops: 0,
+  // loops: 0,
 
   // This function returns the min/max value for a given move
   // Or should it return the next move to make? that makes sense to me
@@ -70,7 +70,7 @@ const ai = {
   // Nope, turns out returning the score is much easier
 
   minimax(board, isXNext, depth = 1) {
-    this.loops++;
+    // this.loops++;
     let open = this.isOpen(board);
     const marker = isXNext ? 'X' : 'O';
     let bestScore = null;
@@ -78,26 +78,18 @@ const ai = {
 
     if (result) {
       let score = this.getScore(board);
-      // console.log('The game is over. Score:', score);
       return score;
     }
-
-    // console.log('marker:', marker, 'depth:', depth, 'xnext?', isXNext);
-    // console.log('open:', open);
-
     if (isXNext) {
       let bestScore = -Infinity;
       open.forEach(move => {
         // const attempt = `Trying ${marker} to square ${move}, depth ${depth}`;
         // console.log(attempt);
-
         const nextBoard = board.slice();
         nextBoard[move] = marker;
         const score = this.minimax(nextBoard, false, depth + 1);
-        // console.log('max:', Math.max(score, bestScore));
         bestScore = Math.max(score, bestScore);
       })
-      // console.log('return for: ', marker, 'score:', bestScore);
       return bestScore;
 
     } else {
@@ -106,10 +98,8 @@ const ai = {
         const nextBoard = board.slice();
         nextBoard[move] = marker;
         const score = this.minimax(nextBoard, true, depth + 1);
-        // console.log('min:', Math.min(score, bestScore));
         bestScore = Math.min(score, bestScore);
       })
-      // console.log('return for: ', marker, 'score:', bestScore);
       return bestScore;
     }
 
@@ -191,7 +181,6 @@ const ai = {
     const min = 0;
     const max = open.length - 1;
     const rand = Math.floor(Math.random() * (max - min + 1)) + min;
-    // console.log('rand:', open[rand]);
     return open[rand];
   },
 
@@ -209,7 +198,6 @@ const ai = {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-        // console.log('a:', board[a], 'b:', board[b], 'c:', board[c]);
         return board[a];
       }
 

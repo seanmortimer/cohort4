@@ -197,7 +197,7 @@ test('Can the random player ever beat minimax? (it shouldn\'t!)', () => {
     let result = null;
     // let totalMoves = 0;
 
-    // console.log(`Playing ${numGames} games. X (random) is first`);
+    console.log(`Playing ${numGames} games. X (random) is first`);
 
     for (let i = 0; i < numGames; i++) {
         let hardMode = false;
