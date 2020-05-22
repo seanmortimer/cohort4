@@ -192,7 +192,7 @@ test('the make move function', () => {
 });
 
 
-test('Can the random player ever beat minimax? (it shouldn\'t', () => {
+test.only('Can the random player ever beat minimax? (it shouldn\'t!)', () => {
     // X is random player, O is minimax
     let ties = 0;
     let xWins = 0;
@@ -200,7 +200,9 @@ test('Can the random player ever beat minimax? (it shouldn\'t', () => {
     let result = null;
     let totalMoves = 0;
 
-    for (let i = 0; i < 100; i++) {
+    console.log('Playing 1000 games. O (AI) is first')
+
+    for (let i = 0; i < 1000; i++) {
         let hardMode = false;
         let isX = true;
         let currentBoard = boards.empty.slice();
@@ -226,6 +228,8 @@ test('Can the random player ever beat minimax? (it shouldn\'t', () => {
     }
     const loops = ai.loops.toLocaleString();
     totalMoves = totalMoves.toLocaleString();
+    oWins = oWins.toLocaleString();
+    ties = ties.toLocaleString();
     console.log(`Ties: ${ties}, X won: ${xWins}, O won: ${oWins}`);
     console.log(`Total moves: ${totalMoves}, loops: ${loops}`);
     expect(xWins).toBe(0);
