@@ -96,33 +96,130 @@ test('Minimax score function', () => {
   expect(ai.getScore(boards.tie)).toBe(0);
 });
 
-test.skip('test minimax function', () => {
-  expect(ai.minimax(boards.open1, false, 1)).toBe(6);
-  expect(ai.minimax(boards.open1, true, 1)).toBe(6);
-  expect(ai.minimax(boards.open2, false, 1)).toBe(4);
-  expect(ai.minimax(boards.open2, true, 1)).toBe(4);
-  expect(ai.minimax(boards.open2b, false, 1)).toBe(7);
-  expect(ai.minimax(boards.open2b, true, 1)).toBe(6);
-  expect(ai.minimax(boards.open3, false, 1)).toBe(8);
+test('test minimax function', () => {
+  expect(ai.minimax(boards.open1, false)).toBe(6);
+  expect(ai.minimax(boards.open1, true)).toBe(6);
+  expect(ai.minimax(boards.open2, false)).toBe(4);
+  expect(ai.minimax(boards.open2, true)).toBe(4);
+  expect(ai.minimax(boards.open2b, false)).toBe(7);
+  expect(ai.minimax(boards.open2b, true)).toBe(6);
+  expect(ai.minimax(boards.open3, false)).toBe(8);
 });
 
 test('random player function', () => {
-
-
   expect([0, 1, 2, 3, 4, 5, 6, 7, 8])
     .toContain(ai.rando(boards.empty));
-    expect([3, 5, 8])
+  expect([3, 5, 8])
     .toContain(ai.rando(boards.open3));
-    
-    expect([2, 5, 7, 8])
+  expect([2, 5, 7, 8])
     .toContain(ai.rando(boards.xWins1));
-
-    expect([5, 8])
+  expect([5, 8])
     .toContain(ai.rando(boards.oWins2));
-    expect(ai.rando(boards.tie)).toBeUndefined;
-    // expect(ai.isOpen(boards.empty)).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8]);
-    // expect(ai.isOpen(boards.open3)).toEqual([3, 5, 8]);
-    // expect(ai.isOpen(boards.xWins1)).toEqual([2, 5, 7, 8]);
-    // expect(ai.isOpen(boards.xWins2)).toEqual([]);
-    // expect(ai.isOpen(boards.oWins1)).toEqual([8]);
+  expect(ai.rando(boards.tie)).toBeUndefined;
+});
+
+test('the make move function', () => {
+  expect(ai.makeMove(boards.open1, true, true)).toEqual([
+    'X', 'O', 'O',
+    'X', 'O', 'O',
+    'X', 'X', 'X'
+  ]);
+  expect(ai.makeMove(boards.open1, false, true)).toEqual([
+    'X', 'O', 'O',
+    'X', 'O', 'O',
+    'O', 'X', 'X'
+  ]);
+  expect(ai.makeMove(boards.open1, true, false)).toEqual([
+    'X', 'O', 'O',
+    'X', 'O', 'O',
+    'X', 'X', 'X'
+  ]);
+  expect(ai.makeMove(boards.open1, false, false)).toEqual([
+    'X', 'O', 'O',
+    'X', 'O', 'O',
+    'O', 'X', 'X'
+  ]);
+
+  expect(ai.makeMove([
+    'O', 'X', 'O',
+    'X', 'X', 'O',
+    '', '', ''
+  ], false, true)).toEqual([
+    'O', 'X', 'O',
+    'X', 'X', 'O',
+    '', '', 'O'
+  ]);
+  expect(ai.makeMove([
+    'O', 'X', 'O',
+    '', 'O', 'O',
+    'X', 'O', 'X'
+  ], false, true)).toEqual([
+    'O', 'X', 'O',
+    'O', 'O', 'O',
+    'X', 'O', 'X'
+  ]);
+  expect(ai.makeMove([
+    'O', '', 'O',
+    'X', 'X', 'O',
+    '', 'X', ''
+  ], false, true)).toEqual([
+    'O', 'O', 'O',
+    'X', 'X', 'O',
+    '', 'X', ''
+  ]);
+  expect(ai.makeMove([
+    'O', 'O', '',
+    'X', 'X', '',
+    '', '', ''
+  ], false, true)).toEqual([
+    'O', 'O', 'O',
+    'X', 'X', '',
+    '', '', ''
+  ]);
+});
+
+test.only('Can the random player ever beat minimax? (it shouldn\'t', () => {
+  // X is random player, O is minimax
+  let ties = 0;
+  let xWins = 0;
+  let oWins = 0;
+  let result = null;
+  let totalMoves = 0;
+
+  for (let i = 0; i < 1; i++) {
+    let hardMode = false;
+    let isX = true;
+    let currentBoard = boards.empty.slice();
+    // while (!ai.calculateWinner(currentBoard)) {
+      for (let i = 0; i < 1; i++) {
+      // console.log(`HM: ${hardMode}, isX: ${isX}, moves: ${totalMoves}`)
+      currentBoard = ai.makeMove(currentBoard, isX, hardMode).slice();
+      // console.log('',
+      //   currentBoard.slice(0, 3), '\n',
+      //   currentBoard.slice(3, 6), '\n',
+      //   currentBoard.slice(6), '\n',
+      // );
+      hardMode = !hardMode;
+      isX = !isX;
+      totalMoves++;
+    }
+
+    result = ai.calculateWinner(currentBoard);
+    // console.log('Winner:', result);
+    if (result === 'X') {
+      xWins++;
+      // console.log(
+      //   'X WON!!!: \n',
+      //   currentBoard.slice(0, 3), '\n',
+      //   currentBoard.slice(3, 6), '\n',
+      //   currentBoard.slice(6), '\n',
+      // );
+    }
+    if (result === 'O') oWins++;
+    if (result === 'T') ties++;
+  }
+
+  console.log(`Ties: ${ties}, X won: ${xWins}, O won: ${oWins}`);
+  console.log('Total moves:', totalMoves);
+  expect(xWins).toBe(0);
 });

@@ -13,83 +13,84 @@ const ai = {
   },
 
   // Take array representing current board, return index for next move.
-  nextMove(board) {
+  makeMove(board, isXNext, isHardModeOn) {
+    const marker = isXNext ? 'X' : 'O';
+    let move = null;
 
-    const open = this.isOpen(board);
-    let bestScore = -Infinity;
-    let bestMove = null;
-
-    open.forEach(move => {
-      let score = this.minimax(board, move)
-      if (score > bestScore) {
-        bestScore = score;
-        bestMove = move;
+    if (this.isOpen(board).length === 9) {
+      // console.log('New game!')
+      move = this.rando(board);
+    }
+    else {
+      if (isHardModeOn) {
+        console.log('board:', isXNext, board);
+        let move2 = this.minimax(board, isXNext);
+        console.log('Minimax:', marker, move2);
       }
+      if (!isHardModeOn) {
+        move = this.rando(board);
+        console.log('Random:', marker, move);
+      }
+    }
+    const newBoard = board.slice();
+    newBoard[move] = marker;
 
-    })
-    return bestMove;
+    if (this.calculateWinner(newBoard) === 'X') {
+      console.log('X Won! Move:', move);
+      console.log('',
+        newBoard.slice(0, 3), '\n',
+        newBoard.slice(3, 6), '\n',
+        newBoard.slice(6), '\n',
+      );
+    }
+    return newBoard;
   },
 
   // This function returns the min/max value for a given move
   // Or should it return the next move to make? that makes sense to me
   // Yeah, now it returns the next move to make
-  minimax(board, isXNext, loopNumber) {
+  loops: 0,
+
+  minimax(board, isXNext) {
+    this.loops++;
     let open = this.isOpen(board);
     let bestScoreX = -Infinity;
     let bestScoreO = +Infinity;
-    let bestScore = 0;
     let bestMoveX = null;
     let bestMoveO = null;
-
-    let bestMove = null;
     const marker = isXNext ? 'X' : 'O';
-    console.log('minimax!:', loopNumber, marker, open);
-
-    // const comp = isCompX ? 'X' : 'O';
-    // const player = isCompX ? 'O' : 'X';
 
     open.forEach((move) => {
       let nextBoard = board.slice();
-      console.log('loop move:', marker, move);
       nextBoard[move] = marker;
       let result = this.calculateWinner(nextBoard)
-      // console.log('marker:', marker);
-      // console.log('nb:', nextBoard);
       if (result) {
         let score = this.getScore(nextBoard);
-        console.log('RESULT:', result, score);
-
-        // console.log('score:', score, move);
+        // console.log('Score:', score, '\n',
+        //   nextBoard.slice(0, 3), '\n',
+        //   nextBoard.slice(3, 6), '\n',
+        //   nextBoard.slice(6), '\n',
+        // );
         if (isXNext) {
           if (score > bestScoreX) {
-            // console.log('current score X:', bestScoreX);
-            bestScore = score;
-            bestMove = move;
-            // console.log('best score X:', bestScoreX);
-            console.log('best move X:', bestMove, score);
+            bestScoreX = score;
+            bestMoveX = move;
+            console.log('Update X move:', bestScoreX, move);
           }
         } else if (!isXNext) {
           if (score < bestScoreO) {
-            // console.log('current score O:', bestScoreO);
-            bestScore = score;
-            bestMove = move;
-            // console.log('best score O:', bestScoreO);
-            console.log('best move O:', bestMove, score);
+            bestScoreO = score;
+            bestMoveO = move;
+            console.log('Update O move:', bestScoreO, move);
           }
         }
       } else {
-        // console.log('in the else')
-        bestMove = this.minimax(nextBoard, !isXNext, loopNumber + 1);
+        this.minimax(nextBoard, !isXNext);
       }
-      // console.log('BEST MOVE:', loopNumber, bestMove);
-
     })
-
-    // const bestScore = isXNext ? bestScoreX : bestScoreO
-
-    // const bestMove = isXNext ? bestMoveX : bestMoveO
-    console.log('FINALLY:', loopNumber, marker, bestMove,
-      bestScore);
+    const bestMove = isXNext ? bestMoveX : bestMoveO;
+    console.log('x / o:', bestMoveX, bestMoveO);
+    console.log(`FIN: Player: ${marker}, Move: ${bestMove}`);
     return bestMove;
   },
 
