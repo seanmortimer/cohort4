@@ -9,27 +9,27 @@ beforeEach(() => {
             '', '', '',
             '', '', ''
         ],
-        open1: [        // for X 6, O 6
+        open1: [        
             'X', 'O', 'O',
             'X', 'O', 'O',
             '', 'X', 'X'
         ],
-        open2: [        // for X 4, O 4
+        open2: [        
             'X', 'O', 'O',
             '', '', 'X',
             'O', 'X', 'X'
         ],
-        open2b: [        // for X 6 , O 7
+        open2b: [        
             'X', 'O', 'X',
             'X', 'O', 'O',
             '', '', 'X'
         ],
-        open3: [        // for X 8, O 8
+        open3: [        
             'O', 'X', 'O',
             '', 'O', '',
             'X', 'X', ''
         ],
-        open3B: [        // for X 8, O 8
+        open3B: [        
             'O', '', 'X',
             'X', '', '',
             'X', 'O', 'O'
@@ -60,12 +60,10 @@ beforeEach(() => {
             'O', 'X', 'X'
         ]
     }
-    // console.log('before boards:', boards);
 });
 
 afterEach(() => {
     boards = null;
-    // console.log('after boards:', boards);
 });
 
 
@@ -96,20 +94,20 @@ test('Minimax score function', () => {
     expect(ai.getScore(boards.tie)).toBe(0);
 });
 
-test.skip('test minimax function', () => {
-    // expect(ai.minimax(boards.open1, false).move).toBe(6);
-    // expect(ai.minimax(boards.open1, true).move).toBe(6);
-    // expect(ai.minimax(boards.open2, false).move).toBe(4);
-    // expect(ai.minimax(boards.open2, true).move).toBe(4);
-    // expect(ai.minimax(boards.open2b, false).move).toBe(7);
-    // expect(ai.minimax(boards.open2b, true).move).toBe(6);
-    // expect(ai.minimax(boards.open3, false).move).toBe(8);
+test('test minimax function', () => {
+    expect(ai.minimax(boards.open1, false)).toBe(-1);
+    expect(ai.minimax(boards.open1, true)).toBe(1);
+    expect(ai.minimax(boards.open2, false)).toBe(-2);
+    expect(ai.minimax(boards.open2, true)).toBe(2);
+    expect(ai.minimax(boards.open2b, false)).toBe(-2);
+    expect(ai.minimax(boards.open2b, true)).toBe(2);
+    expect(ai.minimax(boards.open3, false)).toBe(-3);
 
-    // expect(ai.minimax([
-    //     'O', 'O', '',
-    //     'X', 'X', '',
-    //     '', '', ''
-    // ], false).move).toBe(2);
+    expect(ai.minimax([
+        'O', 'O', '',
+        'X', 'X', '',
+        '', '', ''
+    ], false)).toBe(-5);
     expect(ai.minimax([
         '', '', '',
         '', 'X', 'X',
@@ -187,50 +185,48 @@ test('the make move function', () => {
         'X', 'X', '',
         '', '', ''
     ]);
-
-    console.log('Loops', ai.loops)
 });
 
 
-test.only('Can the random player ever beat minimax? (it shouldn\'t!)', () => {
+test('Can the random player ever beat minimax? (it shouldn\'t!)', () => {
     // X is random player, O is minimax
+    const numGames = 100
     let ties = 0;
     let xWins = 0;
     let oWins = 0;
     let result = null;
-    let totalMoves = 0;
+    // let totalMoves = 0;
 
-    console.log('Playing 1000 games. O (AI) is first')
+    // console.log(`Playing ${numGames} games. X (random) is first`);
 
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < numGames; i++) {
         let hardMode = false;
         let isX = true;
         let currentBoard = boards.empty.slice();
         while (!ai.calculateWinner(currentBoard)) {
-            // for (let i = 0; i < 3; i++) {
-            // console.log(`HM: ${hardMode}, isX: ${isX}, moves: ${totalMoves}`)
             currentBoard = ai.makeMove(currentBoard, isX, hardMode);
             // ai.logBoard(currentBoard);
             hardMode = !hardMode;
             isX = !isX;
-            totalMoves++;
+            // totalMoves++;
         }
 
         result = ai.calculateWinner(currentBoard);
-        // console.log('Winner:', result);
         if (result === 'X') {
             xWins++;
-            console.log('X WON!!!!!!!!!!!!!!');
         }
         if (result === 'O') oWins++;
         if (result === 'T') ties++;
         // ai.logBoard(currentBoard, 'FINISHED');
     }
-    const loops = ai.loops.toLocaleString();
-    totalMoves = totalMoves.toLocaleString();
-    oWins = oWins.toLocaleString();
-    ties = ties.toLocaleString();
-    console.log(`Ties: ${ties}, X won: ${xWins}, O won: ${oWins}`);
-    console.log(`Total moves: ${totalMoves}, loops: ${loops}`);
+    
+    
+    // const loops = ai.loops.toLocaleString();
+    // totalMoves = totalMoves.toLocaleString();
+    // oWins = oWins.toLocaleString();
+    // ties = ties.toLocaleString();
+    // console.log(`Ties: ${ties}, X won: ${xWins}, O won: ${oWins}`);
+    // console.log(`Total moves: ${totalMoves}, loops: ${loops}`);
     expect(xWins).toBe(0);
+    expect(ties + oWins).toBe(numGames);
 });

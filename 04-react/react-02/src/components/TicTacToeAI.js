@@ -8,7 +8,6 @@ const ai = {
         open.push(i);
       }
     });
-    //  console.log('open:', open);
     return open;
   },
 
@@ -17,11 +16,8 @@ const ai = {
     const marker = isXNext ? 'X' : 'O';
     let bestMove = null;
     const open = this.isOpen(board);
-    // if (open.length === 9) {
-    //   console.log('New game!')
-    //   bestMove = this.rando(board);
-    // } 
-     if (open.length === 0) {
+   
+    if (open.length === 0) {
       console.log('No move to make!');
       return board;
     }
@@ -65,10 +61,13 @@ const ai = {
     return newBoard;
   },
 
+  // just a little counter for entertainment purposes
+  loops: 0,
+
   // This function returns the min/max value for a given move
   // Or should it return the next move to make? that makes sense to me
   // Yeah, now it returns the next move to make
-  loops: 0,
+  // Nope, turns out returning the score is much easier
 
   minimax(board, isXNext, depth = 1) {
     this.loops++;
