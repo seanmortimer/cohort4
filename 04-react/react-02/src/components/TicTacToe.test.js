@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, screen, render, act } from '@testing-library/react';
+import { fireEvent, screen, render } from '@testing-library/react';
 import TicTacToe from './TicTacToe';
 
 
