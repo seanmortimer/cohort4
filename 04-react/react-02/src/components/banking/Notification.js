@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 
-
-class Banking extends Component {
+class Notification extends Component {
   render() {
     return (
-      <main>
-        <Title />
-        <DepositWithdraw />
-        {/* <ActCreator></ActCreator> */}
-        {/* <Messages></Messages> */}
-        {/* <ActContainer></ActContainer> // This might not be neccessary? */}
-      </main>
+      <div>
+        <p role="status" id="idDialog">
+          Welcome! Please create an account.
+        </p>
+      </div>
     );
   }
 }
 
-export default Banking;
+export default Notification;

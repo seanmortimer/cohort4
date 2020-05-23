@@ -1,17 +1,13 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import DepositWithdraw from './DepositWithdraw';
+import Notification from './Notification';
 
 
-test('the deposits area is displayed', () => {
-  const { getAllByRole, getByRole, getByLabelText } = render(<DepositWithdraw />);
-  // render(<DepositWithdraw />);
+test('the message area is displayed', () => {
+  const { getAllByRole, getByRole, getByLabelText } = render(<Notification />);
   // screen.debug();
 
-  expect(getByRole('heading').textContent).toBe('Deposit or Withdraw:');
-  expect(getByLabelText(/choose/i).textContent).toBe('Please select an account');
-  expect(getAllByRole('button')[0].textContent).toBe('Deposit');
-  expect(getAllByRole('button')[1].textContent).toBe('Withdraw');
+  expect(getByRole('status').textContent).toBe('Welcome! Please create an account.');
 });
 
 test.todo('another test');

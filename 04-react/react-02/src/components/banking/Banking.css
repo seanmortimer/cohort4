@@ -1,9 +1,21 @@
 main {
-  margin-top: 20px;
-}
-main, main > div, header  {
   font-family: sans-serif;
   padding: 10px;
+  margin-top: 20px;
   border: solid cadetblue; 
   border-radius: 1em;
+}
+
+header  {
+  border: solid cadetblue; 
+  border-radius: 1em;
+  padding: 1%;
+}
+
+main > div {
+  font-family: sans-serif;
+  padding: 10px 25px;
+  border: solid cadetblue; 
+  border-radius: 1em;
+  text-align: left;
 }
