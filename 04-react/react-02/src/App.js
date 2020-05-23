@@ -1,16 +1,17 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import Header from "./components/Header";
-import Game from "./components/TicTacToe";
+import Header from './components/Header';
+import Game from './components/TicTacToe';
 import Banking from './components/banking/Banking';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Banking />
-      {/* <Game /> */}
+      {/* <Banking /> */}
+      <Game />
       {/* <div className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
