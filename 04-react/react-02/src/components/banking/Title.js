@@ -10,7 +10,7 @@ class Title extends Component {
         return (  
             <header>
                 <h1>{title}</h1>
-                <h3>{subTitle}</h3>
+                <h2>{subTitle}</h2>
             </header>
         );
     }

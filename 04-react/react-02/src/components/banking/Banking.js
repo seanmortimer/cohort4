@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Title from './Title'
 
 class Banking extends Component {
     constructor(props) {
