@@ -1,0 +1,9 @@
+main {
+  margin-top: 20px;
+}
+main, main > div, header  {
+  font-family: sans-serif;
+  padding: 10px;
+  border: solid cadetblue; 
+  border-radius: 1em;
+}

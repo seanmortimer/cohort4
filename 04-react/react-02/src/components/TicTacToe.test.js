@@ -16,14 +16,7 @@ test('that the game even renders', () => {
     '', '', '',
     '', '', '',
   ]);
-
 });
-
-// TODO: test repeat click rejections
-test.todo('test repeat click rejection');
-// TODO: test moving through history
-test.todo('test moving through history');
-
 
 test('game 1 -> 1 open square', () => {
   const { getAllByRole, getByRole } = render(<TicTacToe />);
@@ -35,7 +28,7 @@ test('game 1 -> 1 open square', () => {
   fireEvent.click(board[7]);
   fireEvent.click(board[5]);
 
-  const currentBoard = board.map((square) => square.textContent)
+  const currentBoard = board.map((square) => square.textContent);
   expect(currentBoard).toEqual([
     'X', 'O', 'X',
     'O', 'O', 'X',
@@ -53,39 +46,38 @@ test('game 2 -> O wins', () => {
   fireEvent.click(board[1]);
   fireEvent.click(board[5]);
   fireEvent.click(board[8]);
-  fireEvent.click(board[4]);
-  fireEvent.click(board[7]);
 
-  const currentBoard = board.map(square => square.textContent)
+  const currentBoard = board.map((square) => square.textContent);
   expect(currentBoard).toEqual([
-    'X', '', 'X',
-    '', 'X', '',
-    'O', 'O', 'O',
+    'O', 'X', '',
+    'O', 'X', 'X',
+    'O', 'O', 'X',
   ]);
   expect(status).toHaveTextContent('The winner is: Player O!');
-
 });
 
-test.skip('game 3 -> A draw', () => {
+test('game 3 -> A draw', () => {
   const { getAllByRole, getByRole } = render(<TicTacToe />);
-  const board = getAllByRole('button').splice(0, 9)
+  const board = getAllByRole('button').splice(0, 9);
   const status = getByRole('status');
 
   fireEvent.click(board[0]);
-  fireEvent.click(board[1]);
   fireEvent.click(board[2]);
-  fireEvent.click(board[3]);
-  fireEvent.click(board[4]);
-  fireEvent.click(board[8]);
+  fireEvent.click(board[7]);
   fireEvent.click(board[5]);
   fireEvent.click(board[6]);
-  fireEvent.click(board[7]);
 
-  const currentBoard = board.map(square => square.textContent)
+  const currentBoard = board.map((square) => square.textContent);
   expect(currentBoard).toEqual([
     'X', 'O', 'X',
-    'O', 'X', 'X',
-    'O', 'X', 'O'
+    'O', 'O', 'X',
+    'X', 'X', 'O',
   ]);
   expect(status).toHaveTextContent('It\'s a draw!');
 });
+
+
+// TODO: test repeat click rejections
+test.todo('test repeat click rejection');
+// TODO: test moving through history
+test.todo('test moving through history');

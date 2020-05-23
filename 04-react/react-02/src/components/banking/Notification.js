@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Title from './Title';
-import DepositWithdraw from './DepositWithdraw';
-import './Banking.css';
+
 
 class Banking extends Component {
   render() {
