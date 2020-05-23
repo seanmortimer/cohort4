@@ -58,23 +58,33 @@ class Game extends React.Component {
   }
 
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
+    let history = this.state.history.slice(0, this.state.stepNumber + 1);
+    let current = history[history.length - 1];
+    let squares = current.squares.slice();
     if (ai.calculateWinner(squares) || squares[i]) {
       return;
     }
-    if (this.state.xIsNext) {
-      squares[i] = this.state.xIsNext ? 'X' : 'O';
-      this.setState({
+
+    // if (this.state.xIsNext) 
+    if (this.state.xIsNext) squares[i] = this.state.xIsNext ? 'X' : 'O';
+    history = history.slice(0, this.state.stepNumber + 1);
+    current = history[history.length - 1];
+
+    
+    ai.logBoard(squares);
+
+    squares = this.computerTurn(squares).slice();
+    ai.logBoard(squares);
+
+    this.setState(
+       {
         history: history.concat([{
           squares: squares,
         }]),
         stepNumber: history.length,
-        xIsNext: !this.state.xIsNext,
-      });
-    }
-    else this.computerTurn();
+        // xIsNext: !this.state.xIsNext,
+      }
+    );
   }
 
   jumpTo = (step) => {
@@ -85,22 +95,20 @@ class Game extends React.Component {
   }
 
   // Make an ai move for O
-  computerTurn = () => {
+  computerTurn = (board) => {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    // if (ai.calculateWinner(squares) || squares[i]) {
-    //   return;
-    // }
-    const newSquares = ai.makeMove(current.squares, false, true);
+    const newSquares = ai.makeMove(board, false, true);
 
-    this.setState({
-      history: history.concat([{
-        squares: newSquares,
-      }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-    });
+    return newSquares;
+
+    // this.setState({
+    //   history: history.concat([{
+    //     squares: newSquares,
+    //   }]),
+    //   stepNumber: history.length,
+    //   xIsNext: !this.state.xIsNext,
+    // });
   }
 
   render() {
@@ -124,7 +132,6 @@ class Game extends React.Component {
     let status;
     if (winner === 'X' || winner === 'O') {
       status = `The winner is: Player ${winner}!`;
-      console.log('squares:', current.squares);
     } else if (winner === 'T') {
       status = 'It\'s a draw!';
     }
