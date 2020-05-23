@@ -1,4 +1,5 @@
 import React from 'react';
+import ai from './TicTacToeAI'
 
 function Square(props) {
   return (
@@ -60,17 +61,20 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (ai.calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      history: history.concat([{
-        squares: squares,
-      }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-    });
+    if (this.state.xIsNext) {
+      squares[i] = this.state.xIsNext ? 'X' : 'O';
+      this.setState({
+        history: history.concat([{
+          squares: squares,
+        }]),
+        stepNumber: history.length,
+        xIsNext: !this.state.xIsNext,
+      });
+    }
+    else this.computerTurn();
   }
 
   jumpTo = (step) => {
@@ -80,10 +84,29 @@ class Game extends React.Component {
     });
   }
 
+  // Make an ai move for O
+  computerTurn = () => {
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const current = history[history.length - 1];
+    const squares = current.squares.slice();
+    // if (ai.calculateWinner(squares) || squares[i]) {
+    //   return;
+    // }
+    const newSquares = ai.makeMove(current.squares, false, true);
+
+    this.setState({
+      history: history.concat([{
+        squares: newSquares,
+      }]),
+      stepNumber: history.length,
+      xIsNext: !this.state.xIsNext,
+    });
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
+    const winner = ai.calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
       const desc = move ?
@@ -99,16 +122,18 @@ class Game extends React.Component {
     });
 
     let status;
-    if (winner) {
+    if (winner === 'X' || winner === 'O') {
       status = `The winner is: Player ${winner}!`;
-    } else if (!current.squares.filter(e => e === null).length) {
+      console.log('squares:', current.squares);
+    } else if (winner === 'T') {
       status = 'It\'s a draw!';
     }
     else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
+
     return (
-      <div className="game">
+      <div className="game" >
         <div role="status" className="clStatus">{status}</div>
         <div className="clMainGame">
           <Board

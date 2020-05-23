@@ -73,7 +73,6 @@ const ai = {
     // this.loops++;
     let open = this.isOpen(board);
     const marker = isXNext ? 'X' : 'O';
-    let bestScore = null;
     const result = this.calculateWinner(board)
 
     if (result) {
