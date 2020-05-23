@@ -61,23 +61,17 @@ class Game extends React.Component {
     let history = this.state.history.slice(0, this.state.stepNumber + 1);
     let current = history[history.length - 1];
     let squares = current.squares.slice();
+
     if (ai.calculateWinner(squares) || squares[i]) {
       return;
     }
-
-    // if (this.state.xIsNext) 
     if (this.state.xIsNext) squares[i] = this.state.xIsNext ? 'X' : 'O';
     history = history.slice(0, this.state.stepNumber + 1);
     current = history[history.length - 1];
-
-    
-    ai.logBoard(squares);
-
     squares = this.computerTurn(squares).slice();
-    ai.logBoard(squares);
 
     this.setState(
-       {
+      {
         history: history.concat([{
           squares: squares,
         }]),
