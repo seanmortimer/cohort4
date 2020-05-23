@@ -19,3 +19,17 @@ main > div {
   border-radius: 1em;
   text-align: left;
 }
+
+.clCard {
+  padding: 10px;
+  border: solid cadetblue; 
+  border-radius: 1em;
+  min-width: 100px;
+  max-width: 25%;
+  }
+
+
+.clCard>p {
+  display: flex;
+  justify-content: space-between;
+}

@@ -4,6 +4,7 @@ import DepositWithdraw from './DepositWithdraw';
 import Notification from './Notification';
 import ActCreator from './ActCreator';
 import './Banking.css';
+import ActContainer from './ActContainer';
 
 class Banking extends Component {
   render() {
@@ -13,7 +14,7 @@ class Banking extends Component {
         <DepositWithdraw />
         <ActCreator />
         <Notification />
-        {/* <ActContainer></ActContainer> // This might not be neccessary? */}
+        <ActContainer />
       </main>
     );
   }
