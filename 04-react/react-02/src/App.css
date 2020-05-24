@@ -1,18 +1,18 @@
 .clHeader {
   display: flex;
   justify-content: space-evenly;
-  align-items: flex-end;
+  align-items: stretch;
 }
 
-.clHeader>div {
+.clHeader > div {
   font-size: large;
   font-weight: bold;
 }
 
 .clIcon {
   margin: 10px;
-  height: 150px;
-  width:  150px;
+  height: 100px;
+  width:  100px;
   fill: #61dafb;
 }
 

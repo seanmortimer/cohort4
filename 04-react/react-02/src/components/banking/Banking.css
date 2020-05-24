@@ -4,6 +4,7 @@ main {
   margin-top: 20px;
   border: solid cadetblue; 
   border-radius: 1em;
+  min-width: 100%;
 }
 
 header  {
@@ -20,16 +21,49 @@ main > div {
   text-align: left;
 }
 
+#idActContainer  {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+#idCardContainer {
+  margin-left: -20px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#idGroup > h2 {
+  display: float
+  ;
+}
+
 .clCard {
+  margin: 10px;
   padding: 10px;
   border: solid cadetblue; 
   border-radius: 1em;
-  min-width: 100px;
-  max-width: 25%;
+  min-width: 140px;
+  width: 10vw;
+  min-height: 75px;
+  height: 10vh;
   }
 
 
-.clCard>p {
+.clCard > p {
+  display: flex;
+  justify-content: space-between;
+}
+
+#idActTotals {
+  margin-right: -20px;
+  padding: 10px;
+  border: solid cadetblue; 
+  border-radius: 1em;
+}
+
+#idActTotals > p {
   display: flex;
   justify-content: space-between;
 }
