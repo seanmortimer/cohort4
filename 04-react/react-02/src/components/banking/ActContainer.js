@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import ActCards from './ActCards';
+import ActCard from './ActCard';
 import ActTotals from './ActTotals';
 
 class ActContainer extends Component {
   render() {
+    const acts = this.props.accounts.map((act) =>
+      <ActCard key={act.actName} act={act} />);
     return (
       <div>
         <h2>Your Accounts</h2>
-        <div id="idActContainer" role="group">
+        <div id="idActContainer">
           <div id="idCardContainer">
-            <ActCards />
-            <ActCards />
-            <ActCards />
-            <ActCards />
+            {acts}
           </div>
-          <ActTotals />
+          <ActTotals accounts={this.props.accounts} />
         </div>
       </div>
     );

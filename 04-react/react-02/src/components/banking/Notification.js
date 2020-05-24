@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 class Notification extends Component {
   render() {
     return (
-      <div>
+      <div id="idNotify">
         <p role="status" id="idDialog">
-          Welcome! Please create an account.
+          {/* <p role="status" id="idDialog" style={{color: 'blue'}}> */}
+          {this.props.message}
         </p>
       </div>
     );

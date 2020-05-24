@@ -21,6 +21,35 @@ main > div {
   text-align: left;
 }
 
+#idDepWd {
+  text-align: center;
+}
+
+#idDepWd > h3 {
+  text-align: left;
+}
+
+label {
+  display: flex;
+}
+
+#idDepWd input {
+  text-align: right;
+}
+
+
+#idActSelect {
+  margin: auto 5px auto 10px;
+}
+
+#idActCreate {
+  padding-bottom: 2rem;
+}
+
+#idNotify {
+  font-weight: 700;
+}
+
 #idActContainer  {
   padding: 0;
   display: flex;
@@ -35,8 +64,7 @@ main > div {
 }
 
 #idGroup > h2 {
-  display: float
-  ;
+  display: float;
 }
 
 .clCard {
@@ -44,9 +72,9 @@ main > div {
   padding: 10px;
   border: solid cadetblue; 
   border-radius: 1em;
-  min-width: 140px;
+  min-width: 160px;
   width: 10vw;
-  min-height: 75px;
+  min-height: 100px;
   height: 10vh;
   }
 
@@ -58,6 +86,7 @@ main > div {
 
 #idActTotals {
   margin-right: -20px;
+  min-width: 30%;
   padding: 10px;
   border: solid cadetblue; 
   border-radius: 1em;

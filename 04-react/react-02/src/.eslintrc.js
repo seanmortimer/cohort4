@@ -25,10 +25,14 @@ module.exports = {
   ],
   rules: {
     'linebreak-style': ['error','windows'],
+    'implicit-arrow-linebreak': 0,
+    'class-methods-use-this': 0,
     'react/jsx-filename-extension':
       [1, { extensions: ['.js', '.jsx'] }],
     'react/prefer-stateless-function': 'off',
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
+    "react/jsx-one-expression-per-line": [1, { allow: "single-child" }]
+
   },
 };

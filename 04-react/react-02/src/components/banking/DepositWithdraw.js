@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
 
 class DepositWithdraw extends Component {
+  // actList(props) {
+  //   console.log('accts :>> ', props.accounts);
+  //   // props.accounts
+  // }
+
   render() {
+    const acts = [];
     const label = 'Deposit or Withdraw:';
+
+    this.props.accounts.forEach((act) => {
+      acts.push(
+        <option key={act.actName}>{act.actName}</option>,
+      );
+    });
+
     return (
-      <div>
+      <div id="idDepWd">
         <h3>{label}</h3>
         <form>
           <label htmlFor="idActSelect">
@@ -14,15 +27,10 @@ class DepositWithdraw extends Component {
               placeholder="Please select an account"
               defaultValue="Please select an account"
             >
-              <option
-                value="Please select an account"
-                disabled
-              >
-                Please select an account
-              </option>
+              {acts}
             </select>
+            <input label="amnt" type="text" placeholder="enter amount" />
           </label>
-          <input label="amnt" type="text" placeholder="enter amount" />
           <p>
             <button type="button">Deposit</button>
             <button type="button">Withdraw</button>

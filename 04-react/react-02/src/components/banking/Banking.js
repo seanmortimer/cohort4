@@ -8,14 +8,14 @@ import ActContainer from './ActContainer';
 
 
 const ACCOUNTS = [
-  { actName: 'Chequing', balance: 500 },
-  { actName: 'Savings', balance: 1000 },
+  { actName: 'Chequing', balance: 500.01 },
+  { actName: 'Savings', balance: 1000.02 },
   { actName: 'Vacation', balance: 2000 },
   { actName: 'Napkins', balance: 3000 },
   { actName: 'Sauce', balance: 5000 },
 ];
 
-const MESSAGE = 'Welcome! Please create an account.'
+const MESSAGE = 'Welcome! Please create an account.';
 
 class Banking extends Component {
   render() {
@@ -25,12 +25,11 @@ class Banking extends Component {
         <DepositWithdraw accounts={ACCOUNTS} />
         <ActCreator />
         <Notification message={MESSAGE} />
-        <ActContainer account={ACCOUNTS} />
+        <ActContainer accounts={ACCOUNTS} />
       </main>
     );
   }
 }
-
 
 
 export default Banking;
