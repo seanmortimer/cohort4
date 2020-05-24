@@ -3,15 +3,22 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import DepositWithdraw from './DepositWithdraw';
 
+const accounts = [
+  { actName: 'Chequing', balance: 500.01 },
+  { actName: 'Savings', balance: 1000.02 },
+  { actName: 'Vacation', balance: 2000 },
+  { actName: 'Napkins', balance: 3000 },
+  { actName: 'Sauce', balance: 5000 },
+];
 
 test('the deposits area is displayed', () => {
-  const { getAllByRole, getByRole, getByLabelText } = render(<DepositWithdraw />);
+  render(<DepositWithdraw accounts={accounts} />);
   // screen.debug();
 
-  expect(getByRole('heading').textContent).toBe('Deposit or Withdraw:');
+  expect(screen.getByRole('heading').textContent).toBe('Deposit or Withdraw:');
   // expect(getByLabelText(/choose/i).textContent).toBe('Please select an account');
-  expect(getAllByRole('button')[0].textContent).toBe('Deposit');
-  expect(getAllByRole('button')[1].textContent).toBe('Withdraw');
+  expect(screen.getAllByRole('button')[0].textContent).toBe('Deposit');
+  expect(screen.getAllByRole('button')[1].textContent).toBe('Withdraw');
 });
 
-test.todo('another test');
+test.todo('test without dummy data');

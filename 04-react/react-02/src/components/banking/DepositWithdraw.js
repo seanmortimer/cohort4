@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 
 class DepositWithdraw extends Component {
-  // actList(props) {
-  //   console.log('accts :>> ', props.accounts);
-  //   // props.accounts
-  // }
-
   render() {
     const acts = [];
     const label = 'Deposit or Withdraw:';
@@ -27,7 +22,9 @@ class DepositWithdraw extends Component {
               placeholder="Please select an account"
               defaultValue="Please select an account"
             >
-              {acts}
+              {acts.length
+                ? acts
+                : <option key="0">Please select an account</option>}
             </select>
             <input label="amnt" type="text" placeholder="enter amount" />
           </label>

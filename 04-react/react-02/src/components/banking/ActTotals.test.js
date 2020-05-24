@@ -23,3 +23,12 @@ test('the account totals are diplayed', () => {
   expect(screen.getByText(/sauce/i).textContent).toBe('Sauce:$ 5,000.00');
   expect(screen.getByText(/chequing/i).textContent).toBe('Chequing:$ 500.01');
 });
+
+test('that empty account array doesn\'t break things', () => {
+  render(<ActTotals accounts={[]} />);
+  // screen.debug();
+
+  expect(screen.getAllByRole('heading')[0].textContent).toBe('Detailed Information');
+  expect(screen.getAllByRole('heading')[1].textContent).toBe('Highest balance account:');
+  expect(screen.getAllByRole('heading')[2].textContent).toBe('Lowest balance account:');
+});
