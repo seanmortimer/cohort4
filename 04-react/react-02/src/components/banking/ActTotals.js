@@ -14,7 +14,6 @@ class ActTotals extends Component {
       if (acc.balance > act.balance) return act;
       return acc;
     }, acts[0]);
-    console.log('acts[0] :>> ', lowest);
     return lowest;
   }
 

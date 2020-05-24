@@ -26,7 +26,6 @@ class Banking extends Component {
       notif: { action: 'null', msg: '' },
     };
     this.handleActCreate = this.handleActCreate.bind(this);
-
   }
 
   handleActCreate(newAct) {
