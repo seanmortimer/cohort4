@@ -4,10 +4,10 @@ import Notification from './Notification';
 
 
 test('the message area is displayed', () => {
-  const { getAllByRole, getByRole, getByLabelText } = render(<Notification />);
+  render(<Notification message="Welcome! Please create an account." />);
   // screen.debug();
 
-  expect(getByRole('status').textContent).toBe('Welcome! Please create an account.');
+  expect(screen.getByRole('status').textContent).toBe('Welcome! Please create an account.');
 });
 
 test.todo('another test');

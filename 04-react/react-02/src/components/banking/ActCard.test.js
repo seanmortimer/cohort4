@@ -20,6 +20,6 @@ test('the card shows the right info - Savings', () => {
 
   // screen.debug();
   expect(getByRole('heading').textContent).toBe('Savings');
-  expect(getByText(/balance/i).textContent).toBe('Balance:$ 1500.00');
+  expect(getByText(/balance/i).textContent).toBe('Balance:$ 1,500.00');
   expect(getByRole('button').textContent).toBe('Delete Account');
 });
