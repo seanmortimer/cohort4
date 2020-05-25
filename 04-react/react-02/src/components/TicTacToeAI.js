@@ -8,6 +8,7 @@ const ai = {
         open.push(i);
       }
     });
+
     return open;
   },
 
@@ -16,45 +17,43 @@ const ai = {
     const marker = isXNext ? 'X' : 'O';
     let bestMove = null;
     const open = this.isOpen(board);
-   
+
     if (open.length === 0) {
-      console.log('No move to make!');
+      // console.log('No move to make!');
       return board;
     }
-    else {
-      if (isHardModeOn) {
-
-        if (isXNext) {
-          let bestScore = -Infinity;
-          open.forEach(move => {
-            const nextBoard = board.slice();
-            nextBoard[move] = marker;
-            const score = this.minimax(nextBoard, isXNext);
-            if (score > bestScore) {
-              bestScore = score;
-              bestMove = move;
-            }
-          })
-        } else {
-          let bestScore = Infinity;
-          open.forEach(move => {
-            const nextBoard = board.slice();
-            nextBoard[move] = marker;
-            // console.log('doing min move:', move, 'for', marker);
-            const score = this.minimax(nextBoard, !isXNext);
-            if (score < bestScore) {
-              bestScore = score;
-              bestMove = move;
-            }
-          })
-        }
-      }
-
-      if (!isHardModeOn) {
-        bestMove = this.rando(board);
-        // console.log('Random:', marker, move);
+    if (isHardModeOn) {
+      if (isXNext) {
+        let bestScore = -Infinity;
+        open.forEach((move) => {
+          const nextBoard = board.slice();
+          nextBoard[move] = marker;
+          const score = this.minimax(nextBoard, isXNext);
+          if (score > bestScore) {
+            bestScore = score;
+            bestMove = move;
+          }
+        });
+      } else {
+        let bestScore = Infinity;
+        open.forEach((move) => {
+          const nextBoard = board.slice();
+          nextBoard[move] = marker;
+          // console.log('doing min move:', move, 'for', marker);
+          const score = this.minimax(nextBoard, !isXNext);
+          if (score < bestScore) {
+            bestScore = score;
+            bestMove = move;
+          }
+        });
       }
     }
+
+    if (!isHardModeOn) {
+      bestMove = this.rando(board);
+      // console.log('Random:', marker, move);
+    }
+
     const newBoard = board.slice();
     newBoard[bestMove] = marker;
 
@@ -71,104 +70,103 @@ const ai = {
 
   minimax(board, isXNext, depth = 1) {
     // this.loops++;
-    let open = this.isOpen(board);
+    const open = this.isOpen(board);
     const marker = isXNext ? 'X' : 'O';
-    const result = this.calculateWinner(board)
+    const result = this.calculateWinner(board);
 
     if (result) {
-      let score = this.getScore(board);
+      const score = this.getScore(board);
       return score;
     }
     if (isXNext) {
       let bestScore = -Infinity;
-      open.forEach(move => {
+      open.forEach((move) => {
         // const attempt = `Trying ${marker} to square ${move}, depth ${depth}`;
         // console.log(attempt);
         const nextBoard = board.slice();
         nextBoard[move] = marker;
         const score = this.minimax(nextBoard, false, depth + 1);
         bestScore = Math.max(score, bestScore);
-      })
-      return bestScore;
-
-    } else {
-      let bestScore = Infinity;
-      open.forEach(move => {
-        const nextBoard = board.slice();
-        nextBoard[move] = marker;
-        const score = this.minimax(nextBoard, true, depth + 1);
-        bestScore = Math.min(score, bestScore);
-      })
+      });
       return bestScore;
     }
-
-    // Here lies the original logic that almost worked. When you have a moment you should
-    // see if you can find the flaws
-    // open.forEach((move) => {
-    //   const attempt = `Trying ${marker} to square ${move}, depth ${depth}`
-    //   // console.log(attempt)
-
-    //   const nextBoard = board.slice();
-    //   nextBoard[move] = marker;
-
-    //   const result = this.calculateWinner(nextBoard)
-
-    //   if (result) {
-    //     let score = this.getScore(nextBoard);
-    //     // console.log('score:', score);
-    //     if (isXNext) {
-    //       if (score > bestX.score) {
-    //         console.log('X scored:', score, 'depth', depth);
-    //         // console.log(`bsX before: ${marker} ${bestX.score}, score: ${score}, depth: ${depth}`);
-    //         bestX = Object.assign({}, { score, move });
-    //       }
-    //       // console.log(`bsX after score: ${bestX.score}, move: ${bestX.move}, depth: ${depth}`);
-
-    //     } else if (!isXNext) {
-    //       if (score < bestO.score) {
-    //         console.log('O scored:', score, 'depth:', depth);
-    //         // console.log(`bsO before: ${marker} ${bestO.score}, score: ${score}, depth: ${depth}`);
-    //         bestO = Object.assign({}, { score, move });
-    //         console.log('updating best o final to score:', bestO.score, 'depth:', depth);
-
-    //       }
-    //       console.log(`bsO after score: ${bestO.score}, move: ${bestO.move}, depth: ${depth}`);
-    //     }
-    //   } else {
-    //     // console.log(`ELSE: ${marker} to square ${move}, depth ${depth}, result ${result}`)
-    //     const m = this.minimax(nextBoard, !isXNext, depth + 1);
-    //     if (isXNext) {
-    //       if (m.score > bestX.score) bestX = Object.assign({}, m);
-    //     }
-    //     if (!isXNext) {
-    //       if (depth === 1) console.log('DEPTH 1')
-    //       console.log('m score:', m.score, 'best O score', bestO.score, 'depth', depth);
-    //       if (m.score < bestO.score) {
-    //         bestO = Object.assign({}, m)
-    //         console.log('updating best o to score:', bestO.score, 'depth:', depth);
-    //       }
-    //     }
-    //   }
-    //   // if (isXNext  ) console.log(`At depth ${depth} our best for X is move ${bestX.move}, score ${bestX.score}`)
-    //   // if (!isXNext ) console.log(`At depth ${depth} our best for O is move ${bestO.move}, score ${bestO.score}`)
-    // })
-
-    // // console.log(`FIN: Player: ${marker}, BMove: ${bestMove} Depth: ${depth}`);
-    // if (isXNext) return bestX;
-    // else return bestO;
-    // const bestMove = isXNext ? bestMoveX : bestMoveO;
-    // const bestScore = isXNext ? bestScoreX : bestScoreO;
-    // console.log('x / o:', bestMoveX, bestMoveO);
-    //  ScoreX: ${bestScoreX}, ScoreO: ${bestScoreO}`);
-
-
+    let bestScore = Infinity;
+    open.forEach((move) => {
+      const nextBoard = board.slice();
+      nextBoard[move] = marker;
+      const score = this.minimax(nextBoard, true, depth + 1);
+      bestScore = Math.min(score, bestScore);
+    });
+    return bestScore;
   },
+
+  // Here lies the original logic that almost worked. When you have a moment you should
+  // see if you can find the flaws
+  // open.forEach((move) => {
+  //   const attempt = `Trying ${marker} to square ${move}, depth ${depth}`
+  //   // console.log(attempt)
+
+  //   const nextBoard = board.slice();
+  //   nextBoard[move] = marker;
+
+  //   const result = this.calculateWinner(nextBoard)
+
+  //   if (result) {
+  //     let score = this.getScore(nextBoard);
+  //     // console.log('score:', score);
+  //     if (isXNext) {
+  //       if (score > bestX.score) {
+  //         console.log('X scored:', score, 'depth', depth);
+  //         // console.log(`bsX before: ${marker} ${bestX.score}, score: ${score},
+  //            depth: ${depth}`);
+  //         bestX = Object.assign({}, { score, move });
+  //       }
+  //       // console.log(`bsX after score: ${bestX.score}, move: ${bestX.move},
+  //          depth: ${depth}`);
+  //     } else if (!isXNext) {
+  //       if (score < bestO.score) {
+  //         console.log('O scored:', score, 'depth:', depth);
+  //         // console.log(`bsO before: ${marker} ${bestO.score}, score: ${score},
+  //           depth: ${depth}`);
+  //         bestO = Object.assign({}, { score, move });
+  //         console.log('updating best o final to score:', bestO.score, 'depth:', depth);
+  //       }
+  //       console.log(`bsO after score: ${bestO.score}, move: ${bestO.move}, depth: ${depth}`);
+  //     }
+  //   } else {
+  //     // console.log(`ELSE: ${marker} to square ${move}, depth ${depth}, result ${result}`)
+  //     const m = this.minimax(nextBoard, !isXNext, depth + 1);
+  //     if (isXNext) {
+  //       if (m.score > bestX.score) bestX = Object.assign({}, m);
+  //     }
+  //     if (!isXNext) {
+  //       if (depth === 1) console.log('DEPTH 1')
+  //       console.log('m score:', m.score, 'best O score', bestO.score, 'depth', depth);
+  //       if (m.score < bestO.score) {
+  //         bestO = Object.assign({}, m)
+  //         console.log('updating best o to score:', bestO.score, 'depth:', depth);
+  //       }
+  //     }
+  //   }
+  //   // if (isXNext  ) console.log(`At depth ${depth} our best for X is move ${bestX.move},
+  //       score ${bestX.score}`)
+  //   // if (!isXNext ) console.log(`At depth ${depth} our best for O is move ${bestO.move},
+  //        score ${bestO.score}`)
+  // })
+
+  // // console.log(`FIN: Player: ${marker}, BMove: ${bestMove} Depth: ${depth}`);
+  // if (isXNext) return bestX;
+  // else return bestO;
+  // const bestMove = isXNext ? bestMoveX : bestMoveO;
+  // const bestScore = isXNext ? bestScoreX : bestScoreO;
+  // console.log('x / o:', bestMoveX, bestMoveO);
+  //  ScoreX: ${bestScoreX}, ScoreO: ${bestScoreO}`);
 
   getScore(board) {
     const scores = {
       X: 1,
       O: -1,
-      T: 0
+      T: 0,
     };
     const result = this.calculateWinner(board);
     const score = (1 + this.isOpen(board).length) * scores[result];
@@ -199,7 +197,6 @@ const ai = {
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
         return board[a];
       }
-
     }
     if (this.isOpen(board).length === 0) {
       return 'T';
@@ -208,12 +205,11 @@ const ai = {
   },
 
   // Helper function to make a pretty console log of a board
-  logBoard(board, text = '') {
-    console.log(text + '\n',
-      board.slice(0, 3), '\n',
-      board.slice(3, 6), '\n',
-      board.slice(6), '\n'
-    );
-  }
-}
+  // logBoard(board, text = '') {
+  //   console.log(`${text}\n`,
+  //     board.slice(0, 3), '\n',
+  //     board.slice(3, 6), '\n',
+  //     board.slice(6), '\n');
+  // },
+};
 export default ai;

@@ -27,6 +27,7 @@ module.exports = {
     'linebreak-style': ['error','windows'],
     'implicit-arrow-linebreak': 0,
     'class-methods-use-this': 0,
+    'no-plusplus': ["error", { "allowForLoopAfterthoughts": true }],
     'react/jsx-filename-extension':
       [1, { extensions: ['.js', '.jsx'] }],
     'react/prefer-stateless-function': 'off',
