@@ -10,6 +10,7 @@ class ActCreator extends Component {
     e.preventDefault();
     const actName = e.target.actName.value;
     this.props.onNewAct(actName);
+    e.target.actName.value = '';
   }
 
   render() {

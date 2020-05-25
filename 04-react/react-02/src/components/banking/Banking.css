@@ -40,6 +40,7 @@ label {
 
 #idActSelect {
   margin: auto 5px auto 10px;
+  min-width: 100px;
 }
 
 #idActCreate {
@@ -49,6 +50,10 @@ label {
 #idNotify {
   font-weight: 700;
   font-size: 1.2em;
+}
+
+.clWarn {
+  color: red;
 }
 
 #idActContainer  {

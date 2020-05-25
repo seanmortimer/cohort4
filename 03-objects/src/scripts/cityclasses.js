@@ -89,7 +89,7 @@ class Community {
         }
 
         const city = new City(key, name, lat, long, pop);
-        this.cities.push(city); 
+        this.cities.push(city);
         return key;
     }
 

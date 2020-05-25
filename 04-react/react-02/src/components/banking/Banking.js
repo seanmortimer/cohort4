@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { Component } from 'react';
 import Title from './Title';
 import DepositWithdraw from './DepositWithdraw';
@@ -23,27 +24,60 @@ class Banking extends Component {
     // const welcoMsg = 'Welcome! Please create an account.';
     this.state = {
       accounts: [],
-      notif: { action: 'null', msg: '' },
+      notif: { action: 'welco', actName: '', amnt: null },
     };
     this.handleActCreate = this.handleActCreate.bind(this);
+    this.handleActDelete = this.handleActDelete.bind(this);
+    this.handleDepWithdraw = this.handleDepWithdraw.bind(this);
   }
 
   handleActCreate(newAct) {
+    if (!newAct) return;
     const accounts = this.state.accounts.slice();
-    accounts.push({ actName: newAct, balance: 0 });
+    const dupe = accounts.filter((act) => (newAct === act.actName));
+    if (dupe.length > 0) {
+      this.setState(() => ({ notif: { action: 'actExists', actName: newAct } }));
+      return;
+    }
+    accounts.push({ actName: newAct, key: newAct, balance: 0 });
+    this.setState(() => ({
+      accounts,
+      notif: { action: 'newAct', actName: newAct },
+    }));
+  }
+
+  handleActDelete(delAct) {
+    const accounts = this.state.accounts.filter((act) => delAct !== act.key);
     this.setState(() => ({ accounts }));
+  }
+
+  handleDepWithdraw(actName, amnt) {
+    if (!amnt.match(/^[0-9]+$/)) {
+      this.setState(() => ({ notif: { action: 'nan' } }));
+      return;
+    }
+    amnt = Number(amnt).toFixed(2);
+    console.log('this.state.accounts :>> ', this.state.accounts);
+    const accounts = this.state.accounts.map((a) => {
+      if (a.actName === actName) a.balance += amnt;
+      return a;
+    });
+    console.log('accounts :>> ', accounts);
+    if (amnt > 0) {
+      // this.setState(() => ({ accounts, notif: { action: 'dep', actName, amnt } }));
+    }
   }
 
   render() {
     const acts = this.state.accounts.map((act) =>
-      <ActCard key={act.actName} act={act} />);
+      <ActCard key={act.actName} act={act} onDel={this.handleActDelete} />);
 
     return (
       <main>
         <Title />
-        <DepositWithdraw accounts={this.state.accounts} />
+        <DepositWithdraw accounts={this.state.accounts} onDW={this.handleDepWithdraw} />
         <ActCreator onNewAct={this.handleActCreate} />
-        <Notification msg={this.state.notif} />
+        <Notification notif={this.state.notif} />
         <div>
           <h2>Your Accounts</h2>
           <div id="idActContainer">
