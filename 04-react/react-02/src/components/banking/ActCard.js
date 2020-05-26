@@ -24,10 +24,7 @@ class ActCard extends Component {
         <h3>{actName}</h3>
         <p>
           Balance:
-          <span>
-            $
-            {this.prettyBalance(balance)}
-          </span>
+          <span>$ {this.prettyBalance(balance)}</span>
         </p>
         <button type="button" onClick={this.handleDelAct}>Delete Account</button>
       </div>

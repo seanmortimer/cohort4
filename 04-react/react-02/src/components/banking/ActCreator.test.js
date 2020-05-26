@@ -2,19 +2,21 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import ActCreator from './ActCreator';
 
+const mockNewActCallback = jest.fn();
+
 
 test('the message area is displayed', () => {
-  render(<ActCreator />);
-  // debug();
+  render(<ActCreator onNewAct={mockNewActCallback} />);
 
-  expect(getByRole('heading').textContent).toBe('Create new account:');
-  expect(getByRole('button').textContent).toBe('Create Account');
+  expect(screen.getByRole('heading')).toHaveTextContent('Create new account:');
+  expect(screen.getByRole('button')).toHaveTextContent('Create Account');
 });
 
-test.todo('You can create an account', () => {
-  render(<ActCreator />);
+test('nothing happens with empty input', () => {
+  render(<ActCreator onNewAct={mockNewActCallback} />);
 
-  
+  const createBtn = screen.getByRole('button');
+  fireEvent.click(createBtn);
+  expect(createBtn).toBeVisible();
+  expect(mockNewActCallback).not.toHaveBeenCalled();
 });
-
-test.todo('duplicate names are rejected');

@@ -7,6 +7,7 @@ module.exports = {
     'plugin:react/recommended',
     'airbnb',
     'plugin:jest/recommended',
+    'plugin:jest-dom/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -22,6 +23,7 @@ module.exports = {
   plugins: [
     'react',
     'jest',
+    'jest-dom',
   ],
   rules: {
     'linebreak-style': ['error','windows'],
@@ -32,6 +34,6 @@ module.exports = {
     'react/prefer-stateless-function': 'off',
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
-    "react/jsx-one-expression-per-line": [0, { allow: "single-child" }]
+    "react/jsx-one-expression-per-line": [0, { allow: "single-child" }],
   },
 };

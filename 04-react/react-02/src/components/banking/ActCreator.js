@@ -8,6 +8,7 @@ class ActCreator extends Component {
 
   handleNewAct(e) {
     e.preventDefault();
+    if (!e.target.actName) return;
     const actName = e.target.actName.value;
     this.props.onNewAct(actName);
     e.target.actName.value = '';
