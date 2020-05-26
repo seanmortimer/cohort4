@@ -17,15 +17,15 @@ import Banking from './Banking';
 test('the page displays properly with no accounts', () => {
   render(<Banking />);
   // screen.debug();
-  expect(screen.getByText(/bank and bbq/i).textContent).toBe('Sean\'s Bank and BBQ Shack');
-  expect(screen.getByText(/serving high interest/i).textContent)
-    .toBe('Calgary\'s only financial institution serving high interest and tasty BBQ!');
+  expect(screen.getByText(/bank and bbq/i)).toHaveTextContent('Sean\'s Bank and BBQ Shack');
+  expect(screen.getByText(/serving high interest/i))
+    .toHaveTextContent('Calgary\'s only financial institution serving high interest and tasty BBQ!');
 
   const depTitle = screen.getByText(/deposit or withdraw/i).textContent;
   expect(depTitle).toBe('Deposit or Withdraw:');
   const actSelect = screen.getAllByLabelText(/choose an account/i);
   // console.log('actSelect :>> ', actSelect[0].textContent);
-  expect(actSelect[0].textContent).toBe('Please select an account');
+  expect(actSelect[0]).toHaveTextContent('Please select an account');
   expect(actSelect[1].outerHTML).toContain('enter amount');
 
   const welcoMsg = screen.getByRole('status').textContent;
