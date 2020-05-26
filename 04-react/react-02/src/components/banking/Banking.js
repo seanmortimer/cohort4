@@ -46,9 +46,7 @@ class Banking extends Component {
   }
 
   handleActDelete(delAct) {
-    console.log('delAct :>> ', delAct);
     const accounts = this.state.accounts.filter((act) => delAct !== act.key);
-    console.log('accounts :>> ', accounts);
     this.setState(() => ({ accounts }));
   }
 

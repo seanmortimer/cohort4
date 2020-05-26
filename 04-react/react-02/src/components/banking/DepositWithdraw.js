@@ -39,7 +39,7 @@ class DepositWithdraw extends Component {
   render() {
     const label = 'Deposit or Withdraw:';
     let acts = [];
-      // <option key="0" disabled hidden>Please select an account</option>];
+    // <option key="0" disabled hidden>Please select an account</option>];
     acts = acts.concat(this.props.accounts.map((act) =>
       <option key={act.actName}>{act.actName}</option>));
 
