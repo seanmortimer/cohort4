@@ -175,6 +175,7 @@ const ai = {
 
   rando(board) {
     const open = this.isOpen(board);
+    if (!open.length) return null;
     const min = 0;
     const max = open.length - 1;
     const rand = Math.floor(Math.random() * (max - min + 1)) + min;
