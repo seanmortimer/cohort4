@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 
 class Notification extends Component {
   render() {
-    const { action, actName } = this.props.notif;
-    let { amnt } = this.props.notif;
-    // if (amnt) amnt = amnt.toFixed(2);
+    const { action, actName, amnt } = this.props.notif;
     let msg = null;
     // console.log('actions :>> ', action);
     switch (action) {
@@ -18,10 +16,10 @@ class Notification extends Component {
         msg = <p className="clWarn">An account named {actName} already exists.</p>;
         break;
       case 'dep':
-        msg = <p>$ {amnt} has been deposited to {actName}.</p>;
+        msg = <p>$ {amnt.toFixed(2)} has been deposited to {actName}.</p>;
         break;
       case 'wd':
-        msg = <p>$ {amnt} has been withdrawm from {actName}.</p>;
+        msg = <p>$ {amnt.toFixed(2)} has been withdrawm from {actName}.</p>;
         break;
       case 'nan':
         msg = <p className="clWarn">I generally find it easier to work with numbers.</p>;

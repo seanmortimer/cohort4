@@ -5,34 +5,48 @@ class DepositWithdraw extends Component {
     super(props);
     this.onDep = this.onDep.bind(this);
     this.onWd = this.onWd.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onDep() {
-    const amnt = this.amnt.value;
+    let amnt = this.amnt.value;
     const act = this.props.accounts.find((a) => a.actName === this.act.value);
     if (!act || !amnt) return;
-    // this.props.onDW(act, Number(amnt));
+    if (!amnt.match(/^[0-9]+$/)) {
+      this.props.onDW(act, null);
+      return;
+    }
+    amnt = Number(amnt);
     this.props.onDW(act, amnt);
+    this.amnt.value = '';
   }
 
   onWd() {
     const amnt = this.amnt.value;
     const act = this.props.accounts.find((a) => a.actName === this.act.value);
-    // this.props.onDW(act, Number(amnt));
-    this.props.onDW(act, amnt);
+    if (!act || !amnt) return;
+    if (!amnt.match(/^[0-9]+$/)) {
+      this.props.onDW(act, null);
+      return;
+    }
+    this.props.onDW(act, amnt * -1);
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
   }
 
   render() {
     const label = 'Deposit or Withdraw:';
-    let acts = [
-      <option key="0" disabled hidden>Please select an account</option>];
+    let acts = [];
+      // <option key="0" disabled hidden>Please select an account</option>];
     acts = acts.concat(this.props.accounts.map((act) =>
       <option key={act.actName}>{act.actName}</option>));
 
     return (
       <div id="idDepWd">
         <h3>{label}</h3>
-        <form>
+        <form onSubmit={this.onSubmit}>
           <label htmlFor="idActSelect">
             Choose an account:
             <select

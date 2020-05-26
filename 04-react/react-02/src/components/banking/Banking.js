@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import React, { Component } from 'react';
 import Title from './Title';
 import DepositWithdraw from './DepositWithdraw';
@@ -51,20 +50,30 @@ class Banking extends Component {
     this.setState(() => ({ accounts }));
   }
 
-  handleDepWithdraw(actName, amnt) {
-    if (!amnt.match(/^[0-9]+$/)) {
+  handleDepWithdraw(act, amnt) {
+    const { actName } = act;
+    if (amnt === null) {
       this.setState(() => ({ notif: { action: 'nan' } }));
       return;
     }
-    amnt = Number(amnt).toFixed(2);
-    console.log('this.state.accounts :>> ', this.state.accounts);
+    // console.log('this.state.accounts :>> ', this.state.accounts);
     const accounts = this.state.accounts.map((a) => {
-      if (a.actName === actName) a.balance += amnt;
+      if (actName === a.actName) {
+        return { actName, balance: a.balance + amnt };
+      }
       return a;
     });
-    console.log('accounts :>> ', accounts);
     if (amnt > 0) {
-      // this.setState(() => ({ accounts, notif: { action: 'dep', actName, amnt } }));
+      this.setState(() => ({
+        accounts,
+        notif: { action: 'dep', actName, amnt },
+      }));
+    }
+    if (amnt < 0) {
+      this.setState(() => ({
+        accounts,
+        notif: { action: 'wd', actName, amnt },
+      }));
     }
   }
 
