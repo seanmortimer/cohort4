@@ -26,7 +26,7 @@ class DepositWithdraw extends Component {
     const amnt = this.amnt.value;
     const act = this.props.accounts.find((a) => a.actName === this.act.value);
     if (!act || !amnt) return;
-    if (!amnt.match(/^[0-9]+$/)) {
+    if (!this.validate(amnt)) {
       this.props.onDW(act, null);
       return;
     }
@@ -38,20 +38,26 @@ class DepositWithdraw extends Component {
   }
 
   validate() {
-    if (!this.amnt.value.match(/^[0-9]+$/)) this.props.onDW(null, 'nan');
+    if (!this.act.value) return false;
+    // console.log('validate :>> ', this.amnt.value);
+    if (!this.amnt.value.match(/^[0-9]+$/)) {
+      this.props.onDW(null, 'nan');
+      return false;
+    }
+    return true;
   }
 
   render() {
     const label = 'Deposit or Withdraw:';
-    let acts = [];
-    // <option key="0" disabled hidden>Please select an account</option>];
+    let acts = [
+      <option key="0" disabled hidden>Please select an account</option>];
     acts = acts.concat(this.props.accounts.map((act) =>
       <option key={act.actName}>{act.actName}</option>));
 
     return (
       <div id="idDepWd">
         <h3>{label}</h3>
-        <form onSubmit={this.onSubmit} onChange={this.validate}>
+        <form onSubmit={this.onSubmit}>
           <label htmlFor="idActSelect">
             Choose an account:
             <select
@@ -70,6 +76,7 @@ class DepositWithdraw extends Component {
               name="amnt"
               type="text"
               placeholder="enter amount"
+              onChange={this.validate}
             />
           </label>
           <p>

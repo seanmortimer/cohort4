@@ -1,3 +1,4 @@
+/* eslint-disable no-multi-spaces */
 import ai from './TicTacToeAI';
 
 let boards = null;
@@ -197,6 +198,7 @@ test('Can the random player ever beat minimax? (it shouldn\'t!)', () => {
   let result = null;
   // let totalMoves = 0;
 
+  // eslint-disable-next-line no-console
   console.log(`Playing ${numGames} games. X (random) is first`);
 
   for (let i = 0; i < numGames; i++) {
