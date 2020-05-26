@@ -46,7 +46,9 @@ class Banking extends Component {
   }
 
   handleActDelete(delAct) {
+    console.log('delAct :>> ', delAct);
     const accounts = this.state.accounts.filter((act) => delAct !== act.key);
+    console.log('accounts :>> ', accounts);
     this.setState(() => ({ accounts }));
   }
 
@@ -59,7 +61,7 @@ class Banking extends Component {
     // console.log('this.state.accounts :>> ', this.state.accounts);
     const accounts = this.state.accounts.map((a) => {
       if (actName === a.actName) {
-        return { actName, balance: a.balance + amnt };
+        return { actName, key: actName, balance: a.balance + amnt };
       }
       return a;
     });
@@ -72,7 +74,7 @@ class Banking extends Component {
     if (amnt < 0) {
       this.setState(() => ({
         accounts,
-        notif: { action: 'wd', actName, amnt },
+        notif: { action: 'wd', actName, amnt: amnt * -1 },
       }));
     }
   }

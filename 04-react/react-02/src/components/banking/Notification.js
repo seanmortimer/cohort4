@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 class Notification extends Component {
+  prettyBalance(amnt) {
+    let a = amnt.toFixed(2).toString();
+    a = a.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+    return a;
+  }
+
   render() {
     const { action, actName, amnt } = this.props.notif;
     let msg = null;
@@ -16,10 +22,10 @@ class Notification extends Component {
         msg = <p className="clWarn">An account named {actName} already exists.</p>;
         break;
       case 'dep':
-        msg = <p>$ {amnt.toFixed(2)} has been deposited to {actName}.</p>;
+        msg = <p>$ {this.prettyBalance(amnt)} has been deposited to {actName}.</p>;
         break;
       case 'wd':
-        msg = <p>$ {amnt.toFixed(2)} has been withdrawm from {actName}.</p>;
+        msg = <p>$ {this.prettyBalance(amnt)} has been withdrawm from {actName}.</p>;
         break;
       case 'nan':
         msg = <p className="clWarn">I generally find it easier to work with numbers.</p>;
