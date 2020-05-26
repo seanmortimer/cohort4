@@ -12,6 +12,9 @@ class Notification extends Component {
     let msg = null;
     // console.log('actions :>> ', action);
     switch (action) {
+      case 'clear':
+        msg = <p />;
+        break;
       case 'welco':
         msg = <p>Welcome! Please create an account.</p>;
         break;

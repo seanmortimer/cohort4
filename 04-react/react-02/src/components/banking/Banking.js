@@ -51,7 +51,7 @@ class Banking extends Component {
   }
 
   handleDepWithdraw(act, amnt) {
-    if (amnt === null) {
+    if (amnt === 'nan') {
       this.setState(() => ({ notif: { action: 'nan' } }));
       return;
     }

@@ -38,9 +38,7 @@ class DepositWithdraw extends Component {
   }
 
   validate() {
-    if (!this.amnt.value.match(/^[0-9]+$/)) {
-      this.props.onDW(null, null);
-    }
+    if (!this.amnt.value.match(/^[0-9]+$/)) this.props.onDW(null, 'nan');
   }
 
   render() {
