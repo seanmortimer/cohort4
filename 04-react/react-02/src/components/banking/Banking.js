@@ -51,11 +51,11 @@ class Banking extends Component {
   }
 
   handleDepWithdraw(act, amnt) {
-    const { actName } = act;
     if (amnt === null) {
       this.setState(() => ({ notif: { action: 'nan' } }));
       return;
     }
+    const { actName } = act;
     // console.log('this.state.accounts :>> ', this.state.accounts);
     const accounts = this.state.accounts.map((a) => {
       if (actName === a.actName) {

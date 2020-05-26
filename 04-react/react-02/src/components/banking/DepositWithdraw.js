@@ -6,6 +6,7 @@ class DepositWithdraw extends Component {
     this.onDep = this.onDep.bind(this);
     this.onWd = this.onWd.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.validate = this.validate.bind(this);
   }
 
   onDep() {
@@ -36,6 +37,12 @@ class DepositWithdraw extends Component {
     e.preventDefault();
   }
 
+  validate() {
+    if (!this.amnt.value.match(/^[0-9]+$/)) {
+      this.props.onDW(null, null);
+    }
+  }
+
   render() {
     const label = 'Deposit or Withdraw:';
     let acts = [];
@@ -46,7 +53,7 @@ class DepositWithdraw extends Component {
     return (
       <div id="idDepWd">
         <h3>{label}</h3>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} onChange={this.validate}>
           <label htmlFor="idActSelect">
             Choose an account:
             <select
