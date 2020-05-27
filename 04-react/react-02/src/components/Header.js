@@ -12,34 +12,62 @@ class Header extends Component {
       active: 'clActive',
       regular: 'clIcon',
     };
+    this.handleNavClick = this.handleNavClick.bind(this);
   }
 
   handleNavClick(e) {
     // console.log('clicked:', e.target);
-    console.log('clicked:', e.target.textContent);
+    // console.log('clicked:', e.target.textContent);
+    // console.log('attr:', e.target.getAttribute('name'));
+    // console.log('name:', e.target.home);
+    this.props.onNavClick(e.target.getAttribute('name'));
   }
 
   render() {
     return (
       <nav className="clHeader">
-        <div key="home" name="home">
-          <Wheel className={this.state.regular} role="link" onClick={this.handleNavClick} />
+        <div>
+          <Wheel
+            className={this.state.regular}
+            role="link"
+            onClick={this.handleNavClick}
+            name="home"
+          />
           <div>Home</div>
         </div>
-        <div key="tictac">
-          <Chainring className={this.state.regular} role="link" onClick={this.handleNavClick} />
+        <div>
+          <Chainring
+            className={this.state.regular}
+            role="link"
+            onClick={this.handleNavClick}
+            name="tictac"
+          />
           <div>Tic Tac Toe</div>
         </div>
-        <div key="banking">
-          <SickWhip className={this.state.regular} role="link" onClick={this.handleNavClick} />
+        <div>
+          <SickWhip
+           className={this.state.regular}
+            role="link"
+            onClick={this.handleNavClick}
+            name="banking"
+          />
           <div>Banking</div>
         </div>
         <div>
-          <Rotor className={this.state.regular} role="link" onClick={this.handleNavClick} />
-          <div>Coming</div>
+          <Rotor
+            className={this.state.regular}
+            role="link"
+            onClick={this.handleNavClick}
+            name="cities"
+          />
+          <div>Cities of The World</div>
         </div>
         <div>
-          <Wheel className={this.state.regular} role="link" onClick={this.handleNavClick} />
+          <Wheel
+            className={this.state.regular}
+            role="link"
+          // onClick={this.handleNavClick}
+          />
           <div>Soon</div>
         </div>
 

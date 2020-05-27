@@ -20,7 +20,15 @@ test('the navigation works', () => {
   // screen.debug();
   expect(screen.getByText('Home')).toBeInTheDocument();
   const nav = screen.getAllByRole('link');
-  // console.log('nav :>> ', nav[0].textContent);
+  fireEvent.click(nav[0]);
+  expect(mockNavCallback).toHaveBeenCalled();
+  expect(mockNavCallback.mock.calls[0][0]).toBe('home');
+  fireEvent.click(nav[1]);
+  expect(mockNavCallback.mock.calls[1][0]).toBe('tictac');
   fireEvent.click(nav[2]);
-  // expect(nav).toBe();
+  expect(mockNavCallback.mock.calls[2][0]).toBe('banking');
+  fireEvent.click(nav[3]);
+  expect(mockNavCallback.mock.calls[3][0]).toBe('cities');
+  fireEvent.click(nav[0]);
+  expect(mockNavCallback.mock.calls[4][0]).toBe('home');
 });
