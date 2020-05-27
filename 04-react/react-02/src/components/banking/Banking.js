@@ -7,20 +7,10 @@ import ActCard from './ActCard';
 import ActTotals from './ActTotals';
 import './Banking.css';
 
-// const ACCOUNTS = [
-//   { actName: 'Chequing', balance: 500.01 },
-//   { actName: 'Savings', balance: 1000.02 },
-//   { actName: 'Vacation', balance: 2000 },
-//   { actName: 'Napkins', balance: 3000 },
-//   { actName: 'Sauce', balance: 5000 },
-// ];
-
-// const MESSAGE = 'Welcome! Please create an account.';
 
 class Banking extends Component {
   constructor(props) {
     super(props);
-    // const welcoMsg = 'Welcome! Please create an account.';
     this.state = {
       accounts: [],
       notif: { action: 'welco', actName: '', amnt: null },

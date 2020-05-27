@@ -5,10 +5,10 @@ class ReactHome extends Component {
   render() {
     return (
       <div className="clReactMain">
+        <h1>Welcome to React!</h1>
+        <h5>Click on a spinning icon to navigate the app</h5>
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and have some fun!.
-        </p>
+        <p>And most importantly, have fun!</p>
         <a
           className="App-link"
           href="https://reactjs.org"

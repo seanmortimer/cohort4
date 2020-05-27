@@ -16,10 +16,7 @@ class Header extends Component {
   }
 
   handleNavClick(e) {
-    // console.log('clicked:', e.target);
-    // console.log('clicked:', e.target.textContent);
-    // console.log('attr:', e.target.getAttribute('name'));
-    // console.log('name:', e.target.home);
+    // e.target.setAttribute('class', 'clActive');
     this.props.onNavClick(e.target.getAttribute('name'));
   }
 
@@ -46,7 +43,7 @@ class Header extends Component {
         </div>
         <div>
           <SickWhip
-           className={this.state.regular}
+            className={this.state.regular}
             role="link"
             onClick={this.handleNavClick}
             name="banking"

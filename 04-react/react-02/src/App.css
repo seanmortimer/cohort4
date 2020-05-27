@@ -17,6 +17,9 @@
 }
 
 .clActive  {
+  margin: 10px;
+  height: 100px;
+  width:  100px;
   fill: #1900a8;
 }
 
