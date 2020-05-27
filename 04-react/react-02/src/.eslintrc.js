@@ -30,6 +30,7 @@ module.exports = {
     'implicit-arrow-linebreak': 0,
     'class-methods-use-this': 0,
     'no-plusplus': ["error", { "allowForLoopAfterthoughts": true }],
+    'object-curly-newline': 0,
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/prefer-stateless-function': 'off',
     'react/prop-types': 'off',

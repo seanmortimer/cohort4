@@ -1,0 +1,8 @@
+.card {
+    min-width: 210px;
+    max-width: 250px;
+}
+
+#idAddWarning {
+    color: crimson;
+}

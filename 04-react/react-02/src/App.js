@@ -5,11 +5,12 @@ import Header from './components/Header';
 import ReactHome from './components/ReactHome';
 import Game from './components/TicTacToe';
 import Banking from './components/banking/Banking';
+import Cities from './components/cities/Cities';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { page: 'home' };
+    this.state = { page: 'cities' };
     this.onNavClick = this.onNavClick.bind(this);
   }
 
@@ -39,7 +40,7 @@ class App extends Component {
         currentPage = <Banking />;
         break;
       case 'cities':
-        // currentPage = <ReactHome />
+        currentPage = <Cities />;
         break;
       default:
         break;
@@ -48,7 +49,15 @@ class App extends Component {
       <div className="App">
         <Header onNavClick={this.onNavClick} />
         {currentPage}
-        <a href="www.seanmortimer.com">seanmortimer.com</a>
+        <footer>A React app by{' '}
+          <a href="http://www.seanmortimer.com">
+            Sean Mortimer
+          </a>
+          {' '}Check out the source code here:{' '}
+          <a href="https://github.com/seanmortimer/cohort4/tree/master/03-objects">
+            github.com/seanmortimer
+          </a>
+        </footer>
       </div>
     );
   }
