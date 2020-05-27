@@ -11,35 +11,40 @@ class Header extends Component {
     this.state = {
       active: 'clActive',
       regular: 'clIcon',
-    }
+    };
+  }
+
+  handleNavClick(e) {
+    // console.log('clicked:', e.target);
+    console.log('clicked:', e.target.textContent);
   }
 
   render() {
     return (
       <nav className="clHeader">
-        <div>
-          <Wheel className={this.state.regular} />
+        <div key="home" name="home">
+          <Wheel className={this.state.regular} role="link" onClick={this.handleNavClick} />
           <div>Home</div>
         </div>
-        <div>
-          <Chainring className={this.state.regular} />
+        <div key="tictac">
+          <Chainring className={this.state.regular} role="link" onClick={this.handleNavClick} />
           <div>Tic Tac Toe</div>
         </div>
-        <div>
-          <SickWhip className={this.state.regular} />
+        <div key="banking">
+          <SickWhip className={this.state.regular} role="link" onClick={this.handleNavClick} />
           <div>Banking</div>
         </div>
         <div>
-          <Rotor className={this.state.regular} />
+          <Rotor className={this.state.regular} role="link" onClick={this.handleNavClick} />
           <div>Coming</div>
         </div>
         <div>
-          <Wheel className={this.state.regular} />
+          <Wheel className={this.state.regular} role="link" onClick={this.handleNavClick} />
           <div>Soon</div>
         </div>
 
       </nav>
-    )
+    );
   }
 }
 

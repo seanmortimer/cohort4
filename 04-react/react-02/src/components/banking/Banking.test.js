@@ -1,10 +1,10 @@
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Banking from './Banking';
 
 
-// const acts1 = [
+// const emptyActs = [];
+// const acts = [
 //   { actName: 'Chequing', balance: 500.01 },
 //   { actName: 'Savings', balance: 1000.02 },
 //   { actName: 'Vacation', balance: 2000 },
@@ -12,7 +12,6 @@ import Banking from './Banking';
 //   { actName: 'Sauce', balance: 5000 },
 // ];S
 
-// const acts2 = [];
 
 test('the page displays properly with no accounts', () => {
   render(<Banking />);
