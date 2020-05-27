@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 class SideBar extends Component {
-
-  
-
   render() {
     return (
       <div className="sidebar" id="idSideBar" data-image="../assets/img/sidebar-5.jpg" data-color="blue">
@@ -18,9 +15,9 @@ class SideBar extends Component {
                   <i className="nc-icon nc-compass-05" />
                   <div className="col">
                     <div>Northernmost city:</div>
-                    <h6 id="idNorth" />
+                    <h6>{this.props.cities.getMostNorthern().name}</h6>
                     <div>Latitude:
-                      <h6 id="idNorthLat" />
+                      <h6>{this.props.cities.getMostNorthern().lat}</h6>
                     </div>
                     <hr />
                   </div>
@@ -33,10 +30,10 @@ class SideBar extends Component {
                   <i className="nc-icon nc-compass-05" />
                   <div className="col">
                     <div>Southernmost city:
-                      <h6 id="idSouth" />
+                      <h6>{this.props.cities.getMostSouthern().name}</h6>
                     </div>
                     <div>Latitude:
-                      <h6 id="idSouthLat" />
+                      <h6>{this.props.cities.getMostSouthern().lat}</h6>
                     </div>
                     <hr />
                   </div>
@@ -48,8 +45,9 @@ class SideBar extends Component {
                 <div className="row ">
                   <i className="nc-icon nc-single-02" />
                   <div className="col">
-                    <div>Total population:</div>
-                    <h6 id="idTotalPop" />
+                    <div>Total population:
+                      <h6>{this.props.cities.getPopulation().toLocaleString()}</h6>
+                    </div>
                     <hr />
                   </div>
                 </div>

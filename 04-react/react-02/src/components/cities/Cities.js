@@ -102,7 +102,7 @@ class Cities extends Component {
               </div>
 
             </div>
-            <footer className="footer">
+            {/* <footer className="footer">
               <div className="container-fluid">
                 <nav>
                   <ul className="footer-menu" />
@@ -118,7 +118,7 @@ class Cities extends Component {
                   </p>
                 </nav>
               </div>
-            </footer>
+            </footer> */}
 
           </div>
         </div>

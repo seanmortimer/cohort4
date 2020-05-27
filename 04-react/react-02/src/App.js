@@ -49,7 +49,7 @@ class App extends Component {
       <div className="App">
         <Header onNavClick={this.onNavClick} />
         {currentPage}
-        <footer>A React app by{' '}
+        <footer>© 2020{' '}
           <a href="http://www.seanmortimer.com">
             Sean Mortimer
           </a>
