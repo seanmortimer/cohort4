@@ -3885,7 +3885,7 @@ Copyright (c) 2015 Daniel Eden
     left: 0;
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
     .navbar-form {
         margin-top: 21px;
         margin-bottom: 21px;
@@ -3971,7 +3971,7 @@ Copyright (c) 2015 Daniel Eden
 
 /*          Changes for small display      */
 
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
     .sidebar {
         right: 0 !important;
         left: auto;
@@ -4584,7 +4584,7 @@ Copyright (c) 2015 Daniel Eden
         -ms-overflow-style: -ms-autohiding-scrollbar;
         -webkit-overflow-scrolling: touch;
     }
-}
+} */ */
 
 .bootstrap-switch {
     display: inline-block;
