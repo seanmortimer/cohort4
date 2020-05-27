@@ -28,6 +28,14 @@ class City {
     if (this.pop > 0) return 'Hamlet';
     return 'Something went wrong';
   }
+
+  whichSphere() {
+    if (this.lat > 0) return 'Northern';
+    if (this.lat < 0) return 'Southern';
+    if (this.lat === 0) return 'Equator!';
+
+    return 'Something went wrong';
+  }
 }
 
 export default City;

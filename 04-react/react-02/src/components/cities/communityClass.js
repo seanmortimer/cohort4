@@ -14,15 +14,6 @@ class Community {
     return this.cities.find((city) => city.key === key);
   }
 
-  whichSphere(key) {
-    const city = this.findByKey(key);
-    if (city.lat > 0) return 'Northern';
-    if (city.lat < 0) return 'Southern';
-    if (city.lat === 0) return 'Equator!';
-
-    return 'Something went wrong';
-  }
-
   getMostNorthern() {
     let northMost = {};
     northMost = this.cities[0];
