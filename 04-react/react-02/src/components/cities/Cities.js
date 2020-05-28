@@ -6,7 +6,7 @@ import SideBar from './SideBar';
 import Community from './communityClass';
 import Card from './Card';
 import AddCityModal from './AddCityModal';
-import EditCityModal from "./EditCityModal";
+import EditCityModal from './EditCityModal';
 
 
 const cities = [
@@ -53,7 +53,8 @@ class Cities extends Component {
 
   render() {
     const cards = comm.cities.map((city) =>
-      <Card key={city.key} city={city} modal={this.onShowEdit} onAdd={this.handleAddCity} />);
+      // <Card key={city.key} city={city} modal={this.onShowEdit} onAdd={this.handleAddCity} />);
+      <Card key={city.key} city={city} modal={this.onShowEdit} />);
 
     return (
       <div>
@@ -64,7 +65,7 @@ class Cities extends Component {
               <div className="container-fluid">
                 <div className="navbar-brand">Check out all these cities!</div>
                 <button
-                  className="btn btn-success btn-fill  m-0 pt-0 "
+                  className="btn btn-success btn-fill  m-0 pt-0"
                   type="button"
                   onClick={this.onShowAdd}
                 >
@@ -86,10 +87,12 @@ class Cities extends Component {
             <AddCityModal
               show={this.state.showAdd}
               onHide={() => this.onHideAdd()}
+              // onAdd={this.handleNewCity}
             />
             <EditCityModal
               show={this.state.showEdit}
               onHide={() => this.hideEdit()}
+              // onEdit={this.handleEditCity}
             />
           </div>
         </div>

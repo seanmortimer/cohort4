@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
+import userEvent from '@testing-library/user-event';
 import DepositWithdraw from './DepositWithdraw';
-import { act } from 'react-dom/test-utils';
 
 const mockDepCallback = jest.fn();
 const mockWdCallback = jest.fn();

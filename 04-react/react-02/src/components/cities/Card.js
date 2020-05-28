@@ -3,11 +3,17 @@ import React, { Component } from 'react';
 class Card extends Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleClick() {
-    this.props.modal();
+  handleEdit() {
+    console.log('what you want to edit?');
+    // this.props.modal();
+  }
+
+  handleDelete() {
+    this.props.onDelete(this.props.city.key);
   }
 
   render() {
@@ -39,13 +45,14 @@ class Card extends Component {
             <button
               type="button"
               className="btn btn-sm mr-1"
-              onClick={this.handleClick}
+              onClick={this.handleEdit}
             >
               Edit
             </button>
             <button
               type="button"
               className="btn btn-danger btn-fill btn-sm"
+              onClick={this.handleDelete}
             >
               Delete
             </button>

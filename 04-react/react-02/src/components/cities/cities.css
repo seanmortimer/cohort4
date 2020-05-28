@@ -1,6 +1,20 @@
+.wrapper {
+	position: relative;
+	top: 0;
+	height: calc(100vh - 200px);
+}
+
+body, .wrapper {
+	min-height:  calc(100vh - 200px);
+}
+
+footer {
+    padding: 10px 50px;
+    text-align: right;
+}
+
 .card {
-    min-width: 210px;
-    max-width: 250px;
+    min-width: 200px;
 }
 
 #idAddWarning {
@@ -8,7 +22,8 @@
 }
 
 #idSideBar {
-    width: 250px;
+    /* width: 250px; */
+    overflow: hidden;
 }
 
 #idAddBtn {

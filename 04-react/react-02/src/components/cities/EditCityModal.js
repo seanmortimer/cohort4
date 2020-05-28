@@ -57,7 +57,7 @@ function EditCityModal(props) {
           data-dismiss="modal"
           action="addCity"
         >
-          Add
+          Update
         </button>
       </div>
     </Modal>
