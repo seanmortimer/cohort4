@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 
 class Card extends Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+    this.props.modal();
+  }
+
   render() {
     const { city } = this.props;
-    // console.log('city :>> ', city);
     return (
       <div className="card ">
         <div className="card-header ">
-          <h4 className="card-title">Calgary</h4>
+          <h4 className="card-title">{city.name}</h4>
         </div>
         <div className="card-body">
           <div className="row">
@@ -20,22 +27,27 @@ class Card extends Component {
             </div>
             <div className="col-5 pl-0 text-right text-nowrap">
               <div>{city.pop.toLocaleString()}</div>
-              <div>City</div>
-              <div>Northern</div>
-              <div>55.28</div>
-              <div>120.22</div>
+              <div>{city.howBig()}</div>
+              <div>{city.whichSphere()}</div>
+              <div>{city.lat}</div>
+              <div>{city.long}</div>
             </div>
           </div>
           <hr />
           <div className="text-right">
             <button
               type="button"
-              className="btn btn-sm"
-              action="edit"
+              className="btn btn-sm mr-1"
+              onClick={this.handleClick}
             >
               Edit
             </button>
-            <button type="button" className="btn btn-danger btn-fill btn-sm" action="delete">Delete</button>
+            <button
+              type="button"
+              className="btn btn-danger btn-fill btn-sm"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>

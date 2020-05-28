@@ -10,3 +10,32 @@
 #idSideBar {
     width: 250px;
 }
+
+#idAddBtn {
+    font-size: 1.2em;
+}
+
+.modal-dialog {
+    margin-top: 20vh;
+    margin-bottom: 20w;
+} 
+
+.modal-header {
+    height: 50px;
+}
+
+.modal-body label {
+width: 100%;
+}
+
+.card-body {
+    text-align: left;
+}
+/* .modal-body { */
+    /* margin: 0; */
+/* } */
+
+/* #idModal { */
+    /* margin-top: ; */
+    /* padding: 0px; */
+/* } */

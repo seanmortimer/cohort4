@@ -5,6 +5,9 @@ import './cities.css';
 import SideBar from './SideBar';
 import Community from './communityClass';
 import Card from './Card';
+import AddCityModal from './AddCityModal';
+import EditCityModal from "./EditCityModal";
+
 
 const cities = [
   { key: 1, lat: 51.05, long: -114.05, name: 'Calgary', pop: 1340000 },
@@ -17,80 +20,71 @@ const cities = [
 ];
 
 const comm = new Community();
-
 cities.forEach((city) => comm.createCity(city));
 
+
 class Cities extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { showAdd: false, showEdit: false };
+  }
+
+  onShowAdd = () => {
+    this.setState({ showAdd: true });
+  }
+
+  onHideAdd = () => {
+    this.setState({ showAdd: false });
+  }
+
+  showEdit = () => {
+    this.setState({ showEdit: true });
+  }
+
+  hideEdit = () => {
+    this.setState({ showEdit: false });
+  }
+
   render() {
-    // console.log('comm.findByKey(4) :>> ', comm.findByKey(4));
-    // console.log('comm :>> ', comm.cities);
+    const cards = comm.cities.map((city) =>
+      <Card key={city.key} city={city} modal={this.showEdit} />);
+
     return (
       <div>
-        <h1>HERE ARE SOME CITIES!</h1>
-        {/* <p>{comm.findByKey(1).name}</p> */}
         <div className="wrapper">
           <SideBar cities={comm} />
           <div className="main-panel">
             <nav className="navbar">
               <div className="container-fluid">
                 <div className="navbar-brand">Check out all these cities!</div>
-                <ul className="navbar-nav ml-auto">
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      href="#idAddCity"
-                      data-toggle="modal"
-                      data-target="#idAddCity"
-                      action="add"
-                    ><i className="nc-icon nc-simple-add" />
-                      <span className="d-lg-block">&nbsp;Add a city</span>
-                    </a>
-                  </li>
-                </ul>
-                {/* <button
-                  href=""
-                  className="navbar-toggler navbar-toggler-right"
+                <button
+                  className="btn btn-success btn-fill  m-0 pt-0 "
                   type="button"
-                  data-toggle="collapse"
-                  aria-controls="navigation-index"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
+                  onClick={this.onShowAdd}
                 >
-                  <span className="navbar-toggler-bar burger-lines" />
-                  <span className="navbar-toggler-bar burger-lines" />
-                  <span className="navbar-toggler-bar burger-lines" />
-                </button> */}
-                {/* <div className="collapse navbar-collapse justify-content-end" id="navigation">
-                  <ul className="nav navbar-nav mr-auto" />
-                </div> */}
+                  <i className="nc-icon nc-simple-add" />
+                  <span id="idAddBtn">
+                    {' '}Add a city
+                  </span>
+                </button>
               </div>
             </nav>
             <div className="content">
               <div className="container-fluid">
                 <div className="card-deck" id="idCardDeck">
-                  <Card city={comm.cities[0]} />
+                  {cards}
                 </div>
               </div>
 
             </div>
-            {/* <footer className="footer">
-              <div className="container-fluid">
-                <nav>
-                  <ul className="footer-menu" />
-                  <p className="copyright text-justify">
-                    © 2020{' '}
-                    <a href="http://www.seanmortimer.com">Sean Mortimer</a>.
-                    Check out the source code here:{' '}
-                    <a
-                      href="https://github.com/seanmortimer/cohort4/tree/master/03-objects"
-                    >github.com/seanmortimer
-                    </a>
-
-                  </p>
-                </nav>
-              </div>
-            </footer> */}
-
+            <AddCityModal
+              show={this.state.showAdd}
+              onHide={() => this.onHideAdd()}
+            />
+            <EditCityModal
+              show={this.state.showEdit}
+              onHide={() => this.hideEdit()}
+            />
           </div>
         </div>
       </div>
