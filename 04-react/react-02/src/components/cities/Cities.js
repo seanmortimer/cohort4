@@ -27,27 +27,33 @@ class Cities extends Component {
   constructor(props) {
     super(props);
     this.state = { showAdd: false, showEdit: false };
+    this.onShowAdd = this.onShowAdd.bind(this);
+    this.onShowEdit = this.onShowEdit.bind(this);
   }
 
-  onShowAdd = () => {
+  onShowAdd() {
     this.setState({ showAdd: true });
   }
 
-  onHideAdd = () => {
+  onHideAdd() {
     this.setState({ showAdd: false });
   }
 
-  showEdit = () => {
+  onShowEdit() {
     this.setState({ showEdit: true });
   }
 
-  hideEdit = () => {
+  onHideEdit() {
     this.setState({ showEdit: false });
+  }
+
+  handleAddCity() {
+    console.log('add this cifty');
   }
 
   render() {
     const cards = comm.cities.map((city) =>
-      <Card key={city.key} city={city} modal={this.showEdit} />);
+      <Card key={city.key} city={city} modal={this.onShowEdit} onAdd={this.handleAddCity} />);
 
     return (
       <div>

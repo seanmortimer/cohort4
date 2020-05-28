@@ -2,6 +2,11 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 
 function AddCityModal(props) {
+  // const onAdd = () => {
+  //   console.log('heyy');
+  //   return;
+  // };
+
   return (
     <Modal
       // May 27 - animation false avoids a console error caused from a react-bootsrap dependency
@@ -48,8 +53,7 @@ function AddCityModal(props) {
         <button
           type="button"
           className="btn btn-success btn-fill"
-          data-dismiss="modal"
-          action="addCity"
+          // onClick={onAdd}
         >
           Add
         </button>
@@ -57,5 +61,6 @@ function AddCityModal(props) {
     </Modal>
   );
 }
+
 
 export default AddCityModal;
