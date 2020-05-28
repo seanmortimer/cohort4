@@ -54,7 +54,7 @@ class Cities extends Component {
   render() {
     const cards = comm.cities.map((city) =>
       // <Card key={city.key} city={city} modal={this.onShowEdit} onAdd={this.handleAddCity} />);
-      <Card key={city.key} city={city} modal={this.onShowEdit} />);
+      <Card key={city.key} city={city} onEdit={this.onShowEdit} />);
 
     return (
       <div>
@@ -89,11 +89,11 @@ class Cities extends Component {
               onHide={() => this.onHideAdd()}
               // onAdd={this.handleNewCity}
             />
-            <EditCityModal
+            {/* <EditCityModal
               show={this.state.showEdit}
               onHide={() => this.hideEdit()}
               // onEdit={this.handleEditCity}
-            />
+            /> */}
           </div>
         </div>
       </div>

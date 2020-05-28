@@ -7,18 +7,17 @@ class AddCityModal extends Component {
     this.addBtn = false;
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   handleSubmit() {
     // TODO - INPUT VALIDATION
-    console.log('this.frm[0].value :>> ', this.frm[0]);
-    // const name = this.frm[0].value;
-    // const pop = this.frm[1].value;
-    // const lat = this.frm[2].value;
-    // const long = this.frm[3].value;
-    // console.log('name :>> ', name);
-
-    // if (!name || !pop || !lat || !long) return;
-    // this.props.onAdd({ name, pop, lat, long });
+    const name = this.frm[0].value;
+    const pop = this.frm[1].value;
+    const lat = this.frm[2].value;
+    const long = this.frm[3].value;
+    console.log('name :>> ', name);
+    //
+    if (!name || !pop || !lat || !long) return;
+    this.props.onAdd({ name, pop, lat, long });
     this.props.onHide();
   }
 
@@ -71,7 +70,7 @@ class AddCityModal extends Component {
             className="btn btn-success btn-fill"
             onClick={this.handleSubmit}
             disabled={this.addBtn}
-            // onSubmit={this.handleSubmit}
+          // onSubmit={this.handleSubmit}
           >
             Add
           </button>

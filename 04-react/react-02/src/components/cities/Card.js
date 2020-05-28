@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
+import EditCityModal from './EditCityModal';
+
 
 class Card extends Component {
   constructor(props) {
     super(props);
+    this.state = { showEdit: false };
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.onShowEdit = this.onShowEdit.bind(this);
+    this.onHideEdit = this.onHideEdit.bind(this);
+  }
+
+  onShowEdit() {
+    this.setState({ showEdit: true });
+  }
+
+  onHideEdit() {
+    this.setState({ showEdit: false });
   }
 
   handleEdit() {
-    console.log('what you want to edit?');
-    // this.props.modal();
+    // console.log('what you want to edit?');
+    this.setState({ showEdit: true });
+    // this.props.onEdit();
   }
 
   handleDelete() {
@@ -58,6 +72,12 @@ class Card extends Component {
             </button>
           </div>
         </div>
+        <EditCityModal
+          show={this.state.showEdit}
+          onHide={() => this.onHideEdit()}
+          city={city}
+        // onEdit={this.handleEditCity}
+        />
       </div>
     );
   }

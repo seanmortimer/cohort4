@@ -43,14 +43,12 @@ footer {
 width: 100%;
 }
 
+form .modal-footer {
+    margin-left: -24px;
+    margin-right: -24px;
+    margin-bottom: 0;
+}
+
 .card-body {
     text-align: left;
 }
-/* .modal-body { */
-    /* margin: 0; */
-/* } */
-
-/* #idModal { */
-    /* margin-top: ; */
-    /* padding: 0px; */
-/* } */
