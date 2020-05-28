@@ -67,15 +67,6 @@ class EditCityModal extends Component {
             </div>
           </form>
         </div>
-        {/* <div className="modal-footer">
-          <button type="button" className="btn btn-danger btn-fill" onClick={this.props.onHide}>Cancel</button>
-          <button
-            type="submit"
-            className="btn btn-success btn-fill"
-          >
-            Update
-          </button> */}
-        {/* </div> */}
       </Modal>
     );
   }

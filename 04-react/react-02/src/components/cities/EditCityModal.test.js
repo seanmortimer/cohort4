@@ -1,6 +1,6 @@
+/* eslint-disable prefer-destructuring */
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import EditCityModal from './EditCityModal';
 import Community from './communityClass';
 
@@ -27,7 +27,6 @@ beforeEach(() => {
   cities.forEach((city) => comm.createCity(city));
   calg = comm.cities[0];
   bog = comm.cities[6];
-  console.log('calgar :>> ', calg.name);
 });
 
 
