@@ -6,29 +6,39 @@ import SideBar from './SideBar';
 import Community from './communityClass';
 import Card from './Card';
 import AddCityModal from './AddCityModal';
-import EditCityModal from './EditCityModal';
+// import EditCityModal from './EditCityModal'
 
 
-const cities = [
-  { key: 1, lat: 51.05, long: -114.05, name: 'Calgary', pop: 1340000 },
-  { key: 2, lat: 53.55, long: -113.49, name: 'Edmonton', pop: 981000 },
-  { key: 3, lat: 52.28, long: -113.81, name: 'Red Deer', pop: 106000 },
-  { key: 4, lat: -32.78, long: -71.53, name: 'Quintero', pop: 25300 },
-  { key: 5, lat: 0.00, long: 50.00, name: 'Equator Town', pop: 5000 },
-  { key: 6, lat: -33.93, long: 18.42, name: 'Cape Town', pop: 3780000 },
-  { key: 7, lat: 4.71, long: -74.07, name: 'Bogota', pop: 7400000 },
-];
+// const cities = [
+//   { key: 1, lat: 51.05, long: -114.05, name: 'Calgary', pop: 1340000 },
+//   { key: 2, lat: 53.55, long: -113.49, name: 'Edmonton', pop: 981000 },
+//   { key: 3, lat: 52.28, long: -113.81, name: 'Red Deer', pop: 106000 },
+//   { key: 4, lat: -32.78, long: -71.53, name: 'Quintero', pop: 25300 },
+//   { key: 5, lat: 0.00, long: 50.00, name: 'Equator Town', pop: 5000 },
+//   { key: 6, lat: -33.93, long: 18.42, name: 'Cape Town', pop: 3780000 },
+//   { key: 7, lat: 4.71, long: -74.07, name: 'Bogota', pop: 7400000 },
+// ]
 
-const comm = new Community();
-cities.forEach((city) => comm.createCity(city));
+// const comm = new Community()
+// cities.forEach((city) => comm.createCity(city))
 
 
 class Cities extends Component {
   constructor(props) {
     super(props);
-    this.state = { showAdd: false, showEdit: false };
+    // const cities = []
+    this.community = new Community();
+
+    this.state = {
+      showAdd: false,
+      showEdit: false,
+      community: this.community,
+    };
     this.onShowAdd = this.onShowAdd.bind(this);
     this.onShowEdit = this.onShowEdit.bind(this);
+    this.handleAddCity = this.handleAddCity.bind(this);
+    this.handleDeleteCity = this.handleDeleteCity.bind(this);
+    this.handleEditCity = this.handleEditCity.bind(this);
   }
 
   onShowAdd() {
@@ -47,19 +57,47 @@ class Cities extends Component {
     this.setState({ showEdit: false });
   }
 
-  handleAddCity() {
-    console.log('add this cifty');
+  handleAddCity(city) {
+    this.community.createCity(city);
+    // console.log('this.community :>> ', this.community);
+    // this.setState({ community: this.community });
+  }
+
+  handleDeleteCity(key) {
+    this.community.deleteCity(key);
+    // console.log('this.community delete :>> ', this.community);
+    // this.setState({ community: this.community });
+  }
+
+  handleEditCity(key, popChange) {
+    console.log('EDITTT', key);
+    if (popChange < 0) {
+      this.community.findByKey(key).movedOut(popChange * -1);
+    }
+    if (popChange > 0) {
+      this.community.findByKey(key).movedIn(popChange);
+      console.log('this.community.findByKey(key) :>> ', this.community.findByKey(key));
+    }
+    this.setState({ community: this.community });
   }
 
   render() {
-    const cards = comm.cities.map((city) =>
-      // <Card key={city.key} city={city} modal={this.onShowEdit} onAdd={this.handleAddCity} />);
-      <Card key={city.key} city={city} onEdit={this.onShowEdit} />);
-
+    const { community } = this.state;
+    const cards = community.cities.map((city) => (
+      <Card
+        key={city.key}
+        cityId={city.key}
+        city={city}
+        onEdit={this.onShowEdit}
+        onDelete={this.handleDeleteCity}
+        onEditSubmit={this.handleEditCity}
+      />
+    ));
+    // console.log('cards :>> ', cards || );
     return (
       <div>
         <div className="wrapper">
-          <SideBar cities={comm} />
+          <SideBar cities={community} />
           <div className="main-panel">
             <nav className="navbar">
               <div className="container-fluid">
@@ -79,7 +117,7 @@ class Cities extends Component {
             <div className="content">
               <div className="container-fluid">
                 <div className="card-deck" id="idCardDeck">
-                  {cards}
+                  {cards.length ? cards : 'Add some cities!'}
                 </div>
               </div>
 
@@ -87,7 +125,7 @@ class Cities extends Component {
             <AddCityModal
               show={this.state.showAdd}
               onHide={() => this.onHideAdd()}
-              // onAdd={this.handleNewCity}
+              onAdd={this.handleAddCity}
             />
             {/* <EditCityModal
               show={this.state.showEdit}

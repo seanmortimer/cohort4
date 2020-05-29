@@ -4,14 +4,28 @@ import Modal from 'react-bootstrap/Modal';
 class EditCityModal extends Component {
   constructor(props) {
     super(props);
+    this.state = { net: '' };
     this.handleEdit = this.handleEdit.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
+  // TODO: update net change box on typing
+  // handleChange(e) {
+  //   console.log('e.target.movedin :>> ', e.target.value);
+  //   const movein = Number(e.target.movedin);
+  //   const out = Number(e.target.movedout)
+  //   console.log('movein :>> ', movein);
+  //   console.log('out :>> ', out);
+  //   this.setState({ net: (movein - out) });
+  // }
+
   handleEdit(e) {
-    console.log('let\'s edit!');
-    console.log('e.target.movedin :>> ', e.target.movedin);
     e.preventDefault();
-    this.props.onEdit();
+    const movein = Number(e.target.movedin.value);
+    const out = Number(e.target.movedout.value);
+    const net = movein - out;
+    this.props.onEdit(net);
+    this.props.onHide();
   }
 
   render() {
@@ -33,7 +47,7 @@ class EditCityModal extends Component {
         <div className="modal-body">
           <p className="font-weight-bold">{city.name}</p>
           {/* <span id="idAddWarning">&nbsp;</span> */}
-          <form className="form-group" onSubmit={this.handleEdit}>
+          <form className="form-group" onChange={this.handleChange} onSubmit={this.handleEdit}>
             <p>
               <label htmlFor="currentpopulation">Current population
                 <input
@@ -58,7 +72,14 @@ class EditCityModal extends Component {
             </p>
             <p>
               <label htmlFor="netchange">Net population change
-                <input type="text" className="form-control" name="netchange" placeholder="Net change" disabled />
+                <input
+                  type="text"
+                  className="form-control"
+                  name="netchange"
+                  placeholder="Net change"
+                  value={this.state.net}
+                  disabled
+                />
               </label>
             </p>
             <div className="modal-footer">

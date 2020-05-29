@@ -26,6 +26,7 @@ module.exports = {
     'jest-dom',
   ],
   rules: {
+    'semi': ['error', 'always'],
     'linebreak-style': ['error','windows'],
     'implicit-arrow-linebreak': 0,
     'class-methods-use-this': 0,

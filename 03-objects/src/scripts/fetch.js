@@ -1,17 +1,17 @@
 class UserData {
 
     getFirstName(data) {
-        return data[0].name;
+        return data[0].name
     }
 
     // the api we're using doesn't separate first and last names
     getAllFirstNames(data) {
-        const nameArray = [];
+        const nameArray = []
         for (let user of data) {
-            nameArray.push(user.name);
+            nameArray.push(user.name)
         }
         // console.log('name array:', nameArray);                                
-        return nameArray;
+        return nameArray
     }
 }
 
@@ -19,57 +19,57 @@ class UserData {
 const functions = {
 
     getFirstName(data) {
-        return (data[0].name);
+        return (data[0].name)
     },
 
     getAllFirstNames(data) {
-        return data.map((d, i, x) => d.name);
+        return data.map((d, i, x) => d.name)
     },
 
     showDelayProblem() {
         // console.log('One');
-        let output = 'One';
+        let output = 'One'
         setTimeout(() => {          // Simulates a fetch
             // console.log("Two");
-            output += ', Two';
-        }, 1 * 1000);
+            output += ', Two'
+        }, 1 * 1000)
         // console.log('Three');       // We have a problem Huston
         output += ', Three'
-        return output;
+        return output
     },
 
     async showDelaySolution() {
-        let output = 'One';
+        let output = 'One'
         const value = await                 // Simulate fetch
             new Promise(
                 (resolve, reject) =>
                     setTimeout(() => resolve(", Two"),
-                        1 * 2000));
+                        1 * 2000))
         // Now that we have the value we can use it.
         // console.log(value);
         // console.log('Three');
-        output += value;
-        output += ', Three';
+        output += value
+        output += ', Three'
 
-        return output;
+        return output
     },
 
     async getUsers(url) {
         // let data = null;
         try {
-            let response = await fetch(url);
-            let data = await response.json();
-            data.status = response.status;
-            return data;
+            let response = await fetch(url)
+            let data = await response.json()
+            data.status = response.status
+            return data
         } catch (error) {
-            console.error('Error:', error);
-            throw error;
+            console.error('Error:', error)
+            throw error
         }
     },
 
     async workWithData(url) {
-        const data = await functions.getUsers(url);
-        return data;
+        const data = await functions.getUsers(url)
+        return data
     },
 
     async postData(url = '', data = {}) {
@@ -86,13 +86,13 @@ const functions = {
             redirect: 'follow',         // manual, *follow, error
             referrer: 'no-referrer',    // no-referrer, *client
             body: JSON.stringify(data)  // body data type must match "Content-Type" header
-        });
+        })
         const output = await response.json()
-        output.status = response.status;
-        output.statusText = response.statusText;
-        return output;   // parses JSON response into native JavaScript objects
+        output.status = response.status
+        output.statusText = response.statusText
+        return output   // parses JSON response into native JavaScript objects
     }
 }
 
 
-export { UserData, functions };
+export { UserData, functions }

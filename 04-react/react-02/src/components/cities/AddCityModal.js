@@ -10,12 +10,10 @@ class AddCityModal extends Component {
 
   handleSubmit() {
     // TODO - INPUT VALIDATION
-    const name = this.frm[0].value;
-    const pop = this.frm[1].value;
-    const lat = this.frm[2].value;
-    const long = this.frm[3].value;
-    console.log('name :>> ', name);
-    //
+    const name = this.frm[0]?.value;
+    const pop = Number(this.frm[1]?.value);
+    const lat = Number(this.frm[2]?.value);
+    const long = Number(this.frm[3]?.value);
     if (!name || !pop || !lat || !long) return;
     this.props.onAdd({ name, pop, lat, long });
     this.props.onHide();

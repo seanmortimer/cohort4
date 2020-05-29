@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class SideBar extends Component {
   render() {
@@ -15,9 +15,9 @@ class SideBar extends Component {
                   <i className="nc-icon nc-compass-05" />
                   <div className="col">
                     <div>Northernmost city:</div>
-                    <h6>{this.props.cities.getMostNorthern().name}</h6>
+                    <h6>{this.props.cities.getMostNorthern()?.name}</h6>
                     <div>Latitude:
-                      <h6>{this.props.cities.getMostNorthern().lat}</h6>
+                      <h6>{this.props.cities.getMostNorthern()?.lat}</h6>
                     </div>
                     <hr />
                   </div>
@@ -30,10 +30,10 @@ class SideBar extends Component {
                   <i className="nc-icon nc-compass-05" />
                   <div className="col">
                     <div>Southernmost city:
-                      <h6>{this.props.cities.getMostSouthern().name}</h6>
+                      <h6>{this.props.cities.getMostSouthern()?.name}</h6>
                     </div>
                     <div>Latitude:
-                      <h6>{this.props.cities.getMostSouthern().lat}</h6>
+                      <h6>{this.props.cities.getMostSouthern()?.lat}</h6>
                     </div>
                     <hr />
                   </div>
@@ -66,8 +66,8 @@ class SideBar extends Component {
           </ul>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default SideBar;
+export default SideBar

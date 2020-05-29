@@ -6,10 +6,11 @@ class Card extends Component {
   constructor(props) {
     super(props);
     this.state = { showEdit: false };
-    this.handleEdit = this.handleEdit.bind(this);
+    this.handleEditOpen = this.handleEditOpen.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.onShowEdit = this.onShowEdit.bind(this);
     this.onHideEdit = this.onHideEdit.bind(this);
+    this.handleEditCity = this.handleEditCity.bind(this);
   }
 
   onShowEdit() {
@@ -20,14 +21,18 @@ class Card extends Component {
     this.setState({ showEdit: false });
   }
 
-  handleEdit() {
+  handleEditOpen() {
     // console.log('what you want to edit?');
     this.setState({ showEdit: true });
-    // this.props.onEdit();
+    this.props.onEdit();
   }
 
   handleDelete() {
     this.props.onDelete(this.props.city.key);
+  }
+
+  handleEditCity(net) {
+    this.props.onEditSubmit(this.props.cityId, net);
   }
 
   render() {
@@ -59,7 +64,7 @@ class Card extends Component {
             <button
               type="button"
               className="btn btn-sm mr-1"
-              onClick={this.handleEdit}
+              onClick={this.handleEditOpen}
             >
               Edit
             </button>
@@ -76,7 +81,7 @@ class Card extends Component {
           show={this.state.showEdit}
           onHide={() => this.onHideEdit()}
           city={city}
-        // onEdit={this.handleEditCity}
+          onEdit={this.handleEditCity}
         />
       </div>
     );
