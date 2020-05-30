@@ -9,7 +9,7 @@ import AddCityModal from './AddCityModal';
 import postData from './cityfetch';
 
 const urlPy = 'http://localhost:5000/';
-const geoDb = 'http://geodb-free-service.wirefreethought.com/v1/geo/cities?limit=1';
+const geoDb = 'http://geodb-free-service.wirefreethought.com/v1/geo/cities';
 const cities = [
   { key: 1, lat: 51.05, long: -114.05, name: 'Calgary', pop: 1340000 },
   { key: 2, lat: 53.55, long: -113.49, name: 'Edmonton', pop: 981000 },
@@ -37,6 +37,7 @@ class Cities extends Component {
     this.handleAddCity = this.handleAddCity.bind(this);
     this.handleDeleteCity = this.handleDeleteCity.bind(this);
     this.handleEditCity = this.handleEditCity.bind(this);
+    this.getRandom = this.getRandom.bind(this);
   }
 
   async componentDidMount() {
@@ -47,7 +48,7 @@ class Cities extends Component {
       // console.error(error);
       return;
     }
-    console.log('Component Mounted :>> ', serverCities);
+    // console.log('Component Mounted :>> ', serverCities);
     if (serverCities.length) serverCities.forEach((city) => this.community.createCity(city));
     else {
       cities.forEach((city) => this.community.createCity(city));
@@ -68,6 +69,32 @@ class Cities extends Component {
   onHideAdd() {
     this.setState({ showAdd: false });
   }
+
+  async getRandom() {
+    let cityId = null;
+    let name = null;
+    let lat = null;
+    let long = null;
+    let pop = null;
+    const i = Math.floor(Math.random() * 2E4);
+    // console.log('i :>> ', i);
+    await fetch(`${geoDb}?offset=${i}`).then((response) => response.json()).then((id) => {
+      cityId = id.data[0].id;
+    });
+    // console.log('city :>> ', cityId);
+    await fetch(`${geoDb}/${cityId}`).then((response) => response.json()).then((city) => {
+      // console.log('city :>> ', city.data);
+      name = city.data.name;
+      lat = city.data.latitude.toFixed(2);
+      long = city.data.longitude.toFixed(2);
+      pop = city.data.population;
+    });
+
+    // console.log('Random city time!', name, lat, long, pop);
+    this.handleAddCity({ name, lat, long, pop });
+    // this.setState({ community: this.community });
+  }
+
 
   async handleAddCity(city) {
     const newCity = this.community.createCity(city);
@@ -109,18 +136,6 @@ class Cities extends Component {
     this.setState({ community: this.community });
   }
 
-  async getRandom() {
-    const i = Math.floor(Math.random() * 2E4);
-    // console.log('i :>> ', i);
-    fetch(`${geoDb}&offset=${i}`).then((response) => response.json()).then((city) => {
-      console.log('city :>> ', city.data[0].id);
-      // this.setState({ robots: users })
-    });
-
-    let data = null;
-    console.log('Random city time!');
-    // console.log('data :>> ', data);
-  }
 
   render() {
     const { community } = this.state;
