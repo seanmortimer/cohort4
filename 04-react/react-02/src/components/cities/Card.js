@@ -24,7 +24,6 @@ class Card extends Component {
   handleEditOpen() {
     // console.log('what you want to edit?');
     this.setState({ showEdit: true });
-    this.props.onEdit();
   }
 
   handleDelete() {

@@ -1,6 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import postData from './cityfetch';
+
+const urlPy = 'http://localhost:5000/';
 
 class SideBar extends Component {
+  constructor(props) {
+    super(props);
+    this.handleRandom = this.handleRandom.bind(this);
+  }
+ 
+  onClear() {
+    try {
+      postData(`${urlPy}clear`);
+    } catch (error) {
+      // console.error(error);
+    }
+  }
+
+  handleRandom() {
+    this.props.onRandom();
+  }
+
   render() {
     return (
       <div className="sidebar" id="idSideBar" data-image="../assets/img/sidebar-5.jpg" data-color="blue">
@@ -55,19 +75,28 @@ class SideBar extends Component {
             </li>
             <li className="nav-item active-pro">
               <div className="container-float nav-link">
-                <button type="button" className="btn btn-danger btn-fill text-right" action="clear">
+                <button
+                  type="button"
+                  className="btn btn-success btn-fill mt-1"
+                  onClick={this.handleRandom}
+                >
+                  <i className="nc-icon nc-alien-33" />&nbsp;Load random city
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger btn-fill text-right"
+                  onClick={this.onClear}
+                >
                   <i className="nc-icon nc-alien-33" />&nbsp;Clear server
                 </button>
-                <button type="button" className="btn btn-success btn-fill mt-1" action="load">
-                  <i className="nc-icon nc-alien-33" />&nbsp;Clear then load
-                </button>
+
               </div>
             </li>
           </ul>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default SideBar
+export default SideBar;
