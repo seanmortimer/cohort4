@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'react-hooks',
+    // 'plugin:react-hooks',
     'airbnb',
     'plugin:jest/recommended',
     'plugin:jest-dom/recommended',

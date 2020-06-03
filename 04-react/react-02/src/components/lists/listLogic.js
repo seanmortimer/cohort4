@@ -74,7 +74,7 @@ class LinkedList {
     let count = 0;
 
     while (currentNode) {
-      if (count === index) return [currentNode.subject, currentNode.amount];
+      if (count === index) return currentNode.show();
       count++;
       currentNode = currentNode.forwardNode;
     }
@@ -109,7 +109,6 @@ class LinkedList {
     return sum;
   }
 }
-//total
 
 
 export default LinkedList;

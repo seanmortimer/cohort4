@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
 import ReactHome from './components/ReactHome';
-import Game from './components/TicTacToe';
+import Game from './components/tictactoe/TicTacToe';
 import Banking from './components/banking/Banking';
-import Cities from './components/cities/Cities'
-import Lists from './Lists';
+import Cities from './components/cities/Cities';
+import Lists from './components/lists/Lists';
 
 class App extends Component {
   constructor(props) {

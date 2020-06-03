@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './assets/css/bootstrap.min.css';
-import './assets/css/light-bootstrap-dashboard.css';
-import './cities.css';
+import '../../assets/css/bootstrap.min.css';
+import '../../assets/css/light-bootstrap-dashboard.css';
+import '../../assets/css/cities.css';
 import SideBar from './SideBar';
 import Community from './communityClass';
 import Card from './Card';
