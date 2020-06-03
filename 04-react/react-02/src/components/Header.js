@@ -16,6 +16,7 @@ class Header extends Component {
   }
 
   handleNavClick(e) {
+    // console.log('e.target :>> ', e.target);
     // e.target.setAttribute('class', 'clActive');
     this.props.onNavClick(e.target.getAttribute('name'));
   }
@@ -63,9 +64,10 @@ class Header extends Component {
           <Wheel
             className={this.state.regular}
             role="link"
-          // onClick={this.handleNavClick}
+            name="lists"
+          onClick={this.handleNavClick}
           />
-          <div>Soon</div>
+          <div>Lists and Hooks</div>
         </div>
 
       </nav>

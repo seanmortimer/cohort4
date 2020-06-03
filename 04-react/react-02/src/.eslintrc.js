@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
+    'react-hooks',
     'airbnb',
     'plugin:jest/recommended',
     'plugin:jest-dom/recommended',
@@ -36,5 +37,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
     "react/jsx-one-expression-per-line": [0, { allow: "single-child" }],
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
   },
 };

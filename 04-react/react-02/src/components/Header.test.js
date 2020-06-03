@@ -12,6 +12,8 @@ test('the header renders', () => {
   expect(screen.getByText('Home')).toBeInTheDocument();
   expect(screen.getByText('Tic Tac Toe')).toBeInTheDocument();
   expect(screen.getByText('Banking')).toBeInTheDocument();
+  expect(screen.getByText('Cities of The World')).toBeInTheDocument();
+  expect(screen.getByText('Lists and Hooks')).toBeInTheDocument();
 });
 
 test('the navigation works', () => {
@@ -29,6 +31,9 @@ test('the navigation works', () => {
   expect(mockNavCallback.mock.calls[2][0]).toBe('banking');
   fireEvent.click(nav[3]);
   expect(mockNavCallback.mock.calls[3][0]).toBe('cities');
+  fireEvent.click(nav[4]);
+  expect(mockNavCallback.mock.calls[4][0]).toBe('lists');
   fireEvent.click(nav[0]);
-  expect(mockNavCallback.mock.calls[4][0]).toBe('home');
+  expect(mockNavCallback.mock.calls[5][0]).toBe('home');
+
 });

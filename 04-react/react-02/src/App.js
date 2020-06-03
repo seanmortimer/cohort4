@@ -5,25 +5,19 @@ import Header from './components/Header';
 import ReactHome from './components/ReactHome';
 import Game from './components/TicTacToe';
 import Banking from './components/banking/Banking';
-import Cities from './components/cities/Cities';
+import Cities from './components/cities/Cities'
+import Lists from './Lists';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { page: 'cities' };
+    // this.state = { page: 'home' };
+    this.state = { page: 'lists' };
     this.onNavClick = this.onNavClick.bind(this);
   }
 
   onNavClick(page) {
     // console.log('page :>> ', page);
-    // switch (page) {
-    //   case 'home':
-
-    //     break;
-
-    //   default:
-    //     break;
-    // }
     this.setState({ page });
   }
 
@@ -41,6 +35,9 @@ class App extends Component {
         break;
       case 'cities':
         currentPage = <Cities />;
+        break;
+      case 'lists':
+        currentPage = <Lists />;
         break;
       default:
         break;
