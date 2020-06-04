@@ -13,14 +13,23 @@ function Lists() {
   const [subj, setSubj] = useState('');
   const [amnt, setAmnt] = useState('');
   const [list, setList] = useState(new LinkedList());
-  const cards = [];
+  const [cards, setCards] = useState([]);
 
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  //   demoData.forEach((value) => list.insertLast(value[0], value[1]));
-  //   setList(() => list);
-  //   console.log('use Effect', list);
-  // }, [list]);
+  useEffect(() => {
+    demoData.forEach((value) => list.insertLast(value[0], value[1]));
+    setList(list);
+    // console.log('use Effect', list);
+  }, []);
+
+  useEffect(() => {
+    const c = [];
+    for (let i = 0; i < list.size; i++) {
+      // console.log('list.showAtIndex(i) :>> ', list.showAtIndex(i));
+      c.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} />);
+    }
+    console.log('use Effect main', c);
+    setCards(c);
+  }, [list]);
 
   // console.log('list :>> ', list);
 
@@ -39,14 +48,16 @@ function Lists() {
     setList(list);
   };
 
-  if (list.size === 0) {
-    demoData.forEach((value) => list.insertLast(value[0], value[1]));
-  }
+  // if (list.size === 0) {
+  //   demoData.forEach((value) => list.insertLast(value[0], value[1]));
+  // }
 
-  for (let i = 0; i < list.size; i++) {
-    // console.log('list.showAtIndex(i) :>> ', list.showAtIndex(i));
-    cards.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} />);
-  }
+  // for (let i = 0; i < list.size; i++) {
+  //   // console.log('list.showAtIndex(i) :>> ', list.showAtIndex(i));
+  //   cards.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} />);
+  // }
+
+  // console.log('Render!', cards);
 
   return (
     <div>

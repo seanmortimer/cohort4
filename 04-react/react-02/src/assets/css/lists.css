@@ -40,3 +40,10 @@ footer {
     font-size: 1.2em;
 }
 
+.nc-stre-right {
+    margin-right: -5px;
+}
+
+.nc-stre-left {
+    margin-left: -5px;
+}
