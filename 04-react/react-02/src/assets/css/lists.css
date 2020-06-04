@@ -1,0 +1,42 @@
+.wrapper {
+	position: relative;
+	top: 0;
+	height: calc(100vh - 200px);
+}
+
+body, .wrapper {
+	min-height:  calc(100vh - 200px);
+}
+
+footer {
+    padding: 10px 50px;
+    text-align: right;
+}
+
+#idCtrlPanel {
+    border-right: solid gray 2px;
+    align-self: center;
+}
+
+#idCardDeck {
+    flex-direction: column;
+}
+
+.card {
+    min-width: 150px;
+    margin-bottom: 15px;
+}
+
+#idAddWarning {
+    color: crimson;
+}
+
+#idSideBar {
+    /* width: 250px; */
+    overflow: hidden;
+}
+
+#idAddBtn {
+    font-size: 1.2em;
+}
+

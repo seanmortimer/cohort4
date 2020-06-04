@@ -1,4 +1,4 @@
-import LinkedList from "./listLogic";
+import LinkedList from './listLogic';
 
 
 test('inserting first', () => {
@@ -8,12 +8,12 @@ test('inserting first', () => {
   expect(list.size).toBe(1);
   expect(list.head).toEqual({ subject: 'bats', amount: 10, forwardNode: null });
 
-  list.insertFirst('cats', 20)
+  list.insertFirst('cats', 20);
   expect(list.size).toBe(2);
   expect(list.head).toEqual({
     subject: 'cats',
     amount: 20,
-    forwardNode: { subject: 'bats', amount: 10, forwardNode: null }
+    forwardNode: { subject: 'bats', amount: 10, forwardNode: null },
   });
 
   // make sure non number amounts cause error
@@ -33,7 +33,7 @@ test('inserting to end', () => {
   expect(list.head).toEqual({
     subject: 'bats',
     amount: 10,
-    forwardNode: { subject: 'cats', amount: 20, forwardNode: null }
+    forwardNode: { subject: 'cats', amount: 20, forwardNode: null },
   });
 
   list.insertLast('kangaroo', 30);
@@ -44,8 +44,8 @@ test('inserting to end', () => {
     forwardNode: {
       subject: 'cats',
       amount: 20,
-      forwardNode: { subject: 'kangaroo', amount: 30, forwardNode: null }
-    }
+      forwardNode: { subject: 'kangaroo', amount: 30, forwardNode: null },
+    },
   });
 });
 
@@ -68,8 +68,8 @@ test('inserting at index', () => {
     forwardNode: {
       subject: 'bats',
       amount: 10,
-      forwardNode: { subject: 'cats', amount: 20, forwardNode: null }
-    }
+      forwardNode: { subject: 'cats', amount: 20, forwardNode: null },
+    },
   });
 
   list.insert('kangaroo', 40, 2);
@@ -77,7 +77,7 @@ test('inserting at index', () => {
   expect(list.head.forwardNode.subject).toBe('bats');
   expect(list.head.forwardNode.forwardNode.subject).toBe('kangaroo');
   expect(list.head.forwardNode.forwardNode.forwardNode.subject).toBe('cats');
-    
+
   list.insert('panda', 50, 1);
   expect(list.size).toBe(5);
   expect(list.head.subject).toBe('koala');
@@ -101,28 +101,30 @@ test('inserting at index', () => {
 
 test('retrieving by index', () => {
   const list = new LinkedList();
-  
+
   list.insertLast('bats', 10);
   list.insertLast('cats', 20);
   list.insertLast('kangaroo', 30);
   list.insertLast('koala', 40);
 
-  expect(list.showAtIndex(0)).toEqual(['bats', 10]);
-  expect(list.showAtIndex(1)).toEqual(['cats', 20]);
-  expect(list.showAtIndex(2)).toEqual(['kangaroo', 30]);
-  expect(list.showAtIndex(3)).toEqual(['koala', 40]);
+  expect(list.showAtIndex(0).show()).toEqual(['bats', 10]);
+  expect(list.showAtIndex(0).forwardNode.subject).toBe('cats');
+  expect(list.showAtIndex(1).subject).toBe('cats');
+  expect(list.showAtIndex(1).amount).toBe(20);
+  expect(list.showAtIndex(1).forwardNode.subject).toBe('kangaroo');
+
 
   list.insert('panda', 50, 1);
-  expect(list.showAtIndex(1)).toEqual(['panda', 50]);
-  expect(list.showAtIndex(2)).toEqual(['cats', 20]);
-  expect(list.showAtIndex(3)).toEqual(['kangaroo', 30]);
+  expect(list.showAtIndex(1).show()).toEqual(['panda', 50]);
+  expect(list.showAtIndex(2).show()).toEqual(['cats', 20]);
+  expect(list.showAtIndex(3).show()).toEqual(['kangaroo', 30]);
 
   expect(() => list.showAtIndex(6)).toThrow('Search index is out of range');
 });
 
 test('deleting elements', () => {
   const list = new LinkedList();
-  
+
   list.insertLast('bats', 10);
   list.insertLast('cats', 20);
   list.insertLast('kangaroo', 30);
@@ -132,33 +134,32 @@ test('deleting elements', () => {
   list.deleteAtIndex(0);
   expect(list.size).toBe(4);
 
-  expect(list.showAtIndex(0)).toEqual(['cats', 20]);
-  expect(list.showAtIndex(1)).toEqual(['kangaroo', 30]);
-  expect(list.showAtIndex(2)).toEqual(['koala', 40]);
-  expect(list.showAtIndex(3)).toEqual(['panda', 50]);
+  expect(list.showAtIndex(0).show()).toEqual(['cats', 20]);
+  expect(list.showAtIndex(1).show()).toEqual(['kangaroo', 30]);
+  expect(list.showAtIndex(2).show()).toEqual(['koala', 40]);
+  expect(list.showAtIndex(3).show()).toEqual(['panda', 50]);
 
   list.deleteAtIndex(3);
   expect(list.size).toBe(3);
-  expect(list.showAtIndex(0)).toEqual(['cats', 20]);
-  expect(list.showAtIndex(1)).toEqual(['kangaroo', 30]);
-  expect(list.showAtIndex(2)).toEqual(['koala', 40]);
+  expect(list.showAtIndex(0).show()).toEqual(['cats', 20]);
+  expect(list.showAtIndex(1).show()).toEqual(['kangaroo', 30]);
+  expect(list.showAtIndex(2).show()).toEqual(['koala', 40]);
 
   list.deleteAtIndex(1);
-  expect(list.showAtIndex(0)).toEqual(['cats', 20]);
-  expect(list.showAtIndex(1)).toEqual(['koala', 40]);
+  expect(list.showAtIndex(0).show()).toEqual(['cats', 20]);
+  expect(list.showAtIndex(1).show()).toEqual(['koala', 40]);
 
   expect(() => list.deleteAtIndex(6)).toThrow('Deletion index is out of range');
   expect(list.size).toBe(2);
-
 });
 
 test('totaling amounts', () => {
   const list = new LinkedList();
-  
+
   list.insertLast('bats', 10);
   list.insertLast('cats', 20);
   list.insertLast('kangaroo', 30);
- 
+
   expect(list.total()).toBe(60);
 
   list.insertLast('koala', 40);
@@ -167,5 +168,4 @@ test('totaling amounts', () => {
   expect(list.total()).toBe(150);
   list.deleteAtIndex(0);
   expect(list.total()).toBe(140);
-
 });

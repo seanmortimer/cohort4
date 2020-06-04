@@ -1,66 +1,40 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Card from './Card';
-import Community from './communityClass';
+import ListCard from './ListCard';
+import LinkedList from './listLogic';
 
-const mockEditClick = jest.fn();
-const mockDelClick = jest.fn();
-let cities = [];
-let comm = null;
+const demoData = [['Bat', 10], ['Dog', 20], ['Koala', 30], ['Panda', 40]];
+let list = null;
 
 beforeEach(() => {
-  cities = [
-    { key: 1, lat: 51.05, long: -114.05, name: 'Calgary', pop: 1340000 },
-    { key: 2, lat: 53.55, long: -113.49, name: 'Edmonton', pop: 981000 },
-    { key: 3, lat: 52.28, long: -113.81, name: 'Red Deer', pop: 106000 },
-    { key: 4, lat: -32.78, long: -71.53, name: 'Quintero', pop: 25300 },
-    { key: 5, lat: 0.00, long: 50.00, name: 'Equator Town', pop: 5000 },
-    { key: 6, lat: -33.93, long: 18.42, name: 'Cape Town', pop: 3780000 },
-    { key: 7, lat: 4.71, long: -74.07, name: 'Bogota', pop: 7400000 },
-  ];
-
-  comm = new Community();
-  cities.forEach((city) => comm.createCity(city));
+  list = new LinkedList();
+  demoData.forEach((value) => list.insertLast(value[0], value[1]));
 });
 
 afterEach(() => {
-  cities = [];
-  comm = null;
-  mockEditClick.mockClear();
-  mockDelClick.mockClear();
+  list = null;
 });
 
-test('city cards render - Calgary', () => {
-  const calg = comm.cities[0];
-  render(<Card key={calg.key} city={calg} onEdit={mockEditClick} onDelete={mockDelClick} />);
+test('cards display properly 1', () => {
+  render(<ListCard key={0} node={list.showAtIndex(0)} index={0} />);
 
-  // screen.debug();
-  expect(screen.getByText(/calgary/i)).toBeInTheDocument();
-  expect(screen.getByText(/population/i)).toHaveTextContent('Population');
-  expect(screen.getByText(/1,340,000/i)).toBeInTheDocument();
-  expect(screen.getByText(/city/i)).toBeInTheDocument();
-  expect(screen.getByText(/northern/i)).toBeInTheDocument();
-  expect(screen.getByText(/-114.05/i)).toBeInTheDocument();
-
-  fireEvent.click(screen.getByText('Delete'));
-  expect(mockDelClick).toHaveBeenCalledTimes(1);
-  expect(mockDelClick.mock.calls[0][0]).toBe(1);
+  expect(screen.getByText(/index 0/i)).toBeInTheDocument();
+  expect(screen.getByText(/bat/i)).toBeInTheDocument();
+  expect(screen.getByText(/next item: dog/i)).toBeInTheDocument();
 });
 
-test('city cards render - Quintero', () => {
-  const quin = comm.cities[3];
-  render(<Card key={quin.key} city={quin} onEdit={mockEditClick} onDelete={mockDelClick} />);
+test('cards display properly 2', () => {
+  render(<ListCard key={1} node={list.showAtIndex(1)} index={1} />);
 
-  expect(screen.getByText('Quintero')).toBeInTheDocument();
-  expect(screen.getByText(/population/i)).toHaveTextContent('Population');
-  expect(screen.getByText('25,300')).toBeInTheDocument();
-  expect(screen.getByText('Large town')).toBeInTheDocument();
-  expect(screen.getByText('Southern')).toBeInTheDocument();
-  expect(screen.getByText('-32.78')).toBeInTheDocument();
-
-  fireEvent.click(screen.getByText('Delete'));
-  expect(mockDelClick).toHaveBeenCalledTimes(1);
-  expect(mockDelClick.mock.calls[0][0]).toBe(4);
+  expect(screen.getByText(/index 1/i)).toBeInTheDocument();
+  expect(screen.getByText(/dog/i)).toBeInTheDocument();
+  expect(screen.getByText(/next item: koala/i)).toBeInTheDocument();
 });
 
-test.todo('Test edit modal');
+test('cards display properly tail', () => {
+  render(<ListCard key={3} node={list.showAtIndex(3)} index={3} />);
+
+  expect(screen.getByText(/index 3/i)).toBeInTheDocument();
+  expect(screen.getByText(/panda/i)).toBeInTheDocument();
+  expect(screen.getByText(/next item: null/i)).toBeInTheDocument();
+});

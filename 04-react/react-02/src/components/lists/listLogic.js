@@ -1,10 +1,11 @@
+/* eslint-disable max-classes-per-file */
 class ListNode {
   constructor(subject, amount, forwardNode = null) {
     this.subject = subject;
     if (!isNaN(amount)) {
       this.amount = Number(amount);
     } else {
-      throw new TypeError()
+      throw new TypeError();
     }
     this.forwardNode = forwardNode;
   }
@@ -23,12 +24,12 @@ class LinkedList {
   }
 
   insertFirst(subject, amount) {
-    this.head = new ListNode(subject, amount, this.head)
+    this.head = new ListNode(subject, amount, this.head);
     this.size++;
   }
 
   insertLast(subject, amount) {
-    let node = new ListNode(subject, amount);
+    const node = new ListNode(subject, amount);
     let currentNode = null;
 
     if (!this.head) {
@@ -36,7 +37,7 @@ class LinkedList {
     } else {
       currentNode = this.head;
       while (currentNode.forwardNode) {
-        currentNode = currentNode.forwardNode
+        currentNode = currentNode.forwardNode;
       }
       currentNode.forwardNode = node;
     }
@@ -55,7 +56,8 @@ class LinkedList {
     }
 
     const node = new ListNode(subject, amount);
-    let currentNode, previousNode = null;
+    let currentNode; let
+      previousNode = null;
     currentNode = this.head;
 
     for (let i = 0; i < index; i++) {
@@ -68,18 +70,18 @@ class LinkedList {
     this.size++;
   }
 
-    showAtIndex(index) {
+  showAtIndex(index) {
     if (index < 0 || index >= this.size) throw new Error('Search index is out of range');
     let currentNode = this.head;
     let count = 0;
 
     while (currentNode) {
-      if (count === index) return currentNode.show();
+      if (count === index) return currentNode;
       count++;
       currentNode = currentNode.forwardNode;
     }
   }
-  
+
   deleteAtIndex(index) {
     if (index < 0 || index >= this.size) throw new Error('Deletion index is out of range');
     let currentNode = this.head;
@@ -102,7 +104,7 @@ class LinkedList {
     let sum = null;
 
     while (currentNode) {
-      sum = sum + currentNode.amount;
+      sum += currentNode.amount;
       currentNode = currentNode.forwardNode;
       // console.log('currentNode :>> ', currentNode);
     }
