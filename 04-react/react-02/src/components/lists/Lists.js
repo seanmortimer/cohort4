@@ -6,6 +6,7 @@ import animals from '../../assets/data/animals.json';
 import ListSideBar from './ListSideBar';
 import ListCard from './ListCard';
 import LinkedList from './listLogic';
+import ListNav from './ListNav';
 
 const demoData = [['Bat', 10], ['Dog', 20], ['Koala', 30], ['Panda', 40]];
 
@@ -15,26 +16,31 @@ function Lists() {
   const [list, setList] = useState(new LinkedList());
   const [cards, setCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentCard, setCurrentCard] = useState('');
-
+  const data = list.size ? list.showAtIndex(currentIndex).show() : ['', ''];
 
   // Add demo data on first load
   function demoList() {
     demoData.forEach((value) => list.insertLast(value[0], value[1]));
   }
 
-  function updateCard() {
-    if (!list.size) setCurrentCard('');
-    else {
-      const sub = list.showAtIndex(currentIndex).subject;
-      const a = list.showAtIndex(currentIndex).amount;
-      const card = `Subject: ${sub},  Amount: $${a}`;
-      setCurrentCard(card);
-    }
-  }
+  // function updateCard() {
+  //   if (!list.size) setCurrentCard('');
+  //   else {
+  //     const sub = list.showAtIndex(currentIndex).subject;
+  //     const a = list.showAtIndex(currentIndex).amount;
+  //     const card = `Subject: ${sub} ${'     '} Amount: $${a}`;
+  //     setCurrentCard(card);
+  //   }
+  // }
 
   useEffect(demoList, []);
-  useEffect(updateCard, [currentIndex]);
+  // useEffect(updateCard, [currentIndex]);
+
+  function handleIndexChange(index) {
+    console.log('index :>> ', index);
+    if (index === -1) setCurrentIndex(list.size - 1);
+    setCurrentIndex(index);
+  }
 
   useEffect(() => {
     const c = [];
@@ -149,62 +155,10 @@ function Lists() {
                       </button>
                     </div>
                   </form>
-                  <h4>Current item:</h4>
-                  <p className="text-muted text-left">Index {currentIndex}</p>
-                  <div className="card ">
-                    <div className="card-body">
-                      <div className="text-nowrap text-center">
-                        <div id="idListItem">
-                          {currentCard}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-success btn-fill p-2"
-                    onClick={handleNavHead}
-                  >
-                    <i className="nc-icon nc-stre-left" />
-                    <i className="nc-icon nc-stre-left" />
-                    &nbsp;
-                    Head
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-success btn-fill m-1 p-2"
-                    onClick={handleNavPrev}
-                  >
-                    <i className="nc-icon nc-stre-left" />
-                    &nbsp;
-                    Previous
-                  </button>
-                  <button
-                    type="button"
-                    className="btn  btn-success btn-fill p-2"
-                    onClick={handleNavNext}
-                  >
-                    Next
-                    &nbsp;
-                    <i className="nc-icon nc-stre-right" />
-                  </button>
-                  <button
-                    type="button"
-                    className="btn  btn-success btn-fill m-1 p-2"
-                    onClick={handleNavTail}
-
-                  >
-                    Tail
-                    &nbsp;
-                    <i className="nc-icon nc-stre-right" />
-                    <i className="nc-icon nc-stre-right" />
-                  </button>
+                  <ListNav onIndexChange={handleIndexChange} index={currentIndex} data={data} />
                 </div>
                 <div className="col-sm">
                   <div className="card-deck" id="idCardDeck">
-                    {/* {cards.length ? cards : 'Add some cities!'} */}
-                    {/* Here will be cards! */}
-                    {/* <ListCard /> */}
                     {cards}
                   </div>
                 </div>
