@@ -23,8 +23,12 @@ footer {
 }
 
 .card {
-    min-width: 150px;
+    /* min-width: 150px; */
     margin-bottom: 15px;
+}
+
+.clActiveCard {
+    border: solid 4px;
 }
 
 #idAddWarning {

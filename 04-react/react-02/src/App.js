@@ -46,7 +46,7 @@ class App extends Component {
       <div className="App">
         <Header onNavClick={this.onNavClick} />
         {currentPage}
-        <footer>© 2020{' '}
+        <footer className="text-center">© 2020{' '}
           <a href="http://www.seanmortimer.com">
             Sean Mortimer
           </a>

@@ -14,22 +14,39 @@ function Lists() {
   const [amnt, setAmnt] = useState('');
   const [list, setList] = useState(new LinkedList());
   const [cards, setCards] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentCard, setCurrentCard] = useState('');
 
-  useEffect(() => {
+
+  // Add demo data on first load
+  function demoList() {
     demoData.forEach((value) => list.insertLast(value[0], value[1]));
-    setList(list);
-    // console.log('use Effect', list);
-  }, []);
+  }
+
+  function updateCard() {
+    if (!list.size) setCurrentCard('');
+    else {
+      const sub = list.showAtIndex(currentIndex).subject;
+      const a = list.showAtIndex(currentIndex).amount;
+      const card = `Subject: ${sub},  Amount: $${a}`;
+      setCurrentCard(card);
+    }
+  }
+
+  useEffect(demoList, []);
+  useEffect(updateCard, [currentIndex]);
 
   useEffect(() => {
     const c = [];
     for (let i = 0; i < list.size; i++) {
       // console.log('list.showAtIndex(i) :>> ', list.showAtIndex(i));
-      c.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} />);
+      let sel = false;
+      if (i === currentIndex) sel = true;
+      c.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} sel={sel} />);
     }
-    console.log('use Effect main', c);
+    // console.log('use Effect main', c);
     setCards(c);
-  }, [list]);
+  }, [list, currentIndex]);
 
   // console.log('list :>> ', list);
 
@@ -48,16 +65,32 @@ function Lists() {
     setList(list);
   };
 
-  // if (list.size === 0) {
-  //   demoData.forEach((value) => list.insertLast(value[0], value[1]));
-  // }
+  const handleNavHead = () => {
+    setCurrentIndex(0);
+  };
 
-  // for (let i = 0; i < list.size; i++) {
-  //   // console.log('list.showAtIndex(i) :>> ', list.showAtIndex(i));
-  //   cards.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} />);
-  // }
+  const handleNavPrev = () => {
+    // if (!list.size) return;
+    if (currentIndex === 0) return;
+    setCurrentIndex(currentIndex - 1);
+  };
+
+  const handleNavNext = () => {
+    // if (!list.size) return;
+    if (currentIndex === list.size - 1) return;
+    setCurrentIndex(currentIndex + 1);
+  };
+  const handleNavTail = () => {
+    if (!list.size) return;
+    setCurrentIndex(list.size - 1);
+  };
 
   // console.log('Render!', cards);
+  // if (list.size) {
+  //   const sub = list.showAtIndex(currentIndex).subject;
+  //   const amnt = list.showAtIndex(currentIndex).amount;
+
+  // }
 
   return (
     <div>
@@ -66,16 +99,8 @@ function Lists() {
         <div className="main-panel">
           <nav className="navbar">
             <div className="container-fluid">
-              <div className="navbar-brand">Check out these lists!</div>
-              <button
-                className="btn btn-success btn-fill  m-0 pt-0"
-                type="button"
-              >
-                <i className="nc-icon nc-simple-add" />
-                <span id="idAddBtn">
-                  {' '}Add a thing
-                </span>
-              </button>
+              <div className="navbar-brand">Check out this list!</div>
+              <div className="text-muted">They're made with React Hooks</div>
             </div>
           </nav>
           <div className="content">
@@ -125,11 +150,12 @@ function Lists() {
                     </div>
                   </form>
                   <h4>Current item:</h4>
+                  <p className="text-muted text-left">Index {currentIndex}</p>
                   <div className="card ">
                     <div className="card-body">
-                      <div className="text-nowrap">
+                      <div className="text-nowrap text-center">
                         <div id="idListItem">
-                          Here be the list stuff
+                          {currentCard}
                         </div>
                       </div>
                     </div>
@@ -137,7 +163,7 @@ function Lists() {
                   <button
                     type="button"
                     className="btn btn-success btn-fill p-2"
-                    onClick={handleInsert}
+                    onClick={handleNavHead}
                   >
                     <i className="nc-icon nc-stre-left" />
                     <i className="nc-icon nc-stre-left" />
@@ -147,6 +173,7 @@ function Lists() {
                   <button
                     type="button"
                     className="btn btn-success btn-fill m-1 p-2"
+                    onClick={handleNavPrev}
                   >
                     <i className="nc-icon nc-stre-left" />
                     &nbsp;
@@ -155,7 +182,7 @@ function Lists() {
                   <button
                     type="button"
                     className="btn  btn-success btn-fill p-2"
-                    onClick={handleInsert}
+                    onClick={handleNavNext}
                   >
                     Next
                     &nbsp;
@@ -164,6 +191,8 @@ function Lists() {
                   <button
                     type="button"
                     className="btn  btn-success btn-fill m-1 p-2"
+                    onClick={handleNavTail}
+
                   >
                     Tail
                     &nbsp;
