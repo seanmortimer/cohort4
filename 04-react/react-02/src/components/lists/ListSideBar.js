@@ -6,9 +6,9 @@ function ListSideBar() {
     <div className="sidebar" id="idSideBar" data-image="../assets/img/sidebar-5.jpg" data-color="blue">
       <div className="sidebar-wrapper">
         <div className="logo">
-          <div className="simple-text">Lists and Such</div>
+          <div className="simple-text">Linked Lists</div>
         </div>
-        <p>Here's some text</p>
+        <p>Here&apos;s some text</p>
       </div>
     </div>
   );

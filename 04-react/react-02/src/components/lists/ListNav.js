@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import animals from '../../assets/data/animals.json';
+import React from 'react';
 
 
 function ListNav({ index, data, onIndexChange }) {

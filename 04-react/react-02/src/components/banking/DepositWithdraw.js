@@ -13,7 +13,7 @@ class DepositWithdraw extends Component {
     let amnt = this.amnt.value;
     const act = this.props.accounts.find((a) => a.actName === this.act.value);
     if (!act || !amnt) return;
-    if (!amnt.match(/^[0-9]+$/)) {
+    if (!amnt.match(/^[0-9.]+$/)) {
       this.props.onDW(act, null);
       return;
     }

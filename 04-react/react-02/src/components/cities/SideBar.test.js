@@ -1,11 +1,11 @@
-import React from 'react'
-import { render, screen } from '@testing-library/react'
-import SideBar from './SideBar'
-import Community from './communityClass'
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import SideBar from './SideBar';
+import Community from './communityClass';
 
 
-let cities = []
-let comm = null
+let cities = [];
+let comm = null;
 
 beforeEach(() => {
   cities = [
@@ -16,37 +16,37 @@ beforeEach(() => {
     { key: 5, lat: 0.00, long: 50.00, name: 'Equator Town', pop: 5000 },
     { key: 6, lat: -33.93, long: 18.42, name: 'Cape Town', pop: 3780000 },
     { key: 7, lat: 4.71, long: -74.07, name: 'Bogota', pop: 7400000 },
-  ]
+  ];
 
-  comm = new Community()
-  cities.forEach((city) => comm.createCity(city))
-})
+  comm = new Community();
+  cities.forEach((city) => comm.createCity(city));
+});
 
 afterEach(() => {
-  cities = []
-  comm = null
-})
+  cities = [];
+  comm = null;
+});
 
 test('sidebar renders with empty data', () => {
-  const emptyComm = new Community()
-  render(<SideBar cities={emptyComm} />)
+  const emptyComm = new Community();
+  render(<SideBar cities={emptyComm} />);
 
-  expect(screen.getByText('Cities of the World')).toBeInTheDocument()
-  expect(screen.getByText(/northernmost city/i)).toBeInTheDocument()
-  expect(screen.getByText(/southernmost city/i)).toBeInTheDocument()
-  expect(screen.getAllByText(/latitude/i)).toHaveLength(2)
-  expect(screen.getByText(/total population/i)).toBeInTheDocument()
-  expect(screen.getByText(/0/i)).toBeInTheDocument()
-})
+  expect(screen.getByText('Cities of the World')).toBeInTheDocument();
+  expect(screen.getByText(/northernmost city/i)).toBeInTheDocument();
+  expect(screen.getByText(/southernmost city/i)).toBeInTheDocument();
+  expect(screen.getAllByText(/latitude/i)).toHaveLength(2);
+  expect(screen.getByText(/total population/i)).toBeInTheDocument();
+  expect(screen.getByText(/0/i)).toBeInTheDocument();
+});
 
 
 test('sidebar renders with correct data', () => {
-  render(<SideBar cities={comm} />)
+  render(<SideBar cities={comm} />);
 
-  expect(screen.getByText('Cities of the World')).toBeInTheDocument()
-  expect(screen.getByText('Edmonton')).toBeInTheDocument()
-  expect(screen.queryByText('Calgary')).not.toBeInTheDocument()
-  expect(screen.getByText('53.55')).toBeInTheDocument()
-  expect(screen.getByText('Cape Town')).toBeInTheDocument()
-  expect(screen.getByText('-33.93')).toBeInTheDocument()
-})
+  expect(screen.getByText('Cities of the World')).toBeInTheDocument();
+  expect(screen.getByText('Edmonton')).toBeInTheDocument();
+  expect(screen.queryByText('Calgary')).not.toBeInTheDocument();
+  expect(screen.getByText('53.55')).toBeInTheDocument();
+  expect(screen.getByText('Cape Town')).toBeInTheDocument();
+  expect(screen.getByText('-33.93')).toBeInTheDocument();
+});

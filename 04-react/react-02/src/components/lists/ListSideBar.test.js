@@ -8,6 +8,6 @@ test('sidebar renders with empty data', () => {
 
   expect(screen.getByText('Lists and Such')).toBeInTheDocument();
   expect(screen.getByText('Lists asdfnd Such')).toBeInTheDocument();
-
-
 });
+
+test.todo('add total to sidebar');
