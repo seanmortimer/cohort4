@@ -16,17 +16,27 @@ function Lists() {
   const [size, setSize] = useState(0);
   const [cards, setCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  let emptyCard = null;
   // const list = new LinkedList();
   // const currentNode = list.size ? list.showAtIndex(currentIndex) : { subject: '', amount: '' };
 
-  // function createCards() {
+  const handleCardClick = (i) => {
+    setCurrentIndex(i);
+  };
+
   useEffect(() => {
     //   // console.log('CARDS', currentIndex);
     const c = [];
     for (let i = 0; i < list.size; i++) {
       let sel = false;
       if (i === currentIndex) sel = true;
-      c.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} sel={sel} />);
+      c.push(<ListCard
+        key={i}
+        node={list.showAtIndex(i)}
+        index={i}
+        sel={sel}
+        onClick={handleCardClick}
+      />);
     }
     setCards(c);
   }, [currentIndex, size, list]);
@@ -52,6 +62,7 @@ function Lists() {
     setSize(list.size);
   }
 
+
   // useEffect(() => {
   //   const c = [];
   //   for (let i = 0; i < list.size; i++) {
@@ -71,8 +82,10 @@ function Lists() {
   //   cards.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} sel={sel} />);
   // }
 
+
   const handleInsert = (positon, sub, amnt) => {
     switch (positon) {
+      // if (!size) setCurrentIndex(0)
       case 'head':
         list.insertFirst(sub, amnt);
         setCurrentIndex(0);
@@ -96,13 +109,15 @@ function Lists() {
   };
 
   const handleDelete = () => {
-    // console.log('delete this :>> ', currentIndex);
+    if (!size) return;
     list.deleteAtIndex(currentIndex);
     setSize(list.size);
-    if (currentIndex === list.size) setCurrentIndex(list.size - 1);
+    if (currentIndex === list.size && list.size > 0) setCurrentIndex(list.size - 1);
   };
 
   // console.log('list.total() :>> ', list.total());
+  // if (cards) console.log('Cards!');
+  if (!size) emptyCard = <div>Where&apos;d the list go?</div>;
   return (
     <div>
       <div className="wrapper">
@@ -124,6 +139,7 @@ function Lists() {
                 <div className="col-sm">
                   <div className="card-deck" id="idCardDeck">
                     {cards}
+                    {emptyCard}
                   </div>
                 </div>
               </div>

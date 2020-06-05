@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import ListCard from './ListCard';
 import LinkedList from './listLogic';
 
@@ -38,3 +38,4 @@ test('cards display properly tail', () => {
   expect(screen.getByText(/panda/i)).toBeInTheDocument();
   expect(screen.getByText(/next item: null/i)).toBeInTheDocument();
 });
+

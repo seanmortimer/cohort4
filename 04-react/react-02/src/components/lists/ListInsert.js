@@ -66,6 +66,7 @@ function ListInsert(props) {
             placeholder="Subject"
             value={subject}
             onChange={handleSubjectChange}
+            autoComplete="off"
           />
         </label>
         <label className="mt-1 mb-3" htmlFor="amount">Amount:
@@ -76,6 +77,7 @@ function ListInsert(props) {
             placeholder="Amount"
             value={amount}
             onChange={handleAmountChange}
+            autoComplete="off"
           />
         </label>
         <div>

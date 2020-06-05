@@ -115,6 +115,12 @@ test('delete current element', () => {
 
   fireEvent.click(getByText('Tail'));
   expect(getByText('Index 2: Panda, $40 >> Next item: null')).toBeInTheDocument();
+
+  // Make sure deleting with no items doesn't crash
+  fireEvent.click(getByText('Delete current'));
+  fireEvent.click(getByText('Delete current'));
+  fireEvent.click(getByText('Delete current'));
+  fireEvent.click(getByText('Delete current'));
 });
 
 test('list total works', () => {
@@ -136,5 +142,33 @@ test('list total works', () => {
   expect(getByText(/Current total: \$110/i)).toBeInTheDocument();
 });
 
-test.todo('app crashes on inserting from empty - only for current?');
-test.todo('deleting empty crashes');
+
+test('insert from empty list', () => {
+  render(<Lists />);
+  const sub = getByLabelText(/subject/i);
+  const amnt = getByLabelText(/amount/i);
+
+  fireEvent.click(getByText('Delete current'));
+  fireEvent.click(getByText('Delete current'));
+  fireEvent.click(getByText('Delete current'));
+  fireEvent.click(getByText('Delete current'));
+  expect(queryByText(/where'd the list go?/i)).toBeInTheDocument();
+
+  fireEvent.change(sub, { target: { value: 'Kangaroo' } });
+  fireEvent.change(amnt, { target: { value: 50 } });
+  fireEvent.click(getByText('Insert at current'));
+  expect(getByText('Index 0: Kangaroo, $50 >> Next item: null')).toBeInTheDocument();
+});
+
+test('clicking cards selects them', () => {
+  render(<Lists />);
+
+  expect(queryByText('Subject: Bat, Amount: $10')).toBeInTheDocument();
+
+  fireEvent.click(getByText(/Index 1: Dog/i));
+  expect(queryByText('Subject: Bat, Amount: $10')).not.toBeInTheDocument();
+  expect(queryByText('Subject: Dog, Amount: $20')).toBeInTheDocument();
+
+  fireEvent.click(getByText(/Index 3: Panda/i));
+  expect(queryByText('Subject: Panda, Amount: $40')).toBeInTheDocument();
+});

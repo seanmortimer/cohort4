@@ -169,3 +169,10 @@ test('totaling amounts', () => {
   list.deleteAtIndex(0);
   expect(list.total()).toBe(140);
 });
+
+test('inserting at index 0 on empty list', () => {
+  const list = new LinkedList();
+
+  list.insert('Bat', 10, 0);
+  expect(list.size).toBe(1);
+});

@@ -47,13 +47,13 @@ class LinkedList {
 
   insert(subject, amount, index) {
     // console.log(this.size, index);
-    if (index < 0 || index >= this.size) throw new Error('Insertion index is out of range');
-
     if (index === 0) {
       this.head = new ListNode(subject, amount, this.head);
       this.size++;
       return;
     }
+
+    if (index < 0 || index >= this.size) throw new Error('Insertion index is out of range');
 
     const node = new ListNode(subject, amount);
     let currentNode; let
