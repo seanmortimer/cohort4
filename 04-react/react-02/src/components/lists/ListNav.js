@@ -11,8 +11,7 @@ function ListNav({ index, list, onIndexChange }) {
 
   // if (!list.size) console.log('There is no list');
   if (list?.size) {
-    subject = list.showAtIndex(index).subject;
-    amount = list.showAtIndex(index).amount;
+    [subject, amount] = list.showAtIndex(index).show();
     card = `Subject: ${subject}, Amount: $${amount}`;
     total = list.total();
     // console.log('List exists!', total);
