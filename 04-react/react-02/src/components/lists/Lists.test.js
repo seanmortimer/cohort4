@@ -135,3 +135,6 @@ test('list total works', () => {
 
   expect(getByText(/Current total: \$110/i)).toBeInTheDocument();
 });
+
+test.todo('app crashes on inserting from empty - only for current?');
+test.todo('deleting empty crashes');
