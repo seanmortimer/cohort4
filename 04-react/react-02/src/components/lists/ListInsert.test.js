@@ -7,7 +7,6 @@ const mockInsertFn = jest.fn();
 const mockDeleteFn = jest.fn();
 
 const { getByText, getAllByRole } = screen;
-const numAnimals = animals.length;
 
 afterEach(() => {
   mockInsertFn.mockClear();

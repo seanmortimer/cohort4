@@ -71,7 +71,6 @@ class LinkedList {
   }
 
   showAtIndex(index) {
-    // console.log('index :>> ', index);
     if (index < 0 || index >= this.size) throw new Error('Search index is out of range');
     let currentNode = this.head;
     let count = 0;

@@ -5,64 +5,104 @@ import '../../assets/css/lists.css';
 // import animals from '../../assets/data/animals.json';
 import ListSideBar from './ListSideBar';
 import ListCard from './ListCard';
-import LinkedList from './listLogic';
 import ListNav from './ListNav';
 import ListInsert from './ListInsert';
+import LinkedList from './listLogic';
 
 const demoData = [['Bat', 10], ['Dog', 20], ['Koala', 30], ['Panda', 40]];
 
 function Lists() {
   const [list, setList] = useState(new LinkedList()); //  TODO: Is this neccessary???
+  const [size, setSize] = useState(0);
   const [cards, setCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const data = list.size ? list.showAtIndex(currentIndex).show() : ['', ''];
+  // const list = new LinkedList();
+  // const currentNode = list.size ? list.showAtIndex(currentIndex) : { subject: '', amount: '' };
 
-  // Add demo data on first load
-  function demoList() {
-    demoData.forEach((value) => list.insertLast(value[0], value[1]));
-  }
-
-  // function updateCard() {
-  //   if (!list.size) setCurrentCard('');
-  //   else {
-  //     const sub = list.showAtIndex(currentIndex).subject;
-  //     const a = list.showAtIndex(currentIndex).amount;
-  //     const card = `Subject: ${sub} ${'     '} Amount: $${a}`;
-  //     setCurrentCard(card);
-  //   }
-  // }
-
-  useEffect(demoList, []);
-  // useEffect(updateCard, [currentIndex]);
-
-  function handleIndexChange(index) {
-    if (!list.size || index === currentIndex || index >= list.size) return;
-    if (index === -1) setCurrentIndex(list.size - 1);
-    else setCurrentIndex(index);
-  }
-
+  // function createCards() {
   useEffect(() => {
+    //   // console.log('CARDS', currentIndex);
     const c = [];
     for (let i = 0; i < list.size; i++) {
-      // console.log('list.showAtIndex(i) :>> ', list.showAtIndex(i));
       let sel = false;
       if (i === currentIndex) sel = true;
       c.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} sel={sel} />);
     }
-    // console.log('use Effect main', c);
     setCards(c);
-  }, [list, currentIndex]);
+  }, [currentIndex, size, list]);
+  // }
+
+  // Add demo data on first load
+  function demoList() {
+    // console.log('list');
+    demoData.forEach((value) => list.insertLast(value[0], value[1]));
+    setSize(list.size);
+    // createCards();
+    // setCurrentIndex(1);
+  }
+
+  useEffect(demoList, []);
+
+  function handleIndexChange(index) {
+    // console.log('index :>> ', index);
+    // console.log('list.size :>> ', list.size);
+    if (!list.size || index >= list.size) return;
+    if (index === -1) setCurrentIndex(list.size - 1);
+    else setCurrentIndex(index);
+    setSize(list.size);
+  }
+
+  // useEffect(() => {
+  //   const c = [];
+  //   for (let i = 0; i < list.size; i++) {
+  //     // console.log('list.showAtIndex(i) :>> ', list.showAtIndex(i));
+  //     let sel = false;
+  //     if (i === currentIndex) sel = true;
+  //     c.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} sel={sel} />);
+  //   }
+  //   // console.log('use Effect main', c);
+  //   setCards(c);
+  // }, [list, currentIndex]);
+
+  // console.log('size :>> ', size);
+  // for (let i = 0; i < list.size; i++) {
+  //   let sel = false;
+  //   if (i === currentIndex) sel = true;
+  //   cards.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} sel={sel} />);
+  // }
 
   const handleInsert = (positon, sub, amnt) => {
-    console.log('positon, sub, amnt :>> ', positon, sub, amnt);
+    switch (positon) {
+      case 'head':
+        list.insertFirst(sub, amnt);
+        setCurrentIndex(0);
+        setSize(list.size);
+        break;
+      case 'tail':
+        list.insertLast(sub, amnt);
+        setSize(list.size);
+        setCurrentIndex(list.size - 1);
+        break;
+      case 'here':
+        list.insert(sub, amnt, currentIndex);
+        setSize(list.size);
+        break;
+      default:
+        break;
+    }
+    // console.log('positon, sub, amnt :>> ', positon, sub, amnt);
     // list.insertFirst(subj, amnt);
     // setList(list);
   };
 
   const handleDelete = () => {
-    console.log('delete this :>> ', currentIndex);
+    // console.log('delete this :>> ', currentIndex);
+    list.deleteAtIndex(currentIndex);
+    setSize(list.size);
+    if (currentIndex === list.size) setCurrentIndex(list.size - 1);
   };
 
+  // console.log('list.total() :>> ', list.total());
   return (
     <div>
       <div className="wrapper">
@@ -79,7 +119,7 @@ function Lists() {
               <div className="row">
                 <div className="col-sm" id="idCtrlPanel">
                   <ListInsert onInsert={handleInsert} onDelete={handleDelete} />
-                  <ListNav onIndexChange={handleIndexChange} index={currentIndex} data={data} />
+                  <ListNav onIndexChange={handleIndexChange} index={currentIndex} list={list} />
                 </div>
                 <div className="col-sm">
                   <div className="card-deck" id="idCardDeck">

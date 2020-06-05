@@ -15,7 +15,7 @@ footer {
 
 #idCtrlPanel {
     border-right: solid gray 2px;
-    align-self: center;
+    /* align-self: center; */
 }
 
 #idCardDeck {

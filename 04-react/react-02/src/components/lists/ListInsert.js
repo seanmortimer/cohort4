@@ -58,30 +58,26 @@ function ListInsert(props) {
     <div>
       <h4>Linked List</h4>
       <form className="form-group">
-        <p>
-          <label className="mt-3" htmlFor="subject">Subject:
-            <input
-              type="text"
-              name="subject"
-              className="form-control"
-              placeholder="Subject"
-              value={subject}
-              onChange={handleSubjectChange}
-            />
-          </label>
-        </p>
-        <p>
-          <label className="mt-3" htmlFor="amount">Amount:
-            <input
-              type="text"
-              className="form-control"
-              name="amount"
-              placeholder="Amount"
-              value={amount}
-              onChange={handleAmountChange}
-            />
-          </label>
-        </p>
+        <label className="mt-3" htmlFor="subject">Subject:
+          <input
+            type="text"
+            name="subject"
+            className="form-control"
+            placeholder="Subject"
+            value={subject}
+            onChange={handleSubjectChange}
+          />
+        </label>
+        <label className="mt-1 mb-3" htmlFor="amount">Amount:
+          <input
+            type="text"
+            className="form-control"
+            name="amount"
+            placeholder="Amount"
+            value={amount}
+            onChange={handleAmountChange}
+          />
+        </label>
         <div>
           <button
             type="button"
