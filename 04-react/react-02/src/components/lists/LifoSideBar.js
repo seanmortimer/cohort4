@@ -10,7 +10,9 @@ function LifoSideBar() {
         </div>
         <p className="p-3 mt-4 text-left">
           A queue adds new items to the end of the list and removes items from the front
-          of thte list (First in, First out). Like a queue outside Canadian Tire on a
+          of thte list (First in, First out). 
+          <br />
+          Like a queue outside Canadian Tire on a
           Saturday morning.
         </p>
         <p className="p-3 text-left">
