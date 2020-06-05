@@ -8,17 +8,13 @@ import { ReactComponent as Rotor } from '../images/brake-rotor.svg';
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      active: 'clActive',
-      regular: 'clIcon',
-    };
+    this.state = { active: 'home' };
     this.handleNavClick = this.handleNavClick.bind(this);
   }
 
-  handleNavClick(e) {
-    // console.log('e.target :>> ', e.target);
-    // e.target.setAttribute('class', 'clActive');
-    this.props.onNavClick(e.target.getAttribute('name'));
+  handleNavClick(target) {
+    this.setState({ active: target });
+    this.props.onNavClick(target);
   }
 
   render() {
@@ -26,48 +22,58 @@ class Header extends Component {
       <nav className="clHeader">
         <div>
           <Wheel
-            className={this.state.regular}
+            // className={this.state.regular}
+            className={(this.state.active === 'home') ? 'clActive' : 'clIcon'}
             role="link"
-            onClick={this.handleNavClick}
+            onClick={() => this.handleNavClick('home')}
             name="home"
           />
           <div>Home</div>
         </div>
         <div>
           <Chainring
-            className={this.state.regular}
+            className={(this.state.active === 'tictac') ? 'clActive' : 'clIcon'}
             role="link"
-            onClick={this.handleNavClick}
+            onClick={() => this.handleNavClick('tictac')}
             name="tictac"
           />
           <div>Tic Tac Toe</div>
         </div>
         <div>
           <SickWhip
-            className={this.state.regular}
+            className={(this.state.active === 'banking') ? 'clActive' : 'clIcon'}
             role="link"
-            onClick={this.handleNavClick}
+            onClick={() => this.handleNavClick('banking')}
             name="banking"
           />
           <div>Banking</div>
         </div>
         <div>
           <Rotor
-            className={this.state.regular}
+            className={(this.state.active === 'cities') ? 'clActive' : 'clIcon'}
             role="link"
-            onClick={this.handleNavClick}
+            onClick={() => this.handleNavClick('cities')}
             name="cities"
           />
           <div>Cities of The World</div>
         </div>
         <div>
-          <Wheel
-            className={this.state.regular}
+          <Chainring
+            className={(this.state.active === 'lists') ? 'clActive' : 'clIcon'}
             role="link"
+            onClick={() => this.handleNavClick('lists')}
             name="lists"
-          onClick={this.handleNavClick}
           />
-          <div>Lists and Hooks</div>
+          <div>Linked Lists</div>
+        </div>
+        <div>
+          <Wheel
+            className={(this.state.active === 'lifo') ? 'clActive' : 'clIcon'}
+            role="link"
+            name="lifo"
+            onClick={() => this.handleNavClick('lifo')}
+          />
+          <div>Stacks vs Queues</div>
         </div>
 
       </nav>

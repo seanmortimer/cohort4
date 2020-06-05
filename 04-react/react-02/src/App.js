@@ -7,12 +7,13 @@ import Game from './components/tictactoe/TicTacToe';
 import Banking from './components/banking/Banking';
 import Cities from './components/cities/Cities';
 import Lists from './components/lists/Lists';
+import LifoFifo from './components/lists/LifoFifo';
 
 class App extends Component {
   constructor(props) {
     super(props);
     // this.state = { page: 'home' };
-    this.state = { page: 'lists' };
+    this.state = { page: 'lifo' };
     this.onNavClick = this.onNavClick.bind(this);
   }
 
@@ -39,6 +40,9 @@ class App extends Component {
       case 'lists':
         currentPage = <Lists />;
         break;
+        case 'lifo':
+          currentPage = <LifoFifo />;
+          break;
       default:
         break;
     }

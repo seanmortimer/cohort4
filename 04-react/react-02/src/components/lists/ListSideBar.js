@@ -3,12 +3,12 @@ import React from 'react';
 
 function ListSideBar() {
   return (
-    <div className="sidebar" id="idSideBar" data-image="../assets/img/sidebar-5.jpg" data-color="blue">
+    <div className="sidebar" id="idSideBar" data-image="../../assets/img/sidebar-4.jpg" data-color="blue">
       <div className="sidebar-wrapper">
         <div className="logo">
           <div className="simple-text">Linked Lists</div>
         </div>
-        <p className="p-3 text-left">
+        <p className="p-3 mt-4 text-left">
           A linked list is a series of items where each element points to the next element
           (single linked list) or the elements before and after itself (doubly linked list).
         </p>

@@ -19,8 +19,8 @@ class LinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
-    // this.currentNode = null;
     this.size = 0;
+    // this.currentNode = null;
   }
 
   insertFirst(subject, amount) {

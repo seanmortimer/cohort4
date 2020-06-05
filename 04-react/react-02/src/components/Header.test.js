@@ -13,7 +13,9 @@ test('the header renders', () => {
   expect(screen.getByText('Tic Tac Toe')).toBeInTheDocument();
   expect(screen.getByText('Banking')).toBeInTheDocument();
   expect(screen.getByText('Cities of The World')).toBeInTheDocument();
-  expect(screen.getByText('Lists and Hooks')).toBeInTheDocument();
+  expect(screen.getByText('Linked Lists')).toBeInTheDocument();
+  expect(screen.getByText('Stacks vs Queues')).toBeInTheDocument();
+  expect(screen.getAllByRole('link')).toHaveLength(6);
 });
 
 test('the navigation works', () => {
@@ -33,7 +35,8 @@ test('the navigation works', () => {
   expect(mockNavCallback.mock.calls[3][0]).toBe('cities');
   fireEvent.click(nav[4]);
   expect(mockNavCallback.mock.calls[4][0]).toBe('lists');
+  fireEvent.click(nav[5]);
+  expect(mockNavCallback.mock.calls[5][0]).toBe('lifo');
   fireEvent.click(nav[0]);
-  expect(mockNavCallback.mock.calls[5][0]).toBe('home');
-
+  expect(mockNavCallback.mock.calls[6][0]).toBe('home');
 });
