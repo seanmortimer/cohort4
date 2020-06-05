@@ -17,8 +17,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "testr": "react-scripts test --runInBand",
+    "test": "react-scripts test  --runInBand",
+    "testnorib": "react-scripts test",
     "cov": "react-scripts test --coverage --watchAll --runInBand",
     "showcov": "start ./coverage/lcov-report/index.html",
     "eject": "react-scripts eject"

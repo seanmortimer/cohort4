@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
-import './App.css';
+import './assets/css/App.css';
 import Header from './components/Header';
 import ReactHome from './components/ReactHome';
 import Game from './components/tictactoe/TicTacToe';
@@ -40,9 +40,9 @@ class App extends Component {
       case 'lists':
         currentPage = <Lists />;
         break;
-        case 'lifo':
-          currentPage = <LifoFifo />;
-          break;
+      case 'lifo':
+        currentPage = <LifoFifo />;
+        break;
       default:
         break;
     }
