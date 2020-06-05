@@ -4,6 +4,7 @@ import ListCard from './ListCard';
 import LinkedList from './listLogic';
 
 const demoData = [['Bat', 10], ['Dog', 20], ['Koala', 30], ['Panda', 40]];
+test.todo('Make Test data alphabetical');
 let list = null;
 
 beforeEach(() => {
@@ -38,4 +39,3 @@ test('cards display properly tail', () => {
   expect(screen.getByText(/panda/i)).toBeInTheDocument();
   expect(screen.getByText(/next item: null/i)).toBeInTheDocument();
 });
-

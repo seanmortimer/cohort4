@@ -18,14 +18,15 @@ footer {
     /* align-self: center; */
 }
 
-#idCardDeck {
+#idListCardDeck {
     flex-direction: column;
 }
 
-.card {
-    /* min-width: 150px; */
+/* .clListCard {
+    word-wrap: ;
+    /* min-width: 150px; 
     margin-bottom: 15px;
-}
+} */
 
 .clActiveCard {
     border: solid 4px;

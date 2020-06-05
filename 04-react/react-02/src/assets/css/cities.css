@@ -13,8 +13,13 @@ footer {
     text-align: right;
 }
 
-.card {
+.clCityCard {
     min-width: 200px;
+    max-width: 250px;
+}
+
+.clCityCard-body {
+    text-align: left;
 }
 
 #idAddWarning {
@@ -49,6 +54,3 @@ form .modal-footer {
     margin-bottom: 0;
 }
 
-.card-body {
-    text-align: left;
-}

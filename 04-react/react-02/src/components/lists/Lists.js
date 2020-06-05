@@ -137,7 +137,7 @@ function Lists() {
                   <ListNav onIndexChange={handleIndexChange} index={currentIndex} list={list} />
                 </div>
                 <div className="col-sm">
-                  <div className="card-deck" id="idCardDeck">
+                  <div className="card-deck" id="idListCardDeck">
                     {cards}
                     {emptyCard}
                   </div>

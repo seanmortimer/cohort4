@@ -2,6 +2,8 @@
 class ListNode {
   constructor(subject, amount, forwardNode = null) {
     this.subject = subject;
+
+    // Try if (Number(amount).isNaN) Throw
     if (!isNaN(amount)) {
       this.amount = Number(amount);
     } else {

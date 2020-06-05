@@ -41,9 +41,9 @@ function ListNav({ index, list, onIndexChange }) {
         Index {index}
         <span className="float-right">Current total: ${total}</span>
       </p>
-      <div className="card ">
+      <div className="card mw-100">
         <div className="card-body">
-          <div className="text-nowrap text-center">
+          <div className="text-center">
             <div id="idListItem">
               {card}
             </div>

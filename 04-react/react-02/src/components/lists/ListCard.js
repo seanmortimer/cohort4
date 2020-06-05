@@ -8,12 +8,15 @@ function ListCard(props) {
   const [subject, amount] = node.show();
   const nextNode = node.forwardNode || { subject: 'null', amount: '' };
 
-  const active = sel ? 'card border-primary clActiveCard' : 'card';
+  const active = sel
+    ? 'card mw-100 mb-2 clListCard border-primary clActiveCard'
+    : 'card mw-100 mb-2 clListCard';
 
   return (
     <div className={active}>
       <div className="card-body" onClick={() => props.onClick(index)}>
-        <div className="text-nowrap">
+        {/* <div className="text-nowrap"> */}
+        <div className="">
           <div>Index {index}: {subject}, ${amount}
             &nbsp;&gt;&gt; Next item: {nextNode.subject || 'null'}
             {nextNode.amount ? `, $${nextNode.amount}` : ''}

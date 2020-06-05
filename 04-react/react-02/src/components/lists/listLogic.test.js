@@ -176,3 +176,8 @@ test('inserting at index 0 on empty list', () => {
   list.insert('Bat', 10, 0);
   expect(list.size).toBe(1);
 });
+
+
+test.todo('insert after current, not before');
+test.todo('Track current node in class');
+test.todo('Get rid of insert first, insert last');

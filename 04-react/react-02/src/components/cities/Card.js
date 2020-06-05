@@ -37,11 +37,11 @@ class Card extends Component {
   render() {
     const { city } = this.props;
     return (
-      <div className="card ">
+      <div className="card clCityCard">
         <div className="card-header ">
           <h4 className="card-title">{city.name}</h4>
         </div>
-        <div className="card-body">
+        <div className="card-body clCityCard-body">
           <div className="row">
             <div className="col-7 pr-0 font-weight-bold text-nowrap">
               <div>Population:</div>
