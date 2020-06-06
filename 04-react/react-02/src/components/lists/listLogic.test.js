@@ -4,11 +4,11 @@ import LinkedList from './listLogic';
 test('inserting first', () => {
   const list = new LinkedList();
 
-  list.insertFirst('bats', 10);
+  list.insertAtHead('bats', 10);
   expect(list.size).toBe(1);
   expect(list.head).toEqual({ subject: 'bats', amount: 10, forwardNode: null });
 
-  list.insertFirst('cats', 20);
+  list.insertAtHead('cats', 20);
   expect(list.size).toBe(2);
   expect(list.head).toEqual({
     subject: 'cats',
@@ -17,7 +17,7 @@ test('inserting first', () => {
   });
 
   // make sure non number amounts cause error
-  expect(() => list.insertFirst('rats', 'mice')).toThrow();
+  expect(() => list.insertAtHead('rats', 'mice')).toThrow();
   // console.log(list);
 });
 

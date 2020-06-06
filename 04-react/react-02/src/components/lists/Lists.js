@@ -87,7 +87,7 @@ function Lists() {
     switch (positon) {
       // if (!size) setCurrentIndex(0)
       case 'head':
-        list.insertFirst(sub, amnt);
+        list.insertAtHead(sub, amnt);
         setCurrentIndex(0);
         setSize(list.size);
         break;

@@ -25,12 +25,12 @@ class LinkedList {
     // this.currentNode = null;
   }
 
-  insertFirst(subject, amount) {
+  insertAtHead(subject, amount) {
     this.head = new ListNode(subject, amount, this.head);
     this.size++;
   }
 
-  insertLast(subject, amount) {
+  insertAtTail(subject, amount) {
     const node = new ListNode(subject, amount);
     let currentNode = null;
 
