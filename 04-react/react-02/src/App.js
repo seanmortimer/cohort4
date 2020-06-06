@@ -6,14 +6,14 @@ import ReactHome from './components/ReactHome';
 import Game from './components/tictactoe/TicTacToe';
 import Banking from './components/banking/Banking';
 import Cities from './components/cities/Cities';
-import Lists from './components/lists/Lists';
+import LinkedLists from './components/lists/LinkedLists';
 import LifoFifo from './components/lists/LifoFifo';
 
 class App extends Component {
   constructor(props) {
     super(props);
     // this.state = { page: 'home' };
-    this.state = { page: 'lifo' };
+    this.state = { page: 'lists' };
     this.onNavClick = this.onNavClick.bind(this);
   }
 
@@ -38,7 +38,7 @@ class App extends Component {
         currentPage = <Cities />;
         break;
       case 'lists':
-        currentPage = <Lists />;
+        currentPage = <LinkedLists />;
         break;
       case 'lifo':
         currentPage = <LifoFifo />;

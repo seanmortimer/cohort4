@@ -47,10 +47,16 @@ class LinkedList {
   }
 
   insertAfterCurrent(subject, amount) {
-    const node = new ListNode(subject, amount, this.currentNode.forwardNode);
-    this.currentNode.forwardNode = node;
-    this.currentNode = node;
-    if (!node.forwardNode) this.tail = node;
+    const node = new ListNode(subject, amount, this.currentNode?.forwardNode);
+    if (this.size === 0) {
+      this.head = node;
+      this.tail = node;
+      this.currentNode = node;
+    } else {
+      this.currentNode.forwardNode = node;
+      this.currentNode = node;
+      if (!node.forwardNode) this.tail = node;
+    }
     this.size++;
   }
 
@@ -103,7 +109,7 @@ class LinkedList {
 
   total() {
     let currentNode = this.head;
-    let sum = null;
+    let sum = 0;
 
     while (currentNode) {
       sum += currentNode.amount;

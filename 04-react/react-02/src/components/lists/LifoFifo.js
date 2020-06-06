@@ -6,7 +6,7 @@ import LifoSideBar from './LifoSideBar';
 // import ListCard from './ListCard';
 // import ListNav from './ListNav';
 // import ListInsert from './ListInsert';
-import LinkedList from './listLogic';
+import LinkedList from './LinkedListLogic';
 
 const demoData = [['Bat', 10], ['Dog', 20], ['Koala', 30], ['Panda', 40]];
 

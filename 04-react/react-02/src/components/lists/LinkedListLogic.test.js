@@ -7,6 +7,7 @@ test('inserting new head', () => {
   expect(list.size).toBe(1);
   expect(list.head).toEqual({ subject: 'Ant', amount: 10, forwardNode: null });
   expect(list.tail).toEqual({ subject: 'Ant', amount: 10, forwardNode: null });
+  expect(list.currentNode).toEqual({ subject: 'Ant', amount: 10, forwardNode: null });
 
   list.insertAtHead('Bat', 20);
   expect(list.size).toBe(2);
@@ -99,18 +100,25 @@ test('stepping through list', () => {
 test('inserting after current node - head', () => {
   const list = new LinkedList();
 
-  list.insertAtHead('Ant', 10);
-  list.insertAtTail('Bat', 20);
-  list.insertAtTail('Cat', 30);
+  list.insertAfterCurrent('Ant', 10);
+  expect(list.currentNode.show()).toEqual(['Ant', 10]);
+  expect(list.head.show()).toEqual(['Ant', 10]);
+  expect(list.tail.show()).toEqual(['Ant', 10]);
+
+  list.insertAfterCurrent('Bat', 20);
+  list.insertAfterCurrent('Cat', 30);
   expect(list.size).toBe(3);
+  expect(list.currentNode.show()).toEqual(['Cat', 30]);
   list.jumpToHead();
   expect(list.currentNode.show()).toEqual(['Ant', 10]);
 
   list.insertAfterCurrent('Dog', 40);
+  expect(list.size).toBe(4);
   expect(list.head.show()).toEqual(['Ant', 10]);
   expect(list.head.forwardNode.show()).toEqual(['Dog', 40]);
   expect(list.currentNode.show()).toEqual(['Dog', 40]);
   expect(list.currentNode.forwardNode.show()).toEqual(['Bat', 20]);
+  expect(list.tail.forwardNode).toBeNull();
 });
 
 test('inserting after current node - middle', () => {
@@ -203,10 +211,10 @@ test('deleting elements', () => {
   expect(list.size).toBe(0);
 });
 
-test.todo('totals');
 test('totaling amounts', () => {
   const list = new LinkedList();
 
+  expect(list.total()).toBe(0);
   list.insertAtTail('Ant', 10);
   list.insertAtTail('Bat', 20);
   list.insertAtTail('Cat', 30);
@@ -218,4 +226,5 @@ test('totaling amounts', () => {
 
   list.jumpToHead();
   list.deleteCurrent();
-  expect(list.total()).toBe(90);w});
+  expect(list.total()).toBe(90);
+});

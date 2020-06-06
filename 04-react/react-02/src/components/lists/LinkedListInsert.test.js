@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import ListInsert from './ListInsert';
+import ListInsert from './LinkedListInsert';
 import animals from '../../assets/data/animals.json';
 
 const mockInsertFn = jest.fn();

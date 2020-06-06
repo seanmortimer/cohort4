@@ -3,8 +3,7 @@
 import React from 'react';
 
 
-function ListCard(props) {
-  const { index, node, sel } = props;
+function ListCard({ node, sel, onCardClick }) {
   const [subject, amount] = node.show();
   const nextNode = node.forwardNode || { subject: 'null', amount: '' };
 
@@ -14,10 +13,10 @@ function ListCard(props) {
 
   return (
     <div className={active}>
-      <div className="card-body" onClick={() => props.onClick(index)}>
+      <div className="card-body" onClick={onCardClick}>
         {/* <div className="text-nowrap"> */}
         <div className="">
-          <div>Index {index}: {subject}, ${amount}
+          <div>{subject}, ${amount}
             &nbsp;&gt;&gt; Next item: {nextNode.subject || 'null'}
             {nextNode.amount ? `, $${nextNode.amount}` : ''}
           </div>

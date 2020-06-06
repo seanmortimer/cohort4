@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import ListSideBar from './ListSideBar';
+import ListSideBar from './LinkedListSideBar';
 
-test('sidebar renders with empty data', () => {
+test('sidebar renders data', () => {
   render(<ListSideBar />);
 
   expect(screen.getByText(/linked lists/i)).toBeInTheDocument();

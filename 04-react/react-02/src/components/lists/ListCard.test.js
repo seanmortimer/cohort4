@@ -1,15 +1,16 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ListCard from './ListCard';
-import LinkedList from './listLogic';
+import LinkedList from './LinkedListLogic';
 
-const demoData = [['Bat', 10], ['Dog', 20], ['Koala', 30], ['Panda', 40]];
-test.todo('Make Test data alphabetical');
+const demoData = [['Ant', 10], ['Bat', 20], ['Cat', 30], ['Dog', 40]];
 let list = null;
+const mockClickFn = jest.fn();
 
 beforeEach(() => {
   list = new LinkedList();
-  demoData.forEach((value) => list.insertLast(value[0], value[1]));
+  // demoData.forEach((value) => list.insertAfterCurrent(value[0], value[1]));
+  demoData.forEach((value) => list.insertAfterCurrent(value[0], value[1]));
 });
 
 afterEach(() => {
@@ -17,25 +18,22 @@ afterEach(() => {
 });
 
 test('cards display properly 1', () => {
-  render(<ListCard key={0} node={list.showAtIndex(0)} index={0} />);
+  render(<ListCard key={1} node={list.head} sel onCardClick={mockClickFn} />);
 
-  expect(screen.getByText(/index 0/i)).toBeInTheDocument();
-  expect(screen.getByText(/bat/i)).toBeInTheDocument();
-  expect(screen.getByText(/next item: dog/i)).toBeInTheDocument();
+  expect(screen.getByText(/ant/i)).toBeInTheDocument();
+  expect(screen.getByText(/next item: bat/i)).toBeInTheDocument();
 });
 
 test('cards display properly 2', () => {
-  render(<ListCard key={1} node={list.showAtIndex(1)} index={1} />);
+  render(<ListCard key={2} node={list.head.forwardNode} sel onCardClick={mockClickFn} />);
 
-  expect(screen.getByText(/index 1/i)).toBeInTheDocument();
-  expect(screen.getByText(/dog/i)).toBeInTheDocument();
-  expect(screen.getByText(/next item: koala/i)).toBeInTheDocument();
+  expect(screen.getByText(/bat/i)).toBeInTheDocument();
+  expect(screen.getByText(/next item: cat/i)).toBeInTheDocument();
 });
 
 test('cards display properly tail', () => {
-  render(<ListCard key={3} node={list.showAtIndex(3)} index={3} />);
+  render(<ListCard key={4} node={list.tail} sel onCardClick={mockClickFn} />);
 
-  expect(screen.getByText(/index 3/i)).toBeInTheDocument();
-  expect(screen.getByText(/panda/i)).toBeInTheDocument();
+  expect(screen.getByText(/dog/i)).toBeInTheDocument();
   expect(screen.getByText(/next item: null/i)).toBeInTheDocument();
 });

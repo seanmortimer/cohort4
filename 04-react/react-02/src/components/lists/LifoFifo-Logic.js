@@ -1,4 +1,4 @@
-import LinkedList from "./listLogic";
+import LinkedList from './LinkedListLogic';
 
 class Lifo extends LinkedList {
 

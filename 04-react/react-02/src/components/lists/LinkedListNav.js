@@ -1,36 +1,27 @@
 import React from 'react';
 
 
-function ListNav({ index, list, onIndexChange }) {
-  let subject = null;
-  let amount = null;
-  let total = null;
+function ListNav({ currentNode, total, onNav }) {
   let card = null;
 
-  // console.log('list.total() in nav :>> ', list.total());
-
-  // if (!list.size) console.log('There is no list');
-  if (list?.size) {
-    [subject, amount] = list.showAtIndex(index).show();
+  if (currentNode) {
+    const [subject, amount] = currentNode.show();
     card = `Subject: ${subject}, Amount: $${amount}`;
-    total = list.total();
-    // console.log('List exists!', total);
   }
 
   const handleNavHead = () => {
-    onIndexChange(0);
+    onNav('head');
   };
 
   const handleNavPrev = () => {
-    if (index === 0) return;
-    onIndexChange(index - 1);
+    onNav('prev');
   };
 
   const handleNavNext = () => {
-    onIndexChange(index + 1);
+    onNav('next');
   };
   const handleNavTail = () => {
-    onIndexChange(-1);
+    onNav('tail');
   };
 
 
@@ -38,8 +29,7 @@ function ListNav({ index, list, onIndexChange }) {
     <div>
       <h4>Current item:</h4>
       <p className="text-muted text-left">
-        Index {index}
-        <span className="float-right">Current total: ${total}</span>
+        Current total: ${total}
       </p>
       <div className="card mw-100">
         <div className="card-body">
