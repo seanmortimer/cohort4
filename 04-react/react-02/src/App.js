@@ -13,7 +13,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     // this.state = { page: 'home' };
-    this.state = { page: 'lists' };
+    this.state = { page: 'lifo' };
     this.onNavClick = this.onNavClick.bind(this);
   }
 

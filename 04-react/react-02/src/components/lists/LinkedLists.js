@@ -146,7 +146,7 @@ function Lists() {
           <div className="content">
             <div className="container">
               <div className="row">
-                <div className="col-sm" id="idCtrlPanel">
+                <div className="col-sm clDivider">
                   <ListInsert onInsert={handleInsert} onDelete={handleDelete} />
                   <ListNav
                     onNav={handleNav}
