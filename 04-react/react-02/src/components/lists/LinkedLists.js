@@ -36,8 +36,9 @@ function Lists() {
     // console.log('Create the demo list 33');
     demoData.forEach((value) => list.insertAfterCurrent(value[0], value[1]));
     list.jumpToHead();
+    setCurrentNode(list.currentNode);
     setSize(list.size);
-    setList(list);
+    // setList(list);
   }
 
   useEffect(demoList, []);
@@ -73,28 +74,20 @@ function Lists() {
   }
 
   const handleInsert = (positon, sub, amnt) => {
-    // const cl = list.head;
-    // console.log('cl :>> ', cl);
     switch (positon) {
-      // if (!size) setCurrentIndex(0)
       case 'head':
         list.insertAtHead(sub, amnt);
-        // console.log('list :>> ', list.currentNode);
-        // console.log('(cl === list) :>> ', (cl === list.currentNode));
-        // setList(list);
-        // setCurrentNode(list.head);
+        setCurrentNode(list.currentNode);
         setSize(list.size);
         break;
       case 'tail':
         list.insertAtTail(sub, amnt);
-        // setList(list);
-        // setCurrentNode(list.tail);
+        setCurrentNode(list.currentNode);
         setSize(list.size);
         break;
       case 'here':
         list.insertAfterCurrent(sub, amnt);
-        // setCurrentNode(list.currentNode);
-        // setList(list);
+        setCurrentNode(list.currentNode);
         setSize(list.size);
         break;
       default:
@@ -105,7 +98,7 @@ function Lists() {
   const handleDelete = () => {
     if (!list.head) return;
     list.deleteCurrent();
-    // setList(list);
+    setCurrentNode(list.currentNode);
     setSize(list.size);
   };
 

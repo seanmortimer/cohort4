@@ -230,5 +230,5 @@ test('clicking cards selects them', () => {
   expect(queryByText('Subject: Bat, Amount: $20')).toBeInTheDocument();
 
   fireEvent.click(getByText(/Dog, \$40 >>/i));
-  // expect(queryByText('Subject: Panda, Amount: $40')).toBeInTheDocument();
+  expect(queryByText('Subject: Dog, Amount: $40')).toBeInTheDocument();
 });
