@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import ListCard from './ListCard';
 import LinkedList from './LinkedListLogic';
 
@@ -36,4 +36,13 @@ test('cards display properly tail', () => {
 
   expect(screen.getByText(/dog/i)).toBeInTheDocument();
   expect(screen.getByText(/next item: null/i)).toBeInTheDocument();
+});
+
+test('card clicks pass node', () => {
+  render(<ListCard key={4} node={list.tail} sel onCardClick={mockClickFn} />);
+
+  expect(screen.getByText(/dog/i)).toBeInTheDocument();
+  fireEvent.click(screen.getByText(/dog, \$40/i));
+  expect(mockClickFn).toHaveBeenCalled();
+  expect(mockClickFn.mock.calls[0][0]).toEqual(list.tail);
 });

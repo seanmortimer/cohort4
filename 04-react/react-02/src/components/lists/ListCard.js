@@ -13,7 +13,7 @@ function ListCard({ node, sel, onCardClick }) {
 
   return (
     <div className={active}>
-      <div className="card-body" onClick={onCardClick}>
+      <div className="card-body" onClick={() => onCardClick(node)}>
         {/* <div className="text-nowrap"> */}
         <div className="">
           <div>{subject}, ${amount}

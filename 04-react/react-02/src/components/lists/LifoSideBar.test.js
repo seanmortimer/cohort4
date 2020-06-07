@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import ListSideBar from './ListSideBar';
+import SideBar from './LifoSideBar';
 
 test('sidebar renders with empty data', () => {
-  render(<ListSideBar />);
+  render(<SideBar />);
 
-  expect(screen.getByText(/linked lists/i)).toBeInTheDocument();
+  expect(screen.getByText(/stacks vs queues/i)).toBeInTheDocument();
 });

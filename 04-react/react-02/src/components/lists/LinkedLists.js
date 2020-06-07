@@ -10,15 +10,15 @@ import ListInsert from './LinkedListInsert';
 import LinkedList from './LinkedListLogic';
 
 const demoData = [['Ant', 10], ['Bat', 20], ['Cat', 30], ['Dog', 40]];
-const list = new LinkedList();
+// const list = new LinkedList();
 
 function Lists() {
   // list is useless in state because it's an object
   // it gets copied by reference so list always === list
-  // const [list, setList] = useState(new LinkedList()); //  TODO: Is this neccessary???
+  const [list, setList] = useState(new LinkedList());
   const [size, setSize] = useState(0);
   // const [cards, setCards] = useState([]);
-  // const [currentNode, setCurrentNode] = useState(null);
+  const [currentNode, setCurrentNode] = useState(null);
   let emptyCard = null;
   // console.log('what\'s the list??? 21:>> ', list.head);
   // const list = new LinkedList();
@@ -27,8 +27,8 @@ function Lists() {
   // const currentNode = list.size ? list.showAtIndex(currentIndex) : { subject: '', amount: '' };
 
   const handleCardClick = (node) => {
-    // console.log('Card got clicked', node.show());
-    // setCurrentNode(node);
+    list.currentNode = node;
+    setCurrentNode(node);
   };
 
   // Add demo data on first load
@@ -37,15 +37,39 @@ function Lists() {
     demoData.forEach((value) => list.insertAfterCurrent(value[0], value[1]));
     list.jumpToHead();
     setSize(list.size);
-    // setList(list);
-    // console.log('demo list current node :>> ', list.currentNode);
-    // setCurrentNode(list.currentNode);
+    setList(list);
   }
 
   useEffect(demoList, []);
 
   function handleNav(nav) {
-    console.log('lets nav!', nav);
+    // console.log('list size :>> ', list.size);
+    // console.log('head :>> ', list.head.show());
+    // console.log('head + 1:>> ', list.head.forwardNode.show());
+    // console.log('head + 2:>> ', list.head.forwardNode.forwardNode.show());
+    // console.log('head + 3:>> ', list.head.forwardNode.forwardNode.forwardNode);
+    // console.log('lets nav!', nav);
+    switch (nav) {
+      case 'head':
+        list.jumpToHead();
+        setCurrentNode(list.currentNode);
+        break;
+      case 'next':
+        list.stepForward();
+        setCurrentNode(list.currentNode);
+        break;
+      case 'prev':
+        list.stepBackward();
+        setCurrentNode(list.currentNode);
+        break;
+      case 'tail':
+        list.jumpToTail();
+        setCurrentNode(list.currentNode);
+        break;
+      default:
+        break;
+    }
+    // console.log('list.currentNode after :>> ', list.currentNode.show());
   }
 
   const handleInsert = (positon, sub, amnt) => {
@@ -95,6 +119,7 @@ function Lists() {
     let curNode = list.head;
     let key = 1;
     while (curNode) {
+      // console.log('curNode.subject :>> ', curNode.subject);
       let sel = false;
       // console.log('curNode.show() :>> ', curNode.show());
       // console.log('currentNode.show() :>> ', list.currentNode.show());
@@ -134,7 +159,7 @@ function Lists() {
                     onNav={handleNav}
                     // index={currentNode}
                     // list={list}
-                    currentNode={list.currentNode}
+                    currentNode={currentNode}
                     total={list.total()}
                   />
                 </div>
