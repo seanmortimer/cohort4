@@ -105,6 +105,7 @@ class LinkedList {
       }
     }
     this.size--;
+    if (!this.size) this.tail = null;
   }
 
   total() {

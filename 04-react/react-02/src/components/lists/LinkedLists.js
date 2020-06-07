@@ -38,7 +38,7 @@ function Lists() {
     list.jumpToHead();
     setCurrentNode(list.currentNode);
     setSize(list.size);
-    // setList(list);
+    setList(list);
   }
 
   useEffect(demoList, []);

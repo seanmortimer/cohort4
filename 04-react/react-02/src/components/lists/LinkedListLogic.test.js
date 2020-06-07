@@ -209,6 +209,8 @@ test('deleting elements', () => {
   expect(list.size).toBe(1);
   list.deleteCurrent();
   expect(list.size).toBe(0);
+  expect(list.head).toBeNull();
+  expect(list.tail).toBeNull();
 });
 
 test('totaling amounts', () => {
