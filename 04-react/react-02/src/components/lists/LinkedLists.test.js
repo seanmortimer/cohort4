@@ -11,34 +11,34 @@ test('The list shows up with the demo data', () => {
   expect(getByText('Check out this list!')).toBeInTheDocument();
   expect(getByText('Linked List')).toBeInTheDocument();
   expect(getByText('Current item:')).toBeInTheDocument();
-  expect(getByText('Subject: Ant, Amount: $10')).toBeInTheDocument();
+  expect(getByText('Subject: Ant, Amount: $10')).toBeInTheDocument(); // Current item on nav panel
   expect(getByText('Current total: $100')).toBeInTheDocument();
 });
 
-// test('navigating list works', () => {
-//   render(<LinkedLists />);
+test('navigating list works', () => {
+  render(<LinkedLists />);
 
-//   fireEvent.click(getByText('Next'));
-//   expect(queryByText('Subject: Bat, Amount: $10')).not.toBeInTheDocument();
-//   expect(queryByText('Subject: Dog, Amount: $20')).toBeInTheDocument();
+  fireEvent.click(getByText('Next'));
+  expect(queryByText('Subject: Bat, Amount: $10')).not.toBeInTheDocument();
+  expect(queryByText('Subject: Dog, Amount: $20')).toBeInTheDocument();
 
-//   fireEvent.click(getByText('Next'));
-//   expect(queryByText('Subject: Dog, Amount: $20')).not.toBeInTheDocument();
-//   expect(queryByText('Subject: Koala, Amount: $30')).toBeInTheDocument();
+  fireEvent.click(getByText('Next'));
+  expect(queryByText('Subject: Dog, Amount: $20')).not.toBeInTheDocument();
+  expect(queryByText('Subject: Koala, Amount: $30')).toBeInTheDocument();
 
-//   fireEvent.click(getByText('Head'));
-//   expect(queryByText('Subject: Koala, Amount: $30')).not.toBeInTheDocument();
-//   expect(queryByText('Subject: Bat, Amount: $10')).toBeInTheDocument();
+  fireEvent.click(getByText('Head'));
+  expect(queryByText('Subject: Koala, Amount: $30')).not.toBeInTheDocument();
+  expect(queryByText('Subject: Bat, Amount: $10')).toBeInTheDocument();
 
-//   fireEvent.click(getByText('Tail'));
-//   expect(queryByText('Subject: Panda, Amount: $40')).toBeInTheDocument();
+  fireEvent.click(getByText('Tail'));
+  expect(queryByText('Subject: Panda, Amount: $40')).toBeInTheDocument();
 
-//   fireEvent.click(getByText('Previous'));
-//   expect(queryByText('Subject: Koala, Amount: $30')).toBeInTheDocument();
+  fireEvent.click(getByText('Previous'));
+  expect(queryByText('Subject: Koala, Amount: $30')).toBeInTheDocument();
 
-//   fireEvent.click(getByText('Previous'));
-//   expect(queryByText('Subject: Dog, Amount: $20')).toBeInTheDocument();
-// });
+  fireEvent.click(getByText('Previous'));
+  expect(queryByText('Subject: Dog, Amount: $20')).toBeInTheDocument();
+});
 
 
 // test('The items are inserted correctly - head', () => {

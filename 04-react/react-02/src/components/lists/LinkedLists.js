@@ -10,130 +10,67 @@ import ListInsert from './LinkedListInsert';
 import LinkedList from './LinkedListLogic';
 
 const demoData = [['Ant', 10], ['Bat', 20], ['Cat', 30], ['Dog', 40]];
+const list = new LinkedList();
 
 function Lists() {
+  // list is useless in state because it's an object
+  // it gets copied by reference so list always === list
   // const [list, setList] = useState(new LinkedList()); //  TODO: Is this neccessary???
   const [size, setSize] = useState(0);
-  const [cards, setCards] = useState([]);
-  const [currentNode, setCurrentNode] = useState(null);
+  // const [cards, setCards] = useState([]);
+  // const [currentNode, setCurrentNode] = useState(null);
   let emptyCard = null;
-  const list = new LinkedList();
+  // console.log('what\'s the list??? 21:>> ', list.head);
+  // const list = new LinkedList();
+  const cards = [];
   // console.log('list.size :>> ', list.size);
   // const currentNode = list.size ? list.showAtIndex(currentIndex) : { subject: '', amount: '' };
 
   const handleCardClick = (node) => {
-    setCurrentNode(node);
+    // console.log('Card got clicked', node.show());
+    // setCurrentNode(node);
   };
-
-  function createCards() {
-    if (list.size) {
-      const cardArray = [];
-      let curNode = list.head;
-      let key = 1;
-      while (curNode.forwardNode) {
-        let sel = false;
-        console.log('curNode.show() :>> ', curNode.show());
-        console.log('currentNode.show() :>> ', list.currentNode.show());
-        if (curNode === list.currentNode) sel = true;
-        cardArray.push(<ListCard
-          key={key}
-          node={curNode}
-          sel={sel}
-          onCardClick={handleCardClick}
-        />);
-        key++;
-        curNode = curNode.forwardNode;
-      }
-      console.log('CARDS', cardArray);
-      setCards(cardArray);
-    }
-  }
-
-  // useEffect(() => {
-  //   if (list.size) {
-  //     const cardArray = [];
-  //     let curNode = list.head;
-  //     let key = 1;
-  //     while (curNode.forwardNode) {
-  //       let sel = false;
-  //       if (curNode === currentNode) sel = true;
-  //       cardArray.push(<ListCard
-  //         key={key}
-  //         node={curNode}
-  //         sel={sel}
-  //         onCardClick={handleCardClick}
-  //       />);
-  //       key++;
-  //       curNode = curNode.forwardNode;
-  //     }
-  //     console.log('CARDS', cardArray);
-  //     setCards(cardArray);
-  //   }
-  // }, [list.head, currentNode, list.size]);
-
 
   // Add demo data on first load
   function demoList() {
+    // console.log('Create the demo list 33');
     demoData.forEach((value) => list.insertAfterCurrent(value[0], value[1]));
-    // // console.log('list.tail.show() :>> ', list.tail.show());
-    // console.log('list.tail.show() :>> ', list.tail.show());
-    // console.log('list.size :>> ', list.size);
     list.jumpToHead();
     setSize(list.size);
-    setCurrentNode(list.currentNode);
-    createCards();
-    // console.log('list.size :>> ', size);
+    // setList(list);
+    // console.log('demo list current node :>> ', list.currentNode);
+    // setCurrentNode(list.currentNode);
   }
 
   useEffect(demoList, []);
 
-  // function handleIndexChange(index) {
-  //   // console.log('index :>> ', index);
-  //   // console.log('list.size :>> ', list.size);
-  //   if (!list.size || index >= list.size) return;
-  //   if (index === -1) setCurrentNode(list.size - 1);
-  //   else setCurrentNode(index);
-  //   setSize(list.size);
-  // }
-
-  // useEffect(() => {
-  //   const c = [];
-  //   for (let i = 0; i < list.size; i++) {
-  //     // console.log('list.showAtIndex(i) :>> ', list.showAtIndex(i));
-  //     let sel = false;
-  //     if (i === currentIndex) sel = true;
-  //     c.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} sel={sel} />);
-  //   }
-  //   // console.log('use Effect main', c);
-  //   setCards(c);
-  // }, [list, currentIndex]);
-
-  // console.log('size :>> ', size);
-  // for (let i = 0; i < list.size; i++) {
-  //   let sel = false;
-  //   if (i === currentIndex) sel = true;
-  //   cards.push(<ListCard key={i} node={list.showAtIndex(i)} index={i} sel={sel} />);
-  // }
   function handleNav(nav) {
     console.log('lets nav!', nav);
   }
 
   const handleInsert = (positon, sub, amnt) => {
+    // const cl = list.head;
+    // console.log('cl :>> ', cl);
     switch (positon) {
       // if (!size) setCurrentIndex(0)
       case 'head':
         list.insertAtHead(sub, amnt);
-        setCurrentNode(list.head);
+        // console.log('list :>> ', list.currentNode);
+        // console.log('(cl === list) :>> ', (cl === list.currentNode));
+        // setList(list);
+        // setCurrentNode(list.head);
         setSize(list.size);
         break;
       case 'tail':
         list.insertAtTail(sub, amnt);
-        setCurrentNode(list.tail);
+        // setList(list);
+        // setCurrentNode(list.tail);
         setSize(list.size);
         break;
       case 'here':
         list.insertAfterCurrent(sub, amnt);
-        setCurrentNode(list.currentNode);
+        // setCurrentNode(list.currentNode);
+        // setList(list);
         setSize(list.size);
         break;
       default:
@@ -142,16 +79,41 @@ function Lists() {
   };
 
   const handleDelete = () => {
-    if (!size) return;
+    if (!list.head) return;
     list.deleteCurrent();
-    setCurrentNode(list.currentNode);
+    // setList(list);
     setSize(list.size);
   };
 
-  console.log('size  125:>> ', size);
+  // console.log('size  82:>> ', size);
   // console.log('cards 126:>> ', cards);
+  // console.log('list.currentNode 84 :>> ', list.currentNode);
+  // console.log('list.head 85 :>> ', list.head?.show());
 
-  if (!size) emptyCard = <div>Where&apos;d the list go?</div>;
+  if (size) {
+    // console.log('we have a list 86 :>> ', list.currentNode);
+    let curNode = list.head;
+    let key = 1;
+    while (curNode) {
+      let sel = false;
+      // console.log('curNode.show() :>> ', curNode.show());
+      // console.log('currentNode.show() :>> ', list.currentNode.show());
+      if (curNode === list.currentNode) sel = true;
+      cards.push(<ListCard
+        key={key}
+        node={curNode}
+        sel={sel}
+        onCardClick={handleCardClick}
+      />);
+      key++;
+      curNode = curNode.forwardNode;
+      // console.log('Here are the cards 104 :>> ', cards);
+    }
+    // console.log('CARDS', cardArray);
+    // setCards(cardArray);
+  } else emptyCard = <div>Where&apos;d the list go?</div>;
+
+
   return (
     <div>
       <div className="wrapper">
