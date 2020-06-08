@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+simport React, { Component } from 'react';
 
 class DepositWithdraw extends Component {
   constructor(props) {

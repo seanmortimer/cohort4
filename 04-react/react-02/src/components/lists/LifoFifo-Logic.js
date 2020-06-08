@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import LinkedList from './LinkedListLogic';
 
-class Lifo extends LinkedList {
+class LifoList extends LinkedList {
   addToStack(subject, amount) {
     this.insertAtHead(subject, amount);
   }
@@ -13,7 +13,7 @@ class Lifo extends LinkedList {
   }
 }
 
-class Fifo extends LinkedList {
+class FifoList extends LinkedList {
   enqueue(subject, amount) {
     this.insertAtTail(subject, amount);
   }
@@ -25,4 +25,4 @@ class Fifo extends LinkedList {
   }
 }
 
-export { Lifo, Fifo };
+export { LifoList, FifoList };
