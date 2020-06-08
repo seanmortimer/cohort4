@@ -4,23 +4,23 @@ import userEvent from '@testing-library/user-event';
 import Cities from './Cities';
 
 
-let cities = [];
+// let cities = [];
 
-beforeEach(() => {
-  cities = [
-    { key: 1, lat: 51.05, long: -114.05, name: 'Calgary', pop: 1340000 },
-    { key: 2, lat: 53.55, long: -113.49, name: 'Edmonton', pop: 981000 },
-    { key: 3, lat: 52.28, long: -113.81, name: 'Red Deer', pop: 106000 },
-    { key: 4, lat: -32.78, long: -71.53, name: 'Quintero', pop: 25300 },
-    { key: 5, lat: 0.00, long: 50.00, name: 'Equator Town', pop: 5000 },
-    { key: 6, lat: -33.93, long: 18.42, name: 'Cape Town', pop: 3780000 },
-    { key: 7, lat: 4.71, long: -74.07, name: 'Bogota', pop: 7400000 },
-  ];
-});
+// beforeEach(() => {
+//   cities = [
+//     { key: 1, lat: 51.05, long: -114.05, name: 'Calgary', pop: 1340000 },
+//     { key: 2, lat: 53.55, long: -113.49, name: 'Edmonton', pop: 981000 },
+//     { key: 3, lat: 52.28, long: -113.81, name: 'Red Deer', pop: 106000 },
+//     { key: 4, lat: -32.78, long: -71.53, name: 'Quintero', pop: 25300 },
+//     { key: 5, lat: 0.00, long: 50.00, name: 'Equator Town', pop: 5000 },
+//     { key: 6, lat: -33.93, long: 18.42, name: 'Cape Town', pop: 3780000 },
+//     { key: 7, lat: 4.71, long: -74.07, name: 'Bogota', pop: 7400000 },
+//   ];
+// });
 
-afterEach(() => {
-  cities = [];
-});
+// afterEach(() => {
+//   cities = [];
+// });
 
 
 test('page renders with no data', () => {

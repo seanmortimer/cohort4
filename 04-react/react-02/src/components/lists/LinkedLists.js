@@ -17,11 +17,7 @@ function Lists() {
   // it gets copied by reference so list always === list
   const [list, setList] = useState(new LinkedList());
   const [size, setSize] = useState(0);
-  // const [cards, setCards] = useState([]);
   const [currentNode, setCurrentNode] = useState(null);
-  let emptyCard = null;
-  // console.log('what\'s the list??? 21:>> ', list.head);
-  // const list = new LinkedList();
   const cards = [];
   // console.log('list.size :>> ', list.size);
   // const currentNode = list.size ? list.showAtIndex(currentIndex) : { subject: '', amount: '' };
@@ -129,8 +125,7 @@ function Lists() {
     }
     // console.log('CARDS', cardArray);
     // setCards(cardArray);
-  } else emptyCard = <div>Where&apos;d the list go?</div>;
-
+  }
 
   return (
     <div>
@@ -159,7 +154,7 @@ function Lists() {
                 <div className="col-sm">
                   <div className="card-deck" id="idListCardDeck">
                     {cards}
-                    {emptyCard}
+                    {size ? null : <div>Where&apos;d the list go?</div>}
                   </div>
                 </div>
               </div>

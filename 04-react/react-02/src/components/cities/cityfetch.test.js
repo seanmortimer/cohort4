@@ -2,7 +2,7 @@ import postData from './cityfetch';
 import Community from './communityClass';
 
 
-// Need this line for fetch to workin with tests
+// Need this line for fetch to work in with tests
 global.fetch = require('node-fetch');
 
 // API test data
