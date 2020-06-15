@@ -3,23 +3,29 @@ import '../../assets/css/bootstrap.min.css';
 import '../../assets/css/light-bootstrap-dashboard.css';
 import '../../assets/css/lists.css';
 import LifoSideBar from './LifoSideBar';
-import ListCard from './ListCard';
-// import ListNav from './ListNav';
-// import ListInsert from './ListInsert';
-import LinkedList from './LinkedListLogic';
 import LifoComponent from './LifoComponent';
+import FifoComponent from './FifoComponent';
+import { LifoList, FifoList } from './LifoFifo-Logic';
+import animals from '../../assets/data/animal-alphabet.json';
 
-const demoData = [['Ant', 10], ['Bat', 20], ['Cat', 30], ['Dog', 40]];
+
+const stack = new LifoList();
+const queue = new FifoList();
 
 function LifoFifo() {
-  const nde = { subject: 'Ant', amount: 10 };
-  const subject = 'Ant';
-  const amount = 10;
+  const [counter, setCounter] = useState(1);
 
-  function addToBoth() {
+  const nextSubject = animals[(counter - 1)];
+  const nextAmnt = counter * 10;
 
+  const addToBoth = () => {
+    stack.addToStack(nextSubject, nextAmnt);
+    queue.enqueue(nextSubject, nextAmnt);
+    setCounter(counter + 1);
   }
 
+  // console.log('stack.size :>> ', stack.size);
+  // console.log('queue.size :>> ', queue.size);
 
   return (
     <div>
@@ -39,7 +45,7 @@ function LifoFifo() {
               <div className="card border border-primary" id="idLifoNextCard">
                 <div className="card-body">
                   <div className="">
-                    <div>Next item: {subject}, ${amount} </div>
+                    <div>Next item: {nextSubject}, ${nextAmnt} </div>
                   </div>
                 </div>
               </div>
@@ -47,6 +53,7 @@ function LifoFifo() {
                 <button
                   type="button"
                   className="btn btn-sm btn-primary btn-fill m-2"
+                  onClick={addToBoth}
                 >
                   <i className="nc-icon nc-simple-add" />
                   &nbsp;
@@ -65,13 +72,10 @@ function LifoFifo() {
             <div className="container">
               <div className="row">
                 <div className="col-sm ">
-                  <LifoComponent stack { stack }/>
+                  <LifoComponent stack={stack} />
                 </div>
                 <div className="col-sm">
-                  <h3 className="mt-1 mb-3">Queue</h3>
-                  <div className="card-deck" id="idCardDeck">
-                    <div className="card"> HERE THERE BE CARDS</div>
-                  </div>
+                  <FifoComponent queue={queue} />
                 </div>
               </div>
             </div>

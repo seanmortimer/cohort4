@@ -15,6 +15,7 @@ footer {
 
 .clDivider {
     border-right: solid gray 2px;
+    padding-right: 20px;
     /* min-height: 50vh; */
     /* align-self: center; */
 }

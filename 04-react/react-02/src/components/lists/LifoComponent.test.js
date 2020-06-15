@@ -27,4 +27,3 @@ test('Lifo stack renders with data', () => {
   expect(screen.getByText(/cat, \$30/i)).toBeInTheDocument();
   expect(screen.getByText(/dog, \$40/i)).toBeInTheDocument();
 });
-

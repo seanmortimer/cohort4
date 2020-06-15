@@ -1,7 +1,7 @@
-import { Lifo, Fifo } from './LifoFifo-Logic';
+import { LifoList, FifoList } from './LifoFifo-Logic';
 
 test('adding and deleting for stack', () => {
-  const lifo = new Lifo();
+  const lifo = new LifoList();
 
   lifo.addToStack('Ant', 10);
   expect(lifo.size).toBe(1);
@@ -44,7 +44,7 @@ test('adding and deleting for stack', () => {
 });
 
 test('adding and deleting for queue', () => {
-  const fifo = new Fifo();
+  const fifo = new FifoList();
 
   fifo.enqueue('Ant', 10);
   expect(fifo.size).toBe(1);
