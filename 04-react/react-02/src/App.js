@@ -43,8 +43,7 @@ class App extends Component {
       case 'lifo':
         currentPage = <LifoFifo />;
         break;
-      default:
-        break;
+      // no default
     }
     return (
       <div className="App">

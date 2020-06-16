@@ -33,3 +33,5 @@ test('the page displays properly with no accounts', () => {
   const noActs = screen.getByText(/no accounts/i).textContent;
   expect(noActs).toBe('You currently have no accounts to display');
 });
+
+test.todo('The rest of the functions');

@@ -43,3 +43,5 @@ test('the app navigates on clicks', () => {
   expect(screen.queryByText(/bank and bbq/i)).toBeNull();
   expect(screen.queryByText(/next player/i)).toBeNull();
 });
+
+test.todo('test rest of nav links');

@@ -107,3 +107,6 @@ test('you can add a city', async () => {
 
 test.todo('deleting cities');
 test.todo('clearing server');
+test.todo('server error handling');
+test.todo('add random');
+test.todo('city edits');

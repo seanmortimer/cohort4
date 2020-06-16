@@ -43,7 +43,8 @@
       "<rootDir>/build/",
       "<rootDir>/node_modules/",
       "<rootDir>/src/index.js",
-      "<rootDir>/src/serviceWorker.js"
+      "<rootDir>/src/serviceWorker.js",
+      "<rootDir>/src/assets/"
     ]
   },
   "devDependencies": {

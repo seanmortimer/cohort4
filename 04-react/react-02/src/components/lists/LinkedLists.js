@@ -63,8 +63,7 @@ function Lists() {
         list.jumpToTail();
         setCurrentNode(list.currentNode);
         break;
-      default:
-        break;
+      // no default
     }
     // console.log('list.currentNode after :>> ', list.currentNode.show());
   }

@@ -64,3 +64,4 @@ test('city cards render - Quintero', () => {
 });
 
 test.todo('Test edit modal');
+test.todo('rename cards');
