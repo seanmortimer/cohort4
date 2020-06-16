@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import LifoFifo from './LifoFifo';
 
-const { getByText, queryByText, getByLabelText, getAllByText } = screen;
+const { getByText, queryByText, getAllByText } = screen;
 // const demoData = [['Bat', 10], ['Dog', 20], ['Koala', 30], ['Panda', 40]];
 
 test('The list shows up', () => {

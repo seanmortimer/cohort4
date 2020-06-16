@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../../assets/css/bootstrap.min.css';
 import '../../assets/css/light-bootstrap-dashboard.css';
 import '../../assets/css/lists.css';
@@ -7,25 +7,45 @@ import LifoComponent from './LifoComponent';
 import FifoComponent from './FifoComponent';
 import { LifoList, FifoList } from './LifoFifo-Logic';
 import animals from '../../assets/data/animal-alphabet.json';
+import moreAnimals from '../../assets/data/animals.json';
 
 
 const stack = new LifoList();
 const queue = new FifoList();
 
 function LifoFifo() {
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState(0);
+  const [size, setSize] = useState(0);
 
-  const nextSubject = animals[(counter - 1)];
-  const nextAmnt = counter * 10;
+  let nextSubject = null;
+  let nextAmnt = null;
+  let random = false;
+
+  const next = () => {
+    if (counter < 26) {
+      nextSubject = animals[(counter)];
+    } else {
+      random = true;
+      const i = Math.floor(Math.random() * moreAnimals.length);
+      nextSubject = moreAnimals[i];
+    }
+    nextAmnt = (counter + 1) * 10;
+  };
 
   const addToBoth = () => {
     stack.addToStack(nextSubject, nextAmnt);
     queue.enqueue(nextSubject, nextAmnt);
     setCounter(counter + 1);
-  }
+    setSize(size + 1);
+  };
 
-  // console.log('stack.size :>> ', stack.size);
-  // console.log('queue.size :>> ', queue.size);
+  const deleteFromBoth = () => {
+    stack.deleteFromStack();
+    queue.dequeue();
+    setSize(size - 1);
+  };
+
+  next();
 
   return (
     <div>
@@ -39,9 +59,7 @@ function LifoFifo() {
             </div>
           </nav>
           <div className="content">
-            {/* <div className="container mb-4"> */}
-            <div className="" id="idLifo1">
-              {/* <p>And here are the controls, seeee</p> */}
+            <div>
               <div className="card border border-primary" id="idLifoNextCard">
                 <div className="card-body">
                   <div className="">
@@ -62,12 +80,14 @@ function LifoFifo() {
                 <button
                   type="button"
                   className="btn btn-sm btn-danger btn-fill m-1"
+                  onClick={deleteFromBoth}
                 >
                   <i className="nc-icon nc-simple-remove" />
                   &nbsp;
                   Remove
                 </button>
               </div>
+              {random ? <p>Wow! You sure like lists of animals!!</p> : null}
             </div>
             <div className="container">
               <div className="row">

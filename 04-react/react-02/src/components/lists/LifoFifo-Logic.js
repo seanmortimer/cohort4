@@ -3,12 +3,12 @@ import LinkedList from './LinkedListLogic';
 
 class LifoList extends LinkedList {
   addToStack(subject, amount) {
-    this.insertAtHead(subject, amount);
+    this.insertAtTail(subject, amount);
   }
 
   deleteFromStack() {
     if (!this.size) return;
-    this.jumpToHead();
+    this.jumpToTail();
     this.deleteCurrent();
   }
 }

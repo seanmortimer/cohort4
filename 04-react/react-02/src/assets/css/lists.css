@@ -55,11 +55,6 @@ footer {
     margin-left: -5px;
 }
 
-#idLifo1 {
-    /* width:100%; */
-    /* text-align: center; */
-}
-
 #idLifoNextCard {
     display: inline-block;
     min-width: 250px;
@@ -68,3 +63,24 @@ footer {
 #idLifoBtns {
     display: inline-block;
 }
+
+.cl-Lifo-Cards-enter {
+    opacity: 0;
+    background-color: #87CB16;
+  }
+  .cl-Lifo-Cards-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+    background-color: #fff;
+    transition: background-color 800ms ease-in;
+  }
+  .cl-Lifo-Cards-exit {
+       opacity: 1;
+    background-color: #FF4A55;
+
+  }
+
+  .cl-Lifo-Cards-exit-active {
+    opacity: 0;
+    transition: opacity 800ms ease-in;
+  }
