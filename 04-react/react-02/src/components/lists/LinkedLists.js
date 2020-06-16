@@ -145,8 +145,6 @@ function Lists() {
                   <ListInsert onInsert={handleInsert} onDelete={handleDelete} />
                   <ListNav
                     onNav={handleNav}
-                    // index={currentNode}
-                    // list={list}
                     currentNode={currentNode}
                     total={list.total()}
                   />

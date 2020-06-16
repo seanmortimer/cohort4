@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import LifoCard from './LifoCard';
 import { LifoList } from './LifoFifo-Logic';
 
@@ -17,7 +17,7 @@ afterEach(() => {
 });
 
 test('cards display properly -Ants', () => {
-  render(<LifoCard key={1} node={stack.tail} />);
+  render(<LifoCard key={1} node={stack.head} />);
 
   expect(screen.getByText(/ant, \$10/i)).toBeInTheDocument();
 });
@@ -25,5 +25,5 @@ test('cards display properly -Ants', () => {
 test('cards display properly - Cat', () => {
   render(<LifoCard key={2} node={stack.head.forwardNode} />);
 
-  expect(screen.getByText(/cat, \$30/i)).toBeInTheDocument();
+  expect(screen.getByText(/bat, \$20/i)).toBeInTheDocument();
 });

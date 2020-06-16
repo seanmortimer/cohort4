@@ -3,23 +3,20 @@ import { render, screen } from '@testing-library/react';
 import Fifo from './FifoComponent';
 import { FifoList } from './LifoFifo-Logic';
 
-// require = 'node-fetch';
-global.fetch = require('node-fetch');
-
 const demoData = [['Ant', 10], ['Bat', 20], ['Cat', 30], ['Dog', 40]];
 
 
-test('Lifo stack renders empty', () => {
-  const stack = new FifoList();
-  render(<Fifo stack={stack} />);
+test('Fifo queue renders empty', () => {
+  const queue = new FifoList();
+  render(<Fifo queue={queue} />);
 
   expect(screen.getByText(/add some data/i)).toBeInTheDocument();
 });
 
-test('Lifo stack renders with data', () => {
-  const stack = new FifoList();
-  demoData.forEach((value) => stack.enqueue(value[0], value[1]));
-  render(<Fifo stack={stack} />);
+test('Lifo queue renders with data', () => {
+  const queue = new FifoList();
+  demoData.forEach((value) => queue.enqueue(value[0], value[1]));
+  render(<Fifo queue={queue} />);
 
   expect(screen.queryByText(/add some data/i)).not.toBeInTheDocument();
   expect(screen.getByText(/ant, \$10/i)).toBeInTheDocument();

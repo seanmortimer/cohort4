@@ -120,6 +120,35 @@ test('the insert random button', () => {
   expect(mockInsertFn.mock.calls[0][2]).toBeLessThan(101);
 });
 
+test('nothing happens if input is not complete', () => {
+  render(<ListInsert onInsert={mockInsertFn} onDelete={mockDeleteFn} />);
+
+  const sub = screen.getByLabelText(/subject/i);
+  const amnt = screen.getByLabelText(/amount/i);
+
+  fireEvent.click(screen.getByText('Insert at head'));
+  fireEvent.click(screen.getByText('Insert at current'));
+  fireEvent.click(screen.getByText('Insert at tail'));
+  expect(mockInsertFn).not.toHaveBeenCalled();
+
+  fireEvent.change(sub, { target: { value: 'Emu' } });
+  fireEvent.click(screen.getByText('Insert at head'));
+  fireEvent.click(screen.getByText('Insert at current'));
+  fireEvent.click(screen.getByText('Insert at tail'));
+  expect(mockInsertFn).not.toHaveBeenCalled();
+
+  fireEvent.change(sub, { target: { value: '' } });
+  fireEvent.change(amnt, { target: { value: 50 } });
+
+  fireEvent.click(screen.getByText('Insert at head'));
+  fireEvent.click(screen.getByText('Insert at current'));
+  fireEvent.click(screen.getByText('Insert at tail'));
+  expect(mockInsertFn).not.toHaveBeenCalled();
+
+  fireEvent.change(sub, { target: { value: 'Emu' } });
+  fireEvent.click(screen.getByText('Insert at head'));
+  expect(mockInsertFn).toHaveBeenCalled();
+});
 
 test('the delete button', () => {
   render(<ListInsert onInsert={mockInsertFn} onDelete={mockDeleteFn} />);

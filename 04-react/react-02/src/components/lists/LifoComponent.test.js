@@ -3,11 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Lifo from './LifoComponent';
 import { LifoList } from './LifoFifo-Logic';
 
-// require = 'node-fetch';
-global.fetch = require('node-fetch');
-
 const demoData = [['Ant', 10], ['Bat', 20], ['Cat', 30], ['Dog', 40]];
-
 
 test('Lifo stack renders empty', () => {
   const stack = new LifoList();
