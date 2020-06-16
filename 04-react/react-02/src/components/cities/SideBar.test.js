@@ -49,4 +49,5 @@ test('sidebar renders with correct data', () => {
   expect(screen.getByText('53.55')).toBeInTheDocument();
   expect(screen.getByText('Cape Town')).toBeInTheDocument();
   expect(screen.getByText('-33.93')).toBeInTheDocument();
+  expect(screen.getByText('13,637,300')).toBeInTheDocument();
 });

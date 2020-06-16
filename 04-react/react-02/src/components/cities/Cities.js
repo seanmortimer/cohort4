@@ -43,7 +43,7 @@ class Cities extends Component {
 
   async componentDidMount() {
     let serverCities = [];
-    const comm = new Community();
+    // const comm = new Community();
     try {
       serverCities = await postData(`${urlPy}all`);
     } catch (error) {
@@ -51,18 +51,18 @@ class Cities extends Component {
       this.setState({ showError: true });
       return;
     }
-    if (serverCities.length) serverCities.forEach((city) => comm.createCity(city));
+    if (serverCities.length) serverCities.forEach((city) => this.community.createCity(city));
     else {
-      cities.forEach((city) => comm.createCity(city));
+      cities.forEach((city) => this.community.createCity(city));
       try {
-        comm.cities.forEach(async (city) => postData(`${urlPy}add`, city));
+        this.community.cities.forEach(async (city) => postData(`${urlPy}add`, city));
       } catch (error) {
         // console.error(error);
+        this.setState({ showError: true });
         return;
       }
     }
-    this.setState({ community: comm });
-    // this.setState({ cityCount: this.community.cities.length });
+    this.setState({ community: this.community });
   }
 
   onShowAdd() {

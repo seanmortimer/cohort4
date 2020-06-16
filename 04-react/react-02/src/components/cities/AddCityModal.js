@@ -23,7 +23,12 @@ class AddCityModal extends Component {
     const { name, pop, lat, long } = this.state;
     if (!name || !pop || !lat || !long) return;
     // console.log('name, pop, lat, long :>> ', name, pop, lat, long);
-    this.props.onAdd({ name, pop, lat, long });
+    this.props.onAdd({
+      name,
+      pop: Number(pop),
+      lat: Number(lat),
+      long: Number(long),
+    });
     this.props.onHide();
   }
 

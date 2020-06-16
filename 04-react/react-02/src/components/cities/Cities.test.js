@@ -28,6 +28,7 @@ test('page renders with no data, then demo cities load', async () => {
   expect(screen.queryByText('Calgary')).toBeInTheDocument();
   expect(screen.queryByText('Bogota')).toBeInTheDocument();
   expect(screen.queryByText('Add some cities!')).not.toBeInTheDocument();
+  expect(screen.getByText('13,637,300')).toBeInTheDocument();
 });
 
 test('you can add a city', async () => {
@@ -56,13 +57,15 @@ test('you can add a city', async () => {
   userEvent.click(screen.getByText('Add'));
 
   // confirm new city was added to server
+  await new Promise((r) => setTimeout(r, 500));
+
   let cities = await postData('http://localhost:5000/all');
-  expect(cities[7]).toEqual({
+  expect(cities).toContainEqual({
     key: 8,
-    lat: '10',
-    long: '-5',
+    lat: 10,
+    long: -5,
     name: 'Apple',
-    pop: '200',
+    pop: 200,
   });
 
   // confirm modal is hidden
@@ -73,6 +76,7 @@ test('you can add a city', async () => {
   expect(screen.queryByText('10')).toBeInTheDocument();
   expect(screen.queryByText('-5')).toBeInTheDocument();
   expect(screen.queryByText('Village')).toBeInTheDocument();
+  expect(screen.getByText('13,637,500')).toBeInTheDocument();
 
   userEvent.click(screen.getByText('Add a city'));
   inputs = screen.getAllByRole('textbox');
@@ -86,18 +90,19 @@ test('you can add a city', async () => {
 
   // confirm new city was added to server
   cities = await postData('http://localhost:5000/all');
-  expect(cities[8]).toEqual({
+  expect(cities).toContainEqual({
     key: 9,
-    lat: '123',
-    long: '-50',
+    lat: 123,
+    long: -50,
     name: 'Banana',
-    pop: '50',
+    pop: 50,
   });
 
   expect(screen.queryAllByText('Banana')).toHaveLength(2);
   expect(screen.queryAllByText('123')).toHaveLength(2);
   expect(screen.queryByText('-50')).toBeInTheDocument();
   expect(screen.queryByText('Hamlet')).toBeInTheDocument();
+  expect(screen.getByText('13,637,550')).toBeInTheDocument();
 });
 
 test.todo('deleting cities');
