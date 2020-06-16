@@ -2,56 +2,100 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Cities from './Cities';
+import postData from './cityfetch';
 
 
-// let cities = [];
-
-// beforeEach(() => {
-//   cities = [
-//     { key: 1, lat: 51.05, long: -114.05, name: 'Calgary', pop: 1340000 },
-//     { key: 2, lat: 53.55, long: -113.49, name: 'Edmonton', pop: 981000 },
-//     { key: 3, lat: 52.28, long: -113.81, name: 'Red Deer', pop: 106000 },
-//     { key: 4, lat: -32.78, long: -71.53, name: 'Quintero', pop: 25300 },
-//     { key: 5, lat: 0.00, long: 50.00, name: 'Equator Town', pop: 5000 },
-//     { key: 6, lat: -33.93, long: 18.42, name: 'Cape Town', pop: 3780000 },
-//     { key: 7, lat: 4.71, long: -74.07, name: 'Bogota', pop: 7400000 },
-//   ];
-// });
-
-// afterEach(() => {
-//   cities = [];
-// });
+global.fetch = require('node-fetch');
 
 
-test('page renders with no data', () => {
+test('page renders with no data, then demo cities load', async () => {
+  await postData('http://localhost:5000/clear');
+
   render(<Cities />);
+  expect(screen.getByText('Add a city')).toBeInTheDocument();
 
   expect(screen.getByText('Cities of the World')).toBeInTheDocument();
   expect(screen.queryByText('Calgary')).not.toBeInTheDocument();
   expect(screen.getByText('Add some cities!')).toBeInTheDocument();
+
+  // wait for demo cities to load from server
+  // await new Promise((r) => setTimeout(r, 500));
+  await postData('http://localhost:5000/all');
+
+  expect(screen.getByText('Cities of the World')).toBeInTheDocument();
   expect(screen.getByText('Add a city')).toBeInTheDocument();
+  expect(screen.queryByText('Calgary')).toBeInTheDocument();
+  expect(screen.queryByText('Calgary')).toBeInTheDocument();
+  expect(screen.queryByText('Bogota')).toBeInTheDocument();
+  expect(screen.queryByText('Add some cities!')).not.toBeInTheDocument();
 });
 
 test('you can add a city', async () => {
+  await postData('http://localhost:5000/clear');
   render(<Cities />);
+
+  // wait for server
+  await new Promise((r) => setTimeout(r, 500));
 
   expect(screen.queryByText('City name')).not.toBeInTheDocument();
   userEvent.click(screen.getByText('Add a city'));
-  
+
+  // confirm modal is visible
   expect(screen.queryByText('City name')).toBeInTheDocument();
-  const inputs = screen.getAllByRole('textbox');
-  await userEvent.type(inputs[0], 'Calgary');
-  await userEvent.type(inputs[1], '1340000');
-  await userEvent.type(inputs[2], '51.05');
-  await userEvent.type(inputs[3], '-114.05');
-  expect(inputs[0]).toHaveValue('Calgary');
-  expect(inputs[1]).toHaveValue('1340000');
-  expect(inputs[2]).toHaveValue('51.05');
-  expect(inputs[3]).toHaveValue('-114.05');
-  await userEvent.click(screen.getByText('Add'));
-  // screen.debug();
-  // await new Promise((r) => setTimeout(r, 1000));
-  
-  
-  // expect(screen.queryByText('Calgary')).toBeInTheDocument();
+  let inputs = screen.getAllByRole('textbox');
+
+  await userEvent.type(inputs[0], 'Apple');
+  await userEvent.type(inputs[1], '200');
+  await userEvent.type(inputs[2], '10');
+  await userEvent.type(inputs[3], '-5');
+  expect(inputs[0]).toHaveValue('Apple');
+  expect(inputs[1]).toHaveValue('200');
+  expect(inputs[2]).toHaveValue('10');
+  expect(inputs[3]).toHaveValue('-5');
+
+  userEvent.click(screen.getByText('Add'));
+
+  // confirm new city was added to server
+  let cities = await postData('http://localhost:5000/all');
+  expect(cities[7]).toEqual({
+    key: 8,
+    lat: '10',
+    long: '-5',
+    name: 'Apple',
+    pop: '200',
+  });
+
+  // confirm modal is hidden
+  expect(screen.queryByText('City name')).not.toBeInTheDocument();
+
+  expect(screen.queryByText('Apple')).toBeInTheDocument();
+  expect(screen.queryByText('200')).toBeInTheDocument();
+  expect(screen.queryByText('10')).toBeInTheDocument();
+  expect(screen.queryByText('-5')).toBeInTheDocument();
+  expect(screen.queryByText('Village')).toBeInTheDocument();
+
+  userEvent.click(screen.getByText('Add a city'));
+  inputs = screen.getAllByRole('textbox');
+
+  await userEvent.type(inputs[0], 'Banana');
+  await userEvent.type(inputs[1], '50');
+  await userEvent.type(inputs[2], '123');
+  await userEvent.type(inputs[3], '-50');
+
+  userEvent.click(screen.getByText('Add'));
+
+  // confirm new city was added to server
+  cities = await postData('http://localhost:5000/all');
+  expect(cities[8]).toEqual({
+    key: 9,
+    lat: '123',
+    long: '-50',
+    name: 'Banana',
+    pop: '50',
+  });
+
+  expect(screen.queryAllByText('Banana')).toHaveLength(2);
+  expect(screen.queryAllByText('123')).toHaveLength(2);
+  expect(screen.queryByText('-50')).toBeInTheDocument();
+  expect(screen.queryByText('Hamlet')).toBeInTheDocument();
 });

@@ -15,8 +15,9 @@ class Community {
   }
 
   getMostNorthern() {
-    let northMost = {};
-    northMost = this.cities[0];
+    // let northMost = {};
+    let [northMost] = this.cities;
+    // northMost = this.cities[0];
     this.cities.forEach((city) => {
       if (city.lat > northMost.lat) northMost = city;
     });
@@ -24,8 +25,8 @@ class Community {
   }
 
   getMostSouthern() {
-    let southMost = {};
-    southMost = this.cities[0];
+    let [southMost] = this.cities;
+    // southMost = this.cities[0];
     this.cities.forEach((city) => {
       if (city.lat < southMost.lat) southMost = city;
     });
@@ -33,7 +34,8 @@ class Community {
   }
 
   getPopulation() {
-    const totalPop = this.cities.reduce((acc, city) => acc += city.pop, 0);
+    // const totalPop = this.cities.reduce((acc, city) => acc += city.pop, 0);
+    const totalPop = this.cities.reduce((acc, city) => acc + city.pop, 0);
     return totalPop;
   }
 

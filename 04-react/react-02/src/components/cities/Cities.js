@@ -29,8 +29,8 @@ class Cities extends Component {
 
     this.state = {
       showAdd: false,
-      // showEdit: false,
       community: this.community,
+      showError: false,
     };
     this.onShowAdd = this.onShowAdd.bind(this);
     // this.onShowEdit = this.onShowEdit.bind(this);
@@ -46,6 +46,7 @@ class Cities extends Component {
       serverCities = await postData(`${urlPy}all`);
     } catch (error) {
       // console.error(error);
+      this.setState({ showError: true });
       return;
     }
     // console.log('Component Mounted :>> ', serverCities);
@@ -92,18 +93,17 @@ class Cities extends Component {
 
     // console.log('Random city time!', name, lat, long, pop);
     this.handleAddCity({ name, lat, long, pop });
-    // this.setState({ community: this.community });
   }
 
 
   async handleAddCity(city) {
-    console.log('city :>> ', city);
+    // console.log('city :>> ', city);
     const newCity = this.community.createCity(city);
-    // console.log('city :>> ', newCity);
     try {
       postData(`${urlPy}add`, newCity);
     } catch (error) {
       // console.error(error);
+      this.setState({ showError: true });
       return;
     }
     this.setState({ community: this.community });
@@ -114,6 +114,7 @@ class Cities extends Component {
       postData(`${urlPy}delete`, { key });
     } catch (error) {
       // console.error(error);
+      this.setState({ showError: true });
       return;
     }
     this.community.deleteCity(key);
@@ -132,6 +133,7 @@ class Cities extends Component {
       postData(`${urlPy}update`, city);
     } catch (error) {
       // console.error(error);
+      this.setState({ showError: true });
       return;
     }
     this.setState({ community: this.community });
@@ -150,7 +152,7 @@ class Cities extends Component {
         onEditSubmit={this.handleEditCity}
       />
     ));
-    // console.log('cards :>> ', cards || );
+
     return (
       <div>
         <div className="wrapper">
@@ -173,6 +175,7 @@ class Cities extends Component {
             </nav>
             <div className="content">
               <div className="container-fluid">
+                {this.state.showError ? <h3>Something has gone wrong! Oopsie!</h3> : null}
                 <div className="card-deck" id="idCardDeck">
                   {cards.length ? cards : 'Add some cities!'}
                 </div>
