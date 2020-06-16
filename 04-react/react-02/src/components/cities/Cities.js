@@ -97,6 +97,7 @@ class Cities extends Component {
 
 
   async handleAddCity(city) {
+    console.log('city :>> ', city);
     const newCity = this.community.createCity(city);
     // console.log('city :>> ', newCity);
     try {
@@ -183,11 +184,6 @@ class Cities extends Component {
               onHide={() => this.onHideAdd()}
               onAdd={this.handleAddCity}
             />
-            {/* <EditCityModal
-              show={this.state.showEdit}
-              onHide={() => this.hideEdit()}
-              // onEdit={this.handleEditCity}
-            /> */}
           </div>
         </div>
       </div>

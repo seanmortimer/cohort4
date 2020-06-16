@@ -21,8 +21,8 @@ class EditCityModal extends Component {
 
   handleEdit(e) {
     e.preventDefault();
-    const movein = Number(e.target.movedin.value);
-    const out = Number(e.target.movedout.value);
+    const movein = Number(e.target.movedin?.value);
+    const out = Number(e.target.movedout?.value);
     const net = movein - out;
     this.props.onEdit(net);
     this.props.onHide();
