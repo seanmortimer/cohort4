@@ -31,6 +31,7 @@ class Cities extends Component {
       showAdd: false,
       community: this.community,
       showError: false,
+      // cityCount: this.community.cities.length,
     };
     this.onShowAdd = this.onShowAdd.bind(this);
     // this.onShowEdit = this.onShowEdit.bind(this);
@@ -42,6 +43,7 @@ class Cities extends Component {
 
   async componentDidMount() {
     let serverCities = [];
+    const comm = new Community();
     try {
       serverCities = await postData(`${urlPy}all`);
     } catch (error) {
@@ -49,18 +51,18 @@ class Cities extends Component {
       this.setState({ showError: true });
       return;
     }
-    // console.log('Component Mounted :>> ', serverCities);
-    if (serverCities.length) serverCities.forEach((city) => this.community.createCity(city));
+    if (serverCities.length) serverCities.forEach((city) => comm.createCity(city));
     else {
-      cities.forEach((city) => this.community.createCity(city));
+      cities.forEach((city) => comm.createCity(city));
       try {
-        this.community.cities.forEach(async (city) => postData(`${urlPy}add`, city));
+        comm.cities.forEach(async (city) => postData(`${urlPy}add`, city));
       } catch (error) {
         // console.error(error);
         return;
       }
     }
-    this.setState({ community: this.community });
+    this.setState({ community: comm });
+    // this.setState({ cityCount: this.community.cities.length });
   }
 
   onShowAdd() {
@@ -70,6 +72,7 @@ class Cities extends Component {
   onHideAdd() {
     this.setState({ showAdd: false });
   }
+
 
   async getRandom() {
     let cityId = null;
@@ -95,9 +98,18 @@ class Cities extends Component {
     this.handleAddCity({ name, lat, long, pop });
   }
 
+  clearServer = () => {
+    try {
+      postData(`${urlPy}clear`);
+    } catch (error) {
+      // console.error(error);
+      this.setState({ showError: true });
+    }
+    this.community = new Community();
+    this.setState({ community: this.community });
+  }
 
   async handleAddCity(city) {
-    // console.log('city :>> ', city);
     const newCity = this.community.createCity(city);
     try {
       postData(`${urlPy}add`, newCity);
@@ -156,7 +168,7 @@ class Cities extends Component {
     return (
       <div>
         <div className="wrapper">
-          <SideBar cities={community} onRandom={this.getRandom} />
+          <SideBar cities={community} onRandom={this.getRandom} onClear={this.clearServer} />
           <div className="main-panel">
             <nav className="navbar">
               <div className="container-fluid">

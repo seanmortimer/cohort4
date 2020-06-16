@@ -35,7 +35,7 @@ test('you can add a city', async () => {
   render(<Cities />);
 
   // wait for server
-  await new Promise((r) => setTimeout(r, 500));
+  await postData('http://localhost:5000/all');
 
   expect(screen.queryByText('City name')).not.toBeInTheDocument();
   userEvent.click(screen.getByText('Add a city'));
@@ -99,3 +99,6 @@ test('you can add a city', async () => {
   expect(screen.queryByText('-50')).toBeInTheDocument();
   expect(screen.queryByText('Hamlet')).toBeInTheDocument();
 });
+
+test.todo('deleting cities');
+test.todo('clearing server');
