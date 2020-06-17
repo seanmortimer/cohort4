@@ -7,7 +7,6 @@ import postData from './cityfetch';
 
 global.fetch = require('node-fetch');
 
-
 test('page renders with no data, then demo cities load', async () => {
   await postData('http://localhost:5000/clear');
 
