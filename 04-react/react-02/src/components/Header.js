@@ -3,14 +3,19 @@ import { ReactComponent as Chainring } from '../images/chainring.svg';
 import { ReactComponent as Wheel } from '../images/bike-wheel.svg';
 import { ReactComponent as SickWhip } from '../images/sick-whip.svg';
 import { ReactComponent as Rotor } from '../images/brake-rotor.svg';
+import { ThemeContext } from '../ThemeContext';
 
 
 class Header extends Component {
+  // static contextType = ThemeContext;
+
   constructor(props) {
     super(props);
+
     this.state = { active: 'home' };
     this.handleNavClick = this.handleNavClick.bind(this);
   }
+
 
   handleNavClick(target) {
     this.setState({ active: target });
@@ -18,12 +23,15 @@ class Header extends Component {
   }
 
   render() {
+    const color = this.context.theme.sidebar;
+    const active = `clActive-${color}`;
+    const inactive = `clIcon-${color}`;
+
     return (
       <nav className="clHeader">
         <div>
           <Wheel
-            // className={this.state.regular}
-            className={(this.state.active === 'home') ? 'clActive' : 'clIcon'}
+            className={(this.state.active === 'home') ? active : inactive}
             role="link"
             onClick={() => this.handleNavClick('home')}
             name="home"
@@ -32,7 +40,7 @@ class Header extends Component {
         </div>
         <div>
           <Chainring
-            className={(this.state.active === 'tictac') ? 'clActive' : 'clIcon'}
+            className={(this.state.active === 'tictac') ? active : inactive}
             role="link"
             onClick={() => this.handleNavClick('tictac')}
             name="tictac"
@@ -40,8 +48,8 @@ class Header extends Component {
           <div>Tic Tac Toe</div>
         </div>
         <div>
-          <SickWhip
-            className={(this.state.active === 'banking') ? 'clActive' : 'clIcon'}
+          <Rotor
+            className={(this.state.active === 'banking') ? active : inactive}
             role="link"
             onClick={() => this.handleNavClick('banking')}
             name="banking"
@@ -49,8 +57,8 @@ class Header extends Component {
           <div>Banking</div>
         </div>
         <div>
-          <Rotor
-            className={(this.state.active === 'cities') ? 'clActive' : 'clIcon'}
+          <SickWhip
+            className={(this.state.active === 'cities') ? active : inactive}
             role="link"
             onClick={() => this.handleNavClick('cities')}
             name="cities"
@@ -58,8 +66,8 @@ class Header extends Component {
           <div>Cities of The World</div>
         </div>
         <div>
-          <Chainring
-            className={(this.state.active === 'lists') ? 'clActive' : 'clIcon'}
+          <Rotor
+            className={(this.state.active === 'lists') ? active : inactive}
             role="link"
             onClick={() => this.handleNavClick('lists')}
             name="lists"
@@ -67,18 +75,28 @@ class Header extends Component {
           <div>Linked Lists</div>
         </div>
         <div>
-          <Wheel
-            className={(this.state.active === 'lifo') ? 'clActive' : 'clIcon'}
+          <Chainring
+            className={(this.state.active === 'lifo') ? active : inactive}
             role="link"
             name="lifo"
             onClick={() => this.handleNavClick('lifo')}
           />
           <div>Stacks vs Queues</div>
         </div>
-
+        <div>
+          <Wheel
+            className={(this.state.active === 'theme') ? active : inactive}
+            role="link"
+            name="theme"
+            onClick={() => this.handleNavClick('theme')}
+          />
+          <div>Theme Settings</div>
+        </div>
       </nav>
     );
   }
 }
+
+Header.contextType = ThemeContext;
 
 export default Header;

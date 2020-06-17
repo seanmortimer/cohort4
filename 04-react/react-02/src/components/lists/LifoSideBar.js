@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../../ThemeContext';
 
 
 function LifoSideBar() {
+  const value = useContext(ThemeContext);
   return (
-    <div className="sidebar" id="idSideBar" data-image="../assets/img/sidebar-5.jpg" data-color="blue">
+    <div className="sidebar" id="idSideBar" data-image="../assets/img/sidebar-5.jpg" data-color={value.theme.sidebar}>
       <div className="sidebar-wrapper">
         <div className="logo">
           <div className="simple-text">Stacks vs Queues</div>

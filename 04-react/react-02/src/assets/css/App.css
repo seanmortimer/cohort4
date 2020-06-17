@@ -10,22 +10,78 @@
   font-weight: bold;
 }
 
-.clIcon {
+.clIcon-blue {
   margin: 10px;
   height: 100px;
   width:  100px;
   fill: #61dafb;
 }
 
-.clActive  {
+.clActive-blue  {
   margin: 10px;
   height: 100px;
   width:  100px;
   fill: #1900a8;
 }
 
-.clIcon:hover {
+.clIcon-blue:hover {
   fill: #1900a8;
+}
+
+.clIcon-red {
+  margin: 10px;
+  height: 100px;
+  width:  100px;
+  fill: #b91813;
+}
+
+.clActive-red  {
+  margin: 10px;
+  height: 100px;
+  width:  100px;
+  fill: #550200;
+}
+
+.clIcon-red:hover {
+  fill: #550200;
+}
+
+
+.clIcon-green {
+  margin: 10px;
+  height: 100px;
+  width:  100px;
+  fill: #2eaa2e;
+}
+
+.clActive-green  {
+  margin: 10px;
+  height: 100px;
+  width:  100px;
+  fill: #004400;
+}
+
+.clIcon-green:hover {
+  fill: #004400;
+}
+
+
+.clIcon-purple {
+  margin: 10px;
+  height: 100px;
+  width:  100px;
+  fill: #813da8;
+}
+
+.clActive-purple  {
+  margin: 10px;
+  height: 100px;
+  width:  100px;
+  fill: #360550;
+}
+
+.clIcon-purple:hover {
+  fill: #360550;
 }
 
 .App {

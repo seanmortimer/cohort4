@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 /* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import './assets/css/App.css';
@@ -8,17 +9,25 @@ import Banking from './components/banking/Banking';
 import Cities from './components/cities/Cities';
 import LinkedLists from './components/lists/LinkedLists';
 import LifoFifo from './components/lists/LifoFifo';
+import ThemeSettings from './components/theme/ThemeSettings';
+import { themes, ThemeContext } from './ThemeContext';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    // this.state = { page: 'home' };
-    this.state = { page: 'home' };
-    this.onNavClick = this.onNavClick.bind(this);
+
+    this.chooseTheme = (theme) => {
+      this.setState(() => ({ theme: themes[theme] }));
+    };
+
+    this.state = {
+      theme: themes.blue,
+      chooseTheme: this.chooseTheme,
+      page: 'home',
+    };
   }
 
-  onNavClick(page) {
-    // console.log('page :>> ', page);
+  onNavClick = (page) => {
     this.setState({ page });
   }
 
@@ -43,22 +52,28 @@ class App extends Component {
       case 'lifo':
         currentPage = <LifoFifo />;
         break;
+      case 'theme':
+        currentPage = <ThemeSettings />;
+        break;
       // no default
     }
     return (
-      <div className="App">
-        <Header onNavClick={this.onNavClick} />
-        {currentPage}
-        <footer className="text-center">© 2020{' '}
-          <a href="http://www.seanmortimer.com">
-            Sean Mortimer
-          </a>
-          {' '}Check out the source code here:{' '}
-          <a href="https://github.com/seanmortimer/cohort4/tree/master/03-objects">
-            github.com/seanmortimer
-          </a>
-        </footer>
-      </div>
+      <ThemeContext.Provider value={this.state}>
+        {/* <ThemeContext.Provider> */}
+        <div className="App">
+          <Header onNavClick={this.onNavClick} />
+          {currentPage}
+          <footer className="text-center">© 2020{' '}
+            <a href="http://www.seanmortimer.com">
+              Sean Mortimer
+            </a>
+            {' '}Check out the source code here:{' '}
+            <a href="https://github.com/seanmortimer/cohort4/tree/master/03-objects">
+              github.com/seanmortimer
+            </a>
+          </footer>
+        </div>
+      </ThemeContext.Provider>
     );
   }
 }

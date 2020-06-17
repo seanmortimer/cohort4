@@ -1,14 +1,33 @@
+import React from 'react';
+
 export const themes = {
-  light: {
-    foreground: '#000000',
-    background: '#eeeeee',
+  blue: {
+    sidebar: 'blue',
+    iconActive: '#1900a8',
+    iconDefault: '#61dafb',
   },
-  dark: {
-    foreground: '#ffffff',
-    background: '#222222',
+  red: {
+    sidebar: 'red',
+    iconActive: '#550200',
+    iconDefault: '#801815',
+  },
+  green: {
+    sidebar: 'green',
+    iconActive: '#004400',
+    iconDefault: '#116611',
+  },
+  purple: {
+    sidebar: 'purple',
+    iconActive: '#260339',
+    iconDefault: '#582A72',
   },
 };
 
-export const ThemeContext = React.createContext(
-  themes.dark, // default value
-);
+// export const ThemeContext = React.createContext(
+//   themes.dark, // default value
+// );
+
+export const ThemeContext = React.createContext({
+  theme: themes.blue,
+  toggleTheme: () => {},
+});
