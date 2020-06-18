@@ -28,7 +28,6 @@ test('The nav renders - Ants!', () => {
   expect(screen.getByText(/Subject: Ant/)).toBeInTheDocument();
   expect(screen.getByText(/amount: \$10/i)).toBeInTheDocument();
   expect(screen.getByText(/Current total: \$100/i)).toBeInTheDocument();
-
 });
 
 test('The nav renders - Bats!', () => {

@@ -15,7 +15,7 @@ test('the header renders', () => {
   expect(screen.getByText('Cities of The World')).toBeInTheDocument();
   expect(screen.getByText('Linked Lists')).toBeInTheDocument();
   expect(screen.getByText('Stacks vs Queues')).toBeInTheDocument();
-  expect(screen.getAllByRole('link')).toHaveLength(6);
+  expect(screen.getAllByRole('link')).toHaveLength(7);
 });
 
 test('the navigation works', () => {

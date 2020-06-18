@@ -31,29 +31,29 @@ function ThemeSettings() {
             <h4>Current Theme: {value.theme.sidebar}</h4>
             <form className="form-group" onChange={handleRadioChange}>
               <div className="">
-                <label className="form-check-label" htmlFor="themeColor">
-                  <input className="form-check-input" type="radio" name="themeColor" value="blue" defaultChecked />
+                <label className="form-check-label" htmlFor="blue">
+                  <input className="form-check-input" type="radio" id="blue" name="themeColor" value="blue" defaultChecked />
                   <span className="form-check-sign" />
                   Blue
                 </label>
               </div>
               <div className="">
-                <label className="form-check-label" htmlFor="themeColor">
-                  <input className="form-check-input" type="radio" name="themeColor" value="red" />
+                <label className="form-check-label" htmlFor="red">
+                  <input className="form-check-input" type="radio" id="red" name="themeColor" value="red" />
                   <span className="form-check-sign" />
                   Red
                 </label>
               </div>
               <div className="">
-                <label className="form-check-label" htmlFor="themeColor">
-                  <input className="form-check-input" type="radio" name="themeColor" value="green" />
+                <label className="form-check-label" htmlFor="green">
+                  <input className="form-check-input" type="radio" id="green" name="themeColor" value="green" />
                   <span className="form-check-sign" />
                   Green
                 </label>
               </div>
               <div className="">
-                <label className="form-check-label" htmlFor="themeColor">
-                  <input className="form-check-input" type="radio" name="themeColor" value="purple" />
+                <label className="form-check-label" htmlFor="purple">
+                  <input className="form-check-input" type="radio" id="purple" name="themeColor" value="purple" />
                   <span className="form-check-sign" />
                   Purple
                 </label>
