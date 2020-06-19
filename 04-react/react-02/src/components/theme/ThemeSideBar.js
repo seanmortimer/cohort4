@@ -7,6 +7,7 @@ function ThemeSideBar() {
 
 
   const value = useContext(ThemeContext);
+  const { theme } = value;
   // console.log('value :>> ', value.theme);
   return (
     <div className="sidebar" id="idSideBar" data-image="../assets/img/sidebar-5.jpg" data-color={theme.sidebar}>

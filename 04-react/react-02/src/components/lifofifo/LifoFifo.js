@@ -4,8 +4,8 @@ import '../../assets/css/light-bootstrap-dashboard.css';
 import '../../assets/css/lists.css';
 import LifoSideBar from './LifoSideBar';
 import LifoComponent from './LifoComponent';
-import FifoComponent from './FifoComponent';
-import { LifoList, FifoList } from './LifoFifo-Logic';
+import FifoComponent from '../lifofifo/FifoComponent';
+import { LifoList, FifoList } from './lifoFifoLogic';
 import animals from '../../assets/data/animal-alphabet.json';
 import moreAnimals from '../../assets/data/animals.json';
 

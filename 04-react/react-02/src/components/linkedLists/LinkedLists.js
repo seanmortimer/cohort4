@@ -4,18 +4,21 @@ import '../../assets/css/light-bootstrap-dashboard.css';
 import '../../assets/css/lists.css';
 // import animals from '../../assets/data/animals.json';
 import ListSideBar from './LinkedListSideBar';
-import ListCard from './ListCard';
+import ListCard from './LinkedListCard';
 import ListNav from './LinkedListNav';
 import ListInsert from './LinkedListInsert';
 import LinkedList from './LinkedListLogic';
 
 const demoData = [['Ant', 10], ['Bat', 20], ['Cat', 30], ['Dog', 40]];
-// const list = new LinkedList();
+const list = new LinkedList();
+
+console.log('List is imported :>> ', list);
 
 function Lists() {
+  console.log('Render the page :>> ', list);
   // list is useless in state because it's an object
   // it gets copied by reference so list always === list
-  const [list, setList] = useState(new LinkedList());
+  // const [list, setList] = useState(new LinkedList());
   const [size, setSize] = useState(0);
   const [currentNode, setCurrentNode] = useState(null);
   const cards = [];
@@ -29,12 +32,12 @@ function Lists() {
 
   // Add demo data on first load
   function demoList() {
-    // console.log('Create the demo list 33');
+    console.log('Create the demo list');
     demoData.forEach((value) => list.insertAfterCurrent(value[0], value[1]));
     list.jumpToHead();
     setCurrentNode(list.currentNode);
     setSize(list.size);
-    setList(list);
+    // setList(list);
   }
 
   useEffect(demoList, []);
@@ -125,6 +128,10 @@ function Lists() {
     // console.log('CARDS', cardArray);
     // setCards(cardArray);
   }
+
+  console.log('list a1:>> ', list.head);
+  console.log('list a2:>> ', list.head?.forwardNode);
+  console.log('list a2:>> ', list.head?.forwardNode.forwardNode);
 
   return (
     <div>

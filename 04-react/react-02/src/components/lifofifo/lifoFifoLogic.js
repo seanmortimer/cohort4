@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import LinkedList from './LinkedListLogic';
+import LinkedList from '../linkedLists/linkedListLogic';
 
 class LifoList extends LinkedList {
   addToStack(subject, amount) {

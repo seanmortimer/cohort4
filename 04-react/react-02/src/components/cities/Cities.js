@@ -3,10 +3,10 @@ import '../../assets/css/bootstrap.min.css';
 import '../../assets/css/light-bootstrap-dashboard.css';
 import '../../assets/css/cities.css';
 import SideBar from './SideBar';
-import Community from './communityClass';
+import Community from './logic/communityClass';
 import Card from './Card';
 import AddCityModal from './AddCityModal';
-import postData from './cityfetch';
+import postData from './logic/cityfetch';
 
 const urlPy = 'http://localhost:5000/';
 const geoDb = 'http://geodb-free-service.wirefreethought.com/v1/geo/cities';
