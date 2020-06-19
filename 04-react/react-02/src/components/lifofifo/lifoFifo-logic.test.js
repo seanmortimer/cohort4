@@ -1,4 +1,4 @@
-import { LifoList, FifoList } from '../components/lifofifo/lifoFifoLogic';
+import { LifoList, FifoList } from './lifoFifo-logic';
 
 test('adding and deleting - stack', () => {
   const lifo = new LifoList();

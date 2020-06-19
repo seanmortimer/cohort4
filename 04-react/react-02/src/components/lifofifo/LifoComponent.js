@@ -1,6 +1,6 @@
 import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import LifoCard from '../lifofifo/LifoCard';
+import LifoCard from './LifoCard';
 
 function LifoComponent({ stack }) {
   const cards = [];

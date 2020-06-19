@@ -8,7 +8,7 @@ import Game from './components/tictactoe/TicTacToe';
 import Banking from './components/banking/Banking';
 import Cities from './components/cities/Cities';
 import LinkedLists from './components/linkedLists/LinkedLists';
-import LifoFifo from './components/linkedLists/LifoFifo';
+import LifoFifo from './components/lifoFifo/LifoFifo';
 import ThemeSettings from './components/theme/ThemeSettings';
 import { themes, ThemeContext } from './ThemeContext';
 

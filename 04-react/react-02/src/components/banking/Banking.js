@@ -5,7 +5,7 @@ import Notification from './Notification';
 import ActCreator from './ActCreator';
 import ActCard from './ActCard';
 import ActTotals from './ActTotals';
-import './Banking.css';
+import '../../assets/css/Banking.css';
 
 
 class Banking extends Component {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { ReactComponent as Chainring } from '../images/chainring.svg';
-import { ReactComponent as Wheel } from '../images/bike-wheel.svg';
-import { ReactComponent as SickWhip } from '../images/sick-whip.svg';
-import { ReactComponent as Rotor } from '../images/brake-rotor.svg';
+import { ReactComponent as Chainring } from '../assets/img/chainring.svg';
+import { ReactComponent as Wheel } from '../assets/img/bike-wheel.svg';
+import { ReactComponent as SickWhip } from '../assets/img/sick-whip.svg';
+import { ReactComponent as Rotor } from '../assets/img/brake-rotor.svg';
 import { ThemeContext } from '../ThemeContext';
 
 
