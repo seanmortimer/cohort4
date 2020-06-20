@@ -7,7 +7,6 @@ class ActCreator extends Component {
   }
 
   handleChange = (e) => {
-    // console.log('e.target.value :>> ', e.target.value);
     this.setState({ actName: e.target.value });
   }
 
@@ -29,6 +28,7 @@ class ActCreator extends Component {
             placeholder="enter account name"
             value={this.state.actName}
             onChange={this.handleChange}
+            autoComplete="off"
           />
           <button type="submit">Create Account</button>
         </form>

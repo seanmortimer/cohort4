@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import SideBar from './SideBar';
-import Community from './communityClass';
+import Community from './logic/communityClass';
 
 
 let cities = [];

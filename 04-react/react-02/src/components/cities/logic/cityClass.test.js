@@ -70,4 +70,7 @@ test('test which hemisphere method', () => {
   expect(edmonton.whichSphere()).toBe('Northern');
   expect(quintero.whichSphere()).toBe('Southern');
   expect(eqTown.whichSphere()).toBe('Equator!');
+
+  calgary.lat = NaN;
+  expect(calgary.whichSphere()).toBe('Something went wrong');
 });

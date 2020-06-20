@@ -5,7 +5,7 @@ class AddCityModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addBtn: false,
+      addBtn: true,
       name: '',
       pop: '',
       lat: '',
@@ -17,23 +17,36 @@ class AddCityModal extends Component {
   }
 
   handleSubmit(e) {
-    // TODO - INPUT VALIDATION
     e.preventDefault();
-    // console.log('submmit', this.state.name);
     const { name, pop, lat, long } = this.state;
-    if (!name || !pop || !lat || !long) return;
-    // console.log('name, pop, lat, long :>> ', name, pop, lat, long);
+
     this.props.onAdd({
       name,
       pop: Number(pop),
       lat: Number(lat),
       long: Number(long),
     });
+
+    this.setState({
+      addBtn: true,
+      name: '',
+      pop: '',
+      lat: '',
+      long: '',
+    });
+
     this.props.onHide();
   }
 
   testHandleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    // TODO - INPUT VALIDATION
+
+    const inputs = { ...this.state };
+    inputs[e.target.name] = e.target.value;
+    const { name, pop, lat, long } = inputs;
+
+    if (name && pop && lat && long) inputs.addBtn = false;
+    this.setState(inputs);
   }
 
   render() {

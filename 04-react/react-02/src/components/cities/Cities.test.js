@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Cities from './Cities';
-import postData from './cityfetch';
+import postData from './logic/cityfetch';
 
 
 global.fetch = require('node-fetch');

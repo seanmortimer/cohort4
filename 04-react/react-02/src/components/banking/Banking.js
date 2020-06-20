@@ -21,7 +21,6 @@ class Banking extends Component {
   }
 
   handleActCreate(newAct) {
-    if (!newAct) return;
     const accounts = this.state.accounts.slice();
     const dupe = accounts.filter((act) => (newAct === act.actName));
     if (dupe.length > 0) {

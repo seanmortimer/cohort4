@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Card from './Card';
-import Community from './communityClass';
+import Community from './logic/communityClass';
 
 const mockEditClick = jest.fn();
 const mockDelClick = jest.fn();

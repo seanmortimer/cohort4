@@ -27,6 +27,7 @@ test('accounts are created', async () => {
 
   const createBtn = screen.getByRole('button');
   const input = screen.getByRole('textbox');
+  
   await userEvent.type(input, 'Chequing');
   expect(input.value).toBe('Chequing');
   userEvent.click(createBtn);

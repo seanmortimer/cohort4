@@ -2,7 +2,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import EditCityModal from './EditCityModal';
-import Community from './communityClass';
+import Community from './logic/communityClass';
 
 
 const mockHideCallback = jest.fn();

@@ -38,9 +38,7 @@ class DepositWithdraw extends Component {
   }
 
   validate() {
-    if (!this.act.value) return false;
-    // console.log('validate :>> ', this.amnt.value);
-    if (!this.amnt.value.match(/^[0-9]+$/)) {
+    if (!this.amnt.value.match(/^[0-9.]+$/)) {
       this.props.onDW(null, 'nan');
       return false;
     }
@@ -66,9 +64,10 @@ class DepositWithdraw extends Component {
               placeholder="Please select an account"
               defaultValue="Please select an account"
             >
-              {acts.length
+              {acts}
+              {/* {acts.length
                 ? acts
-                : <option key="0">Please select an account</option>}
+                : <option key="0">Please select an account</option>} */}
             </select>
             <input
               label="amount"
