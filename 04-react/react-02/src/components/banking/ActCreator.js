@@ -3,24 +3,33 @@ import React, { Component } from 'react';
 class ActCreator extends Component {
   constructor(props) {
     super(props);
-    this.handleNewAct = this.handleNewAct.bind(this);
+    this.state = { actName: '' };
   }
 
-  handleNewAct(e) {
+  handleChange = (e) => {
+    // console.log('e.target.value :>> ', e.target.value);
+    this.setState({ actName: e.target.value });
+  }
+
+  handleNewAct = (e) => {
     e.preventDefault();
-    if (!e.target.actName) return;
-    const actName = e.target.actName.value;
-    this.props.onNewAct(actName);
-    e.target.actName.value = '';
+    if (!this.state.actName) return;
+    this.props.onNewAct(this.state.actName);
+    this.setState({ actName: '' });
   }
 
   render() {
-    // console.log('this.props. :>> ', this.props.onSubmit);
     return (
       <div id="idActCreate">
         <h3>Create new account:</h3>
         <form onSubmit={this.handleNewAct}>
-          <input type="text" name="actName" placeholder="enter account name" />
+          <input
+            type="text"
+            name="actName"
+            placeholder="enter account name"
+            value={this.state.actName}
+            onChange={this.handleChange}
+          />
           <button type="submit">Create Account</button>
         </form>
       </div>
