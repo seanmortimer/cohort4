@@ -12,10 +12,10 @@ import LinkedList from './linkedListLogic';
 const demoData = [['Ant', 10], ['Bat', 20], ['Cat', 30], ['Dog', 40]];
 const list = new LinkedList();
 
-console.log('List is imported :>> ', list);
+// console.log('List is imported :>> ', list);
 
 function Lists() {
-  console.log('Render the page :>> ', list);
+  // console.log('Render the page :>> ', list);
   // list is useless in state because it's an object
   // it gets copied by reference so list always === list
   // const [list, setList] = useState(new LinkedList());
@@ -32,7 +32,7 @@ function Lists() {
 
   // Add demo data on first load
   function demoList() {
-    console.log('Create the demo list');
+    // console.log('Create the demo list');
     demoData.forEach((value) => list.insertAfterCurrent(value[0], value[1]));
     list.jumpToHead();
     setCurrentNode(list.currentNode);
@@ -129,9 +129,9 @@ function Lists() {
     // setCards(cardArray);
   }
 
-  console.log('list a1:>> ', list.head);
-  console.log('list a2:>> ', list.head?.forwardNode);
-  console.log('list a2:>> ', list.head?.forwardNode.forwardNode);
+  // console.log('list a1:>> ', list.head);
+  // console.log('list a2:>> ', list.head?.forwardNode);
+  // console.log('list a2:>> ', list.head?.forwardNode.forwardNode);
 
   return (
     <div>

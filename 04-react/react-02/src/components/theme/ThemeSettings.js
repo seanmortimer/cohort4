@@ -8,6 +8,7 @@ import { ThemeContext } from '../../ThemeContext';
 
 function ThemeSettings() {
   const value = useContext(ThemeContext);
+  const themeColor = value.theme.sidebar;
   // const { theme, chooseTheme } = useContext(ThemeContext);
 
   const handleRadioChange = (e) => {
@@ -32,28 +33,56 @@ function ThemeSettings() {
             <form className="form-group" onChange={handleRadioChange}>
               <div className="">
                 <label className="form-check-label" htmlFor="blue">
-                  <input className="form-check-input" type="radio" id="blue" name="themeColor" value="blue" defaultChecked />
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    id="blue"
+                    name="themeColor"
+                    value="blue"
+                    defaultChecked={themeColor === 'blue'}
+                  />
                   <span className="form-check-sign" />
                   Blue
                 </label>
               </div>
               <div className="">
                 <label className="form-check-label" htmlFor="red">
-                  <input className="form-check-input" type="radio" id="red" name="themeColor" value="red" />
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    id="red"
+                    name="themeColor"
+                    value="red"
+                    defaultChecked={themeColor === 'red'}
+                  />
                   <span className="form-check-sign" />
                   Red
                 </label>
               </div>
               <div className="">
                 <label className="form-check-label" htmlFor="green">
-                  <input className="form-check-input" type="radio" id="green" name="themeColor" value="green" />
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    id="green"
+                    name="themeColor"
+                    value="green"
+                    defaultChecked={themeColor === 'green'}
+                  />
                   <span className="form-check-sign" />
                   Green
                 </label>
               </div>
               <div className="">
                 <label className="form-check-label" htmlFor="purple">
-                  <input className="form-check-input" type="radio" id="purple" name="themeColor" value="purple" />
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    id="purple"
+                    name="themeColor"
+                    value="purple"
+                    defaultChecked={themeColor === 'purple'}
+                  />
                   <span className="form-check-sign" />
                   Purple
                 </label>
