@@ -3,39 +3,34 @@
 const syntaxFunctions = {
 // define attributes / variables
     // number
-    isNumber: (num) => {
-        // console.log("number function type: " + typeof(num));
-        if (typeof(num) === "number") return true;
-            return false;
+    squareNumber: (num) => {
+            return num * num;
     },
 
     // string
-    isString: (string) => {
-        // console.log("string function type: " + typeof(string));
-        if (typeof(string) === "string") return true;
-        return false;
+    concatString: (fName, lName) => {
+        return `Your name is ${fName} ${lName}`;
     },
 
     // boolean
-    isBoolean: (bool) => {
-        // console.log("boolean function type: " + typeof(bool));
-        if (typeof(bool) === "boolean") return true;
-        return false;
+    isTrue: (bool) => {
+        if (bool === true) return 'True!';
+        return 'False!';
     },
     
-    // array (adds a number equal to its index + 1 to the end of an array)
+    // array 
+    // add a number equal to its original length to the end of an array
     array: (array) => {
         const newArray = [...array];
         newArray.push(array.length);
-        // console.log("newArray is: " + array);
         return newArray;
     },
 
-    // dictionary / objects --Adds "animal: dog" to the object, because everything
-    // is better with dogs 
+    // dictionary / objects 
+    // Adds "animal: "dog"" to the object, because everything is
+    // better with dogs 
     object: (obj) => {
         obj.animal = "dog"
-        // console.log(obj);
         return obj;
     },
 
@@ -92,7 +87,6 @@ const syntaxFunctions = {
     forLoop: (num) => {
         let i; 
         for (i = 0; i < num; i++) {
-        // console.log(i+1);
         }
     return "I have counted to " + i + 
     ", I am a very good computer!"; 
@@ -105,7 +99,6 @@ const syntaxFunctions = {
         
         for (x in names) {
             text += names[x] + ", "
-            // console.log(text);
         }
         return text;
     },
@@ -121,7 +114,6 @@ const syntaxFunctions = {
         }
         if (i != 0) {text += String.fromCharCode(65 + i)}
         text += "!";
-        // console.log(text);
         return text;
     },
 
@@ -138,7 +130,6 @@ const syntaxFunctions = {
         }
         while (i < target);
         text += "!";
-        // console.log("return text: " + text);
         return text;
 
     },
@@ -150,12 +141,9 @@ const syntaxFunctions = {
 
         const makeExtinct = (item, index, array) => {
             array[index] = item + "  🌋" ;
-            // console.log("makeExtinct is: " + array[index]);
             };
 
         newArray.forEach(makeExtinct);      
-        
-        // console.log("newArray is now: " + newArray);
         return newArray;
     },
 
@@ -163,18 +151,14 @@ const syntaxFunctions = {
     // declare 
     createObject: (firstName, lastName, pet) => {
         let object = {First_Name: firstName, Last_Name: lastName, Pet: pet};
-        // console.log("Object created is: " + object);
         return object;
     },
 
     // lookup key to retrieve value
     lookupKey: (key, object) => {
-        // console.log("Received key is: " + key);
         let result = object[key];
-        // console.log("The returned key value is: " + result);
         return result;
     }
 }
 
 export default syntaxFunctions;
-

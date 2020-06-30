@@ -2,30 +2,29 @@ import syntaxFunctions from './syntax'
 
 
 test('Does the number function work?', () => {
-    expect(syntaxFunctions.isNumber(1)).toBe(true);
-    expect(syntaxFunctions.isNumber('dog')).toBe(false);
-    expect(syntaxFunctions.isNumber(true)).toBe(false);
-    expect(syntaxFunctions.isNumber([0,1,2])).toBe(false);
-    expect(syntaxFunctions.isNumber({'user': 'name', 'pass': 'word'})).toBe(false);
-    expect(syntaxFunctions.isNumber(undefined)).toBe(false);
+    expect(syntaxFunctions.squareNumber(1)).toBe(1);
+    expect(syntaxFunctions.squareNumber(2)).toBe(4);
+    expect(syntaxFunctions.squareNumber(3)).toBe(9);
+    expect(syntaxFunctions.squareNumber(10)).toBe(100);
+    expect(syntaxFunctions.squareNumber(-5)).toBe(25);
+    expect(syntaxFunctions.squareNumber(0)).toBe(0);
 });
 
 test('Does the string function work?', () => {
-    expect(syntaxFunctions.isString(0)).toBe(false);  
-    expect(syntaxFunctions.isString('dog')).toBe(true);
-    expect(syntaxFunctions.isString(true)).toBe(false);
-    expect(syntaxFunctions.isString([0,1,2])).toBe(false);
-    expect(syntaxFunctions.isString({'user': 'name', 'pass': 'word'})).toBe(false);
-    expect(syntaxFunctions.isString(undefined)).toBe(false);
+    expect(syntaxFunctions.concatString('Homer', 'Simpson')).toBe(
+        'Your name is Homer Simpson'
+        );
+    expect(syntaxFunctions.concatString('Sean', 'Mortimer')).toBe(
+        'Your name is Sean Mortimer'
+        );
+    expect(syntaxFunctions.concatString('', '')).toBe(
+        'Your name is  '
+        );
 });
 
 test('Does the boolean function work?', () => {
-    expect(syntaxFunctions.isBoolean(true)).toBe(true);
-    expect(syntaxFunctions.isBoolean(0)).toBe(false);  
-    expect(syntaxFunctions.isBoolean('dog')).toBe(false);
-    expect(syntaxFunctions.isBoolean([0,1,2])).toBe(false);
-    expect(syntaxFunctions.isBoolean({'user': 'name', 'pass': 'word'})).toBe(false);
-    expect(syntaxFunctions.isBoolean(undefined)).toBe(false);
+    expect(syntaxFunctions.isTrue(true)).toBe('True!');
+    expect(syntaxFunctions.isTrue(false)).toBe('False!');
 });
 
 test('Does the array function work?', () => {
@@ -45,6 +44,7 @@ test('Does the object function work?', () => {
 
 test('Does the undefined function work?', () => {
     expect(syntaxFunctions.undefinedCheck(undefined)).toBe(true);
+    expect(syntaxFunctions.undefinedCheck(NaN)).toBe(false);
     expect(syntaxFunctions.undefinedCheck("a")).toBe(false);
     expect(syntaxFunctions.undefinedCheck(5)).toBe(false);
     expect(syntaxFunctions.undefinedCheck(null)).toBe(false);
@@ -114,7 +114,7 @@ test('Does the While Loop function work?', () => {
     expect(syntaxFunctions.aWhileLoop(-5)).toBe("!");
 });   
 
-test('Does the While Loop function work?', () => {
+test('Does the Do While Loop function work?', () => {
     expect(syntaxFunctions.doWhileLoop(3)).toBe("A, B, C!");
     expect(syntaxFunctions.doWhileLoop(10))
         .toBe("A, B, C, D, E, F, G, H, I, J!");
@@ -140,10 +140,16 @@ test('Does the Declare Object function work?', () => {
 });
 
 test('Does the Lookup Key function work?', () => {
-    expect(syntaxFunctions.lookupKey("Last_Name", {First_Name: "Bill", Last_Name: "Bailey", Pet: "Bird"}))
-        .toBe("Bailey");
-    expect(syntaxFunctions.lookupKey("Last_Name", {First_Name: "Joe", Last_Name: "Lycett", Pet: "Cat"}))
-        .toBe("Lycett");
-    expect(syntaxFunctions.lookupKey("Pet", {First_Name: "Noel", Last_Name: "Fielding", Pet: "🦖"}))
-        .toBe("🦖");
+    expect(syntaxFunctions.lookupKey(
+        "Last_Name", 
+        {First_Name: "Bill", Last_Name: "Bailey", Pet: "Bird"}
+        )).toBe("Bailey");
+    expect(syntaxFunctions.lookupKey(
+        "Last_Name", 
+        {First_Name: "Joe", Last_Name: "Lycett", Pet: "Cat"}
+        )).toBe("Lycett");
+    expect(syntaxFunctions.lookupKey(
+        "Pet", 
+        {First_Name: "Noel", Last_Name: "Fielding", Pet: "🦖"}
+        )).toBe("🦖");
     });

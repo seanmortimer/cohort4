@@ -4,6 +4,7 @@ import { ThemeContext } from '../../ThemeContext';
 
 function LifoSideBar() {
   const value = useContext(ThemeContext);
+  // console.log('value :>> ', value);
   return (
     <div className="sidebar" id="idSideBar" data-image="../assets/img/sidebar-5.jpg" data-color={value.theme.sidebar}>
       <div className="sidebar-wrapper">

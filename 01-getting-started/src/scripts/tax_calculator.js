@@ -1,5 +1,7 @@
 const functions = {
 
+    // Would probably be better to have brackets as variables for easy updating
+
     taxOwed: (grossIncome) => {
 
         if (grossIncome <= 48535) {
@@ -17,7 +19,6 @@ const functions = {
 
             // console.log("Calculating tax for %f, bracket 2, full   : %f",grossIncome, result);
             // console.log("Calculating tax for %f, bracket 2, Rounded: %f",grossIncome, resultRounded);
-
             return resultRounded;
         }
 
@@ -27,7 +28,6 @@ const functions = {
 
             // console.log("Calculating tax for %f, bracket 3, full   : %f",grossIncome, result);
             // console.log("Calculating tax for %f, bracket 3, Rounded: %f",grossIncome, resultRounded);
-
             return resultRounded;
         }
 
@@ -37,7 +37,6 @@ const functions = {
 
             // console.log("Calculating tax for %f, bracket 4, full   : %f",grossIncome, result);
             // console.log("Calculating tax for %f, bracket 4, Rounded: %f",grossIncome, resultRounded);
-
             return resultRounded;
         }
         
@@ -47,20 +46,14 @@ const functions = {
 
             // console.log("Calculating tax for %f, bracket 5, full   : %f",grossIncome, result);
             // console.log("Calculating tax for %f, bracket 5, Rounded: %f",grossIncome, resultRounded);
-
             return resultRounded;
         }
     },
 
     taxRate: (grossIncome, taxOwed) => {
         // console.log("Tax rate: " + (taxOwed / grossIncome * 100) + "%");
-        
         return (taxOwed / grossIncome * 100).toFixed(1) + "%";
-        
     }
-
-
-
 }
 
 export default functions;
