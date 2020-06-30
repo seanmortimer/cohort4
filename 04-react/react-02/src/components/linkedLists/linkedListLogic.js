@@ -47,7 +47,11 @@ class LinkedList {
   }
 
   insertAfterCurrent(subject, amount) {
-    const node = new ListNode(subject, amount, this.currentNode?.forwardNode);
+    const node = new ListNode(
+      subject,
+      amount,
+      this.currentNode ? this.currentNode.forwardNode : null,
+    );
     if (this.size === 0) {
       this.head = node;
       this.tail = node;
