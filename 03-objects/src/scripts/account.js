@@ -19,12 +19,14 @@ class Account {
   }
 }
 
+
 class AccountController {
   constructor() {
     this.accounts = [];
   }
 
   newAccount(actName, startBalance) {
+    // Check for duplicate account name
     if (this.accounts.find(act => act.actName === actName)) {
       return -1;
     }
@@ -66,19 +68,16 @@ class AccountController {
       if (accum.balance < account.balance) return account;
       return accum;
     }, this.accounts[0]);
-
     return acct;
   }
 
   getLowest() {
     const acct = this.accounts.reduce((accum, account) => {
       if (accum.balance > account.balance) return account;
-      return accum
+      return accum;
     }, this.accounts[0]);
-
     return acct;
   }
-
 }
 
 const htmlFunctions = {
@@ -93,7 +92,7 @@ const htmlFunctions = {
     card.appendChild(h3);
 
     const p1 = document.createElement('P');
-    p1.appendChild(document.createTextNode('Balance:'))
+    p1.appendChild(document.createTextNode('Balance:'));
     card.appendChild(p1);
     const balance = document.createElement('SPAN');
     balance.id = 'id' + actName;
@@ -118,7 +117,7 @@ const htmlFunctions = {
 
   newActListItem: (actName) => {
     // Take in account name, return option item
-    const actItem = document.createElement('OPTION')
+    const actItem = document.createElement('OPTION');
 
     actItem.value = actName;
     actItem.id = 'idList' + actName;
@@ -130,7 +129,6 @@ const htmlFunctions = {
     item.remove();
 
   }
-
 };
 
 export { Account, AccountController, htmlFunctions };

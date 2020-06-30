@@ -1,9 +1,12 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "jest/globals": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -12,10 +15,11 @@
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
+    "plugins": ["jest"],
     "rules": {
         "indent": [
             "error",
-            "tab"
+            2
         ],
         "linebreak-style": [
             "error",
@@ -27,7 +31,7 @@
         ],
         "semi": [
             "error",
-            "never"
+            "always"
         ]
     }
 }
