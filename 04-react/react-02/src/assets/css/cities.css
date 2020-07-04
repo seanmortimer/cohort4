@@ -23,6 +23,7 @@ footer {
 }
 
 #idAddWarning {
+    display: block;
     color: crimson;
 }
 

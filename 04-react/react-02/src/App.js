@@ -11,10 +11,14 @@ import LinkedLists from './components/linkedLists/LinkedLists';
 import LifoFifo from './components/lifoFifo/LifoFifo';
 import ThemeSettings from './components/theme/ThemeSettings';
 import { themes, ThemeContext } from './ThemeContext';
+import LinkedList from './components/linkedLists/linkedListLogic';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
+
+    const linkedList = new LinkedList();
 
     this.chooseTheme = (theme) => {
       this.setState(() => ({ theme: themes[theme] }));
@@ -24,6 +28,7 @@ class App extends Component {
       theme: themes.blue,
       chooseTheme: this.chooseTheme,
       page: 'home',
+      linkedList: linkedList
     };
   }
 
@@ -47,7 +52,7 @@ class App extends Component {
         currentPage = <Cities />;
         break;
       case 'lists':
-        currentPage = <LinkedLists />;
+        currentPage = <LinkedLists list={this.state.linkedList} />;
         break;
       case 'lifo':
         currentPage = <LifoFifo />;

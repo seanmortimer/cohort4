@@ -40,13 +40,27 @@ class AddCityModal extends Component {
 
   testHandleChange(e) {
     // TODO - INPUT VALIDATION
+    const localState = { ...this.state };
+    localState[e.target.name] = e.target.value;
+    let { name, pop, lat, long } = localState;
 
-    const inputs = { ...this.state };
-    inputs[e.target.name] = e.target.value;
-    const { name, pop, lat, long } = inputs;
+    pop = Number(pop);
+    lat = Number(lat);
+    long = Number(long);
 
-    if (name && pop && lat && long) inputs.addBtn = false;
-    this.setState(inputs);
+    // console.log('this.state.warn :>> ', this.state.warn);
+
+
+    if (lat < -90 || lat > 90 || isNaN(lat)) {
+      localState.warn = 'Latitude must be between -90 and +90 degrees.';
+    } else if (long < -180 || long > 180 || isNaN(long)) {
+      localState.warn = 'Longitude must be between -180 and +180 degrees.';
+    } else {
+      localState.warn = '';
+      if (name && pop && lat && long) localState.addBtn = false;
+    }
+
+    this.setState(localState);
   }
 
   render() {
@@ -68,8 +82,6 @@ class AddCityModal extends Component {
           <button type="button" className="close" onClick={this.props.onHide}>&times;</button>
         </div>
         <div className="modal-body pt-1">
-          {/* <p id="idAddWarning">&nbsp;</p> */}
-          {/* <span id="idAddWarning">&nbsp;</span> */}
           <form
             className="form-group"
             ref={(frm) => { this.frm = frm; }}
@@ -123,6 +135,7 @@ class AddCityModal extends Component {
               </button>
             </div>
           </form>
+          <p id="idAddWarning">{this.state.warn || ' '}</p>
         </div>
       </Modal>
     );

@@ -4,6 +4,9 @@ const functions = {
 
     taxOwed: (grossIncome) => {
 
+        // do just one return at end of function
+        // use an array and loop to accomodate many brackets
+
         if (grossIncome <= 48535) {
             const result = (grossIncome * 0.15);
             const resultRounded = Math.round(result * 100) / 100;
@@ -51,8 +54,11 @@ const functions = {
     },
 
     taxRate: (grossIncome, taxOwed) => {
-        // console.log("Tax rate: " + (taxOwed / grossIncome * 100) + "%");
-        return (taxOwed / grossIncome * 100).toFixed(1) + "%";
+        let result = 0;
+        if (grossIncome !== 0) {
+         result = (taxOwed / grossIncome * 100).toFixed(1) + "%";
+        }
+        return result;
     }
 }
 

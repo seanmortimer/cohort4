@@ -7,14 +7,15 @@ import ListSideBar from './LinkedListSideBar';
 import ListCard from './LinkedListCard';
 import ListNav from './LinkedListNav';
 import ListInsert from './LinkedListInsert';
-import LinkedList from './linkedListLogic';
+// import LinkedList from './linkedListLogic';
 
 const demoData = [['Ant', 10], ['Bat', 20], ['Cat', 30], ['Dog', 40]];
-const list = new LinkedList();
+// const list = new LinkedList();
 
 // console.log('List is imported :>> ', list);
 
-function Lists() {
+function Lists(props) {
+  const { list } = props;
   // console.log('Render the page :>> ', list);
   // list is useless in state because it's an object
   // it gets copied by reference so list always === list

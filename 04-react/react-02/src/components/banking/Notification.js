@@ -31,7 +31,7 @@ class Notification extends Component {
         msg = <p>$ {this.prettyBalance(amnt)} has been withdrawn from {actName}.</p>;
         break;
       case 'nan':
-        msg = <p className="clWarn">I generally find it easier to work with numbers.</p>;
+        msg = <p className="clWarn">I generally find it easier to work with numbers greater than zero.</p>;
         break;
       case 'del':
         msg = (<p>Account {actName} has been deleted.</p>);
