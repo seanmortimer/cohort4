@@ -1,15 +1,23 @@
 import React from 'react';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import LinkedLists from './LinkedLists';
-// import animals from '../../assets/data/animals.json';
+import LinkedList from './linkedListLogic';
+// import animals from '../../assets/data/animals.json';p
 
 // const { getByText, queryByText, getByLabelText } = screen;
+const demoData = [['Ant', 10], ['Bat', 20], ['Cat', 30], ['Dog', 40]];
+const list = new LinkedList();
+
+beforeEach(() => {
+  demoData.forEach((item) => list.insertAfterCurrent(item[0], item[1]));
+});
+
 
 afterEach(cleanup);
 
-test('The list shows up with the demo data', () => {
-  console.log('********** TEST 1 *************');
-  const { getByText } = render(<LinkedLists />);
+
+test.only('The list shows up with the demo data', () => {
+  const { getByText } = render(<LinkedLists list={list} />);
   // screen.debug()
 
   expect(getByText('Check out this list!')).toBeInTheDocument();
@@ -20,7 +28,6 @@ test('The list shows up with the demo data', () => {
 });
 
 test('navigating list works', () => {
-  console.log('********** TEST 2 *************');
   const { getByText, queryByText } = render(<LinkedLists />);
 
   // screen.debug();

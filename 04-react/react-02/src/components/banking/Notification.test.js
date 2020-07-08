@@ -36,7 +36,7 @@ test('withdaw message ', () => {
 
 test('not a number message ', () => {
   render(<Notification notif={{ action: 'nan', actName: 'Vacation', amnt: 1000 }} />);
-  expect(screen.getByRole('status')).toHaveTextContent('I generally find it easier to work with numbers.');
+  expect(screen.getByRole('status')).toHaveTextContent('I generally find it easier to work with numbers greater than zero.');
 });
 
 test('delete message ', () => {
