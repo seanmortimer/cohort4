@@ -1,8 +1,9 @@
 import os
 
+targetFile = 'data/syntax.js'
 
 def countLines():
-    line = open('syntax.js').readlines()
+    line = open(targetFile).readlines()
     count = len(line)
     print('Total number of lines is:', count)
     return count
@@ -12,7 +13,7 @@ def countLines():
 def countElse():
     count = 0
     searchFor = 'else'
-    with open('syntax.js') as file:
+    with open(targetFile) as file: 
         lineNo = 0
         for line in file:
             lineNo += 1
@@ -23,15 +24,14 @@ def countElse():
     return count
 
 def countChars():
-    file = "syntax.js"
-    data = open(file, 'r').read()
+    data = open(targetFile, 'r').read()
     charCount = len(data)
     print(f'There are {charCount} characters in syntax.js')
     return charCount
     
 
 def directoryList():
-    path = './'
+    path = './data'
     entries = os.listdir(path)
     dirSize = os.path.getsize(path)
     totalSize = 0

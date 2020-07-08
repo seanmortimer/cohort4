@@ -14,5 +14,5 @@ def test_countChars():
     
 def test_directoryList():
     list = directoryList()
-    assert len(list) == 12
-    assert {"file": "syntax.js", "size": 3873} in list
+    assert len(list) == 2
+    assert {"file": "syntax.js", "size": 3873} in list 
