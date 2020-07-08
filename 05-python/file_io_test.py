@@ -8,3 +8,11 @@ def test_countElse():
     count = countElse()
     assert count == 2
     
+def test_countChars():
+    count = countChars()
+    assert count == 3710
+    
+def test_directoryList():
+    list = directoryList()
+    assert len(list) == 12
+    assert {"file": "syntax.js", "size": 3873} in list

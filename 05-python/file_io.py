@@ -22,27 +22,26 @@ def countElse():
     print(f'There are {count} else statements')
     return count
 
+def countChars():
+    file = "syntax.js"
+    data = open(file, 'r').read()
+    charCount = len(data)
+    print(f'There are {charCount} characters in syntax.js')
+    return charCount
+    
 
-# # countElse()
+def directoryList():
+    path = './'
+    entries = os.listdir(path)
+    dirSize = os.path.getsize(path)
+    totalSize = 0
+    files = []
 
-# def countChars():
-#     file = open('syntax.js', 'r')
-#     data = file.read()
-#     charCount = len(data)
-#     print(f'There are {charCount} characters in syntax.js')
-
-# # countChars()
-
-
-# def listOfFiles():
-#     path = '/code/cohort4/01-getting-started/src/scripts'
-#     entries = os.listdir(path)
-#     dirSize = os.path.getsize(path)
-#     fileCount = 0
-
-#     print(f'Directory size: {dirSize} # of files: {fileCount}')
-
-#     for entry in entries:
-#         fileSize = os.path.getsize(path + '/' + entry)
-#         fileCount += 1
-#         print(f'File name: {entry} ~ Size: {fileSize} bytes')
+    for entry in entries:
+        fileSize = os.path.getsize(path + '/' + entry)
+        totalSize += fileSize
+        print(f'File: {entry} ---- Size: {fileSize} bytes')
+        files.append({"file": entry, "size": fileSize})
+    
+    print(f'\nDirectory size: {totalSize} bytes, {len(entries)} files and subdirectories\n')
+    return files
