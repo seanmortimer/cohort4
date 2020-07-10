@@ -1,7 +1,7 @@
 import csv
 import os
 
-file_name = os.getcwd() + '\\data\\Census_by_Community_2019.csv'
+file_name = os.getcwd() + '\\data\\Census_by_Community_2018.csv'
 output_file = os.getcwd() + '\\data\\report.txt'
 
 
@@ -81,3 +81,4 @@ class Report_Generator:
 
 rg = Report_Generator(file_name, output_file)
 rg.generate_output()
+

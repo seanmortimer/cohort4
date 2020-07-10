@@ -1,0 +1,26 @@
+-------- CEN-BY-COMM-2018 --------
+Source: c:\code\cohort4\05-python\data\Census_by_Community_2018.csv
+Output: c:\code\cohort4\05-python\data\report.txt
+-------- report start --------
+TOTALS:The total number of lines: 0
+The total for the Class Data is : 1264656
+The total for the Sector Data is : 1177277
+
+-------- CLASS DATA --------
+The RESIDENTIAL CLASS has a total count of 1263734
+The INDUSTRIAL CLASS has a total count of 922
+The MAJOR PARK CLASS has a total count of 0
+The RESIDUAL SUB AREA CLASS has a total count of 0
+
+-------- SECTOR DATA --------
+The CENTRE SECTOR has a total count of 199977
+The SOUTH SECTOR has a total count of 227345
+The NORTHEAST SECTOR has a total count of 185534
+The NORTHWEST SECTOR has a total count of 174126
+The NORTH SECTOR has a total count of 160502
+The SOUTHEAST SECTOR has a total count of 135009
+The EAST SECTOR has a total count of 57666
+The WEST SECTOR has a total count of 124497
+
+--------report end--------
+
