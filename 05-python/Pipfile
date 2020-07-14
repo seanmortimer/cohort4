@@ -6,8 +6,10 @@ verify_ssl = true
 [dev-packages]
 pytest-watch = "*"
 pytest-sugar = "*"
+pytest = "*"
 
 [packages]
+openpyxl = "*"
 
 [requires]
 python_version = "3.8"
