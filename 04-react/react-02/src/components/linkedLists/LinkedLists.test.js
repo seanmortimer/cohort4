@@ -4,7 +4,7 @@ import LinkedLists from './LinkedLists';
 import LinkedList from './linkedListLogic';
 // import animals from '../../assets/data/animals.json';p
 
-// const { getByText, queryByText, getByLabelText } = screen;
+const { getByText, queryByText, getByLabelText } = screen;
 const demoData = [['Ant', 10], ['Bat', 20], ['Cat', 30], ['Dog', 40]];
 const list = new LinkedList();
 

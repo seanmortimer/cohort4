@@ -8,8 +8,11 @@ import Card from './Card';
 import AddCityModal from './AddCityModal';
 import postData from './logic/cityfetch';
 
-const urlPy = 'http://localhost:5000/';
-const geoDb = 'http://geodb-free-service.wirefreethought.com/v1/geo/cities';
+const urlPy = 'https://spzbssuagb.execute-api.ca-central-1.amazonaws.com/dev/test-api';
+// const urlPy = 'http://localhost:5000/';
+const geoDb = 'https://spzbssuagb.execute-api.ca-central-1.amazonaws.com/dev/test-api';
+// const geoDb = 'https://bf40bw8dz2.execute-api.ca-central-1.amazonaws.com/dev/hello-world';
+// const geoDb = 'http://geodb-free-service.wirefreethought.com/v1/geo/cities';
 const cities = [
   { key: 1, lat: 51.05, long: -114.05, name: 'Calgary', pop: 1340000 },
   { key: 2, lat: 53.55, long: -113.49, name: 'Edmonton', pop: 981000 },
@@ -45,17 +48,20 @@ class Cities extends Component {
     let serverCities = [];
     // const comm = new Community();
     try {
-      serverCities = await postData(`${urlPy}all`);
+      serverCities = await postData(`${urlPy}`);
+      // serverCities = await postData(`${urlPy}all`);
     } catch (error) {
       // console.error(error);
       this.setState({ showError: true });
       return;
     }
+    console.log('serverCities :>> ', serverCities);
     if (serverCities.length) serverCities.forEach((city) => this.community.createCity(city));
     else {
       cities.forEach((city) => this.community.createCity(city));
       try {
-        this.community.cities.forEach(async (city) => postData(`${urlPy}add`, city));
+        this.community.cities.forEach(async (city) => postData(`${urlPy}`, city));
+        // this.community.cities.forEach(async (city) => postData(`${urlPy}add`, city));
       } catch (error) {
         // console.error(error);
         this.setState({ showError: true });
@@ -74,6 +80,27 @@ class Cities extends Component {
   }
 
 
+  // async getRandom() {
+  //   let cityId = null;
+  //   let name = null;
+  //   let lat = null;
+  //   let long = null;
+  //   let pop = null;
+  //   const i = Math.floor(Math.random() * 2E4);
+  //   // console.log('i :>> ', i);
+  //   await fetch(`${geoDb}?offset=${i}`).then((response) => response.json()).then((id) => {
+  //     cityId = id.data[0].id;
+  //   });
+  //   // console.log('city :>> ', cityId);
+  //   await fetch(`${geoDb}/${cityId}`).then((response) => response.json()).then((city) => {
+  //     // console.log('city :>> ', city.data);
+  //     name = city.data.name;
+  //     lat = city.data.latitude.toFixed(2);
+  //     long = city.data.longitude.toFixed(2);
+  //     pop = city.data.population;
+  //   });
+
+    
   async getRandom() {
     let cityId = null;
     let name = null;
@@ -82,20 +109,20 @@ class Cities extends Component {
     let pop = null;
     const i = Math.floor(Math.random() * 2E4);
     // console.log('i :>> ', i);
-    await fetch(`${geoDb}?offset=${i}`).then((response) => response.json()).then((id) => {
-      cityId = id.data[0].id;
+    await fetch(geoDb).then((response) => response.json()).then((id) => {
+      console.log('reponse :>> ', id);
     });
     // console.log('city :>> ', cityId);
-    await fetch(`${geoDb}/${cityId}`).then((response) => response.json()).then((city) => {
-      // console.log('city :>> ', city.data);
-      name = city.data.name;
-      lat = city.data.latitude.toFixed(2);
-      long = city.data.longitude.toFixed(2);
-      pop = city.data.population;
-    });
+    // await fetch(`${geoDb}/${cityId}`).then((response) => response.json()).then((city) => {
+    //   // console.log('city :>> ', city.data);
+    //   name = city.data.name;
+    //   lat = city.data.latitude.toFixed(2);
+    //   long = city.data.longitude.toFixed(2);
+    //   pop = city.data.population;
+    // });
 
     // console.log('Random city time!', name, lat, long, pop);
-    this.handleAddCity({ name, lat, long, pop });
+    // this.handleAddCity({ name, lat, long, pop });
   }
 
   clearServer = () => {

@@ -1,6 +1,5 @@
 
 const postData = async (url = '', data = {}) => {
-  // console.log('data :>> ', data);
   // Default options are marked with *
   const response = await fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -9,7 +8,6 @@ const postData = async (url = '', data = {}) => {
     credentials: 'same-origin', // include, *same-origin, omit
     headers: {
       'Content-Type': 'application/json',
-      // 'Content-Type': 'application/x-www-form-urlencoded',
     },
     redirect: 'follow', // manual, *follow, error
     referrer: 'no-referrer', // no-referrer, *client
