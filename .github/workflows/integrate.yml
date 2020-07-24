@@ -20,21 +20,20 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with: 
-        node-version: 14
-    - run: npm ci # <- clean install for CI server
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with: 
+          node-version: 14
+      # npm ci = clean install for CI server
+      - run: npm ci 
      
-    - run: npm test
-    - run: echo Running tests!
+      - run: npm test
+      - run: echo Running tests!
       
     # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
-
+    
     # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+#     - name: Run a multi-line script
+#       run: |
+#         echo Add other actions to build,
+#         echo test, and deploy your project.
