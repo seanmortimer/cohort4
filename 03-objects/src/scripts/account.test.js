@@ -6,6 +6,7 @@ let user1;
 let user2;
 
 // Test change to trigger CI
+//  Test 2
 
 beforeEach(() => {
   acct1 = new Account('Sean', 100);

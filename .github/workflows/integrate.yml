@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: CI Testing
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -10,6 +10,9 @@ on:
   pull_request:
     branches: [ master ]
 
+# defaults:
+  # run:
+    # working-directory: 01-getting-started
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -28,7 +31,7 @@ jobs:
       - run: npm ci 
      
       - run: npm test
-      - run: echo Running tests!
+      
       
     # Runs a single command using the runners shell
     
