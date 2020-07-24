@@ -8,7 +8,7 @@ import Card from './Card';
 import AddCityModal from './AddCityModal';
 import postData from './logic/cityfetch';
 
-const urlPy = 'https://spzbssuagb.execute-api.ca-central-1.amazonaws.com/dev/test-api';
+const urlPy = 'https://9ynldka4jk.execute-api.ca-central-1.amazonaws.com/dev/store-data';
 // const urlPy = 'http://localhost:5000/';
 const geoDb = 'https://spzbssuagb.execute-api.ca-central-1.amazonaws.com/dev/test-api';
 // const geoDb = 'https://bf40bw8dz2.execute-api.ca-central-1.amazonaws.com/dev/hello-world';
@@ -22,7 +22,13 @@ const cities = [
   { key: 6, lat: -33.93, long: 18.42, name: 'Cape Town', pop: 3780000 },
   { key: 7, lat: 4.71, long: -74.07, name: 'Bogota', pop: 7400000 },
 ];
-
+const testData = {
+    user_id: 552,
+    full_name: "React Test2!",
+    email: "sean@sean.com",
+    address: "321 Fake Street",
+    phone: "555-5555"
+}
 
 class Cities extends Component {
   constructor(props) {
@@ -44,11 +50,13 @@ class Cities extends Component {
     this.getRandom = this.getRandom.bind(this);
   }
 
+  
+
   async componentDidMount() {
     let serverCities = [];
     // const comm = new Community();
     try {
-      serverCities = await postData(`${urlPy}`);
+      serverCities = await postData(`${urlPy}`, testData);
       // serverCities = await postData(`${urlPy}all`);
     } catch (error) {
       // console.error(error);
