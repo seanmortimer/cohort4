@@ -11,9 +11,10 @@ on:
     branches: [ master ]
 
 # test testing
-# defaults:
-  # run:
-    # working-directory: 01-getting-started
+defaults:
+  run:
+    working-directory: 01-getting-started
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
