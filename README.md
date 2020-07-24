@@ -1,3 +1,9 @@
+# EvolveU Cohort 4 Comptency Work
+
+###### Look! I made some tests pass!
+![Project 1 Tests](https://github.com/seanmortimer/cohort4/workflows/Project%201%20Tests/badge.svg)
+
+---
 
 This file must be viewed from [github](https://github.com/larryevolveu/reference). Do not view from an editor.
 
