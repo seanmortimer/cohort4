@@ -5,13 +5,9 @@ file_name = os.getcwd() + '\\data\\Census_by_Community_2018.csv'
 output_file = os.getcwd() + '\\data\\report.txt'
 
 
-class Report_Generator:
-    """Report_Generator, creates a report with total
-    'res_cnt' by 'CLASS' and 'SECTOR'. The class and
-    sectors do not need to be known before execution
-    to count what the Class or Sector names will be.
-    The code will only loop through the data once
-    """
+class Census_Report:
+    # Create a census report with total 'res_cnt' by 'CLASS' and 'SECTOR'. 
+    # Output: 
 
     def __init__(self, file_name, output_file):
         self.count = 0
@@ -23,7 +19,7 @@ class Report_Generator:
         self.file_name = file_name
         self.output_file = output_file
 
-    def generate_output(self):
+    def generate_report(self):
         with open(self.file_name, 'r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
@@ -79,6 +75,6 @@ class Report_Generator:
         self.file_name = None
 
 
-rg = Report_Generator(file_name, output_file)
-rg.generate_output()
+rg = Census_Report(file_name, output_file)
+rg.generate_report()
 
