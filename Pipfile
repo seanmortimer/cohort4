@@ -7,9 +7,15 @@ verify_ssl = true
 pytest-watch = "*"
 pytest-sugar = "*"
 pytest = "*"
+pytest-cov = "*"
+coverage = "*"
 
 [packages]
 openpyxl = "*"
+gunicorn = "*"
+Flask = "*"
+Flask-Cors = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"
