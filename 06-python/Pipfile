@@ -12,10 +12,6 @@ coverage = "*"
 
 [packages]
 openpyxl = "*"
-gunicorn = "*"
-Flask = "*"
-Flask-Cors = "*"
-requests = "*"
 
 [requires]
 python_version = "3.8"
