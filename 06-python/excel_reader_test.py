@@ -1,4 +1,3 @@
-import pytest
 from excel_reader import *
 
 test_file = './data/billy_test_data.xlsx'
