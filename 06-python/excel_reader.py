@@ -51,8 +51,7 @@ def buildInvoice(file, invoice_no):
     # invoice["invoice_no"] = invoice_no
     invoice["date"] = wb_dict["Invoices"][invoice_no]["date"]
     invoice["payment"] = wb_dict["Invoices"][invoice_no]["payment"]
-    items = [value for (line, value) in wb_dict["Line_Items"].items(
-    ) if value["invoice_no"] == invoice_no]
+    items = [value for (line, value) in wb_dict["Line_Items"].items() if value["invoice_no"] == invoice_no]
     invoice["line_items"] = {}
     invoice["total"] = 0
 

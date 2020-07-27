@@ -35,7 +35,7 @@ class Census_Report:
                 self.report['Lines'] += 1
 
         # pprint.pprint(self.report)
-        print(self.report['Lines'])
+        # print(self.report['Lines'])
         return self.report
 
     def format_output(self, name, res_type, count):
