@@ -1,0 +1,28 @@
+-------- 2018 CENUS-BY-COMMUNITY --------
+Source: C:\code\cohort4\06-python\data\Census_by_Community_2018.csv
+Output: C:\code\cohort4\06-python\data\reporttest.txt
+-------- report start --------
+TOTALS:Total number of lines: 303
+Total RES_CNT by Classes: 1264656
+Total RES_CNT by Sectors: 1264656
+
+-------- CLASS DATA --------
+The TOTAL CLASS has a total count of 1264656
+The RESIDENTIAL CLASS has a total count of 1263734
+The INDUSTRIAL CLASS has a total count of 922
+The MAJOR PARK CLASS has a total count of 0
+The RESIDUAL SUB AREA CLASS has a total count of 0
+
+------V-- SECTOR DATA --------
+The TOTAL SECTOR has a total count of 1264656
+The CENTRE SECTOR has a total count of 199977
+The SOUTH SECTOR has a total count of 227345
+The NORTHEAST SECTOR has a total count of 185534
+The NORTHWEST SECTOR has a total count of 174126
+The NORTH SECTOR has a total count of 160502
+The SOUTHEAST SECTOR has a total count of 135009
+The EAST SECTOR has a total count of 57666
+The WEST SECTOR has a total count of 124497
+
+--------report end--------
+

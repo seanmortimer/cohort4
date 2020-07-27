@@ -1,14 +1,14 @@
 from openpyxl import load_workbook
 print()
 
-# ADD ONS: Data validation, 
+# ADD ONS: Data validation,
 # make into class?
 # make print width more adjustable
 
 
 def excelToDict(file):
     wb = load_workbook(file)
-    wb_dict = {}  
+    wb_dict = {}
 
     for sheet in wb.worksheets:
         wb_dict[sheet.title] = {}
@@ -26,17 +26,17 @@ def excelToDict(file):
 
 def alternateWay(file):
     wb = load_workbook(file)
-    wb_dict = {}  
+    wb_dict = {}
 
     for sheet in wb.worksheets:
         wb_dict[sheet.title] = {}
         i = 1
         for row in sheet.values:
-           if i == 1:
-               labels = row 
-           else:
-               wb_dict[sheet.title][row[0]] = dict(zip(labels, row))
-           i += 1
+            if i == 1:
+                labels = row
+            else:
+                wb_dict[sheet.title][row[0]] = dict(zip(labels, row))
+            i += 1
 
     return wb_dict
 
@@ -51,7 +51,8 @@ def buildInvoice(file, invoice_no):
     # invoice["invoice_no"] = invoice_no
     invoice["date"] = wb_dict["Invoices"][invoice_no]["date"]
     invoice["payment"] = wb_dict["Invoices"][invoice_no]["payment"]
-    items = [value for (line, value) in wb_dict["Line_Items"].items() if value["invoice_no"] == invoice_no]
+    items = [value for (line, value) in wb_dict["Line_Items"].items(
+    ) if value["invoice_no"] == invoice_no]
     invoice["line_items"] = {}
     invoice["total"] = 0
 
@@ -78,14 +79,12 @@ def printInvoice(file, invoice_no):
     print_width = 80
     invoice = buildInvoice(file, invoice_no)
 
-
     i_str = f"Invoice No: {invoice_no}"
     date = f"Date: {invoice['date']}"
     name = f"{invoice['customer']['first_name']} {invoice['customer']['last_name']}"
     addr = f"{invoice['customer']['address']}"
     phone = invoice["customer"]["phone"]
 
-    
     # header
     print("*".ljust(print_width, '*'))
     print("\n" + name.ljust(print_width - len(i_str)) + i_str)
@@ -94,17 +93,18 @@ def printInvoice(file, invoice_no):
 
     # body
     print("-".ljust(print_width, '-'))
-    print("Item No".ljust(18), "Name".ljust(25), "Unit Price".ljust(14), "Quantity".ljust(13), "Price")
+    print("Item No".ljust(18), "Name".ljust(25),
+          "Unit Price".ljust(14), "Quantity".ljust(13), "Price")
     print("-".ljust(print_width, '-'))
-    
+
     for line in invoice['line_items'].values():
         print(
-            f"  {int(line['product_id'])}".ljust(10), 
+            f"  {int(line['product_id'])}".ljust(10),
             f"{line['name']}"[0:60].ljust(35),
-            f"${line['unit_price']:.2f}", 
-            f"{line['qty']}".rjust(12), 
+            f"${line['unit_price']:.2f}",
+            f"{line['qty']}".rjust(12),
             f"$ {line['price']:.2f}".rjust(12))
-    
+
     print("-".ljust(print_width, '-'))
     print(f"$ {invoice['total']:.2f}".rjust(print_width - 1))
 

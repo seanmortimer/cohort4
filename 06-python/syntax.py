@@ -21,7 +21,3 @@ def showName(person):
 
 def email(fName, lName):
     return f'{fName}.{lName}@python.com'.lower()
-
-
-def tax_calculator(gross):
-    pass

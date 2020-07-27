@@ -1,42 +1,42 @@
 import csv
 import os
+import pprint
 
 file_name = os.getcwd() + '\\data\\Census_by_Community_2018.csv'
 output_file = os.getcwd() + '\\data\\report.txt'
 
 
 class Census_Report:
-    # Create a census report with total 'res_cnt' by 'CLASS' and 'SECTOR'. 
-    # Output: 
-
-    def __init__(self, file_name, output_file):
-        self.count = 0
-        self.class_count = 0
-        self.sector_count = 0
-        self.class_data = dict()
-        self.sector_data = dict()
-        self.output = ""
+    # Create a census report with total 'res_cnt' by 'CLASS' and 'SECTOR'.
+    
+    def __init__(self, file_name):
         self.file_name = file_name
-        self.output_file = output_file
+        self.report = {
+            'Lines': 0,
+            'Classes': {'Total': 0},
+            'Sectors': {'Total': 0}
+            }
 
     def generate_report(self):
         with open(self.file_name, 'r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
-            for row in csv_reader:
-                if row['CLASS'] in self.class_data:
-                    self.class_data[row["CLASS"]] += int(row["RES_CNT"])
-                    self.class_count += int(row["RES_CNT"])
-                else:
-                    self.class_data[row["CLASS"]] = int(row["RES_CNT"])
-                    self.class_count += int(row["RES_CNT"])
-                if row['SECTOR'] in self.sector_data:
-                    self.sector_data[row["SECTOR"]] += int(row["RES_CNT"])
-                    self.sector_count += int(row["RES_CNT"])
-                else:
-                    self.sector_data[row["SECTOR"]] = int(row["RES_CNT"])
-                    self.sector_count = int(row["RES_CNT"])
 
-        self.write_to_file(output_file)
+            for row in csv_reader:
+                pop = int(row['RES_CNT'])
+                
+                self.report['Classes'].setdefault(row['CLASS'], 0)
+                self.report['Classes'][row['CLASS']] += pop
+                self.report['Classes']['Total'] += pop
+                
+                self.report['Sectors'].setdefault(row['SECTOR'], 0)
+                self.report['Sectors'][row['SECTOR']] += pop
+                self.report['Sectors']['Total'] += pop
+                
+                self.report['Lines'] += 1
+               
+        # pprint.pprint(self.report)
+        print(self.report['Lines'])
+        return self.report
 
     def format_output(self, name, res_type, count):
         result = f'The {name.upper()} {res_type.upper()} has a total count of {count}'
@@ -45,36 +45,25 @@ class Census_Report:
     def write_to_file(self, output_file):
         with open(output_file, 'w') as report_file:
             writer = report_file.write
-            writer("-------- CEN-BY-COMM-2018 --------\n\r")
+            writer("-------- 2018 CENSUS-BY-COMMUNITY --------\n\r")
             writer(f"Source: {self.file_name}"+"\n")
-            writer(f"Output: {self.output_file}" + "\n\r")
+            writer(f"Output: {output_file}" + "\n\r")
             writer("-------- report start --------\n\r")
-            writer("TOTALS:")
-            writer(f"The total number of lines: {self.count}" + "\n\r" +
-                   f"The total for the Class Data is : {self.class_count}" + "\n\r" +
-                   f"The total for the Sector Data is : {self.sector_count}" + "\n\r")
+            writer("TOTALS:\n")
+            writer(f"Number of lines: {self.report['Lines']}" + "\n" +
+                   f"RES_CNT by Classes: {self.report['Classes']['Total']}" + "\n" +
+                   f"RES_CNT by Sectors: {self.report['Classes']['Total']}" + "\n")
 
-            if self.class_data:
-                writer("\n-------- CLASS DATA --------\n")
-                for c in self.class_data:
-                    writer(self.format_output(
-                        c, "CLASS", self.class_data[c])+'\n')
-            if self.sector_data:
-                writer("\n-------- SECTOR DATA --------\n")
-                for s in self.sector_data:
-                    writer(self.format_output(
-                        s, "SECTOR", self.sector_data[s])+"\n")
+            writer("\n-------- CLASS DATA --------\n")
+            for c in self.report['Classes']:
+                if c != 'Total':
+                    writer(f"{c}: {self.report['Classes'][c]}\n")
 
-            writer("\n\r--------report end--------\n\r")
+            writer("\n-------- SECTOR DATA --------\n")
+            for s in self.report['Sectors']:
+                if s != 'Total':
+                    writer(f"{s} Sector: {self.report['Sectors'][s]}\n")
 
-    def destruct(self):
-        self.count = None
-        self.class_count = None
-        self.class_data = None
-        self.sector_data = None
-        self.file_name = None
+            writer("\n-------- report end --------\n\r")
 
-
-rg = Census_Report(file_name, output_file)
-rg.generate_report()
-
+        return 1

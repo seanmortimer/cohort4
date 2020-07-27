@@ -32,6 +32,3 @@ def test_email():
     assert syntax.email('Sean', 'Mortimer') == 'sean.mortimer@python.com'
     assert syntax.email('Michael', 'Scott') == 'michael.scott@python.com'
     assert syntax.email('William', 'Merckxx') == 'william.merckxx@python.com'
-
-def test_tax_calculator():
-    pass

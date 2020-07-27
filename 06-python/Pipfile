@@ -9,9 +9,12 @@ pytest-sugar = "*"
 pytest = "*"
 pytest-cov = "*"
 coverage = "*"
+autopep8 = "*"
+flake8 = "*"
 
 [packages]
 openpyxl = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.8"

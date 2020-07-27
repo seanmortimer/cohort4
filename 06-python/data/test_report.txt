@@ -1,0 +1,27 @@
+-------- 2018 CENSUS-BY-COMMUNITY --------
+Source: C:\code\cohort4\06-python\data\Census_by_Community_2018.csv
+Output: C:\code\cohort4\06-python\data\test_report.txt
+-------- report start --------
+TOTALS:
+Number of lines: 303
+RES_CNT by Classes: 1264656
+RES_CNT by Sectors: 1264656
+
+-------- CLASS DATA --------
+Residential: 1263734
+Industrial: 922
+Major Park: 0
+Residual Sub Area: 0
+
+-------- SECTOR DATA --------
+CENTRE Sector: 199977
+SOUTH Sector: 227345
+NORTHEAST Sector: 185534
+NORTHWEST Sector: 174126
+NORTH Sector: 160502
+SOUTHEAST Sector: 135009
+EAST Sector: 57666
+WEST Sector: 124497
+
+-------- report end --------
+
