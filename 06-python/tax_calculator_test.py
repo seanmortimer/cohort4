@@ -1,5 +1,6 @@
 import tax_calculator as tax_calc
 
+
 def test_tax_calc():
     assert tax_calc.tax_calc(1) == 0.15
     assert tax_calc.tax_calc(100) == 15
@@ -17,5 +18,3 @@ def test_tax_calc():
     assert tax_calc.tax_calc(214368) == 49644.31
     assert tax_calc.tax_calc(214369) == 49644.64
     assert tax_calc.tax_calc(1E6) == 308902.87
-    
-

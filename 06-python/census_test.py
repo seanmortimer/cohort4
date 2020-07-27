@@ -4,6 +4,7 @@ import os
 file_name = os.getcwd() + '\\data\\Census_by_Community_2018.csv'
 output_file = os.getcwd() + '\\data\\test_report.txt'
 
+
 def test_report():
     report = Census_Report(file_name)
     totals = report.generate_report()

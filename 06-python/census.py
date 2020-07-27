@@ -1,6 +1,6 @@
 import csv
 import os
-import pprint
+# import pprint
 
 file_name = os.getcwd() + '\\data\\Census_by_Community_2018.csv'
 output_file = os.getcwd() + '\\data\\report.txt'
@@ -8,7 +8,7 @@ output_file = os.getcwd() + '\\data\\report.txt'
 
 class Census_Report:
     # Create a census report with total 'res_cnt' by 'CLASS' and 'SECTOR'.
-    
+
     def __init__(self, file_name):
         self.file_name = file_name
         self.report = {
@@ -23,17 +23,17 @@ class Census_Report:
 
             for row in csv_reader:
                 pop = int(row['RES_CNT'])
-                
+
                 self.report['Classes'].setdefault(row['CLASS'], 0)
                 self.report['Classes'][row['CLASS']] += pop
                 self.report['Classes']['Total'] += pop
-                
+
                 self.report['Sectors'].setdefault(row['SECTOR'], 0)
                 self.report['Sectors'][row['SECTOR']] += pop
                 self.report['Sectors']['Total'] += pop
-                
+
                 self.report['Lines'] += 1
-               
+
         # pprint.pprint(self.report)
         print(self.report['Lines'])
         return self.report

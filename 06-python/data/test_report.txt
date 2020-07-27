@@ -1,6 +1,6 @@
 -------- 2018 CENSUS-BY-COMMUNITY --------
-Source: C:\code\cohort4\06-python\data\Census_by_Community_2018.csv
-Output: C:\code\cohort4\06-python\data\test_report.txt
+Source: c:\code\cohort4\06-python\data\Census_by_Community_2018.csv
+Output: c:\code\cohort4\06-python\data\test_report.txt
 -------- report start --------
 TOTALS:
 Number of lines: 303
