@@ -17,6 +17,7 @@ class ReactHome extends Component {
         >
           Learn React
         </a>
+        <p>Disclaimer: This demo app should be considered early beta! There will be bugs. </p>
       </div>
     );
   }
