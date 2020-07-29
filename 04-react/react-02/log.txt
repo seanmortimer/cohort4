@@ -1,0 +1,102 @@
+2020-07-29T01:06:58.594Z [INFO]: Git SSH Key acquired
+2020-07-29T01:06:58.684Z [INFO]: # Cloning repository: git@github.com:seanmortimer/cohort4.git
+2020-07-29T01:06:58.819Z [INFO]: Agent pid 122
+2020-07-29T01:06:58.825Z [INFO]: Identity added: /root/.ssh/git_rsa (/root/.ssh/git_rsa)
+2020-07-29T01:06:59.005Z [INFO]: Cloning into 'cohort4'...
+2020-07-29T01:06:59.308Z [INFO]: Warning: Permanently added the RSA host key for IP address '140.82.112.3' to the list of known hosts.
+2020-07-29T01:07:00.372Z [INFO]: # Checking for Git submodules at: /codebuild/output/src942577526/src/cohort4/.gitmodules
+2020-07-29T01:07:00.489Z [INFO]: # Retrieving cache...
+2020-07-29T01:07:00.523Z [INFO]: # Extracting cache...
+2020-07-29T01:07:00.535Z [INFO]: # Extraction completed
+2020-07-29T01:07:00.536Z [INFO]: # Retrieving environment cache...
+2020-07-29T01:07:00.556Z [INFO]: # Retrieved environment cache
+2020-07-29T01:07:38.426Z [INFO]: ## Starting Frontend Build
+                                 # Starting phase: preBuild
+                                 # Executing command: npm ci
+2020-07-29T01:07:52.409Z [INFO]: > core-js@2.6.11 postinstall /codebuild/output/src942577526/src/cohort4/04-react/react-02/node_modules/babel-runtime/node_modules/core-js
+                                 > node -e "try{require('./postinstall')}catch(e){}"
+2020-07-29T01:07:52.477Z [INFO]: Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
+                                 The project needs your help! Please consider supporting of core-js on Open Collective or Patreon:
+                                 > https://opencollective.com/core-js
+                                 > https://www.patreon.com/zloirock
+                                 Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
+2020-07-29T01:07:52.605Z [INFO]: > fsevents@1.2.13 install /codebuild/output/src942577526/src/cohort4/04-react/react-02/node_modules/webpack-dev-server/node_modules/fsevents
+                                 > node install.js
+2020-07-29T01:07:52.671Z [INFO]: 
+2020-07-29T01:07:52.672Z [INFO]: Skipping 'fsevents' build as platform linux is not supported
+2020-07-29T01:07:52.694Z [INFO]: > fsevents@1.2.13 install /codebuild/output/src942577526/src/cohort4/04-react/react-02/node_modules/watchpack/node_modules/fsevents
+                                 > node install.js
+2020-07-29T01:07:52.760Z [INFO]: 
+2020-07-29T01:07:52.761Z [INFO]: Skipping 'fsevents' build as platform linux is not supported
+2020-07-29T01:07:52.888Z [INFO]: > core-js@3.6.5 postinstall /codebuild/output/src942577526/src/cohort4/04-react/react-02/node_modules/core-js
+                                 > node -e "try{require('./postinstall')}catch(e){}"
+2020-07-29T01:07:53.115Z [INFO]: > fsevents@1.2.13 install /codebuild/output/src942577526/src/cohort4/04-react/react-02/node_modules/jest-haste-map/node_modules/fsevents
+                                 > node install.js
+2020-07-29T01:07:53.181Z [INFO]: 
+2020-07-29T01:07:53.182Z [INFO]: Skipping 'fsevents' build as platform linux is not supported
+2020-07-29T01:07:53.261Z [INFO]: > core-js-pure@3.6.5 postinstall /codebuild/output/src942577526/src/cohort4/04-react/react-02/node_modules/core-js-pure
+                                 > node -e "try{require('./postinstall')}catch(e){}"
+2020-07-29T01:07:53.436Z [INFO]: added 1728 packages in 14.13s
+2020-07-29T01:07:53.449Z [INFO]: # Completed phase: preBuild
+                                 # Starting phase: build
+2020-07-29T01:07:53.450Z [INFO]: # Executing command: npm run build
+2020-07-29T01:07:53.671Z [INFO]: > react-02@0.1.0 build /codebuild/output/src942577526/src/cohort4/04-react/react-02
+                                 > react-scripts build
+2020-07-29T01:07:54.776Z [INFO]: Creating an optimized production build...
+2020-07-29T01:07:57.078Z [INFO]: Failed to compile.
+2020-07-29T01:07:57.080Z [INFO]: ./src/App.js
+                                 Cannot find file './components/lifoFifo/LifoFifo' in './src'.
+2020-07-29T01:07:57.092Z [WARNING]: npm
+2020-07-29T01:07:57.093Z [WARNING]: ERR! code ELIFECYCLE
+                                    npm ERR! errno 1
+                                    npm ERR! react-02@0.1.0 build: `react-scripts build`
+                                    npm ERR! Exit status 1
+2020-07-29T01:07:57.094Z [WARNING]: npm ERR!
+                                    npm ERR! Failed at the react-02@0.1.0 build script.
+                                    npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2020-07-29T01:07:57.104Z [WARNING]: 
+2020-07-29T01:07:57.106Z [WARNING]: npm ERR! A complete log of this run can be found in:
+                                    npm ERR!     /root/.npm/_logs/2020-07-29T01_07_57_097Z-debug.log
+2020-07-29T01:07:57.106Z [HELP]: Outputting the npm debug log
+                                 0 info it worked if it ends with ok
+                                 1 verbose cli [ '/root/.nvm/versions/node/v10.16.0/bin/node',
+                                 1 verbose cli   '/root/.nvm/versions/node/v10.16.0/bin/npm',
+                                 1 verbose cli   'run',
+                                 1 verbose cli   'build' ]
+                                 2 info using npm@6.9.0
+                                 3 info using node@v10.16.0
+                                 4 verbose run-script [ 'prebuild', 'build', 'postbuild' ]
+                                 5 info lifecycle react-02@0.1.0~prebuild: react-02@0.1.0
+                                 6 info lifecycle react-02@0.1.0~build: react-02@0.1.0
+                                 7 verbose lifecycle react-02@0.1.0~build: unsafe-perm in lifecycle true
+                                 8 verbose lifecycle react-02@0.1.0~build: PATH: /root/.nvm/versions/node/v10.16.0/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/codebuild/output/src942577526/src/cohort4/04-react/react-02/node_modules/.bin:/usr/local/rvm/gems/ruby-2.4.6/bin:/usr/local/rvm/gems/ruby-2.4.6@global/bin:/usr/local/rvm/rubies/ruby-2.4.6/bin:/usr/local/rvm/bin:/root/.yarn/bin:/root/.config/yarn/global/node_modules/.bin:/root/.nvm/versions/node/v10.16.0/bin:/root/.local/bin:/usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+                                 9 verbose lifecycle react-02@0.1.0~build: CWD: /codebuild/output/src942577526/src/cohort4/04-react/react-02
+                                 10 silly lifecycle react-02@0.1.0~build: Args: [ '-c', 'react-scripts build' ]
+                                 11 silly lifecycle react-02@0.1.0~build: Returned: code: 1  signal: null
+                                 12 info lifecycle react-02@0.1.0~build: Failed to exec build script
+                                 13 verbose stack Error: react-02@0.1.0 build: `react-scripts build`
+                                 13 verbose stack Exit status 1
+                                 13 verbose stack     at EventEmitter.<anonymous> (/root/.nvm/versions/node/v10.16.0/lib/node_modules/npm/node_modules/npm-lifecycle/index.js:301:16)
+                                 13 verbose stack     at EventEmitter.emit (events.js:198:13)
+                                 13 verbose stack     at ChildProcess.<anonymous> (/root/.nvm/versions/node/v10.16.0/lib/node_modules/npm/node_modules/npm-lifecycle/lib/spawn.js:55:14)
+                                 13 verbose stack     at ChildProcess.emit (events.js:198:13)
+                                 13 verbose stack     at maybeClose (internal/child_process.js:982:16)
+                                 13 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:259:5)
+                                 14 verbose pkgid react-02@0.1.0
+                                 15 verbose cwd /codebuild/output/src942577526/src/cohort4/04-react/react-02
+                                 16 verbose Linux 4.14.181-108.257.amzn1.x86_64
+                                 17 verbose argv "/root/.nvm/versions/node/v10.16.0/bin/node" "/root/.nvm/versions/node/v10.16.0/bin/npm" "run" "build"
+                                 18 verbose node v10.16.0
+                                 19 verbose npm  v6.9.0
+                                 20 error code ELIFECYCLE
+                                 21 error errno 1
+                                 22 error react-02@0.1.0 build: `react-scripts build`
+                                 22 error Exit status 1
+                                 23 error Failed at the react-02@0.1.0 build script.
+                                 23 error This is probably not a problem with npm. There is likely additional logging output above.
+                                 24 verbose exit [ 1, true ]
+2020-07-29T01:07:57.109Z [ERROR]: !!! Build failed
+2020-07-29T01:07:57.203Z [ERROR]: !!! Non-Zero Exit Code detected
+2020-07-29T01:07:57.203Z [INFO]: # Starting environment caching...
+2020-07-29T01:07:57.204Z [INFO]: # Environment caching completed
+Terminating logging...

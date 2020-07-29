@@ -9,7 +9,6 @@ import { LifoList, FifoList } from './lifoFifo-logic';
 import animals from '../../assets/data/animal-alphabet.json';
 import moreAnimals from '../../assets/data/animals.json';
 
-
 const stack = new LifoList();
 const queue = new FifoList();
 
