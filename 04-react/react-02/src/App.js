@@ -8,7 +8,7 @@ import Game from './components/tictactoe/TicTacToe';
 import Banking from './components/banking/Banking';
 import Cities from './components/cities/Cities';
 import LinkedLists from './components/linkedLists/LinkedLists';
-import LifoFifo from './components/lifoFifo/LifoFifo.js';
+import LifoFifo from './components/lifoFifo/LifoFifo';
 import ThemeSettings from './components/theme/ThemeSettings';
 import { themes, ThemeContext } from './ThemeContext';
 import LinkedList from './components/linkedLists/linkedListLogic';
@@ -73,7 +73,7 @@ class App extends Component {
               Sean Mortimer
             </a>
             {' '}Check out the source code here:{' '}
-            <a href="https://github.com/seanmortimer/cohort4/tree/master/03-objects">
+            <a href="https://github.com/seanmortimer/cohort4/tree/master/04-react/react-02">
               github.com/seanmortimer
             </a>
           </footer>
