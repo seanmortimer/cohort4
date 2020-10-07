@@ -1,4 +1,4 @@
-# EvolveU Cohort 4 Comptency Work
+# EvolveU Cohort 4 Competency Work
 
 ###### Look! I made some tests pass!
 ![Project 1 Tests](https://github.com/seanmortimer/cohort4/workflows/Project%201%20Tests/badge.svg)
